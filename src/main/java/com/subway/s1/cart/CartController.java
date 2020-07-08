@@ -104,5 +104,12 @@ public class CartController {
 		ModelAndView mv = new ModelAndView();
 		return mv;
 	}
+	
+
+	@GetMapping("howToUse")
+	public void howToUse() throws Exception{
+		
+	}
+	
 
 }
