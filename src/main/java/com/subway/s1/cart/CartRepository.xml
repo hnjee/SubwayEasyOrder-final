@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.cart.CartRepository">
+
+	<select id="cartList" parameterType="String" resultType="CartVO">
+		select * from Cart where id=#{id}
+	</select> 
+	
+	<insert id="cartInsert" parameterType="CartVO">
+		insert into Cart values(#{id}, #{menuNum}, #{productNum}, #{productPrice}, #{productCount}, #{setting})
+	</insert>
+	
+	<select id="cartSelect" parameterType="String" resultType="CartVO">
+		select * from Cart where productNum=#{productNum}
+	</select>
+	
+	<delete id="cartDelete" parameterType="String">
+		delete from Cart where productNum=#{productNum}
+	</delete>
+	
+	<delete id="cartDeleteAll" parameterType="String">
+		delete from Cart where id=#{id}
+	</delete>
+	
+	<update id="cartUpdate" parameterType="CartVO">
+		update Cart set productCount=#{productCount} where productNum=#{productNum}
+	</update>
+	
+
+</mapper>

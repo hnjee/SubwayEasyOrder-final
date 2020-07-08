@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.myStore.MyStoreRepository">
+	<select id="myStoreList" parameterType="String" resultType="MyStoreVO">
+		select MyStore.id, Store.* from MyStore join Store on (MyStore.storeNum = Store.storeNum) where id=#{id};
+	</select>
+	
+	<select id="myStoreNumList" parameterType="String" resultType="String">
+		select MyStore.storeNum from MyStore where id=#{id};
+	</select>
+	
+	<delete id="myStoreDelete" parameterType="MyStoreVO">
+		delete from MyStore where id=#{id} and storeNum=#{storeNum};
+	</delete>
+	
+	<insert id="myStoreInsert" parameterType="MyStoreVO"> 
+		insert into MyStore values(#{id}, #{storeNum});
+	</insert>
+</mapper>

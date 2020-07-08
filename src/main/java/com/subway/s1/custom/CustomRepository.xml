@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.custom.CustomRepository">
+
+	<insert id="customInsert" parameterType="CustomVO">
+		insert into Custom values(#{productNum}, #{ingreNum}, #{breadSize}, #{breadToasting})
+	</insert>
+
+	<select id="customList" parameterType="String" resultType="CustomVO">
+		select * from Custom where productNum=#{productNum} order by ingreNum
+	</select>
+	
+
+
+</mapper>
+

@@ -4,6 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.subway.s1.member.MemberRepository">
+	<update id="memberStoreUpdate" parameterType="MemberVO">
+		update Member set storeNum=#{storeNum} where id=#{id}
+	</update>
 	
 	<select id="idCheck" parameterType="MemberVO" resultType="MemberVO">
 		select * from Member where id=#{id}
@@ -16,7 +19,5 @@
 	<insert id="memberJoin" parameterType="MemberVO">
 		insert into Member(id,pw,name,phone,oripoint) values (#{id},#{pw},#{name},#{phone},0)
 	</insert>
-	
-	
-	
+
 </mapper>

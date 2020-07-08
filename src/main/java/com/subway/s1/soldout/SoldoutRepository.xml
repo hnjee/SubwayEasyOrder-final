@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.soldout.SoldoutRepository">
+	<select id="menuSoldout" parameterType="String" resultType="String">
+		select menuNum from MenuSoldout where storeNum=#{storeNum}
+	</select>
+	<select id="ingreSoldout" parameterType="String" resultType="String">
+		select ingreNum from IngreSoldout where storeNum=#{storeNum}
+	</select>
+
+</mapper>

@@ -41,13 +41,10 @@ public class MemberService {
 //		return memberRepository.detailIngre(orderInfoVO);
 //	}
 //
-//
-//
-//	public int memberStoreUpdate(MemberVO memberVO) throws Exception{
-//		return memberRepository.memberStoreUpdate(memberVO);
-//	}
-//	
-//
+	public int memberStoreUpdate(MemberVO memberVO) throws Exception{
+		return memberRepository.memberStoreUpdate(memberVO);
+	}
+
 //	public List<MenuVO> swSelect()throws Exception{
 //		return memberRepository.swSelect();
 //	}
