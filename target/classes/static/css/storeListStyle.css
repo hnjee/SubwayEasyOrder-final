@@ -1,0 +1,349 @@
+@charset "UTF-8";
+button{
+	border: none;
+}
+p{
+	margin: 0;
+}
+body{
+	    background-color: #f2f2f2;
+}
+#store_main{
+	width: 1150px;
+	margin: 0 auto;
+	padding-bottom: 100px;
+
+}
+#store_title{
+	margin-top:50px;
+	margin-bottom: 30px;
+}
+#store_title h2{
+	font-size: 32px;
+    color: #111;
+    font-weight: 400;
+    letter-spacing: -0.75px;
+   	line-height: 1em;
+}
+#store_contents{
+	overflow: auto;
+}
+#store_list{
+	width:400px;
+	height: 700px;
+	float: left;
+	background-color: white;
+	border: 1px solid #dddddd;
+}
+#store_map{
+	float: left;
+	width: 750px;
+	height: 700px;
+	overflow: hidden;
+}
+
+.form_search {
+    border: 2px solid #dddddd;
+    height: 43px;
+    display: block;
+    vertical-align: middle;
+    position: relative;
+    padding-right: 42px;
+}
+
+.form_search input {
+    border: 0;
+    height: 39px;
+    width: 100%;
+    text-indent: 14px;
+    color: #292929;
+    font-size: 16px;
+}
+.form_search .btn_search {
+    background: url(../images/icon_search.png) 50% 50% no-repeat;
+    width: 41px;
+    height: 41px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.form_search .btn_search:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 13px;
+    width: 2px;
+    height: 16px;
+    background-color: #e5e5e5;
+}
+.search_total {
+    color: #999999;
+    font-size: 16px;
+    margin-top: 13px;
+    letter-spacing: -0.01em;
+    padding: 0 26px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #dddddd;
+}
+.search_total strong {
+    color: #009132;
+    font-weight: bold;
+}
+
+#store_searchRes {
+    height:595px;
+    overflow-y: auto;
+}
+
+#store_searchRes ul li {
+    position: relative;
+    padding: 26px 35px 17px 35px;
+    border-bottom: 1px solid #dddddd;
+}
+
+#store_searchRes ul li .store_name{
+	overflow: hidden;
+}
+
+#store_searchRes ul li .store_name strong {    
+    float: left;
+    padding: 3px 9px 0 0;
+    color: #292929;
+    font-size: 18px;
+}
+
+#store_searchRes ul li dl dt .my_bookmark {
+    float: left;
+    display: block;
+    cursor: pointer;
+    position: relative;
+    width: 24px;
+    z-index: 5;
+}
+.my_bookmark input {
+    opacity: 0;
+    position: absolute;
+    left: -2px;
+    height: 0;
+    width: 0;
+}
+
+.my_bookmark .i_star {
+    background: url(../images/icon_star.png) no-repeat center 50%;
+    background-color: #dddddd;
+    background-size: 12px;
+    display: block;
+    border-radius: 100%;
+    transition-duration: 0.3s;
+    height: 24px;
+    width: 24px;
+}
+
+.store_name em {
+    float: right;
+    width: 67px;
+    height: 25px;
+    border: 1px solid #999;
+    border-radius: 12.5px;
+    color: #999;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 25px;
+    font-style: normal;
+
+}
+.store_name em.on {
+    background: #009223;
+    border-color: #009223;
+    color: #fff;
+  	cursor: pointer;
+}
+#store_searchRes ul li .storeInfo {
+    color: #999999;
+    font-size: 13px;
+    line-height: 23px;
+    margin-bottom: 15px;
+}
+
+
+
+#store_searchRes ul li .storeInfo span {
+    display: block;
+    letter-spacing: -0.045em;
+}
+
+#store_selectbar{
+	width: 100%;
+	height: 70px;
+	box-shadow: 7px 7px 20px 0px rgba(0, 0, 0, 0.1);
+	position: relative;
+    z-index: 10;
+}
+
+.selectbar{
+	float: left;
+	width: 50%;
+	height: 70px;
+	display: block;
+    line-height: 70px;
+    position: relative;
+    font-size: 18px;
+    color: #666666;
+    text-align: center;
+    background-color: #fff;
+  
+}
+
+.baractive {
+    background-color: #009223;
+    color: #fff;
+}
+
+#myEmpty{
+	background-color: #fff;
+	padding: 0 100px 100px 100px;
+    text-align: center;
+}
+
+#myEmpty p {
+    position: relative;
+    line-height: 18px;
+    letter-spacing: -0.05em;
+    color: #999;
+    padding-top: 58px;
+}
+#myEmpty p:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -20px;
+    background: url(../images/icon_exc_sm.png)no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+#myStoreList{
+	background-color: #fff;
+	padding: 0 100px 100px 100px;
+}
+
+#ms1{
+	padding: 57px 0 27px 0;
+	color: #999999;
+    letter-spacing: -0.045em;
+    font-size: 15px;
+}
+
+#ms1 strong {
+    font-weight: bold;
+    color: #009223;
+    display: inline-block;
+    margin: 0 0 0 3px;
+}
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+        clear: both;
+    border-top: 4px solid #009223;
+}
+
+#myStoreList table th {
+    color: #009223;
+    font-size: 16px;
+    font-weight: bold;
+    height: 69px;
+    border-bottom: 1px solid #009223;
+    text-align: center;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#myStoreList table td {
+    height: 69px;
+    border-bottom: 1px solid #dddddd;
+    text-align: center;
+    color: #292929;
+    font-size: 16px;
+}
+
+.my_bookmark .i_star {
+    background: url(../images/icon_star.png) no-repeat center 50%;
+    background-color: #dddddd;
+    background-size: 12px;
+    display: block;
+    border-radius: 100%;
+    transition-duration: 0.3s;
+    height: 24px;
+    width: 24px;
+    animation: store_touch 0.3s ease-in-out forwards;
+    cursor: pointer;
+}
+.myOn{
+	background-color: #ffc300 !important;
+}
+
+input {
+    vertical-align: middle;
+    font-family: font_ns, sans-serif;
+    outline: none;
+}
+
+#myStoreList .often_list .store_name {
+    overflow: hidden;
+    text-align: left;
+    position: relative;
+    padding-left: 35px;
+    height: 24px;
+}
+#myStoreList  .often_list .store_name label {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
+#myStoreList .often_list .store_status a {
+    display: inline-block;
+    width: 67px;
+    height: 25px;
+    border: 1px solid #999;
+    border-radius: 12.5px;
+    color: #999;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 25px;
+    transition: all 0.3s;
+}
+
+#myStoreList .often_list .store_status a.on {
+    background: #009223;
+    border-color: #009223;
+    color: #fff;
+}
+
+
+.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+.wrap * {padding: 0;margin: 0;}
+.wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+.wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+.info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+.info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.info .close:hover {cursor: pointer;}
+.info .body {position: relative;overflow: hidden;}
+.info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+.desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+.info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+.info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+.info .link {color: #5085BB;}

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface MemberRepository {
-//	public int memberStoreUpdate(MemberVO memberVO) throws Exception;
+	public int memberStoreUpdate(MemberVO memberVO) throws Exception;
 	public MemberVO idCheck(MemberVO memberVO)throws Exception;
 	public MemberVO memberLogin(MemberVO memberVO)throws Exception;
 

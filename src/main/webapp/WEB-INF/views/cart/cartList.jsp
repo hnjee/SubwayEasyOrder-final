@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp"></c:import>
 <link rel="stylesheet" type="text/css" href="../css/cartListStyle.css">
@@ -51,7 +51,7 @@
 							</div>
                             <p class="sub-address">[도로명] ${store.address}</p>
                             <div class="btn-wrap">
-                               <a href="../cart/storeList?cases=1" class="btn-type4-brd">수정</a>
+                               <a href="../store/storeList?cases=1" class="btn-type4-brd">수정</a>
                             </div>
                          </div>
                    
@@ -357,6 +357,7 @@
 		var productNum = indexToNum(num);
 		$('#menuTotalPrice'+productNum).val(totalPrice);
 	}
+
 	
 	//status.index -> productNum 
 	function indexToNum(indexNum){
@@ -435,6 +436,7 @@
 		}
 		$('#totalPrice').val(totalPrice);
 	}
+
 	
 	// checkbox가 checked=false 경우에만 input disable 주기
 	$('.box').click(function(){
@@ -458,6 +460,7 @@
 			$('.purchase'+index).removeAttr('disabled');
 		}
 	});
+
 	
 	$('#pointInput').blur(function(){
 		var maxPoint = ${member.oriPoint};
@@ -477,6 +480,7 @@
 		totalPrice = totalPrice - point;
 		$('#totalPrice').val(totalPrice);
 		});
+
 	
 	// 카트가 비어있다면 다음페이지로 넘어가지 않게
 	if(loopNum<1){

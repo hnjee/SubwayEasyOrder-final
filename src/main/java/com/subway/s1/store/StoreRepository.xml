@@ -4,11 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.subway.s1.store.StoreRepository">
+
+	<select id="storeList" parameterType="String" resultType="StoreVO">
+		select * from Store where address like concat('%',#{address},'%') or name like concat('%',#{address},'%')
+	</select>
+
 	
 	<select id="selectStore" parameterType="String" resultType="StoreVO">
 		select * from Store where storeNum = (select storeNum from Member where id = #{id})
 	</select>
 	
-	
+	<select id="findStoreNum" parameterType="StoreVO" resultType="StoreVO">
+		select storeNum from Store where name=#{name};
+	</select>
 
 </mapper>

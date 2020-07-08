@@ -223,8 +223,6 @@ public class MemberController {
 //			String num = vo.getProductNum();
 //			System.out.println(num);
 //			ingre.add(memberService.detailIngre(vo));
-//			
-//			
 //		}
 //		
 //		mv.addObject("ingre", ingre);

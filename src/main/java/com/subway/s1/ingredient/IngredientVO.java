@@ -3,7 +3,6 @@ package com.subway.s1.ingredient;
 import java.util.List;
 
 
-
 import lombok.Data;
 
 @Data

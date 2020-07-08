@@ -18,12 +18,11 @@ import com.subway.s1.member.MemberVO;
 import com.subway.s1.store.StoreService;
 import com.subway.s1.store.StoreVO;
 
-;
+
 
 @Controller
 @RequestMapping("/cart/**/")
 public class CartController {
-	
 	@Autowired
 	private CartService cartService;
 	@Autowired
@@ -105,47 +104,14 @@ public class CartController {
 	@GetMapping("cartList")
 	public ModelAndView cartList(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
+	
 
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		List<CartVO> ar = cartService.cartList(memberVO.getId());
-		StoreVO storeVO = storeService.selectStore(memberVO.getId());
-//		PointVO pointVO = new PointVO(); 
-//		pointVO = pointRepository.pointSelect(memberVO.getId());
-	
-		mv.addObject("member", memberVO);
-		mv.addObject("list", ar);
-		mv.addObject("store", storeVO);
-		mv.setViewName("cart/cartList");
-		
-		if(storeVO == null) {
-			mv.addObject("result", "장바구니가 비었습니다.");
-			mv.addObject("path", "/");
-			mv.setViewName("template/result");
-		}
-		return mv;
-	}
-	
-	
-	@GetMapping("cartDelete")
-	public String cartDelete(String productNum) throws Exception{		
-		int res = cartService.cartDelete(productNum);
-		return "redirect:./cartList";
-	}
-	
-	@GetMapping("cartDeleteAll")
-	//public String cartDelete(세션 받아오기(아이디 이용해서 삭제)) throws Exception{		
-	public ModelAndView cartDelete(String id,ModelAndView mv) throws Exception{		
-		int res = cartService.cartDeleteAll(id);
-		System.out.println("삭제 갯수 : "+res);
-		mv.addObject("result", "장바구니 전체 삭제합니다..");
-		mv.addObject("path", "cartList");
-		mv.setViewName("template/result");
-		return mv;
-	}
-	
 	@GetMapping("howToUse")
 	public void howToUse() throws Exception{
 		
 	}
 	
+
 }

@@ -16,7 +16,6 @@ public class IngredientService {
 	private IngredientRepository ingredientRepository;
 	
 	
-	
 	public List<IngredientVO> ingreList() throws Exception{
 		return ingredientRepository.ingreList();
 	}
@@ -27,5 +26,6 @@ public class IngredientService {
 	public IngredientVO ingredientSelectOne(IngredientVO ingredientVO)throws Exception{
 		return ingredientRepository.ingredientSelectOne(ingredientVO);
 	}
+	
 	
 }

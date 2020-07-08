@@ -22,6 +22,10 @@
 		<typeAlias type="com.subway.s1.payment.PaymentVO" alias="PaymentVO"/>
 		<typeAlias type="com.subway.s1.orderProduct.OrderProductVO" alias="OrderProductVO"/>
 		
+		<typeAlias type="com.subway.s1.myStore.MyStoreVO" alias="MyStoreVO"/>
+		
+		
+		
 	</typeAliases>
 </configuration>
 

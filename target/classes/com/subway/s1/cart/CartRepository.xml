@@ -13,8 +13,6 @@
 		insert into Cart values(#{id}, #{menuNum}, #{productNum}, #{productPrice}, #{productCount}, #{setting})
 	</insert>
 	
-	
-	
 	<select id="cartSelect" parameterType="String" resultType="CartVO">
 		select * from Cart where productNum=#{productNum}
 	</select>
