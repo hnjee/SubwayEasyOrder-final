@@ -10,4 +10,14 @@
 	</select>
 
 
+
+	<select id="ingreSelect" parameterType="String" resultType="IngredientVO">
+		select * from Ingredient where ingreNum=#{ingreNum}
+	</select>
+	
+	<select id="getCustomPrice" parameterType="String" resultType="Integer">
+		select sum(price) from Ingredient where ingreNum in (select ingreNum from Custom where productNum=#{productNum})
+	</select>
+
+
 </mapper>
