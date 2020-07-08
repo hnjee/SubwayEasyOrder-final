@@ -17,7 +17,7 @@
 <div id="wrap">
 
 <!-- header start -->
-<c:import url="./template/header.jsp"></c:import>
+<c:import url="./jsp/header.jsp"></c:import>
 <!-- header end -->
 
 
@@ -360,7 +360,7 @@
 
 
 <!-- footer start -->
-<c:import url="./template/footer.jsp"></c:import>
+<c:import url="./jsp/footer.jsp"></c:import>
 <!-- footer end -->
 
 </div>
