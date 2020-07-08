@@ -10,8 +10,8 @@
 		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="java.lang.Integer" alias="Int"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
-		
 		<typeAlias type="com.subway.s1.menu.MenuVO" alias="MenuVO"/>
+		<typeAlias type="com.subway.s1.member.MemberVO" alias="MemberVO"/>
 	</typeAliases>
 </configuration>
 
