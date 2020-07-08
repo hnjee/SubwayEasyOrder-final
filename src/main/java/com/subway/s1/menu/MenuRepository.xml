@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.menu.MenuRepository">
+	<select id="menuList" parameterType="String" resultType="MenuVO">
+		select * from Menu where menuCode like concat('%',#{menuCode},'%')
+	</select>
+	
+	<select id="menuSelect" parameterType="String" resultType="MenuVO">
+		select * from Menu join Code on (Menu.menuCode = Code.code) where menuNum=#{menuNum};
+	</select>
+</mapper>
