@@ -2,6 +2,9 @@ package com.subway.s1.cart;
 
 import java.util.List;
 
+import com.subway.s1.custom.CustomVO;
+import com.subway.s1.menu.MenuVO;
+
 //import com.subway.s1.custom.CustomVO;
 //import com.subway.s1.menu.MenuVO;
 
@@ -16,9 +19,9 @@ public class CartVO {
 	private int productCount;
 	private String setting;
 	
-//	private MenuVO menuVO;
+	private MenuVO menuVO;
 
-//	private List<CustomVO> customVOs;
+	private List<CustomVO> customVOs;
 	private Integer customPrice;
 	
 	public Integer getCustomPrice() {

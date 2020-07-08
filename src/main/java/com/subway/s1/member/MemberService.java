@@ -76,10 +76,10 @@ public class MemberService {
 //		memberRepository.myMenuDel(myMenuVO);
 //		memberRepository.myMenuDel2(myMenuVO);
 //	}
-//	public int memberPointUpdate(MemberVO memberVO) throws Exception{
-//		return memberRepository.memberPointUpdate(memberVO);
-//
-//	}
+	public int memberPointUpdate(MemberVO memberVO) throws Exception{
+		return memberRepository.memberPointUpdate(memberVO);
+
+	}
 //	public int orderCount(MemberVO memberVO)throws Exception{
 //		return memberRepository.orderCount(memberVO);
 //	}

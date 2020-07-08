@@ -12,33 +12,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-/*
 import com.subway.s1.custom.CustomService;
 import com.subway.s1.custom.CustomVO;
-import com.subway.s1.member.MemberRepository;
 import com.subway.s1.member.MemberVO;
-import com.subway.s1.menu.MenuVO;
-import com.subway.s1.myStore.MyStoreRepository;
-import com.subway.s1.myStore.MyStoreService;
-import com.subway.s1.myStore.MyStoreVO;
-import com.subway.s1.point.PointRepository;
-import com.subway.s1.point.PointVO;
 import com.subway.s1.store.StoreService;
 import com.subway.s1.store.StoreVO;
-*/
+
+;
 
 @Controller
 @RequestMapping("/cart/**/")
 public class CartController {
 	
-//	@Autowired
-//	private CartService cartService;
-//	@Autowired
-//	private StoreService storeService;
-//	@Autowired
-//	private CustomService customService;
+	@Autowired
+	private CartService cartService;
+	@Autowired
+	private StoreService storeService;
+	@Autowired
+	private CustomService customService;
 	
-	/*
 	@PostMapping("cartInsert")
 	public ModelAndView cartInsert(CartVO cartVO, String[] ingreNum, Integer breadSize, Integer breadToasting,String coo, String drink, String menuCode, HttpServletRequest request) throws Exception{
 	//1. CartVO INSERT
@@ -109,9 +101,7 @@ public class CartController {
 		mv.setViewName("redirect:cartList");
 		return mv;
 	}
-	*/
 	
-	/*
 	@GetMapping("cartList")
 	public ModelAndView cartList(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -152,14 +142,10 @@ public class CartController {
 		mv.setViewName("template/result");
 		return mv;
 	}
-	*/
 	
 	@GetMapping("howToUse")
 	public void howToUse() throws Exception{
 		
 	}
-	
-	
-	
 	
 }

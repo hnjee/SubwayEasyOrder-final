@@ -47,7 +47,7 @@ public interface MemberRepository {
 //	public void myMenuDel2(MyMenuVO myMenuVO)throws Exception;
 //
 //
-//	public int memberPointUpdate(MemberVO memberVO) throws Exception;
+	public int memberPointUpdate(MemberVO memberVO) throws Exception;
 //	public int orderCount(MemberVO memberVO)throws Exception;
 //	public MyMenuVO myMenuOrder(String id_index)throws Exception;
 //	public List<MenuVO> setSide()throws Exception;

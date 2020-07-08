@@ -1,4 +1,6 @@
 package com.subway.s1.member;
+import com.subway.s1.util.PagerOrderList;
+
 import lombok.Data;
 
 @Data
@@ -12,7 +14,9 @@ public class MemberVO {
 	private int oriPoint;
 	private String storeNum;
 	
+	private int orderInfo;
 	private int startNum;
-	
+	private int level;
+	private PagerOrderList pager;
 }
 

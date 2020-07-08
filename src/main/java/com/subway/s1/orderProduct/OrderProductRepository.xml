@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.orderProduct.OrderProductRepository">
+	
+	<insert id="orderProductInsert" parameterType="CartVO">
+		insert into OrderProduct values(#{payNum},#{productNum},#{menuNum},#{productCount},#{productPrice},#{setting})
+	</insert>
+	
+	<select id="orderProductList" parameterType="String" resultType="OrderProductVO">
+		select * from OrderProduct where payNum=#{payNum}
+	</select>
+</mapper>

@@ -17,6 +17,9 @@
 		insert into Member(id,pw,name,phone,oripoint) values (#{id},#{pw},#{name},#{phone},0)
 	</insert>
 	
+	<update id="memberPointUpdate" parameterType="MemberVO">
+		update Member set oriPoint=#{oriPoint} where id=#{id}
+	</update>
 	
 	
 </mapper>

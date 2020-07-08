@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.payment.PaymentRepository">
+
+	<insert id="paymentInsert" parameterType="PaymentVO">
+		insert into Payment values(#{payNum},#{totalPrice},now(),#{id},0,#{storeNum},0)
+	</insert>
+	
+	<select id="paymentListByStore" parameterType="MemberVO" resultType="PaymentVO">
+		select * from Payment where storeNum=#{storeNum} and orderInfo=#{orderInfo} order by payDate desc limit #{pager.startRow}, #{pager.perPage}
+	</select>
+	
+	<update id="paymentUpdate" parameterType="PaymentVO">
+		update Payment set orderInfo=#{orderInfo}+1 where payNum=#{payNum}
+	</update>
+	
+	<select id="paymentTotal" parameterType="MemberVO" resultType="Int">
+		select count(orderInfo) from Payment where storeNum=#{storeNum} and orderInfo=#{orderInfo}
+	</select>
+	
+	<select id="getEachTotal" parameterType="MemberVO" resultType="Int">
+		select count(orderInfo) from Payment where storeNum=#{storeNum} and orderInfo=#{orderInfo}
+	</select>
+	
+</mapper>

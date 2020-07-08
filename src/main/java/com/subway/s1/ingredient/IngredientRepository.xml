@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.ingredient.IngredientRepository">
+
+	<select id="ingreList" resultType="IngredientVO">
+	 	select * from Ingredient where sale=1;
+	</select>
+	
+	
+	<!--sihyun  -->  
+	<insert id="ingredientRegister" parameterType="IngredientVO" useGeneratedKeys="true" keyProperty="ingreNum">
+	insert into Ingredient values(#{ingreNum},#{ingreCode},#{name},#{price},#{sale})
+	</insert>
+	
+	<select id="ingredientList" parameterType="IngredientVO" resultType="IngredientVO">
+		select * from Ingredient where 
+		<choose>	
+			<when test="kind=='in'">
+			ingreNum
+			</when>
+			<when test="kind=='ic'">
+			ingreCode
+			</when>
+			<when test="kind=='name'">
+			name
+			</when>
+			<when test="kind=='price'">
+			price
+			</when>
+			<when test="kind=='sale'">
+			sale
+			</when>
+		</choose>
+		 like CONCAT('%',#{search},'%') order by ingreNum asc
+	</select>
+
+	<select id="ingredientSelectOne" parameterType="IngredientVO" resultType="IngredientVO">
+	select * from Ingredient where ingreNum=#{ingreNum}
+	</select>
+	
+	<update id="ingredientUpdate" parameterType="IngredientVO">
+	 update Ingredient set ingreCode=#{ingreCode},name=#{name},price=#{price},sale=#{sale} where ingreNum=#{ingreNum}
+	</update>
+	
+	<delete id="ingredientDelete" parameterType="IngredientVO">
+	delete from Ingredient where ingreNum=#{ingreNum}
+	</delete>
+	
+	<!-- 선택삭제 -->
+	<delete id="deletes" parameterType="List">
+		delete from Ingredient where ingreNum in
+		<foreach collection="list" item="ingreNum" open="(" close=")" separator=",">
+		#{ingreNum}
+		</foreach>	
+	</delete>
+	
+
+	
+	<select id="ingreSelect" parameterType="String" resultType="IngredientVO">
+		select * from Ingredient where ingreNum=#{ingreNum}
+	</select>
+	
+	<select id="getCustomPrice" parameterType="String" resultType="Integer">
+		select sum(price) from Ingredient where ingreNum in (select ingreNum from Custom where productNum=#{productNum})
+	</select>
+
+
+
+
+</mapper>

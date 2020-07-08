@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.point.PointRepository">
+	
+	<select id="pointSelect" parameterType="String" resultType="PointVO">
+		select * from Point where id=#{id} 
+	</select>
+	
+	<insert id="pointInsert" parameterType="PointVO">
+		insert into Point values(#{payNum},#{id},#{curPoint},#{oriPoint},#{totalPoint},#{pointStat},now())
+	</insert>
+	
+</mapper>

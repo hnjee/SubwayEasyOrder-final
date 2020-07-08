@@ -349,5 +349,37 @@ public class MemberController {
 //		mv.setViewName("member/idCheck");
 //		return mv;
 //	}
+	
+
+	@GetMapping("memberLoginAdmin")
+	public void memberLoginAdmin()throws Exception{
+		
+	}
+	
+	@PostMapping("memberLoginAdmin")
+	public ModelAndView memberLoginAdmin(MemberVO memberVO,HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberVO = memberService.memberLogin(memberVO);
+		if(memberVO==null) {
+			mv.addObject("result", "Login Fail");
+			mv.addObject("path", "./memberLoginAdmin");
+			mv.setViewName("common/result");
+		} else {
+			session.setAttribute("member", memberVO);
+			mv.setViewName("redirect:../member/adminIndex");
+		}
+		return mv;
+	}
+	
+	
+	@GetMapping("adminIndex")
+	public void adminIndex(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+
+		mv.addObject("member", memberVO);
+		mv.setViewName("member/adminIndex");
+	}
+	
 
 }

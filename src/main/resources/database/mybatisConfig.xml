@@ -10,8 +10,18 @@
 		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="java.lang.Integer" alias="Int"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
+		
+		
+		<typeAlias type="com.subway.s1.cart.CartVO" alias="CartVO"/>
+		<typeAlias type="com.subway.s1.custom.CustomVO" alias="CustomVO"/>
 		<typeAlias type="com.subway.s1.menu.MenuVO" alias="MenuVO"/>
+		<typeAlias type="com.subway.s1.store.StoreVO" alias="StoreVO"/>
 		<typeAlias type="com.subway.s1.member.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.subway.s1.ingredient.IngredientVO" alias="IngredientVO"/>
+		<typeAlias type="com.subway.s1.point.PointVO" alias="PointVO"/>
+		<typeAlias type="com.subway.s1.payment.PaymentVO" alias="PaymentVO"/>
+		<typeAlias type="com.subway.s1.orderProduct.OrderProductVO" alias="OrderProductVO"/>
+		
 	</typeAliases>
 </configuration>
 
