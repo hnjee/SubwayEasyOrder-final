@@ -47,6 +47,9 @@
 <!-- menu_order start -->
 <form action="../cart/cartInsert" method="post" name="menuForm">
 <div id="menu_order">
+	<c:forEach items="${ingreOut }" var="ingreOut">
+		<div class="ingreOut">${ingreOut}</div>
+	</c:forEach>
 	<!-- hd start (menu info) -->
 	<div class="hd">   
 		<div class="category"> <a class="active" href="#"> ${menu.codeDesc}</a></div>
@@ -284,7 +287,7 @@
 <!-- menu_banner end -->
 </form>
 
-	
+
 
 </div>
 <!-- content end -->
@@ -615,7 +618,21 @@
 				}
 			}
 		}
+		
 	});
+	$(".ingreOut").each(function(){
+		var ingreNum = $(this).text();
+		$("input").each(function(){
+			if(ingreNum==$(this).val()){
+				console.log($(this).attr("id"));
+				$(this).prop("checked",false);
+				$("#"+$(this).attr("id")).removeClass("show");
+				
+			}
+		});
+	});
+
+	
 	
 </script>
 </body>

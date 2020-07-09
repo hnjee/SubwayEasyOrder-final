@@ -124,6 +124,14 @@
 		select * from Point where id=#{id} order by pointDate desc limit #{startNum},5
 	</select>
 	
+	
+	<select id="menuOutCheck" resultType="MyMenuVO" parameterType="MyMenuVO">
+		select * from MenuSoldout where menuNum=#{menuNum}
+	</select>
+	<select id="ingreOutCheck" parameterType="String" resultType="String">
+		select ingreNum from IngreSoldout where storeNum=#{storeNum}	
+	</select>
+	
 	<!-- 나중에 구현 -->
 	<select id="searchStore" parameterType="Pager" resultType="StoreVO">
 		select * from Store where name like concat('%',#{search},'%') or address like concat('%',#{search},'%') order by storeNum limit #{startRow},10

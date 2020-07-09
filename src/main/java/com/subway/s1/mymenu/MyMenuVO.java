@@ -21,4 +21,5 @@ public class MyMenuVO {
 	private long setting;
 	private String cookie;
 	private String drink;
+	private String storeNum;
 }

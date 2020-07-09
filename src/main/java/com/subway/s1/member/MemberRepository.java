@@ -56,5 +56,7 @@ public interface MemberRepository {
 	public List<StoreVO> lastStore(MemberVO memberVO)throws Exception;
 	public List<StoreVO> allStore()throws Exception;
 	public List<PointVO> memberPoint(MemberVO memberVO)throws Exception;
+	public List<MyMenuVO> menuOutCheck(MyMenuVO myMenuVO)throws Exception;
+	public List<String> ingreOutCheck(String storeNum)throws Exception;
 }
 

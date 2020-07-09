@@ -75,7 +75,7 @@ public class MemberController {
 		MenuVO menuVO = menuService.menuSelect(menuNum);
 		MyMenuVO myMenuVO = memberService.myMenuOrder(id_index);
 		memberService.memberStoreUpdate(memberVO);
-		
+		List<String> ingreOut = memberService.ingreOutCheck(storeNum);
 			//판매가능한 재료만 가져오기
 			List<IngredientVO> ar = ingredientService.ingreList();
 			List<IngredientVO> bread = new ArrayList<IngredientVO>();
@@ -118,6 +118,7 @@ public class MemberController {
 		mv.addObject("myMenu", myMenuVO);
 		mv.addObject("custom", custom);
 		mv.addObject("sw", sw);
+		mv.addObject("ingreOut", ingreOut);
 		mv.setViewName("member/memberMenuOrder");
 		return mv;
 	}
@@ -185,10 +186,6 @@ public class MemberController {
 		List<MyMenuVO> mmList = memberService.mmList(memberVO);
 		List<StoreVO> lastStore = memberService.lastStore(memberVO);
 		List<StoreVO> allStore = memberService.allStore();
-		for(MyMenuVO myMenuVO : myMenu) {
-			String ingreNum = myMenuVO.getIngreNum();
-			System.out.println(ingreNum);
-		}
 			
 		ModelAndView mv = new ModelAndView();
 		List<MenuVO> list = memberService.swSelect();
@@ -201,6 +198,14 @@ public class MemberController {
 		mv.addObject("lastStore", lastStore);
 		mv.addObject("allStore", allStore);
 		mv.setViewName("member/memberMenu");
+		
+		List<List<MyMenuVO>> menuOut = new ArrayList<>();
+		for(MyMenuVO myMenuVO : myMenu) {
+			System.out.println("==================================================================================");
+			System.out.println(myMenuVO.getMenuNum());
+			menuOut.add(memberService.menuOutCheck(myMenuVO));
+		}
+		mv.addObject("menuOut", menuOut);
 		return mv;
 		
 	}

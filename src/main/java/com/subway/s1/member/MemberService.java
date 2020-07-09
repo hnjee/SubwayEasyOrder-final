@@ -101,5 +101,10 @@ public class MemberService {
 	public List<PointVO> memberPoint(MemberVO memberVO)throws Exception{
 		return memberRepository.memberPoint(memberVO);
 	}
-
+	public List<MyMenuVO> menuOutCheck(MyMenuVO myMenuVO)throws Exception{
+		return memberRepository.menuOutCheck(myMenuVO);
+	}
+	public List<String> ingreOutCheck(String storeNum)throws Exception{
+		return memberRepository.ingreOutCheck(storeNum);
+	}
 }
