@@ -140,6 +140,11 @@
  	select oriPoint from Member where id=#{id}
 </select>
 
+<!-- 주문번호별 Point 검색 -->
+<select id="point" parameterType="String" resultType="PointVO">
+	select * from Point where payNum=#{payNum} and pointStat = 0
+</select>
+
 <!-- totalPage 갯수 -->
 <select id="getTotalCount" parameterType="Pager" resultType="Long">
 	select count(name) from Menu
