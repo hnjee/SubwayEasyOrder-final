@@ -177,8 +177,13 @@ public class SalesService {
 		pager.makePage(totalCount);
 		System.out.println("from : " + from);
 		System.out.println("to : "+ to);
+		
 		List<ByOrderVO> ar = salesRepository.getByOrder(from, to, pager,storeNum);
-
+		for(int i=0;i<ar.size();i++) {
+			if(ar.get(i).getName().length()>10) {
+				ar.get(i).setName(ar.get(i).getName().substring(0, 10)+"외");
+			}
+		}
 		return ar;
 	}
 	
