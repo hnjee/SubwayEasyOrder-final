@@ -126,7 +126,7 @@ public class SalesController {
 		ByOrderVO byOrderVO = new ByOrderVO();
 		storeNum = ((MemberVO)session.getAttribute("member")).getStoreNum();
 		byOrderVO = salesService.modal(payNum,storeNum);
-
+		
 		return byOrderVO;
 	}
 	
@@ -135,10 +135,26 @@ public class SalesController {
 	@ResponseBody
 	public int ByRefund(String payNum,String id,String totalPrice,String storeNum,HttpSession session)throws Exception{
 		int re = 0;
-		System.out.println("refund in");
 		storeNum = ((MemberVO)session.getAttribute("member")).getStoreNum();
+		
 		int result = salesService.byRefund(payNum,storeNum);
-		PointVO pointVO = new PointVO();
+		PointVO pointVO = salesService.point(payNum);
+		if(pointVO.getPointStat()==0) {
+			int cur = pointVO.getCurPoint();
+			pointVO = new PointVO();
+			pointVO.setPayNum(payNum);
+			pointVO.setId(id);
+			pointVO.setCurPoint(-cur);
+			int oriPoint = salesService.oriPoint(id);
+			pointVO.setOriPoint(oriPoint);
+			pointVO.setTotalPoint(oriPoint+(-cur));
+			pointVO.setPointStat(0);
+			int result2 = pointService.pointInsert(pointVO);
+			if(result2 > 0) {
+				System.out.println("사용된 포인트 복원");
+			}
+		}
+		pointVO = new PointVO();
 		pointVO.setPayNum(payNum);
 		pointVO.setId(id);
 		int total = Integer.parseInt(totalPrice);
@@ -150,9 +166,7 @@ public class SalesController {
 		int result2 = pointService.pointInsert(pointVO);
 		if(result > 0 || result2 > 0) {
 			re = 1;
-			System.out.println("성공");
 		}
-		System.out.println("payNum");
 		return re;
 	}
 

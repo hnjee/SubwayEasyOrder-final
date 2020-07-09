@@ -1,4 +1,5 @@
 $(document).ready(function() { 
+	
     $('#myModal').on('show.bs.modal', function(event) {          
         var payNum = $(event.relatedTarget).data('notifyid');
     	$.ajax({
