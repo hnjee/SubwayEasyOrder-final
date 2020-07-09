@@ -122,10 +122,6 @@ public class SalesService {
 	//ByOrder
 	public List<ByOrderVO> ByOrder(String from, String to, Pager pager,String storeNum)throws Exception{
 
-		
-//		System.out.println(from==null);
-//		System.out.println(from.equals(""));
-		
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int mon = cal.get(Calendar.MONTH)+1;

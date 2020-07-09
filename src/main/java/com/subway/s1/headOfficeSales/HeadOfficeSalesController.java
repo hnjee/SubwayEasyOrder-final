@@ -70,11 +70,6 @@ public class HeadOfficeSalesController {
 		mv.addObject("yearChart", ar4);
 		mv.addObject("storeName",storeName);
 		mv.addObject("pChart", pieChartVO);
-		//System.out.println("ar:"+ar.get(0).getTotalPrice());
-//		for(int i=0;i<ar4.size();i++) {
-//			System.out.println("ar4:"+ar4.get(i).getYear()+":"+ar4.get(i).getTotalPrice());
-//		
-//		}
 		mv.setViewName("headOfficeSales/charts");
 		return mv;
 	}
