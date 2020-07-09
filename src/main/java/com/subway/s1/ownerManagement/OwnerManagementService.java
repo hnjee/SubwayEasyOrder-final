@@ -39,17 +39,7 @@ public class OwnerManagementService {
 		String ownerID="owner_"+ownerVO.getStoreNum();
 		String staffID="staff_"+ownerVO.getStoreNum();
 		int result=ownerRepository.ownerMemberDelete(ownerID);
-		if(result>0) {
-			System.out.println("owner삭제 성공");
-		}else {
-			System.out.println("오너 삭제 실패");
-		}
 		int result2=ownerRepository.ownerMemberDelete(staffID);
-		if(result2>0) {
-			System.out.println("스태프 삭제성공");
-		}else{
-			System.out.println("스태프 삭제 실패");
-		}
 		return ownerRepository.ownerDelete(ownerVO);
 	}
 	

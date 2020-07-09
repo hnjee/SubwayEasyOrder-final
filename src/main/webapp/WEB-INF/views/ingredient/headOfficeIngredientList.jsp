@@ -118,9 +118,9 @@
  		
         <div class="modal-body"style="padding:40px 40px;" >  
         
-         <div style="display: none; font-size: 18px;" class="title0"> 단종 하시겠습니까?</div>
+         <div style="display: none; font-size: 18px;" class="title0"> 품절 하시겠습니까?</div>
  
-         <div style="display: none; font-size: 18px;" class="title1"> 단종 해제 하시겠습니까?</div>
+         <div style="display: none; font-size: 18px;" class="title1"> 품절 해제 하시겠습니까?</div>
         
        
         <div class="btn">
