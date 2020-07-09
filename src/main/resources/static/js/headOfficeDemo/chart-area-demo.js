@@ -29,19 +29,15 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
-var a = $("#id3_0").val();
-var b = $("#id3_1").val();
-var c = $("#id3_2").val();
-var d = $("#id3_3").val();
-var e = $("#id3_4").val();
-var f = $("#id3_5").val();
-var g = $("#id3_6").val();
-var h = $("#id3_7").val();
-var i = $("#id3_8").val();
-var j = $("#id3_9").val();
-var k = $("#id3_10").val();
-var l = $("#id3_11").val();
 
+
+
+var c2=[];
+$(".c1").each(function(){
+	c2.push($(this).val());
+});
+
+console.log(c2);
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
@@ -62,7 +58,10 @@ var myLineChart = new Chart(ctx, {
       pointBorderWidth: 2,       
       //실제값
       //rgba(78, 115, 223, 1)
-      data: [a,b,c,d,e,f,g,h,i,j,k,l],
+      
+      data: c2
+      
+    ,
     }],
   },
   options: {

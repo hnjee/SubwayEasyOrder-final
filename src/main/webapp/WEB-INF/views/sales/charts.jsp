@@ -16,6 +16,7 @@
 
 	<!-- SideBar(vendor) -->
 	<c:import url="../template/vendor.jsp"></c:import>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
 
 ul.tabs{
@@ -228,7 +229,7 @@ ul.tabs li.current{
 		<c:forEach items="${monthChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="id_${i.index}">
+			<input  type="text" value="${list.totalPrice}" class="month" id="id_${i.index}">
 		</c:forEach>
 	</div>
 	<!-- week -->
@@ -236,7 +237,7 @@ ul.tabs li.current{
 		<c:forEach items="${weekChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="week_${i.index}">
+			<input  type="text" value="${list.totalPrice}" class="week" id="week_${i.index}">
 		</c:forEach>
 	</div>
 	
@@ -245,7 +246,7 @@ ul.tabs li.current{
 		<c:forEach items="${yearChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="year_${i.index}">
+			<input  type="text" value="${list.totalPrice}" class="year" id="year_${i.index}">
 		</c:forEach>
 	</div>
 	
@@ -255,7 +256,7 @@ ul.tabs li.current{
 		<c:forEach items="${timeChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="time_${i.index}">
+			<input  type="text" value="${list.totalPrice}" class="time" id="time_${i.index}">
 		</c:forEach>
 	</div>
 

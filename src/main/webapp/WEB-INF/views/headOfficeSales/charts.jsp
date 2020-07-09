@@ -16,6 +16,7 @@
 
 	<!-- SideBar(vendor) -->
 	<c:import url="../template/vendor.jsp"></c:import>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
 
 ul.tabs{
@@ -238,7 +239,7 @@ ul.tabs li.current{
 		<c:forEach items="${monthChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="id3_${i.index}">
+			<input  type="text" value="${list.totalPrice}"  class="c1" id="id3_${i.index}">
 		</c:forEach>
 	</div>
 	<!-- week -->
@@ -246,7 +247,7 @@ ul.tabs li.current{
 		<c:forEach items="${weekChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="week_${i.index}">
+			<input  type="text" value="${list.totalPrice}" class="week"id="week_${i.index}">
 		</c:forEach>
 	</div>
 	
@@ -255,7 +256,7 @@ ul.tabs li.current{
 		<c:forEach items="${yearChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="year_${i.index}">
+			<input  type="text" value="${list.totalPrice}" class="year" id="year_${i.index}">
 		</c:forEach>
 	</div>
 	
@@ -265,7 +266,7 @@ ul.tabs li.current{
 		<c:forEach items="${timeChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="time_${i.index}">
+			<input  type="text" value="${list.totalPrice}"  class="time" id="time_${i.index}">
 		</c:forEach>
 	</div>
 
@@ -284,23 +285,6 @@ ul.tabs li.current{
 	
 </body>
 <script type="text/javascript">
-var a = $("#id3_0").val();
-var b = $("#id3_1").val();
-var c = $("#id3_2").val();
-var d = $("#id3_3").val();
-var e = $("#id3_4").val();
-var f = $("#id3_5").val();
-var g = $("#id3_6").val();
-var h = $("#id3_7").val();
-var i = $("#id3_8").val();
-var j = $("#id3_9").val();
-var k = $("#id3_10").val();
-var l = $("#id3_11").val();
-console.log(a);
-console.log(b);
-console.log(c);
-console.log(d);
-
 
 $(document).ready(function(){
 		

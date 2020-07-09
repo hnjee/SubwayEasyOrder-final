@@ -29,20 +29,12 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
-var a = $("#time_0").val();
-var b = $("#time_1").val();
-var c = $("#time_2").val();
-var d = $("#time_3").val();
-var e = $("#time_4").val();
-var f = $("#time_5").val();
-var g = $("#time_6").val();
-var h = $("#time_7").val();
-var i = $("#time_8").val();
-var j = $("#time_9").val();
-var k = $("#time_10").val();
-var l = $("#time_11").val();
-var m = $("#time_12").val();
-var n = $("#time_13").val();
+var c2=[];
+$(".time").each(function(){
+	c2.push($(this).val());
+});
+
+console.log(c2);
 
 var myBarChart = new Chart(ctx, {
   type: 'bar',
@@ -54,7 +46,7 @@ var myBarChart = new Chart(ctx, {
       hoverBackgroundColor: "#cf699f",
       borderColor: "#eb7fb8",
       //실제값
-      data: [a, b, c, d, e, f, g, h, i, j, k, l, m ,n],
+      data: c2 ,
     }],
   },
   options: {
