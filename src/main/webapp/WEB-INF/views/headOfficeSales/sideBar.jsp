@@ -86,11 +86,10 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
           <i class='far fa-address-card' style='font-size:20px'></i>
-          <span>회원관리</span>
+          <span>가맹점관리</span>
           </a>
            <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-           <a class="collapse-item" href="${pageContext.request.contextPath}/ownerManagement/ownerJoin">가맹점등록</a>
            <a class="collapse-item" href="${pageContext.request.contextPath}/ownerManagement/ownerList">가맹점관리</a>
          </div>
         </div>

@@ -75,7 +75,26 @@
 
 	<!-- 재료 count -->
 	<select id="ingredientCount"  parameterType="Pager"  resultType="Long">
-    	select count(ingreNum) from Ingredient
+    	select count(ingreNum) from Ingredient where
+    	<choose>	
+			<when test="kind=='in'">
+			ingreNum
+			</when>
+			<when test="kind=='ic'">
+			ingreCode
+			</when>
+			<when test="kind=='name'">
+			name
+			</when>
+			<when test="kind=='price'">
+			price
+			</when>
+			<otherwise>
+			sale
+			</otherwise>
+		</choose>
+		 like CONCAT('%',#{search},'%') 
+    	
 	</select>
 	
 	<select id="ingredientSelectOne" parameterType="IngredientVO" resultType="IngredientVO">

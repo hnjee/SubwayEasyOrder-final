@@ -11,11 +11,17 @@ import com.subway.s1.util.Pager;
 @Repository
 @Mapper
 public interface OwnerManagementRepository {
-	public int ownerJoin(OwnerManagementVO ownerVO)throws Exception;
+	//public int ownerJoin(OwnerManagementVO ownerVO)throws Exception;
 	
 	public List<OwnerManagementVO> ownerList(Pager pager)throws Exception;
 	
 	public long ownerCount(Pager pager) throws Exception;
 	
 	public OwnerManagementVO ownerSelectOne(OwnerManagementVO ownerVO)throws Exception;
+
+	public int ownerDelete(OwnerManagementVO ownerVO) throws Exception;
+	
+	public int ownerDeletes(List<String> deletes)throws Exception;
+	
+	public int ownerMemberDelete(String id)throws Exception;
 }
