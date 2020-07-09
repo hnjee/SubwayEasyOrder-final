@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.subway.s1.util.Pager;
 
 import com.subway.s1.cart.CartVO;
+import com.subway.s1.point.PointVO;
 import com.subway.s1.store.StoreRepository;
 
 @Service
@@ -243,6 +244,9 @@ public class SalesService {
 		return salesRepository.oriPoint(id);
 	}
 	
+	public PointVO point(String payNum)throws Exception{
+		return salesRepository.point(payNum);
+	}
 	
 	public ByOrderVO modal(String payNum, String storeNum)throws Exception{
 		ByOrderVO byOrderVO = new ByOrderVO();
