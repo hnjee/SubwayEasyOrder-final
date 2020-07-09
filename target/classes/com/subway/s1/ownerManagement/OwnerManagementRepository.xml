@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.ownerManagement.OwnerManagementRepository">
+	<!-- 가맹점 등록 -->
+	<insert id="ownerJoin" parameterType="OwnerVO">
+	  insert into Member values (#{id},#{pw},(select name from Store where storeNum=#{storeNum}),
+	(select left(telNumber,2) from Store where storeNum=#{storeNum}),
+	(select SUBSTRING_INDEX(substring(telNumber,4,4),'-',1) from Store where storeNum=#{storeNum}),
+	(select SUBSTRING_INDEX(substring(telNumber,8,5),'-',-1) from Store where storeNum=#{storeNum}),
+	0,#{storeNum},2);
+	</insert>
+ 
+ 	<!-- 가맹점 List -->
+	<select id="ownerList" parameterType="Pager" resultType="OwnerVO">
+	select * from Member where 
+	<choose>	
+		<when test="kind=='id'">
+		id
+		</when>
+		<when test="kind=='name'">
+		name
+		</when>
+		<otherwise>
+		storeNum
+		</otherwise>
+	</choose>
+	 like CONCAT('%',#{search},'%')and level not in (0)
+	 limit #{startRow}, 10
+	</select>  
+
+
+	<!-- 가맹점 회원 수 count -->
+	<select id="ownerCount"  parameterType="Pager"  resultType="Long">
+    	select count(id) from Member where 
+    		<choose>	
+				<when test="kind=='id'">
+				id
+				</when>
+				<when test="kind=='name'">
+				name
+				</when>
+				<otherwise>
+				storeNum
+				</otherwise>
+			</choose>
+	 like CONCAT('%',#{search},'%')and level not in (0)
+	</select>
+	
+	<select id="ownerSelectOne" parameterType="OwnerVO" resultType="OwnerVO">
+	select * from Member where id=#{id}
+	</select>
+	
+
+</mapper>

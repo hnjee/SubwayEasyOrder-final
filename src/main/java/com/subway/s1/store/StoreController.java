@@ -122,4 +122,24 @@ public class StoreController {
 			return storeVO.getStoreNum();
 		}
 	}
+	
+	//SooKyoung
+	//Store Open/Close
+		@GetMapping("storeOC")
+		public ModelAndView storeOC(StoreVO storeVO)throws Exception{
+			ModelAndView mv = new ModelAndView();
+			int result = storeService.storeOC(storeVO);
+			if(result > 0) {
+				if(storeVO.getOrderable()==1) {
+					mv.addObject("result", "개점완료!");
+				}else {
+					mv.addObject("result", "마감완료!");
+				}
+				mv.addObject("path", "/sales/chart");
+			}
+			mv.setViewName("common/result");
+			return mv;
+		}
+	
+	
 }

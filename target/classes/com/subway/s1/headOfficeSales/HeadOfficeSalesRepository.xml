@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="com.subway.s1.headOfficeSales.HeadOfficeSalesRepository">
+
+<select id="byDay" parameterType="ByDayVO" resultType="ByDayVO">
+	select dayofweek(Pay.payDate) as day,dayName(Pay.payDate) as day2, sum(Pay.totalPrice)as totalPrice ,count(left(Pay.payDate,10)) as count
+	From Sales AS S 
+	inner join Payment AS Pay
+	ON S.payNum = Pay.payNum
+    where payDate between #{from} and #{to} and Pay.refund=0
+   GROUP BY day, day2
+    order by day asc
+
+</select>
+
+<select id="byTime" parameterType="Pager" resultType="ByTimeVO">
+    select left(Pay.payDate,13) as time,sum(Pay.totalPrice) as totalPrice,count(left(Pay.payDate,13)) as count
+	From Sales AS S 
+	left join Payment AS Pay
+	ON S.payNum = Pay.payNum
+    where payDate between #{from} and #{to} and Pay.refund=0 
+	group by time
+    order by left(Pay.payDate,13)
+    desc limit #{pager.startRow}, 10
+</select>
+
+<select id="byPeriod" parameterType="Pager" resultType="ByPeriodVO">
+    select distinct left(Pay.payDate,10) as payDate,sum(Pay.totalPrice)as totalPrice, count(left(Pay.payDate,10)) as count
+	From Sales AS S 
+	left join Payment AS Pay
+	ON S.payNum = Pay.payNum
+    where Pay.payDate between #{from} and #{to} and Pay.refund=0
+    group by left(Pay.payDate,10)
+    order by payDate
+    desc limit  #{pager.startRow}, 10
+</select>
+
+<!-- 선택한 기간의 갯수 -->
+<select id="byPeriodCount"  parameterType="Pager"  resultType="Long">
+	SELECT count(R.Rownum) as count from (select @ROWNUM :=@ROWNUM +1 AS Rownum, C.* from (select left(D.payDate,10) as date from
+	(select S.payNum as payNum,Pay.payDate as payDate
+	From Sales AS S 
+	left join Payment AS Pay
+	ON S.payNum = Pay.payNum
+	where Pay.refund=0
+	) D
+	where D.payDate between #{from} and #{to} 
+    group by date
+    order by date) C , (select @ROWNUM:=0) TMP) R   
+</select>
+
+<!-- 선택한 기간에 따른 byTime의 갯수 -->
+<select id="byTimeCount"  parameterType="Pager"  resultType="Long">
+	SELECT count(R.Rownum) as count from (select @ROWNUM :=@ROWNUM +1 AS Rownum, T.* from (select left(D.payDate,13) as time from
+	(select S.payNum as payNum,Pay.payDate as payDate
+	From Sales AS S 
+	left join Payment AS Pay
+	ON S.payNum = Pay.payNum
+	where Pay.refund=0
+	) D
+	where D.payDate between  #{from} and #{to}
+    group by time
+    order by time) T , (select @ROWNUM:=0) TMP) R;
+    
+</select>
+<!-- ByProduct -->
+<select id="getByProduct" parameterType="Pager" resultType="ByProductVO">
+	select distinct SUBSTRING(menuCode, 1,2)menuCode,O.menuNum,name,ANY_VALUE(O.productPrice) as productPrice ,ANY_VALUE(O.productCount) as productCount 
+	from Menu M left Join OrderProduct O on M.menuNum=O.menuNum left Join Payment P on O.payNum=P.payNum
+	where P.payDate between #{from} and #{to} 
+    group by menucode, name, menuNum
+	order by menuCode desc limit #{pager.startRow}, 10
+</select>
+
+<!-- 메뉴별 수량검색  -->
+<select id="getMenuCount" parameterType="String" resultType="String">
+	select count(productCount) productCount from OrderProduct O left Join Payment P on O.payNum=P.payNum
+	where menuNum='${menuNum}' and P.payDate between #{from} and #{to} 
+</select>
+
+<!-- 메뉴별 총액검색 -->
+<select id="getMenuPrice" parameterType="String" resultType="String">
+	select sum(productPrice) from OrderProduct O left Join Payment P on O.payNum=P.payNum
+	where menuNum='${menuNum}' and P.payDate between #{from} and #{to} 
+</select>
+
+<!-- 메뉴 총 수량검색 -->
+<select id="getAllMenuCount" resultType="String">
+ 	select count(productCount) productCount from OrderProduct O left Join Payment P on O.payNum=P.payNum
+ 	where P.payDate between #{from} and #{to} 
+</select>
+<!-- 메뉴 총 금액검색 -->
+<select id="getAllMenuPrice" resultType="String">
+	select sum(productPrice) from OrderProduct O left Join Payment P on O.payNum=P.payNum
+	where P.payDate between #{from} and #{to} 
+</select>
+
+<!-- byProduct totalPage 갯수 -->
+<select id="getProductTotal" parameterType="String" resultType="Long">
+	select count(distinct O.menuNum) 
+	from OrderProduct O left Join Menu M on O.menuNum=M.menuNum left Join Payment P on O.payNum=P.payNum
+	where P.payDate  between #{from} and #{to}
+</select>
+
+<!-- ByOrder -->
+<select id="getByOrder" parameterType="Pager" resultType="ByOrderVO">
+	select DISTINCT P.payDate,O.payNum,P.totalPrice,ANY_VALUE(GROUP_CONCAT(M.name SEPARATOR '/')) as name,ANY_VALUE(O.productCount) as productCount
+	from OrderProduct O left Join Menu M on O.menuNum=M.menuNum left Join Payment P on O.payNum=P.payNum
+    where P.payDate between #{from} and #{to}
+	group by O.payNum
+    order by payDate desc limit #{pager.startRow}, 10
+</select>
+
+<!-- 주문번호별 정보검색(modal) -->
+<select id="getModal" parameterType="String" resultType="ByOrderVO">
+	select payDate,O.payNum,totalPrice,GROUP_CONCAT(M.name SEPARATOR '/') as name
+	from OrderProduct O left Join Payment P on O.payNum=P.payNum left Join Menu M on O.menuNum=M.menuNum 
+	where O.payNum='${payNum}'
+	GROUP BY O.productCount
+</select>
+
+
+<!-- totalPage 갯수 -->
+<select id="getTotalCount" parameterType="Pager" resultType="Long">
+	select count(name) from Menu
+</select>
+
+
+<!-- byOrder totalPage 갯수 -->
+<select id="getOrderTotal" parameterType="String" resultType="Long">
+	select count(distinct O.payNum) from OrderProduct O left Join Payment P on O.payNum=P.payNum
+	where P.payDate between #{from} and #{to}
+</select>
+
+
+
+</mapper>

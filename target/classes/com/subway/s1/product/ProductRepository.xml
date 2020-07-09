@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.subway.s1.product.ProductRepository">
+ 
+<!-- Product Insert -->
+	<insert id="productInsert" parameterType="ProductVO">
+		insert into Menu values(#{menuNum},#{menuCode},#{name},#{menuPrice},#{menuPrice30},#{sale},#{desc})
+	</insert>
+<!-- Product Update -->
+	<select id="getMenu" parameterType="String" resultType="ProductVO">
+		select * from Menu where menuNum=#{menuNum}
+	</select>
+	
+	<update id="productUpdate" parameterType="ProductVO">
+		update Menu set menuCode=#{menuCode}, name=#{name}, menuPrice=#{menuPrice}, menuPrice30=#{menuPrice30}, sale=#{sale}
+		where menuNum=#{menuNum}
+	</update>
+	
+<!-- Product Delete -->
+	<delete id="productDelete" parameterType="ProductVO">
+		delete from Menu where menuNum=#{menuNum}
+	</delete>
+	
+	<delete id="deletes" parameterType="List">
+		delete from Menu where menuNum in
+		<foreach collection="list" item="menuNum" open="(" close=")" separator=",">
+		#{menuNum}
+		</foreach>	
+	</delete>
+
+<!-- ProductList -->
+	<select id="productList" parameterType="Pager" resultType="ProductVO">
+		select * from Menu where 
+		<choose>	
+			<when test="kind=='menuNum'">
+			menuNum
+			</when>
+			<when test="kind=='menuCode'">
+			menuCode
+			</when>
+			<when test="kind=='name'">
+			name
+			</when>
+			<when test="kind=='sale'">
+			sale
+			</when>
+		</choose>
+		 like CONCAT('%',#{search},'%') order by menuNum asc limit #{startRow}, 10 
+	</select>
+	
+	<select id="soldoutCheck" parameterType="String" resultType="MenuSoldoutVO">
+		select * from MenuSoldout where storeNum=#{storeNum}
+	</select>
+	
+	<update id="salesUpdate" parameterType="ProductVO">
+		 update Menu set sale = #{sale} where menuNum = #{menuNum}
+	</update>
+	
+<!-- totalCount -->
+	<select id="totalCount" parameterType="Pager" resultType="Long">
+		select count(menuNum) from Menu where
+		<choose>	
+			<when test="kind=='menuNum'">
+			menuNum
+			</when>
+			<when test="kind=='menuCode'">
+			menuCode
+			</when>
+			<when test="kind=='name'">
+			name
+			</when>
+			<when test="kind=='sale'">
+			sale
+			</when>
+		</choose>
+		like CONCAT('%',#{search},'%')
+	</select>
+ 
+ 
+ </mapper>

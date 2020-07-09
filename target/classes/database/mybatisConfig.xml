@@ -15,16 +15,32 @@
 		<typeAlias type="com.subway.s1.cart.CartVO" alias="CartVO"/>
 		<typeAlias type="com.subway.s1.custom.CustomVO" alias="CustomVO"/>
 		<typeAlias type="com.subway.s1.menu.MenuVO" alias="MenuVO"/>
-		<typeAlias type="com.subway.s1.store.StoreVO" alias="StoreVO"/>
 		<typeAlias type="com.subway.s1.member.MemberVO" alias="MemberVO"/>
 		<typeAlias type="com.subway.s1.ingredient.IngredientVO" alias="IngredientVO"/>
 		<typeAlias type="com.subway.s1.point.PointVO" alias="PointVO"/>
 		<typeAlias type="com.subway.s1.payment.PaymentVO" alias="PaymentVO"/>
 		<typeAlias type="com.subway.s1.orderProduct.OrderProductVO" alias="OrderProductVO"/>
-		
+		<typeAlias type="com.subway.s1.store.StoreVO" alias="StoreVO"/>
 		<typeAlias type="com.subway.s1.myStore.MyStoreVO" alias="MyStoreVO"/>
 		
-		
+		<typeAlias type="com.subway.s1.sales.SalesVO" alias="SalesVO"/>
+		<typeAlias type="com.subway.s1.sales.chart.ChartVO" alias="ChartVO"/>
+		<typeAlias type="com.subway.s1.sales.ByProductVO" alias="ByProductVO"/>
+		<typeAlias type="com.subway.s1.sales.ByOrderVO" alias="ByOrderVO"/>
+		<typeAlias type="com.subway.s1.util.Pager" alias="Pager"/>
+		<typeAlias type="com.subway.s1.sales.ByPeriodVO" alias="ByPeriodVO"/>
+		<typeAlias type="com.subway.s1.sales.ByTimeVO" alias="ByTimeVO"/>
+		<typeAlias type="com.subway.s1.sales.ByDayVO" alias="ByDayVO"/>
+		<typeAlias type="com.subway.s1.sales.chart.PieChartVO" alias="PieChartVO"/>
+		<typeAlias type="com.subway.s1.product.ProductVO" alias="ProductVO"/>
+		<typeAlias type="com.subway.s1.menuSoldout.MenuSoldoutVO" alias="MenuSoldoutVO"/>
+		<typeAlias type="com.subway.s1.menu.menuFile.MenuFileVO" alias="MenuFileVO"/>
+		<typeAlias type="com.subway.s1.ingredient.IngredientVO" alias="IngredientVO"/>
+		<typeAlias type="com.subway.s1.ingredient.ingredientFile.IngredientFileVO" alias="IngredientFileVO"/>
+		<typeAlias type="com.subway.s1.ingredient.ingreSoldout.IngreSoldoutVO" alias="IngreSoldoutVO"/>
+		<typeAlias type="com.subway.s1.ownerManagement.OwnerManagementVO" alias="OwnerVO"/>
+	
+	
 		
 	</typeAliases>
 </configuration>

@@ -9,5 +9,5 @@ public class StoreVO {
 	private String address;
 	private String telNumber;
 	private String hours;
-	private int orderable;
+	private Integer orderable;
 }

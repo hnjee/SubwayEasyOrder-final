@@ -1,0 +1,29 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.menu.menuFile.MenuFileRepository">
+
+<insert id="menuRegister" parameterType="MenuFileVO">
+	insert into MenuFile (menuNum,fileName,oriName)values(#{menuNum},#{fileName},#{oriName})
+</insert>
+
+<select id="fileSelectOne" resultType="MenuFileVO" parameterType="String">
+	select * from MenuFile where menuNum=#{menuNum}; 
+
+</select>
+
+<delete id="fileDelete"  parameterType="MenuFileVO">
+	delete from MenuFile where menuNum=#{menuNum};
+</delete>
+
+<delete id="deletes" parameterType="List">
+	delete from MenuFile where menuNum in
+	<foreach collection="list" item="menuNum" open="(" close=")" separator=",">
+	#{menuNum}
+	</foreach>	
+</delete>
+
+
+
+</mapper>

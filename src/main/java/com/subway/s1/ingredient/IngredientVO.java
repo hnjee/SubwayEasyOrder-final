@@ -2,6 +2,8 @@ package com.subway.s1.ingredient;
 
 import java.util.List;
 
+import com.subway.s1.ingredient.ingreSoldout.IngreSoldoutVO;
+import com.subway.s1.ingredient.ingredientFile.IngredientFileVO;
 
 import lombok.Data;
 
@@ -14,6 +16,8 @@ public class IngredientVO {
 	private int price;
 	private int sale;
 	
-	
+	private int sell;
+	private List<IngredientFileVO> fileVOs;
+
 
 }

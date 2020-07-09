@@ -17,5 +17,10 @@
 	<select id="findStoreNum" parameterType="StoreVO" resultType="StoreVO">
 		select storeNum from Store where name=#{name};
 	</select>
+	
+	<!-- store 개점/마감 -->
+	<update id="storeOC" parameterType="StoreVO">
+		update Store set orderable = #{orderable} where storeNum=#{storeNum}
+	</update>
 
 </mapper>

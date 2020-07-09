@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.subway.s1.ingredient.ingreSoldout.IngreSoldoutRepository">
+   <!-- 가맹점 품절 -->
+  <insert id="soldoutInsert" parameterType="IngreSoldoutVO">
+  	insert into IngreSoldout values (#{storeNum},#{ingreNum})
+  </insert>
+  
+   <!-- 가맹점 품절해제 -->
+  <delete id="soldoutDelete" parameterType="IngreSoldoutVO">
+  	delete from IngreSoldout where storeNum=#{storeNum} and ingreNum=#{ingreNum}
+  </delete>
+</mapper>

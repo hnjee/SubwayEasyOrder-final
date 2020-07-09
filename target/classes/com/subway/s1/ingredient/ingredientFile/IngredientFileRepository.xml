@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.subway.s1.ingredient.ingredientFile.IngredientFileRepository">
+
+<insert id="ingredientRegister" parameterType="IngredientFileVO">
+	insert into IngredientFile (ingreNum,fileName,oriName)values(#{ingreNum},#{fileName},#{oriName})
+</insert>
+
+<select id="fileSelectOne" resultType="IngredientFileVO" parameterType="String">
+	select * from IngredientFile where ingreNum=#{ingreNum}; 
+
+</select>
+
+<delete id="fileDelete"  parameterType="IngredientFileVO">
+	delete from IngredientFile where ingreNum=#{ingreNum};
+</delete>
+
+<delete id="deletes" parameterType="List">
+	delete from IngredientFile where ingreNum in
+	<foreach collection="list" item="ingreNum" open="(" close=")" separator=",">
+	#{ingreNum}
+	</foreach>	
+</delete>
+
+
+</mapper>

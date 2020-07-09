@@ -25,5 +25,15 @@ public class StoreService {
 	public StoreVO findStoreNum(StoreVO storeVO)throws Exception{
 		return storeRepository.findStoreNum(storeVO);
 	}
+	
+	//Store Open/Close
+	public int storeOC(StoreVO storeVO)throws Exception{
+		if(storeVO.getOrderable() == 1) {
+			storeVO.setOrderable(0);
+		}else if(storeVO.getOrderable() == 0){
+			storeVO.setOrderable(1);
+		}
+		return storeRepository.storeOC(storeVO);
+	}
 
 }
