@@ -48,16 +48,15 @@
 </select>
 
 <select id="timeChart" parameterType="ChartVO" resultType="ChartVO">
-	select left(D.payDate,13) as time,sum(D.totalPrice) as totalPrice, left(CURDATE(),7) as todayMonth from
+	select substring(D.payDate,11,3) as time,sum(D.totalPrice) as totalPrice, left(CURDATE(),7) as todayMonth from
 	(select S.payNum,Pay.payDate as payDate, Pay.totalPrice as totalPrice
 	From Sales AS S 
 	left join Payment AS Pay
 	ON S.payNum = Pay.payNum
-    where Pay.refund=0
+    where Pay.refund=0 and left(Pay.payDate,7) like left(CURDATE(),7)
     )D
-    where left(D.payDate,7) like left(CURDATE(),7)
     group by time
-    order by time desc
+    order by time desc;
 </select>
 
 <select id="pChart" parameterType="PieChartVO" resultType="PieChartVO">
