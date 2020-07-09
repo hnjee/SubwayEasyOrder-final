@@ -13,6 +13,6 @@ public class PointVO {
 	private int oriPoint;
 	private int totalPoint;
 	private int pointStat;
-	private Date pointDate;
+	private String pointDate;
 	
 }

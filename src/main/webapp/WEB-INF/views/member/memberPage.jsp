@@ -264,8 +264,10 @@
 		if(confirm("자주찾는 매장에서 삭제하시겠습니까?")){
 			location.href="./oftenStoreDel?storeNum="+storeNum+"&id="+id;
 		}
+	});
 
-		
+	$(".regStore").click(function(){
+		location.href="../store/storeList";
 	});
 </script>
 </html>

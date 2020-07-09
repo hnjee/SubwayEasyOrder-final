@@ -111,6 +111,8 @@ public class StoreController {
 		
 	}
 	
+	
+	//지워도 될것같은..
 	@GetMapping("findStore")
 	@ResponseBody
 	public String findStore(StoreVO storeVO)throws Exception{

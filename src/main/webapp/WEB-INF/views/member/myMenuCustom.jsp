@@ -674,6 +674,7 @@ $(".so_choice").each(function() {
 
 	
 	$("#menu").change(function() {
+		$("#side_show").hide();
 		count = 0;
 		$(".imgRemove").remove();
 		$("#breadImg").attr("src","");
