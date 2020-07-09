@@ -135,7 +135,7 @@ public class StoreController {
 				}else {
 					mv.addObject("result", "마감완료!");
 				}
-				mv.addObject("path", "/sales/chart");
+				mv.addObject("path", "/member/adminIndex");
 			}
 			mv.setViewName("common/result");
 			return mv;
