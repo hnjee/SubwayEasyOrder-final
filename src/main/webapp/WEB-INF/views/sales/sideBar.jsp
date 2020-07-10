@@ -91,9 +91,9 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="${pageContext.request.contextPath}/store/storeManage">
           <i class='far fa-address-card' style='font-size:20px'></i>
-          <span>회원관리</span></a>
+          <span>매장관리</span></a>
       </li>
       
           <!-- Divider -->

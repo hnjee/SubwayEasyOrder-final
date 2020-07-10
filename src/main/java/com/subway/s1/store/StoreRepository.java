@@ -21,4 +21,6 @@ public interface StoreRepository {
 	//Store Open/Close
 	public int storeOC(StoreVO storeVO)throws Exception;
 	public int storeInsert(FranchiseVO franchiseVO) throws Exception;
+	
+	public int storeManage(StoreVO storeVO) throws Exception;
 }

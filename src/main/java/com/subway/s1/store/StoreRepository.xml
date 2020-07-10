@@ -26,4 +26,9 @@
 	<insert id="storeInsert" parameterType="FranchiseVO">
 		insert into Store values (concat('S',#{requestNum}),#{storeName},#{address},null,null,1)
 	</insert>
+	
+	<update id="storeManage" parameterType="StoreVO">
+		update Store set address=#{address}, telNumber=#{telNumber}, hours=#{hours} where name=#{name}
+	</update>
+	
 </mapper>
