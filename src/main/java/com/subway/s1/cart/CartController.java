@@ -134,8 +134,9 @@ public class CartController {
 	
 	@GetMapping("cartDeleteAll")
 	//public String cartDelete(세션 받아오기(아이디 이용해서 삭제)) throws Exception{		
-	public ModelAndView cartDelete(String id,ModelAndView mv) throws Exception{		
-		int res = cartService.cartDeleteAll(id);
+	public ModelAndView cartDelete(HttpSession session,ModelAndView mv) throws Exception{		
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		int res = cartService.cartDeleteAll(memberVO.getId());
 		System.out.println("삭제 갯수 : "+res);
 		mv.addObject("result", "장바구니 전체 삭제합니다..");
 		mv.addObject("path", "cartList");
