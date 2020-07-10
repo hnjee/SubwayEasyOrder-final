@@ -85,7 +85,7 @@ public class FranchiseController {
 						"	</table>";
 				message.setText(htmlContent,"UTF-8","html");
 				message.setFrom("subway.test2020@gmail.com");
-				message.addRecipient(RecipientType.TO, new InternetAddress("s2_syxxn@naver.com"));
+				message.addRecipient(RecipientType.TO, new InternetAddress(email));
 				javaMailSender.send(message);
 			}
 	
