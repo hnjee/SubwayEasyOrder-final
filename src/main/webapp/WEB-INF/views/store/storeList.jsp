@@ -51,7 +51,7 @@
 					<c:forEach items="${list}" var="vo" varStatus="i">
 						<li>	
 							<div class="store_name">
-								<strong>${vo.name}</strong>
+								<strong class="s_name">${vo.name}</strong>
 								<label class="my_bookmark">	
 									<i class="i_star" id="star${i.index}" title="${vo.storeNum}" onclick="myOnOff(this)"></i>
 								</label>	
@@ -93,9 +93,9 @@
 							</script>
 							
 							<div class="storeInfo">
-								<span>${vo.address}</span>
-								<span>연락처: ${vo.telNumber}</span>
-								<span>영업시간: ${vo.hours}</span>
+								<span class="s_address">${vo.address}</span>
+								<span class="s_telNumber">연락처: ${vo.telNumber}</span>
+								<span class="s_hours">영업시간: ${vo.hours}</span>
 							</div>
 						</li>
 					</c:forEach>
@@ -125,64 +125,77 @@
 	</div>
 
 </div>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8f222776d2a9d10e62a6e476046e2d1&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8f222776d2a9d10e62a6e476046e2d1&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript">
-
-var mapContainer = document.getElementById('map'), // 지도의 중심좌표
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 mapOption = { 
-    center: new kakao.maps.LatLng(33.451475, 126.570528), // 지도의 중심좌표
-    level: 3 // 지도의 확대 레벨
-}; 
+    center: new kakao.maps.LatLng(37.5579038249194,126.909600161339), // 지도의 중심좌표
+    level: 5 // 지도의 확대 레벨
+};
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+//마커를 표시할 위치와 내용을 가지고 있는 객체 배열 만들기 
+var positions = [];
+<c:forEach items="${list}" var="store">		
+	console.log("${store.address}");
+	var content = '<div class="store_map_layer">'	
+	+	'<div class="head">'		
+	+		'<strong>${store.name}</strong>'		
+	+		'<a href="#none" class="btn_close" onclick="closeOverlay()">닫기</a>'	
+	+	'</div>	'
+	+	'<div class="info">	'	
+	+		'<dl>	'		
+	+			'<dt>주소</dt>'	
+	+		'	<dd>${store.address}</dd>'	
+	+		'	<dt>연락처</dt> '
+	+		'	<dd>${store.telNumber}</dd>'
+	+		'	<dt>영업시간</dt>	'
+	+		'	<dd>${store.hours}</dd>	'				
+	+		'</dl>'	
+	+	'</div>'	
+	+	'<div class="foot">'		
+	+		'<a href="javascript:void(0);" class="btn_order on" id="ord_fast" data-storcd="69383"><span>주문하기</span></a>'
+	+	'</div>'
+	+ '</div>';
+	var address = "${store.address}";
+	var p = {content: content, address: address};
+	positions.push(p);
+</c:forEach>
 
-// 지도에 마커를 표시합니다 
-var marker = new kakao.maps.Marker({
-    map: map, 
-    position: new kakao.maps.LatLng(33.450701, 126.570667)
-});
+var geocoder = new kakao.maps.services.Geocoder();
+for (var i = 0; i < positions.length; i ++) {
+	var content = positions[i].content;
+	geocoder.addressSearch(positions[i].address,function(result,status){
 
-// 커스텀 오버레이에 표시할 컨텐츠 입니다
-// 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
-// 별도의 이벤트 메소드를 제공하지 않습니다 
-var content = '<div class="store_map_layer">'	
-			+	'<div class="head">'		
-			+		'<strong>가양역</strong>'		
-			+		'<a href="#none" class="btn_close" onclick="closeOverlay()">닫기</a>'	
-			+	'</div>	'
-			+	'<div class="info">	'	
-			+		'<dl>	'		
-			+			'<dt>주소</dt>'	
-			+		'	<dd id="ui_storeInfoLayer_addr">서울시 강서구 등촌동 717 그레이스힐 </dd>		'	
-			+		'	<dt>연락처</dt> '
-			+		'	<dd>02-2668-6777</dd>			'
-			+		'	<dt>영업시간</dt>			'
-			+		'	<dd>08:00 - 23:00</dd>	'				
-			+		'</dl>'	
-			+	'</div>'	
-			+	'<div class="foot">'		
-			+		'<a href="javascript:void(0);" class="btn_order on" id="ord_fast" data-storcd="69383"><span>주문하기</span></a>'
-			+	'</div>'
-			+ '</div>'
-			
-// 마커 위에 커스텀오버레이를 표시합니다
-// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-var overlay = new kakao.maps.CustomOverlay({
-    content: content,
-    map: map,
-    position: marker.getPosition()       
-});
+		if (status === kakao.maps.services.Status.OK) {
+		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({
+		        map: map, // 마커를 표시할 지도
+		        position: new kakao.maps.LatLng(result[0].y, result[0].x) // 마커의 위치
+		    });
+		}
 
-// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-kakao.maps.event.addListener(marker, 'click', function() {
-    overlay.setMap(map);
-});
-
-// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-function closeOverlay() {
-    overlay.setMap(null);     
+	 	// 마커 위에 커스텀오버레이를 표시합니다
+	 	// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+	 	var overlay = new kakao.maps.CustomOverlay({
+	 	    content: content,
+	 	    map: map,
+	 	    position: marker.getPosition()       
+	 	});
+	
+	 	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+	 	kakao.maps.event.addListener(marker, 'click', function() {
+	 	    overlay.setMap(map);
+	 	});
+	
+	 	// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+	 	function closeOverlay() {
+	 	    overlay.setMap(null);     
+	 	}
+	});
 }
+
 </script> 
 
 <!-- footer start -->
