@@ -129,13 +129,11 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8f222776d2a9d10e62a6e476046e2d1&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript">
 
-	
-
-	var mapContainer = document.getElementById('map'), // 지도의 중심좌표
-    mapOption = { 
-        center: new kakao.maps.LatLng(33.451475, 126.570528), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    }; 
+var mapContainer = document.getElementById('map'), // 지도의 중심좌표
+mapOption = { 
+    center: new kakao.maps.LatLng(33.451475, 126.570528), // 지도의 중심좌표
+    level: 3 // 지도의 확대 레벨
+}; 
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
@@ -151,7 +149,7 @@ var marker = new kakao.maps.Marker({
 var content = '<div class="store_map_layer">'	
 			+	'<div class="head">'		
 			+		'<strong>가양역</strong>'		
-			+		'<a href="#none" class="btn_close" onclick="shopMap.infoWindow.close();">닫기</a>'	
+			+		'<a href="#none" class="btn_close" onclick="closeOverlay()">닫기</a>'	
 			+	'</div>	'
 			+	'<div class="info">	'	
 			+		'<dl>	'		
@@ -164,12 +162,10 @@ var content = '<div class="store_map_layer">'
 			+		'</dl>'	
 			+	'</div>'	
 			+	'<div class="foot">'		
-			+		'<a href="javascript:void(0);" class="btn_order on" id="ord_fast" onclick="view.ord(this);" data-storcd="69383"><span>주문하기</span></a>'
+			+		'<a href="javascript:void(0);" class="btn_order on" id="ord_fast" data-storcd="69383"><span>주문하기</span></a>'
 			+	'</div>'
 			+ '</div>'
-			+ '<div style="margin: 0px; padding: 0px; width: 0px; height: 0px; position: absolute; border-width: 24px 10px 0px; border-style: solid; border-color: rgb(51, 51, 51) transparent transparent; border-image: initial; pointer-events: none; box-sizing: content-box !important; bottom: -32px; left: -10px;"></div>'
-			+ '<div style="margin: 0px; padding: 0px; width: 0px; height: 0px; position: absolute; border-width: 24px 10px 0px; border-style: solid; border-color: rgb(255, 255, 255) transparent transparent; border-image: initial; pointer-events: none; box-sizing: content-box !important; bottom: -29px; left: -10px;"></div>'
-
+			
 // 마커 위에 커스텀오버레이를 표시합니다
 // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
 var overlay = new kakao.maps.CustomOverlay({

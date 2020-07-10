@@ -337,11 +337,10 @@ input {
 .store_map_layer {
     width: 298px;
     height: 243px;
-    border: 1px solid #000000;
+    border: 1px solid #585858;
     background-color: #fff;
     position: absolute;
-    left: 50%;
-    top: 50%;
+    bottom: 50px;
     margin: -234px 0 0 -150px;
     z-index: 0;
 }
@@ -355,9 +354,7 @@ input {
     margin: 0 24px;
     height: 133px;
 }
- .store_map_layer .foot {
-    text-align: center;
-}
+
 .store_map_layer .head strong {
     color: #292929;
     font-size: 18px;
