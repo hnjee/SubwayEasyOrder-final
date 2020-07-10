@@ -53,7 +53,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		.addPathPatterns("/store/storeOC")
 		.addPathPatterns("/payment/orderList");
 
-
 		registry.addInterceptor(memberLoginAdmin)
 		.addPathPatterns("/member/adminIndex");
 		
