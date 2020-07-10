@@ -23,4 +23,7 @@
 		update Store set orderable = #{orderable} where storeNum=#{storeNum}
 	</update>
 
+	<insert id="storeInsert" parameterType="FranchiseVO">
+		insert into Store values (concat('S',#{requestNum}),#{storeName},#{address},null,null,1)
+	</insert>
 </mapper>

@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.subway.s1.franchise.FranchiseVO;
+
 @Service
 public class StoreService {
 
@@ -35,5 +37,10 @@ public class StoreService {
 		}
 		return storeRepository.storeOC(storeVO);
 	}
+	
+	public int storeInsert(FranchiseVO franchiseVO) throws Exception{
+		return storeRepository.storeInsert(franchiseVO);
+	}
+
 
 }

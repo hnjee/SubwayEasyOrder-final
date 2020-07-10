@@ -24,5 +24,8 @@
 		update Member set oriPoint=#{oriPoint} where id=#{id}
 	</update>
 	
+	<insert id="ownerInsert" parameterType="FranchiseVO">
+		insert into Member(id,pw,name,level,storeNum) values(concat('owner_S',#{requestNum}),concat('owner_S',#{requestNum}),#{storeName},2,concat('S',#{requestNum}))
+	</insert>
 	
 </mapper>

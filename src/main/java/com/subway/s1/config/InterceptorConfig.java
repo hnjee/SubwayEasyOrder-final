@@ -30,7 +30,14 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		.addPathPatterns("/cart/*")
 		.addPathPatterns("/menu/*")
 		.addPathPatterns("/payment/*")
-		.excludePathPatterns("/cart/howToUse");
+		.addPathPatterns("/store/*")
+		.excludePathPatterns("/cart/howToUse")
+		.excludePathPatterns("/store/storeSearch")
+		.excludePathPatterns("/store/storeSearch2")
+		.excludePathPatterns("/store/findStore")
+		.excludePathPatterns("/menu/showMenuList")
+		.excludePathPatterns("/menu/showMenuSelect");
+		
 		
 		registry.addInterceptor(adminInterceptor)
 		.addPathPatterns("/headOfficeSales/*")
@@ -46,12 +53,11 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		.addPathPatterns("/store/storeOC")
 		.addPathPatterns("/payment/orderList");
 
+
 		registry.addInterceptor(memberLoginAdmin)
 		.addPathPatterns("/member/adminIndex");
 		
 		
-
 	}
-	
-	
+
 }
