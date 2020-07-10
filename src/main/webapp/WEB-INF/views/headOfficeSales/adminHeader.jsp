@@ -14,7 +14,7 @@
     font-size: 18px;
     letter-spacing: -0.02em;
     padding: 0 13px;
-    width: 80px;
+    width: 78px;
 }
 </style>
 </head>
