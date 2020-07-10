@@ -122,7 +122,7 @@ body{
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow" style="margin-right: 230px;">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline small" style="color: #f6c23e;"><strong>강남점</strong> &nbsp;&nbsp;가맹 점주 <!-- / 샌드위치 아티스트 -->  </span>
+                <span class="mr-2 d-none d-lg-inline small" style="color: #f6c23e;"><strong>${member.name}</strong> &nbsp;&nbsp;가맹 점주 <!-- / 샌드위치 아티스트 -->  </span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
