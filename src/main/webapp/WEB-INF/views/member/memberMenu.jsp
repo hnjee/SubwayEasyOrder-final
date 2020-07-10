@@ -25,12 +25,32 @@
 	/* background-color:rgb(0,128,0,0.5); */
 	
 }
-
+.orderAble{
+	color:#999; 
+	height:25px; 
+	font-size:13px;
+	font-weight:bold; 
+	line-height:25px;
+	text-align:center; 
+	width:60%; 
+	border: 1px solid #999; 
+	border-radius: 12.5px;
+	display: inline-block;
+}
 input{
 	display: none;
 }
 .store_btn{
 	cursor: pointer;
+}
+th{
+ text-align: center;
+}
+td{
+	text-align: center;
+	font-weight: bold;
+	color: #999;
+	
 }
 </style>
 
@@ -186,6 +206,13 @@ input{
 
 		
 	</div>
+	<c:forEach items="${menuOut }" var="out" varStatus="i">
+		<c:forEach items="${menuOut[i.index]}" var="menu">
+			<input type="text" class="${menu.menuNum }_out" value="${menu.storeNum }">
+		</c:forEach>
+	</c:forEach>
+	
+	
 	 <!-- Modal -->
 	  <div class="modal fade" id="myModal" role="dialog">
 	    <div class="modal-dialog modal-lg">
@@ -201,8 +228,15 @@ input{
 	          <c:forEach items="${lastStore }" var="last">
 	          	<c:forEach items="${allStore }" var="allStore">
 	          		<c:if test="${last.storeNum eq allStore.storeNum }">
-	          			<div class="store_btn" name="${allStore.name }" title="${allStore.storeNum }">${allStore.name }</div>
+	          			<div class="row store_btn" id="${allStore.storeNum }_${allStore.orderable}_title" style="margin-bottom: 20px;" name="${allStore.name }" title="${allStore.storeNum }">
+		          			<div class="col-sm-6" style="height:25px; line-height:25px; font-size: 15px; color:#999; font-weight: bold;">${allStore.name }</div>
+		          			<div class="col-sm-6">
+		          			<c:if test="${allStore.orderable eq 0 }"><span class="orderAble" style="width: 19.31%;"> 주문불가 </span></c:if> 
+			        		<c:if test="${allStore.orderable eq 1 }"><span class="orderAble" style="background-color: #009223;color: white; border: 0px; width: 19.31%;">주문가능</span></c:if>
+		          			</div>
+	          			</div>
 	          		</c:if>
+	          		
 	          	</c:forEach>
 	          </c:forEach>
 	        <hr style="background-color: #ffe17f; height: 3px;">
@@ -214,7 +248,7 @@ input{
 	        		<col width="150px;">
 	        	</colgroup>
 	        	<thead>
-	        		<tr style="border-bottom: 4px solid #009223;">
+	        		<tr style="border-bottom: 4px solid #009223; text-align: center;">
 	        			<th>매장명</th>
 	        			<th>매장주소</th>
 	        			<th>연락처</th>
@@ -223,13 +257,13 @@ input{
 	        	</thead>
 	        	<tbody>
 	        		<c:forEach items="${allStore }" var="all">
-		        		<tr class="store_btn" id="${all.storeNum }_${all.orderable}" name="${all.name }" title="${all.storeNum }" style="font-size: 13px; font-family: font_ns, sans-serif;height: 80px; ">
+		        		<tr class="store_btn"  id="${all.storeNum }_${all.orderable}" name="${all.name }" title="${all.storeNum }" style="font-size: 13px; font-family: font_ns, sans-serif;height: 80px; ">
 	        				<td>${all.name }</td>
 	        				<td>${all.address }</td>
 	        				<td>${all.telNumber }</td>
 	        				<td>
-		        				<c:if test="${all.orderable eq 1 }">주문불가</c:if> 
-		        				<c:if test="${all.orderable eq 0 }">주문가능</c:if> 
+		        				<c:if test="${all.orderable eq 0 }"><span class="orderAble"> 주문불가 </span></c:if> 
+		        				<c:if test="${all.orderable eq 1 }"><span class="orderAble" style="background-color: #009223;color: white; border: 0px;">주문가능</span></c:if> 
 	        				</td>
 	        			</tr>
 	        		</c:forEach>
@@ -256,30 +290,71 @@ input{
 	$(".store_btn").each(function(){
 		var title=$(this).attr("title");
 		var id=$(this).attr('id');
-		var check = title+"_1";
+		var check = title+"_0";
 		if(check==id){
 			$(this).removeClass("store_btn");
+			$("#"+title+"_0_title").removeClass("store_btn");
 		}
 	});
 
 
+/* 	$(".order").click(function(){
+		var check = true;
+		$("#myModal").modal();
+		var id=$(this).attr("title");
+		var name=$(this).attr("name");
+		$(".store_btn").each(function(){
+			var storeNum=$(this).attr("title");
+			var name2=$(this).attr("name");
+			$(this).click(function(){
+		 	$("."+name+"_out").each(function(){
+				if($(this).val()==storeNum){
+					check=false;
+				}
+			}); 
+			
+			console.log("check");
+			console.log(storeNum);
+			if(confirm(name2+"으로 주문하시겠습니까?")){
+				location.href="./memberMenuOrder?id_index="+id+"&menuNum="+name+"&storeNum="+storeNum;
+			}
+			});
+		});
+	}); */
+
+	var id=0;
+	var name=0;
+	var check=true;
 	$(".order").each(function(){
 		$(this).click(function(){
 			$("#myModal").modal();
-			var id=$(this).attr("title");
-			var name=$(this).attr("name");
-			$(".store_btn").each(function(){
-				var storeNum=$(this).attr("title");
-				var name2=$(this).attr("name");
-				$(this).click(function(){
-					if(confirm(name2+"으로 주문하시겠습니까?")){
-						location.href="./memberMenuOrder?id_index="+id+"&menuNum="+name+"&storeNum="+storeNum;
-						
-					}
-				});
-			});
+			id=$(this).attr("title");
+			name=$(this).attr("name");
 		});
 	});
+
+
+	$(".store_btn").each(function(){
+		var storeNum=$(this).attr("title");
+		var name2=$(this).attr("name");
+		$(this).click(function(){
+			$("."+name+"_out").each(function(){
+				if($(this).val()==storeNum){
+					check=false;
+				}
+			});
+			if(check){
+				if(confirm(name2+"으로 주문하시겠습니까?")){
+					location.href="./memberMenuOrder?id_index="+id+"&menuNum="+name+"&storeNum="+storeNum;
+				}
+			} else{
+				alert("해당 메뉴가 품절인 매장입니다.\n다른매장을 이용해주세요.");
+				check=true;
+			}
+		});
+	});
+
+	
 	$(".pop").click(function(){
 		$("#menuNum").val("샌드위치 선택");
 		$("#ingre_num").val(null);

@@ -44,22 +44,24 @@
 </head>
 <body>
 	<c:import url="../jsp/header.jsp"></c:import>
-	<div class="container-fulid mb-5">
+	<div class="container-fulid mb-5" style="min-height: 700px; margin-bottom: 300px;" >
 		
 		<div class="row">
 			<div class="col-sm-2">
 				
 			</div>
-			<div class="col-sm-8" style="text-align: center; height: 27px;">
-				<div style="border: 2px solid green; width: 40%;height: 52px; margin-left: 30%;">
-					<input id="search" onkeydown="enter();" size="15" type="text" style="border:0px; height:100%;width:80%; outline: 0;float: left;">
+			<div class="col-sm-8" style="text-align: center; ">
+				<div style="border: 2px solid green; width: 40%;height: 52px; margin: 100px 0 100px 30%;">
+					
+					<i class="material-icons" style="width:10%; font-size:25px;color:#009223; float: left; height: 48px;line-height: 48px;"  >my_location</i>
+					
+					<input id="search" onkeydown="enter();" size="15" type="text" style="border:0px; height:100%;width:70%; outline: 0;float: left;">
 					<button id="btn" style="width: 20%;height: 100%;background-color: #f1a03c; border: 0px; outline: 0">
 						<i class="fa fa-search" style="font-size:20px;color:white"></i>
 					</button>
 				
 				</div>
-				<i class="material-icons" style="font-size:25px;color:#009223;" >my_location</i>
-				<span style="font-weight: bold; font-size: 20px;" id="location"></span>
+				
 				<div id="map" style="margin-top:30px; width: 100%; height: 500px;"></div>
 			</div>
 			<div class="col-sm-2"></div>
@@ -70,6 +72,8 @@
 	</div>
 
 
+
+<c:import url="../jsp/footer.jsp"></c:import>
 
 
 
@@ -88,6 +92,12 @@
 
 		}
 	}
+	$(".material-icons").css({
+		'cursor':'pointer'
+	});
+	$(".material-icons").click(function(){
+		location.href="./storeSearch";
+	});
 	
 </script>
 
@@ -134,7 +144,7 @@
 	            console.log(result[0].address.address_name);
 	            console.log(result[0]);
 	            var location = result[0].address.address_name;
-	            $("#location").text(location);
+	            $("#search").val(location);
 	        }
 	    };
 
@@ -224,7 +234,7 @@
 									if(data=='null'){
 										alert("서비스 준비중인 매장입니다.");
 									} else {
-										location.href="../menu/cateList?storeNum="+data;
+										location.href="../menu/menuList?menuCode=SW";
 									}
 								}
 								
