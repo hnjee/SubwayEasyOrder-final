@@ -50,6 +50,19 @@ ul.tabs li.current{
 .text-chart{
 	color: #030303!important;
 }
+.owner_id{
+    display: block;
+    border: 1px solid #dddddd;
+    border-radius: 50px;
+    height: 28px;
+    line-height: 28px;
+    background-color: #fff;
+    color: #666666;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    padding: 0 13px;
+    width: 78px;
+}
 </style>
 </head>
 
@@ -65,7 +78,7 @@ ul.tabs li.current{
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 	 <a href="../"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:80px 700px 0px" ></a>
-	<div style="margin-left:88%">${member.id}</div>
+	<div  class="owner_id" style="margin-left:88%">${member.id}</div>
 	 
 	 <div id="line" style="border: solid 2.5px white; margin-top: 22.5px" ></div>
 
