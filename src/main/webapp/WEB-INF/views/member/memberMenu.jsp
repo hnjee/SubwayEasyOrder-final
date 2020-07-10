@@ -257,7 +257,7 @@ td{
 	        	</thead>
 	        	<tbody>
 	        		<c:forEach items="${allStore }" var="all">
-		        		<tr class="store_btn" id="${all.storeNum }_${all.orderable}" name="${all.name }" title="${all.storeNum }" style="font-size: 13px; font-family: font_ns, sans-serif;height: 80px; ">
+		        		<tr class="store_btn"  id="${all.storeNum }_${all.orderable}" name="${all.name }" title="${all.storeNum }" style="font-size: 13px; font-family: font_ns, sans-serif;height: 80px; ">
 	        				<td>${all.name }</td>
 	        				<td>${all.address }</td>
 	        				<td>${all.telNumber }</td>
@@ -332,6 +332,8 @@ td{
 			name=$(this).attr("name");
 		});
 	});
+
+
 	$(".store_btn").each(function(){
 		var storeNum=$(this).attr("title");
 		var name2=$(this).attr("name");
