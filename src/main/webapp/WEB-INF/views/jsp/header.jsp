@@ -19,7 +19,7 @@
                     
                 </li>
                 <li>
-                    <a href="#none" class="dp1" >새소식</a>
+                    <a href="${pageContext.request.contextPath}/store/storeList" class="dp1">온라인 주문</a>
                     
                 </li>
                 <li>
