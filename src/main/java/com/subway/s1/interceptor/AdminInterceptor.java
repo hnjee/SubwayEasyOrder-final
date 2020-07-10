@@ -1,9 +1,11 @@
 package com.subway.s1.interceptor;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.subway.s1.member.MemberVO;
@@ -22,12 +24,17 @@ public class AdminInterceptor extends HandlerInterceptorAdapter{
 		if(memberVO != null && memberVO.getId().equals("admin")) {
 			check = true;
 		}else {
-			response.sendRedirect("../");
+			request.setAttribute("result", "관리자모드 입니다.");
+			request.setAttribute("path", "../");
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/result.jsp"); 
+			view.forward(request, response);
 		}
 		
-		
+	
 		return check;
 	}
 	
 
 }
+
+
