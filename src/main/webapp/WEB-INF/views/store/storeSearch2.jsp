@@ -205,61 +205,58 @@
 <body>
 	<c:import url="../jsp/header.jsp"></c:import>
 
-	<div class="container-fulid" style="margin-bottom: 500px;">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-8" style="text-align: center;">
-			<div
-				style="border: 2px solid green; width: 40%; height: 52px; margin: 100px 0 100px 30%;">
-
-				<i class="material-icons"
-					style="width: 10%; font-size: 25px; color: #009223; float: left; height: 48px; line-height: 48px;">my_location</i>
-				<form onsubmit="searchPlaces(); return false;">
-				<input id="keyword" onkeydown="enter();" size="15" type="text"
-					style="border: 0px; height: 100%; width: 70%; outline: 0; float: left;" value="${param.search }">
-				<button id="btn" type="submit"
-					style="width: 20%; height: 100%; background-color: #f1a03c; border: 0px; outline: 0">
-					<i class="fa fa-search" style="font-size: 20px; color: white"></i>
-				</button>
-				</form>
-
-			</div>
-			<div class="map_wrap">
-
-				<div id="map"
-					style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
-
-				<div id="menu_wrap" class="bg_white">
-					<div class="option">
-						<%-- <div>
-							<form onsubmit="searchPlaces(); return false;">
-								키워드 : <input type="text" value="${param.search }" id="keyword"
-									size="15">
-								<button type="submit">검색하기</button>
-							</form>
-						</div> --%>
+	<div class="container-fulid" style="margin-bottom: 300px;">
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8" style="text-align: center;">
+				<div
+					style="border: 2px solid green; width: 50%; height: 52px; margin: 100px 0 100px 30%;">
+	
+					<div style='height:100%; width:20%; font-size:15px;color:#009223;float: left;'>
+						<i class='fas fa-location-arrow' style="line-height: 48px;"><span style="margin-left: 10px;">내 위치</span></i>
 					</div>
-					<hr>
-					<ul id="placesList"></ul>
-					<div id="pagination"></div>
+					<form onsubmit="searchPlaces(); return false;">
+					<input value="${param.search }" id="keyword" onkeydown="enter();" size="15" type="text" style="border:0px; height:100%;width:60%; outline: 0;float: left;"placeholder="주소 입력">
+					<button id="btn" style="width: 20%;height: 100%;background-color: #f1a03c; border: 0px; outline: 0">
+						<i class="fa fa-search" style="font-size:20px;color:white"></i>
+					</button>
+					</form>
+	
+				</div>
+				
+				<div class="map_wrap">
+	
+					<div id="map"
+						style="margin-top:30px; width: 100%; height: 500px; position: relative; overflow: hidden;"></div>
+	
+					<div id="menu_wrap" class="bg_white">
+						<div class="option">
+							<%-- <div>
+								<form onsubmit="searchPlaces(); return false;">
+									키워드 : <input type="text" value="${param.search }" id="keyword"
+										size="15">
+									<button type="submit">검색하기</button>
+								</form>
+							</div> --%>
+						</div>
+						<hr>
+						<ul id="placesList"></ul>
+						<div id="pagination"></div>
+					</div>
 				</div>
 			</div>
+			
+			<div class="col-sm-2"></div>
 		</div>
-		<div style="text-align: center; padding-bottom: 300px;">
-			<button id="mylocation" style="width: 300px; height: 100px;">내
-				주변 매장</button>
-		</div>
-		<div class="col-sm-2"></div>
 	</div>
 
 	<c:import url="../jsp/footer.jsp"></c:import>
 	<script type="text/javascript">
-		$("#mylocation").click(function() {
-			location.href = "./storeSearch";
-		});
-		$(".material-icons").css({
+		
+		$(".fa-location-arrow").css({
 			'cursor':'pointer'
 		});
-		$(".material-icons").click(function(){
+		$(".fa-location-arrow").click(function(){
 			location.href="./storeSearch";
 		});
 	</script>

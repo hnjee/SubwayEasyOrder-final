@@ -26,6 +26,13 @@
 		inner join Code on(Menu.menuCode=Code.code)
 		inner join Store on(Payment.storeNum=Store.storeNum)
 		 where id=#{id}
+		 order by Payment.payDate desc limit #{startNum},#{lastNum}
+	</select>
+	
+	<select id="findSLNum" parameterType="MemberVO" resultType="OrderInfoVO">
+		select Payment.payNum,Payment.payDate from Payment
+		inner join OrderProduct on (Payment.payNum=OrderProduct.payNum)
+		 where id=#{id}
 		 order by Payment.payDate desc
 	</select>
 	
@@ -121,7 +128,7 @@
 	</select>
 	
 	<select id="memberPoint" parameterType="MemberVO" resultType="PointVO">
-		select * from Point where id=#{id} order by pointDate desc limit #{startNum},5
+		select * from Point where id=#{id} and curPoint!=0 order by pointDate desc limit #{startNum},5
 	</select>
 	
 	

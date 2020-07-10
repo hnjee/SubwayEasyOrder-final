@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +60,7 @@ td{
 
 	<div class="container" style="padding-bottom: 200px; margin-top: 100px;">
 		
-		
+		<div class="row">
 		<c:if test="${empty list}">
 			<div style="text-align: center;">
 				<h2 style="font-weight: bold; margin-bottom: 100px;">최근 주문 내역</h2>
@@ -68,7 +69,7 @@ td{
 			</div>
 		</c:if>
 			<!-- ==========================================================================================  -->
-		<div class="col-sm-10">
+		<div class="col-sm-10" id="addPage">
 		
 			
 			<c:if test="${!empty list }">
@@ -85,7 +86,7 @@ td{
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${list}" var="list">
+					<c:forEach items="${list}" var="list" varStatus="i">
 						<c:if test="${list.productPrice gt 0 }">
 							<tr style="background-color: white;">
 								<td class="rowSet">
@@ -102,10 +103,12 @@ td{
 						
 						</c:if>
 						
+						
 					</c:forEach>
-				
+					
 					
 				</tbody>
+				
 			</table>
 			</c:if>
 		</div>
@@ -115,11 +118,73 @@ td{
 				</div>
 		
 		</div>
+		</div>
+		
+		
+		<c:forEach items="${findNum }" var="findNum" varStatus="i">
+			<span class="count" >${findNum.payNum }</span>
+			
+		</c:forEach>
+		<div class="row">
+			<div id="addBtn" style="border-radius:30px; height:50px; line-height:45px; border: 3px solid #009223; width: 10%;margin: 0 auto; text-align: center; font-weight: bold; color: #009223;">더 보기</div>
+		</div>
 	</div>
 	
 <c:import url="../jsp/footer.jsp"></c:import>
+<script type="text/javascript">
+	var id = "${member.id}";
+	var finalNum="${i.count}";
+	console.log(finalNum);
+	var payNum = "check";
+	var prePaynum="check";
+	var total_count=0;
+	var count=0;
+	var detail_count=new Array();
 	
+	$(".count").each(function(){
+		prePaynum=payNum;
+		count++;
+		if(payNum!=$(this).text()){
+			payNum = $(this).text();
+			total_count++;
+			console.log(total_count);
+		}
+		if(total_count%5==1 && payNum!=prePaynum){
+			console.log(payNum = $(this).text());
+			console.log("-----------------------");
+			detail_count.push(count-1);
+		}
+	});
+	console.log(total_count);
+	console.log(detail_count);
 	
+
+	$("#addBtn").css({
+		'cursor':'pointer'
+	});
+
+	var clickCount=0;
+	$("#addBtn").click(function(){
+	clickCount++;
+	console.log(clickCount);
+	var startNum = detail_count[clickCount];
+	var lastNum = detail_count[clickCount+1]*1-startNum;
+		$.ajax({
+			type:'get',
+			url:'./orderInfoMore',
+			data:{
+				id:id,
+				startNum:startNum,
+				lastNum:lastNum
+			},success:function(data){
+				$("#addPage").append(data.trim());
+				
+				
+			}
+		});
+	});
+</script>	
+
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -218,6 +283,7 @@ $(document).ready(function() {
 	
 	
 	function addComma(x) {
+		x = x.toString().replace("원", "");
 		x = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		x = x+"원";
 		return x;

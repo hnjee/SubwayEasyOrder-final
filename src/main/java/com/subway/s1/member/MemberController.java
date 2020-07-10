@@ -215,11 +215,13 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		List<StoreVO> storeList = memberService.oftenStore(memberVO);
+		List<OrderInfoVO> findNum = memberService.findSLNum(memberVO);
 		int storeCount = storeList.size();
 		int orderCount = memberService.orderCount(memberVO);
 		mv.addObject("orderCount", orderCount);
 		mv.addObject("store", storeList);
 		mv.addObject("storeCount", storeCount);
+		mv.addObject("findNum", findNum);
 		mv.setViewName("member/memberPage");
 		return mv;
 	}
@@ -244,21 +246,30 @@ public class MemberController {
 	}
 	
 	@GetMapping("memberOrderInfo")
-	public ModelAndView memberOrderInfo(HttpSession session)throws Exception{
+	public ModelAndView memberOrderInfo(HttpSession session,int startNum,int lastNum)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		memberVO.setLastNum(lastNum);
+		memberVO.setStartNum(startNum);
+		List<OrderInfoVO> findNum = memberService.findSLNum(memberVO);
 		if(memberVO!=null) {
 			
 			List<OrderInfoVO> list = memberService.orderInfoList(memberVO);
-			for(OrderInfoVO orderInfoVO:list) {
-				System.out.println(orderInfoVO.getName());
-			}
+			mv.addObject("findNum", findNum);
 			mv.addObject("list", list);
 			System.out.println(list);
 		}
 		mv.setViewName("member/memberOrderInfo");
 		return mv;
 		
+	}
+	@GetMapping("orderInfoMore")
+	public ModelAndView orderInfoMore(MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrderInfoVO> list = memberService.orderInfoList(memberVO);
+		mv.addObject("list", list);
+		mv.setViewName("member/orderInfoMore");
+		return mv;
 	}
 	
 
