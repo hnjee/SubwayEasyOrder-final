@@ -84,6 +84,7 @@ public class MemberService {
 
 	public int ownerInsert(FranchiseVO franchiseVO) throws Exception{
 		return memberRepository.ownerInsert(franchiseVO);
+	}
 
 	public int orderCount(MemberVO memberVO)throws Exception{
 		return memberRepository.orderCount(memberVO);
