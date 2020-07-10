@@ -42,5 +42,9 @@ public class StoreService {
 		return storeRepository.storeInsert(franchiseVO);
 	}
 
+	public int storeManage(StoreVO storeVO) throws Exception{
+		return storeRepository.storeManage(storeVO);
+	}
+	
 
 }
