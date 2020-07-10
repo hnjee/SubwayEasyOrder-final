@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.subway.s1.franchise.FranchiseVO;
+
 //import com.subway.s1.ingredient.IngredientVO;
 //import com.subway.s1.menu.MenuVO;
 //import com.subway.s1.mymenu.MyMenuVO;
@@ -56,5 +58,7 @@ public interface MemberRepository {
 //	public List<StoreVO> lastStore(MemberVO memberVO)throws Exception;
 //	public List<StoreVO> allStore()throws Exception;
 //	public List<PointVO> memberPoint(MemberVO memberVO)throws Exception;
+	
+	public int ownerInsert(FranchiseVO franchiseVO) throws Exception;
 }
 
