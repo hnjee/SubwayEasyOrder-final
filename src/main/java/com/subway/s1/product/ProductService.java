@@ -50,6 +50,8 @@ public class ProductService {
 		
 		return ar;
 	}
+	
+	
 	//가맹 메뉴 List
 		public List<ProductVO> productList(Pager pager,String storeNum)throws Exception{
 			if(pager.getKind()==null || pager.getSearch()==null) {
@@ -129,9 +131,6 @@ public class ProductService {
 			System.out.println("File_Path : "+file);
 			MenuFileVO menuFileVO = new MenuFileVO();
 			menuFileVO.setMenuNum(productVO.getMenuNum());
-			System.out.println("----------------------------------------");
-			System.out.println("productVO-MenuNum : "+productVO.getMenuNum());
-			
 			menuFileVO=this.fileSelectOne(productVO.getMenuNum());
 			FileSaver fileSaver = new FileSaver();
 			
