@@ -75,6 +75,7 @@ td{
 			
 			<c:if test="${!empty list }">
 			
+			
 			<div style="font-weight: bold; font-size: 30px;">결제 내역</div>
 			<hr style="background-color: green; height: 1px;">
 			<table class="table">
@@ -88,17 +89,28 @@ td{
 				</thead>
 				<tbody>
 					<c:forEach items="${list}" var="list" varStatus="i">
+						
 						<c:if test="${list.productPrice gt 0 }">
 							<tr style="background-color: white;">
 								<td class="rowSet">
 									<div>${list.payNum}</div>
 									<div id="${list.payNum }_date" title="${list.payDate }">(${list.payDate })</div>
 									<div id="${list.payNum}_storeName">${list.storeName }</div>
-									<div title="${list.payNum}" class="survey_btn btn" style="outline: 0px; border-color: #999;">
+									<c:if test="${list.review eq 0 }">
+									<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn" data-toggle="modal" data-target="#myModal" style="outline: 0px; border-color: #999;">
 										<i class="fa fa-pencil-square-o" style="font-size:24px;color:black"></i>
 										<span style="font-weight: bold; color: black">리뷰 쓰기</span>
 										<span id="${list.payNum }_dday" style="color: green; font-weight: bold;"></span>
+										${list.review }
 									</div>
+									</c:if>
+									<c:if test="${list.review eq 1 }">
+									<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn"  style="outline: 0px; border-color: #999;">
+										<i class="fa fa-pencil-square-o" style="font-size:24px;color:#999"></i>
+										<span style="font-weight: bold; color: black">작성 완료</span>
+										${list.review }
+									</div>
+									</c:if>
 									
 									
 								</td>
@@ -140,9 +152,88 @@ td{
 		</c:if>
 	</div>
 	
+	
+	
+	 <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="font-weight: bold;"></h4>
+        </div>
+        <div class="modal-body">
+          <div style="font-weight: bold; font-size: 30px;"><div class="col-sm-4">맛</div>
+          
+          	<c:forEach begin="1" end="5" varStatus="i">
+	          	<i class="fa fa-star taste" id="taste_${i.index}" title="${i.index }" style="font-size:48px;color:#999;"></i>
+          	</c:forEach>
+          	
+          </div>
+          <div style="font-weight: bold; font-size: 30px;"><div class="col-sm-4">위생</div>
+          	<c:forEach begin="1" end="5" varStatus="i">
+	          	<i class="fa fa-star hygiene" id="hygiene_${i.index}" title="${i.index }" style="font-size:48px;color:#999;"></i>
+          	</c:forEach>
+          	
+          </div>
+          <div style="font-weight: bold; font-size: 30px;"><div class="col-sm-4">친절</div>
+          	<c:forEach begin="1" end="5" varStatus="i">
+	          	<i class="fa fa-star kind" id="kind_${i.index}" title="${i.index }" style="font-size:48px;color:#999;"></i>
+          	</c:forEach>
+          	
+          </div>
+          
+          
+          <form>
+		    <div class="form-group">
+		      <label for="comment">Comment:</label>
+		      <textarea class="form-control" rows="5" id="comment"></textarea>
+		    </div>
+		  </form>
+          
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default write" >리뷰 작성</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  
+  
 <c:import url="../jsp/footer.jsp"></c:import>
 <script type="text/javascript">
+	$(".fa-star").css({
+		'cursor':'pointer'
+	});
+	
+	
+	
+	function grade(item){
+		$("."+item).click(function(){
+			$("."+item).removeClass(item+"_point");
+			var grade = $(this).attr("title");
+			for(var i=1;i<6;i++){
+				$("#"+item+"_"+i).css({
+					'color':'gray'
+				});
+				if(i==grade){
+					for(var j=0;j<i+1;j++){
+						$("#"+item+"_"+j).css({
+							'color':'#f1a03c'
+						});
+					}
+				}
+			}
+		$(this).addClass(item+"_point");
+		});
 
+	}
 
 
 
@@ -195,7 +286,6 @@ td{
 				$("#addPage").append(data.trim());
 				$(".detail_btn").unbind('click');	//다른 페이지에 같은 이벤트를 사용시 중복되어 적용이 안되어서 삭제 후
 				detail_pointer();					// 재 실행
-				
 				
 			}
 		});
@@ -314,7 +404,7 @@ $(document).ready(function() {
 
 	$(".survey_btn").each(function(){
 		var date = new Date();
-		date.setDate(date.getDate()-4);
+		date.setDate(date.getDate()-7);
 		var title=$(this).attr("title");
 		var payDate=$("#"+title+"_date").attr("title");
 		payDate = new Date(payDate);
@@ -331,6 +421,11 @@ $(document).ready(function() {
 		console.log(result);
 		if(result>0){
 			$("#"+title+"_dday").text("D-"+result);
+			
+			
+		} else{
+			$(this).removeAttr("data-toggle");
+			$(this).removeAttr("data-target");
 		}
 	});
 	$(".expiration").click(function(){
@@ -338,10 +433,60 @@ $(document).ready(function() {
 	});
 
 
-	$(".survey_btn").click(function(){
-		alert($(this).attr("title"));
-	});
+		grade("taste");
+		grade("hygiene");
+		grade("kind");
+
 	
+	var payNum,storeNum;
+	
+	$(".survey_btn").click(function(){
+		$("#taste_1").addClass("taste_point");
+		$("#hygiene_1").addClass("hygiene_point");
+		$("#kind_1").addClass("kind_point");
+		$("#taste_1").css({
+			'color':'#f1a03c'
+		});
+		$("#hygiene_1").css({
+			'color':'#f1a03c'
+		});
+		$("#kind_1").css({
+			'color':'#f1a03c'
+		});
+		payNum=$(this).attr("title");
+		storeNum=$(this).attr("name");
+		var storeName = $("#"+payNum+"_storeName").text();
+		$(".modal-title").text(storeName);
+	});
+
+
+	$(".write").click(function(){
+		var taste=$(".taste_point").attr("title")*1;
+		var hygiene= $(".hygiene_point").attr("title")*1;
+		var kindness=$(".kind_point").attr("title")*1;
+		var comment = $("#comment").val();
+		var totalScore = taste+kindness+hygiene;
+		totalScore=totalScore/3;
+		console.log("totla:"+totalScore);
+		console.log(taste,hygiene,kindness,comment);
+		console.log(payNum,storeNum);
+		$.ajax({
+			type:'post',
+			url:'./surveyInsert',
+			data:{
+				taste:taste,
+				kindness:kindness,
+				hygiene:hygiene,
+				comment:comment,
+				storeNum:storeNum,
+				payNum:payNum,
+				totalScore:totalScore
+			},
+			success:function(){
+				alert("check");
+			}
+		});
+	});
 	
 	
 </script>

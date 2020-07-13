@@ -23,6 +23,7 @@ import com.subway.s1.mymenu.MyMenuVO;
 import com.subway.s1.orderInfo.OrderInfoVO;
 import com.subway.s1.point.PointVO;
 import com.subway.s1.store.StoreVO;
+import com.subway.s1.survey.SurveyVO;
 import com.subway.s1.util.Pager;
 
 @Controller
@@ -35,6 +36,14 @@ public class MemberController {
 	private MenuService menuService;
 	@Autowired
 	private IngredientService ingredientService;
+	
+	
+	@PostMapping("surveyInsert")
+	@ResponseBody
+	public void surveyInsert(SurveyVO surveyVO)throws Exception{
+		memberService.surveyInsert(surveyVO);
+		memberService.surveyUpdate(surveyVO);
+	}
 	
 	@GetMapping("pointViewMore")
 	public ModelAndView pointViewMore(MemberVO memberVO)throws Exception{
