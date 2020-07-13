@@ -340,7 +340,8 @@ input {
     border: 1px solid #585858;
     background-color: #fff;
     position: absolute;
-    bottom: 50px;
+    bottom: -25px;
+    left: 75px;
     margin: -234px 0 0 -150px;
     z-index: 0;
 }
