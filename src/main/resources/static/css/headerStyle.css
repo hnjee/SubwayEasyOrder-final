@@ -3,6 +3,7 @@ body {
     color: black !important;
 	box-sizing: border-box;
 	margin: 0px;
+	    font-family: "Roboto","Noto",sans-serif;
 }
 
 ul{
@@ -122,17 +123,19 @@ a:hover{
 }
 
 #header .util_menu ul li a {
+
     display: block;
     border: 1px solid #dddddd;
     border-radius: 50px;
     height: 28px;
-    line-height: 28px;
+    line-height: 26px;
     background-color: #fff;
     color: #666666;
     font-size: 13px;
     letter-spacing: -0.02em;
     padding: 0 13px;
 }
+
 #header .util_menu ul li a.global_subway {
     background: url(../images/icon_global_subway.png) 50% 50% no-repeat;
     overflow: hidden;
