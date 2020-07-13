@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ExceptionController {
 	
 
-	@ExceptionHandler(value = Exception.class)
+	//@ExceptionHandler(value = Exception.class)
 	public ModelAndView testHandle()throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("common/result");
