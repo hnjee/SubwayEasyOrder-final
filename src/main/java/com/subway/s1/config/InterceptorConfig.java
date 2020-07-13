@@ -42,7 +42,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		registry.addInterceptor(adminInterceptor)
 		.addPathPatterns("/headOfficeSales/*")
 		.addPathPatterns("/product/headOfficeProductList")
-		.addPathPatterns("/product/headOfficeProductRegister");
+		.addPathPatterns("/product/headOfficeProductRegister")
+		.addPathPatterns("/ingredient/headOfficeIngredientList")
+		.addPathPatterns("/ingredient/ingredientRegister");
 		
 		registry.addInterceptor(ownerInterceptor)
 		.addPathPatterns("/sales/*")
