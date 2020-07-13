@@ -117,7 +117,7 @@
             
           <div class="collapse-divider"></div> 
             <a class="collapse-item" href="${pageContext.request.contextPath}/store/storeManage">매장정보 관리</a>
-            <a class="collapse-item" href="#">매장후기 관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/survey/surveyList">매장후기 관리</a>
             <a class="collapse-item" href="#">매장후기 현황</a>
         
         </div>
