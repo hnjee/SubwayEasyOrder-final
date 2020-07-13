@@ -340,10 +340,15 @@ input {
     border: 1px solid #585858;
     background-color: #fff;
     position: absolute;
-    bottom: -25px;
-    left: 75px;
+    bottom: 45px;
+    left: 1px;
     margin: -234px 0 0 -150px;
     z-index: 0;
+    display: none;
+}
+
+.layeron {
+    display: block;
 }
 
 .store_map_layer .head {
@@ -429,14 +434,19 @@ input {
     background: url(../images/icon_arr_d.png) 0 0 no-repeat;
 }
 
-.store_map_layer .btn_order.on {
+.store_map_layer .btn_order {
     display: block;
     width: 118px;
     height: 34px;
-    margin: 0 auto 15px auto;
+  	margin: 0 auto 15px auto;
+    border: 1px solid #bbb;
     border-radius: 17px;
-    background: #009223;
     text-align: center;
+}
+
+.store_map_layer .btn_order.on {
+    background: #009223;
+    border: none;
 }
 
 .store_map_layer .btn_order.on span {
@@ -468,7 +478,7 @@ input {
 }
 
 #best p{
-	margin-left:4px;
+	margin-left: 5px;
 	margin-right: 1px;
 	float: left;
 }
@@ -479,4 +489,5 @@ input {
 	position: relative;
 	top: 5px;
 }
+
 
