@@ -54,7 +54,7 @@
 								<strong class="s_name">${vo.name}</strong>
 								<label class="my_bookmark" style="float:left">	
 									<i class="i_star" id="star${i.index}" title="${vo.storeNum}" onclick="myOnOff(this)"></i>
-								</label>	
+								</label>
 								<c:if test="${vo.best eq 1}">
 									<div id="best">
 										<p>우수매장</p> 
