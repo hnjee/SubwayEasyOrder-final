@@ -51,10 +51,17 @@
 					<c:forEach items="${list}" var="vo" varStatus="i">
 						<li>	
 							<div class="store_name">
-								<strong>${vo.name}</strong>
-								<label class="my_bookmark">	
+								<strong class="s_name">${vo.name}</strong>
+								<label class="my_bookmark" style="float:left">	
 									<i class="i_star" id="star${i.index}" title="${vo.storeNum}" onclick="myOnOff(this)"></i>
-								</label>	
+								</label>
+								<c:if test="${vo.best eq 1}">
+									<div id="best">
+										<p>우수매장</p> 
+										<img src="../images/trophy_icon-icons.com_49969.png"/>
+									</div> 
+								</c:if>
+								
 								<c:if test="${vo.orderable eq 1}">
 									<a href="./storeUpdate?storeNum=${vo.storeNum}&cases=${cases}"><em class="on">주문하기</em></a>
 								</c:if>
@@ -93,9 +100,9 @@
 							</script>
 							
 							<div class="storeInfo">
-								<span>${vo.address}</span>
-								<span>연락처: ${vo.telNumber}</span>
-								<span>영업시간: ${vo.hours}</span>
+								<span class="s_address">${vo.address}</span>
+								<span class="s_telNumber">연락처: ${vo.telNumber}</span>
+								<span class="s_hours">영업시간: ${vo.hours}</span>
 							</div>
 						</li>
 					</c:forEach>
@@ -125,53 +132,82 @@
 	</div>
 
 </div>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8f222776d2a9d10e62a6e476046e2d1&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8f222776d2a9d10e62a6e476046e2d1&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript">
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+mapOption = { 
+    center: new kakao.maps.LatLng(37.5579038249194,126.909600161339), // 지도의 중심좌표
+    level: 5 // 지도의 확대 레벨
+};
 
-	var stores = [];
-	<c:forEach items="${list}" var="stores">
-		stores.push("${stores.address}");
-	</c:forEach>
-	console.log(stores);
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 	
-	var loc =stores[0];
-	map1();
-	
-	function map1(){
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(37.5579038249194,126.909600161339),	
-			level: 5
-		};									
-		var map = new kakao.maps.Map(container, options);
-		var geocoder = new kakao.maps.services.Geocoder();
-		
-		//loc 기준으로 좌표 가져오기
-		geocoder.addressSearch(loc,function(result,status){
-			if (status === kakao.maps.services.Status.OK) { 
-				var locCode = new kakao.maps.LatLng(result[0].y, result[0].x); 
-				map.setCenter(locCode);
-			}
-		});
-		
-		stores.forEach(function(element,index){			
-			geocoder.addressSearch(element,function(result,status){
-				if (status === kakao.maps.services.Status.OK) {
-					var imageSrc = '../images/marker_sub.png',
-					imageSize = new kakao.maps.Size(50, 54),	
-					imageOption = {offset: new kakao.maps.Point(27, 69)};		
+//마커를 표시할 위치와 내용을 가지고 있는 객체 배열 만들기 
+var positions = [];
+<c:forEach items="${list}" var="store">		
+	console.log("${store.address}");
+	var content = '<div class="store_map_layer">'	
+	+	'<div class="head">'		
+	+		'<strong>${store.name}</strong>'		
+	+		'<a href="#none" class="btn_close" onclick="closeOverlay()">닫기</a>'	
+	+	'</div>	'
+	+	'<div class="info">	'	
+	+		'<dl>	'		
+	+			'<dt>주소</dt>'	
+	+		'	<dd>${store.address}</dd>'	
+	+		'	<dt>연락처</dt> '
+	+		'	<dd>${store.telNumber}</dd>'
+	+		'	<dt>영업시간</dt>	'
+	+		'	<dd>${store.hours}</dd>	'				
+	+		'</dl>'	
+	+	'</div>'	
+	+	'<div class="foot">'		
+	+		'<a href="javascript:void(0);" class="btn_order on" id="ord_fast" data-storcd="69383"><span>주문하기</span></a>'
+	+	'</div>'
+	+ '</div>';
+	var address = "${store.address}";
+	var p = {content: content, address: address};
+	positions.push(p);
+</c:forEach>
 
-					var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-					var code = new kakao.maps.LatLng(result[0].y, result[0].x); 
-					var marker = new daum.maps.Marker({ position: code, image:markerImage,clickable: true });
-					marker.setMap(map);
-				}
-		
-			});
-		});
+//지도 중심 설정 
+var geocoder = new kakao.maps.services.Geocoder();
+geocoder.addressSearch(positions[0].address,function(result,status){
+	if (status === kakao.maps.services.Status.OK) { 
+		var locCode = new kakao.maps.LatLng(result[0].y, result[0].x); 
+		map.setCenter(locCode);
+	}
+});
 
-	};
+//마커, 인포윈도우 생성
+for (var i = 0; i < positions.length; i ++) {
+	var content = positions[i].content;
+	geocoder.addressSearch(positions[i].address,function(result,status){
+	    // 마커를 생성합니다
+	    var marker = new kakao.maps.Marker({
+	        map: map, // 마커를 표시할 지도
+	        position: new kakao.maps.LatLng(result[0].y, result[0].x) // 마커의 위치
+	    });
+
+	    // 오버레이를 생성 
+	    var overlay = new kakao.maps.CustomOverlay({
+	        content: content,
+	        map: map,
+	        position: marker.getPosition()       
+	    });
+
+	 	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+	    kakao.maps.event.addListener(marker, 'click', function() {
+	        overlay.setMap(map);
+	    });
+
+	  //커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+	    function closeOverlay() {
+	        overlay.setMap(null);     
+	    }
+	});
+}
+
 </script> 
 
 <!-- footer start -->

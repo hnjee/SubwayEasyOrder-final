@@ -4,30 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.subway.s1.ownerManagement.OwnerManagementRepository">
-	<!-- 가맹점 등록 -->
-	<insert id="ownerJoin" parameterType="OwnerVO">
-	  insert into Member values (#{id},#{pw},(select name from Store where storeNum=#{storeNum}),
-	(select left(telNumber,2) from Store where storeNum=#{storeNum}),
-	(select SUBSTRING_INDEX(substring(telNumber,4,4),'-',1) from Store where storeNum=#{storeNum}),
-	(select SUBSTRING_INDEX(substring(telNumber,8,5),'-',-1) from Store where storeNum=#{storeNum}),
-	0,#{storeNum},2);
-	</insert>
+
  
  	<!-- 가맹점 List -->
 	<select id="ownerList" parameterType="Pager" resultType="OwnerVO">
-	select * from Member where 
+	select * from Store where 
 	<choose>	
-		<when test="kind=='id'">
-		id
-		</when>
 		<when test="kind=='name'">
 		name
+		</when>
+		<when test="kind=='orderable'">
+		orderable
+		</when>
+		<when test="kind=='address'">
+		address
 		</when>
 		<otherwise>
 		storeNum
 		</otherwise>
 	</choose>
-	 like CONCAT('%',#{search},'%')and level not in (0)
+	 like CONCAT('%',#{search},'%')
 	 limit #{startRow}, 10
 	</select>  
 
@@ -46,12 +42,37 @@
 				storeNum
 				</otherwise>
 			</choose>
-	 like CONCAT('%',#{search},'%')and level not in (0)
+	 like CONCAT('%',#{search},'%')
 	</select>
 	
 	<select id="ownerSelectOne" parameterType="OwnerVO" resultType="OwnerVO">
-	select * from Member where id=#{id}
+	select * from Store where storeNum=#{storeNum}
 	</select>
 	
+	<!-- 가맹점 폐점시 삭제 -->
+	<delete id="ownerDelete" parameterType="OwnerVO" >
+	delete from Store where storeNum=#{storeNum}
+	</delete>
+	<!-- 가맹점 여러개 삭제 -->
+	<delete id="ownerDeletes" parameterType="List">
+	delete from Store where storeNum in
+	<foreach collection="list" item="storeNum" open="(" close=")" separator=",">
+	#{storeNum}
+	</foreach>
+	</delete>
+	
+	<!-- 가맹점 삭제시 회원정보 삭제 -->
+	<delete id="ownerMemberDelete" parameterType="String">
+	delete from Member where id=#{id}
+	</delete>
 
+	
+ 	<!-- 가맹점 등록 -->
+<!--	<insert id="ownerJoin" parameterType="OwnerVO">
+	  insert into Member values (#{id},#{pw},(select name from Store where storeNum=#{storeNum}),
+	(select left(telNumber,2) from Store where storeNum=#{storeNum}),
+	(select SUBSTRING_INDEX(substring(telNumber,4,4),'-',1) from Store where storeNum=#{storeNum}),
+	(select SUBSTRING_INDEX(substring(telNumber,8,5),'-',-1) from Store where storeNum=#{storeNum}),
+	0,#{storeNum},2);
+	</insert> -->
 </mapper>

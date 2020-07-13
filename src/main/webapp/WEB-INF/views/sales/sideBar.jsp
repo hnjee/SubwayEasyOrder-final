@@ -13,14 +13,24 @@
 .sidebar .sidebar-brand{
 	padding: 0px;
 }
+
+.logo{
+	font-weight: bold;
+    background: url(../images/owner_logo.png) 0 0 no-repeat;
+	background-size: 22px;
+	background-position:53px;
+
+}
 </style> 
 <html>
 
    <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #58006c; background-image: linear-gradient(180deg,#81009e 10%,#58006c 100%);">
       <!-- Sidebar - Brand -->
   <div class="header" style="padding-top:50px; text-align: center; color: white;">
-      	     
-	  	<h4>${member.name}</h4>
+      	
+      	<div class="logo">
+	  	<div style="font-size: 18px;">${member.name}</div>
+	  	</div>
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../" style="margin-top: 30px">
 
         <div class="sidebar-brand-text mx-3 section_subway_menu" style="height:70px;font-size:17px;margin: 0 9px">Subway's Managment</div>
@@ -88,13 +98,32 @@
           </div>
         </div>
       </li>
-
-      <!-- Nav Item - Tables -->
+      
+      <!-- Heading -->
+      <div class="sidebar-heading" style="font-size:14px">
+        Store
+      </div>
+      
+         <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class='far fa-address-card' style='font-size:20px'></i>
-          <span>회원관리</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#storePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class='fas fa-store' style='font-size:20px'></i>
+          <span>매장관리</span>
+        </a>
+        
+         <div id="storePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Store Management:</h6>
+            
+          <div class="collapse-divider"></div> 
+            <a class="collapse-item" href="${pageContext.request.contextPath}/store/storeManage">매장정보 관리</a>
+            <a class="collapse-item" href="#">매장후기 관리</a>
+            <a class="collapse-item" href="#">매장후기 현황</a>
+        
+        </div>
+        </div>
       </li>
+
       
           <!-- Divider -->
       <hr class="sidebar-divider">

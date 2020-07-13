@@ -29,13 +29,10 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart_week");
-var a = $("#week_0").val();
-var b = $("#week_1").val();
-var c = $("#week_2").val();
-var d = $("#week_3").val();
-var e = $("#week_4").val();
-var f = $("#week_5").val();
-var g = $("#week_6").val();
+var c2=[];
+$(".week").each(function(){
+	c2.push($(this).val());
+});
 
 
 var myLineChart = new Chart(ctx, {
@@ -47,17 +44,17 @@ var myLineChart = new Chart(ctx, {
       label: "Earnings",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
+      borderColor: "#92A8D1",
       pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointBackgroundColor: "#0F4C81",
+      pointBorderColor: "#0F4C81",
       pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointHoverBackgroundColor: "#0F4C81",
+      pointHoverBorderColor: "#0F4C81",
       pointHitRadius: 10,
       pointBorderWidth: 2,       
       //실제값
-      data: [a,b,c,d,e,f,g],
+      data:c2,
     }],
   },
   options: {

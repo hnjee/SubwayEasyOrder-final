@@ -333,17 +333,150 @@ input {
 }
 
 
-.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-.wrap * {padding: 0;margin: 0;}
-.wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-.wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-.info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-.info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-.info .close:hover {cursor: pointer;}
-.info .body {position: relative;overflow: hidden;}
-.info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-.desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-.info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-.info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-.info .link {color: #5085BB;}
+/* 커스텀오버레이 */
+.store_map_layer {
+    width: 298px;
+    height: 243px;
+    border: 1px solid #585858;
+    background-color: #fff;
+    position: absolute;
+    bottom: -25px;
+    left: 75px;
+    margin: -234px 0 0 -150px;
+    z-index: 0;
+}
+
+.store_map_layer .head {
+    background-color: #ffce32;
+    position: relative;
+    height: 54px;
+}
+ .store_map_layer .info {
+    margin: 0 24px;
+    height: 133px;
+}
+
+.store_map_layer .head strong {
+    color: #292929;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    padding: 17px 0 0 23px;
+    letter-spacing: -0.03em;
+}
+.store_map_layer .head .btn_close {
+    background: url(../images/icon_close01.png) 50% 50% no-repeat;
+    width: 54px;
+    height: 54px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    text-indent: -9999px;
+    font-size: 0;
+    line-height: 0;
+}
+
+.store_map_layer .info dl {
+    overflow: hidden;
+    padding-top: 23px;
+    margin:0;
+}
+
+.store_map_layer .info dt {
+    color: #292929;
+    font-size: 13px;
+    float: left;
+    height: 21px;
+    padding-left: 2px;
+    position: relative;
+    margin-bottom: 4px;
+    letter-spacing: -0.04em;
+}
+.store_map_layer .info dt:before {
+    content: '';
+    width: 2px;
+    height: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #696969;
+    margin-right: 5px;
+    position: relative;
+    top: -1px;
+}
+
+.store_map_layer .info dd {
+    color: #999999;
+    font-size: 13px;
+    line-height: 21px;
+    margin: 0 0 4px 76px;
+    position: relative;
+    top: -3px;
+    letter-spacing: -0.03em;
+    min-height: 21px;
+    white-space: normal;
+}
+
+
+.store_map_layer:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    width: 12px;
+    height: 8px;
+    margin-left: -6px;
+    background: url(../images/icon_arr_d.png) 0 0 no-repeat;
+}
+
+.store_map_layer .btn_order.on {
+    display: block;
+    width: 118px;
+    height: 34px;
+    margin: 0 auto 15px auto;
+    border-radius: 17px;
+    background: #009223;
+    text-align: center;
+}
+
+.store_map_layer .btn_order.on span {
+    padding-right: 24px;
+    background: url(../images/icon_reg02.png) no-repeat 100% 50%;
+    color: #fff;
+}
+
+.store_map_layer .btn_order span {
+    display: inline-block;
+    color: #bbb;
+    font-weight: bold;
+    line-height: 34px;
+}
+
+#best{
+	float: left;
+	margin: 0 9px; 
+	background-color: #ffc300;
+    width: 73px;
+    height: 25px;
+    border-radius: 12.5px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 26px;
+    font-style: normal;
+}
+
+#best p{
+	margin-left:4px;
+	margin-right: 1px;
+	float: left;
+}
+#best img{
+	float: left;
+	width: 15px;
+	height: 15px;
+	position: relative;
+	top: 5px;
+}
+

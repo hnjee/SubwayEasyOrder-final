@@ -29,14 +29,13 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart_week");
-var a = $("#week_0").val();
-var b = $("#week_1").val();
-var c = $("#week_2").val();
-var d = $("#week_3").val();
-var e = $("#week_4").val();
-var f = $("#week_5").val();
-var g = $("#week_6").val();
 
+var c2=[];
+$(".week").each(function(){
+	c2.push($(this).val());
+});
+
+console.log(c2);
 
 var myLineChart = new Chart(ctx, {
   type: 'line',
@@ -57,7 +56,7 @@ var myLineChart = new Chart(ctx, {
       pointHitRadius: 10,
       pointBorderWidth: 2,       
       //실제값
-      data: [a,b,c,d,e,f,g],
+      data: c2,
     }],
   },
   options: {

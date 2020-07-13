@@ -39,7 +39,8 @@
 		<typeAlias type="com.subway.s1.ingredient.ingredientFile.IngredientFileVO" alias="IngredientFileVO"/>
 		<typeAlias type="com.subway.s1.ingredient.ingreSoldout.IngreSoldoutVO" alias="IngreSoldoutVO"/>
 		<typeAlias type="com.subway.s1.ownerManagement.OwnerManagementVO" alias="OwnerVO"/>
-	
+		<typeAlias type="com.subway.s1.franchise.FranchiseVO" alias="FranchiseVO"/>
+		<typeAlias type="com.subway.s1.survey.SurveyVO" alias="SurveyVO"/>
 	
 		<typeAlias type="com.subway.s1.orderInfo.OrderInfoVO" alias="OrderInfoVO"/>
 		<typeAlias type="com.subway.s1.mymenu.MyMenuVO" alias="MyMenuVO"/>

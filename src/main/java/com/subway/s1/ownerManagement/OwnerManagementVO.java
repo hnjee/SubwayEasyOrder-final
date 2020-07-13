@@ -1,10 +1,9 @@
 package com.subway.s1.ownerManagement;
 
-import com.subway.s1.member.MemberVO;
+import com.subway.s1.store.StoreVO;
 
 import lombok.Data;
 @Data
-public class OwnerManagementVO extends MemberVO{
+public class OwnerManagementVO extends StoreVO{
 
-	private int level;
 }

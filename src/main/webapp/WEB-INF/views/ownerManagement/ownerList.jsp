@@ -38,8 +38,9 @@
 		<div class="serach">
 
 		    <select class="" id="iSearch" name="kind">
-			    <option value="id">아이디</option>
-				<option value="name">매장이름</option>
+			    <option value="name">매장이름</option>
+				<option value="orderable">주문가능여부</option>
+				<option value="address">주소</option>
 				<option value="storeNum">매장번호</option>
 			</select>
 			 
@@ -56,32 +57,31 @@
 	    <thead>
 	      <tr>    
 	        <th><input class="checks" id="allCheck" type="checkbox"></th>
-	        <th>아이디</th>
-	        <th>매장이름</th>
-	        <th>매장연락처</th>
 	        <th>매장고유번호</th>
-	        <th>직급</th>    
-	        <th> 비고</th>
+	        <th>매장이름</th>
+	        <th>주소</th>
+	        <th>매장연락처</th>
+	        <th>주문가능여부</th>
+	        <th>비고</th>
 	      </tr>
 	    </thead>
 	    
 	    <c:forEach items="${ownerList}" var="vo"> 
 	    <tbody>
 	      <tr>
-	       <td><input class="rowCheck checks" type="checkbox" name="${vo.id}" ></td>
-	        <td>${vo.id}</td>
-	        <td>${vo.name}</td>
-	        <td>${vo.phone}-${vo.phone2}-${vo.phone3}</td>
+	       <td><input class="rowCheck checks" type="checkbox" name="${vo.storeNum}" ></td>
 	        <td>${vo.storeNum}</td>
-			<c:if test="${vo.level eq '1'}">
-	        <td>${vo.name} 직원</td>
+	        <td>${vo.name}</td>
+	        <td>${vo.address}</td>
+	        <td>${vo.telNumber}</td>
+ 			<c:if test="${vo.orderable eq '0'}">
+	        <td>주문 불가능</td>
 	        </c:if> 
-	        <c:if test="${vo.level eq '2'}">
-	        <td>${vo.name} 점주</td>
+	        <c:if test="${vo.orderable eq '1'}">
+	        <td>주문 가능</td>
 	        </c:if> 
-	        <td>
-	        <div><a href="./ownerUpdate?id=${vo.id}"><button class="btn-subway-gray" type="button"> 수정</button></a></div>
-			<div><a href="./ownerDelete?id=${vo.id}"><button class="btn-subway-gray deleteOne" type="button"> 삭제</button></a></div>
+	        <td>	      
+			<div><a href="./ownerDelete?storeNum=${vo.storeNum}"><button class="btn-subway-gray deleteOne" type="button"> 삭제</button></a></div>
 	        </td>			
 	      </tr>	   
 	    </tbody>
@@ -133,5 +133,6 @@
 	<script src="../js/sb-admin-2.min.js"></script>
 	<!-- calendar.js -->
 	<script src="../js/calendar.js"></script>
+	<script src="../js/owner/ownerList.js" type="text/javascript"></script>
 
 </html>

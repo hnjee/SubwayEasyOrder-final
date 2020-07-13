@@ -99,6 +99,9 @@
 		update Member set oriPoint=#{oriPoint} where id=#{id}
 	</update>
 	
+	<insert id="ownerInsert" parameterType="FranchiseVO">
+		insert into Member(id,pw,name,level,storeNum) values(concat('owner_S',#{requestNum}),concat('owner_S',#{requestNum}),#{storeName},2,concat('S',#{requestNum}))
+	</insert>
 	<select id="orderCount" parameterType="MemberVO" resultType="Int">
 		select count(*) as count from Payment where id=#{id}
 	</select>

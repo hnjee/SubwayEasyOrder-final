@@ -22,10 +22,11 @@ import com.subway.s1.member.MemberVO;
 import com.subway.s1.orderProduct.OrderProductService;
 import com.subway.s1.point.PointService;
 import com.subway.s1.point.PointVO;
-
+import com.subway.s1.sales.SalesRepository;
+import com.subway.s1.sales.SalesService;
 import com.subway.s1.store.StoreService;
 import com.subway.s1.store.StoreVO;
-
+import com.subway.s1.util.Pager;
 import com.subway.s1.util.PagerOrderList;
 
 @Controller
@@ -44,8 +45,8 @@ public class PaymentController {
 	private MemberService memberService;
 	@Autowired
 	private PointService pointService;
-//	@Autowired
-//	private SalesService salesService;
+	@Autowired
+	private SalesService salesService;
 	
 	
 

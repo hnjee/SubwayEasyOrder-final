@@ -8,7 +8,7 @@
             <ul>
                 <li><a href="/agreement">이용약관</a></li>
                 <li><a href="/privacy"><strong>개인정보취급방침</strong></a></li>
-                <li><a href="https://store.subway.co.kr/" target="_blank">점주관리자</a></li><!-- 20180202 추가 -->
+                <li><a href="${pageContext.request.contextPath}/member/memberLoginAdmin">점주관리자</a></li><!-- 20180202 추가 -->
                 <li><a class="eng" href="http://www.global.subway.com" target="_blank">Subway Listens</a></li>
             </ul>
         </div>

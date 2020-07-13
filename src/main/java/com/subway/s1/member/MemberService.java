@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.subway.s1.franchise.FranchiseVO;
+
+
 import com.subway.s1.ingredient.IngredientVO;
 import com.subway.s1.menu.MenuVO;
 import com.subway.s1.mymenu.MyMenuVO;
@@ -77,6 +80,12 @@ public class MemberService {
 		return memberRepository.memberPointUpdate(memberVO);
 
 	}
+
+
+	public int ownerInsert(FranchiseVO franchiseVO) throws Exception{
+		return memberRepository.ownerInsert(franchiseVO);
+	}
+
 	public int orderCount(MemberVO memberVO)throws Exception{
 		return memberRepository.orderCount(memberVO);
 	}

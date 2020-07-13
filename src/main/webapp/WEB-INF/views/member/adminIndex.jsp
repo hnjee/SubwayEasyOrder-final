@@ -32,14 +32,14 @@
 		<div class="cont">		
 		<c:if test="${member.level eq 3}">
 		<div class="box">
-			<a href="">
+			<a href="${pageContext.request.contextPath}/product/headOfficeProductList">
 			<div class="logo"></div>
 			<strong style="font-weight: 600;">메뉴 관리</strong>
 			<span>바로가기</span>
 			</a>
 		</div>	
 		<div class="box">
-			<a href="">
+			<a href="${pageContext.request.contextPath}/headOfficeSales/chart">
 			<div class="logo"></div>
 			<strong style="font-weight: 600;">매출 관리</strong>
 			<span>바로가기</span>
@@ -58,7 +58,7 @@
 		<c:if test="${member.level eq 1}">
 		
 		<div class="box">
-			<a href="">
+			<a href="${pageContext.request.contextPath}/product/productList">
 			<div class="logo"></div>
 			<strong style="font-weight: 600;">메뉴 관리</strong>
 			<span>바로가기</span>
@@ -75,14 +75,14 @@
 		
 		<c:if test="${member.level eq 2}">
 		<div class="box">
-			<a href="">
+			<a href="${pageContext.request.contextPath}/sales/chart">
 			<div class="logo"></div>
 			<strong style="font-weight: 600;">지점매출 관리</strong>
 			<span>바로가기</span>
 			</a>
 		</div>
 		<div class="box">
-			<a href="">
+			<a href="${pageContext.request.contextPath}/product/productList">
 			<div class="logo"></div>
 			<strong style="font-weight: 600;">메뉴, 매장 관리</strong>
 			<span>바로가기</span>

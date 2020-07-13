@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.subway.s1.util.Pager;
 
 import com.subway.s1.cart.CartVO;
+import com.subway.s1.point.PointVO;
 import com.subway.s1.store.StoreRepository;
 
 @Service
@@ -121,10 +122,6 @@ public class SalesService {
 	//ByOrder
 	public List<ByOrderVO> ByOrder(String from, String to, Pager pager,String storeNum)throws Exception{
 
-		
-//		System.out.println(from==null);
-//		System.out.println(from.equals(""));
-		
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int mon = cal.get(Calendar.MONTH)+1;
@@ -176,8 +173,13 @@ public class SalesService {
 		pager.makePage(totalCount);
 		System.out.println("from : " + from);
 		System.out.println("to : "+ to);
+		
 		List<ByOrderVO> ar = salesRepository.getByOrder(from, to, pager,storeNum);
-
+		for(int i=0;i<ar.size();i++) {
+			if(ar.get(i).getName().length()>10) {
+				ar.get(i).setName(ar.get(i).getName().substring(0, 10)+"외");
+			}
+		}
 		return ar;
 	}
 	
@@ -243,6 +245,9 @@ public class SalesService {
 		return salesRepository.oriPoint(id);
 	}
 	
+	public PointVO point(String payNum)throws Exception{
+		return salesRepository.point(payNum);
+	}
 	
 	public ByOrderVO modal(String payNum, String storeNum)throws Exception{
 		ByOrderVO byOrderVO = new ByOrderVO();
