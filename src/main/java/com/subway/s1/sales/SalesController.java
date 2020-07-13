@@ -104,6 +104,7 @@ public class SalesController {
 	//ByOrder(건별매출)
 	@GetMapping("byOrder")
 	public ModelAndView byOrder(String from, String to,Pager pager,String storeNum,HttpSession session)throws Exception{
+		
 		ModelAndView mv = new ModelAndView();
 		MemberVO memberVO = ((MemberVO)session.getAttribute("member"));
 		StoreVO storeVO = storeService.selectStore(memberVO.getId());

@@ -12,7 +12,7 @@ import com.subway.s1.util.Pager;
 @Mapper
 public interface ProductRepository {
 	
-	//SK
+	
 		public List<ProductVO> productList(Pager pager)throws Exception;
 		
 		public List<MenuSoldoutVO> soldoutCheck(String storeNum)throws Exception;

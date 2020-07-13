@@ -23,7 +23,6 @@ public class HeadOfficeSalesService {
 	@Autowired
 	private HeadOfficeSalesRepository headOfficeSalesRepository;
 
-
 	//ByProductVO
 	public List<ByProductVO> ByProduct(String from, String to, Pager pager)throws Exception{
 
@@ -167,11 +166,7 @@ public class HeadOfficeSalesService {
 	
 	//ByOrder
 	public List<ByOrderVO> ByOrder(String from, String to, Pager pager)throws Exception{
-
-		
-//		System.out.println(from==null);
-//		System.out.println(from.equals(""));
-		
+		//오늘날짜 만들기
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int mon = cal.get(Calendar.MONTH)+1;

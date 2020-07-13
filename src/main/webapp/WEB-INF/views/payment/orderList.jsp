@@ -122,7 +122,7 @@ body{
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow" style="margin-right: 230px;">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline small" style="color: #f6c23e;"><strong>강남점</strong> &nbsp;&nbsp;가맹 점주 <!-- / 샌드위치 아티스트 -->  </span>
+                <span class="mr-2 d-none d-lg-inline small" style="color: #f6c23e;"><strong>${member.name}</strong> &nbsp;&nbsp;가맹 점주 <!-- / 샌드위치 아티스트 -->  </span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -372,6 +372,7 @@ body{
 							
 							<div style="margin: 0 auto; width: 300px; margin-top: 30px;">
 							<ul class="pagination">
+							<c:if test="${paget.curPage>1}">
 								<c:if test="${pager.curBlock gt 1}">
 									<li><a href="./orderList?curPage=${pager.startNum-1}&orderInfo=${orderInfo}">이전</a></li>
 								</c:if>
@@ -383,6 +384,7 @@ body{
 								<c:if test="${pager.curBlock lt pager.totalBlock}">
 									<li><a href="./orderList?curPage=${pager.lastNum+1}&orderInfo=${orderInfo}">다음</a></li>
 								</c:if>
+							</c:if>
 							</ul> 
 							</div>
 							
