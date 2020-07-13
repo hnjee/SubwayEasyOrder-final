@@ -462,7 +462,7 @@ input {
     line-height: 34px;
 }
 
-#best{
+#store_searchRes #best{
 	float: left;
 	margin: 0 9px; 
 	background-color: #ffc300;
@@ -477,12 +477,12 @@ input {
     font-style: normal;
 }
 
-#best p{
+#store_searchRes #best p{
 	margin-left: 5px;
 	margin-right: 1px;
 	float: left;
 }
-#best img{
+#store_searchRes #best img{
 	float: left;
 	width: 15px;
 	height: 15px;
@@ -490,4 +490,15 @@ input {
 	top: 5px;
 }
 
+.store_map_layer #best img{
+	float: left;
+    width: 20px;
+    height: 20px;
+   	margin: 17px 0 0 6px;
+	background-color: #ffce32;
 
+
+}
+.store_map_layer strong{
+	float: left;
+}

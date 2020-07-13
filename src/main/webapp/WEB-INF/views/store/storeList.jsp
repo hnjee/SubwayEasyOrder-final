@@ -167,8 +167,13 @@
 	geocoder.addressSearch("${store.address}",function(result,status){
 		if (status === kakao.maps.services.Status.OK) {
 			var content = '<div class="store_map_layer" id="info${i.index}">'	
-			+	'<div class="head">'		
-			+		'<strong>${store.name}</strong>'		
+			+	'<div class="head">'	
+			+		'<strong>${store.name}</strong>'	
+			+		'<c:if test="${store.best eq 1}">'
+			+ 			'<div id="best">'
+			+ 			'	<img src="../images/trophy_icon-icons.com_49969.png"/>'
+			+ 			'</div> '
+			+ 		'</c:if>	'	
 			+		'<a class="btn_close" onclick="clo(this);" title="${i.index}">닫기</a>'	
 			+	'</div>	'
 			+	'<div class="info">	'	
