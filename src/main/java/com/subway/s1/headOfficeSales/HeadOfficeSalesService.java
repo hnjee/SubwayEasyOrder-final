@@ -23,7 +23,6 @@ public class HeadOfficeSalesService {
 	@Autowired
 	private HeadOfficeSalesRepository headOfficeSalesRepository;
 
-
 	//ByProductVO
 	public List<ByProductVO> ByProduct(String from, String to, Pager pager)throws Exception{
 
