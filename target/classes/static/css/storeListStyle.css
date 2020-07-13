@@ -451,3 +451,31 @@ input {
     font-weight: bold;
     line-height: 34px;
 }
+
+#best{
+	float: left;
+	margin: 0 9px; 
+	background-color: #ffc300;
+    width: 73px;
+    height: 25px;
+    border-radius: 12.5px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 26px;
+    font-style: normal;
+}
+
+#best p{
+	margin-left:4px;
+	margin-right: 1px;
+	float: left;
+}
+#best img{
+	float: left;
+	width: 15px;
+	height: 15px;
+	position: relative;
+	top: 5px;
+}
