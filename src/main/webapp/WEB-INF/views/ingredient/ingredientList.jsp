@@ -135,21 +135,26 @@
 	  
 	  
 <!-- Paging -->
-<!-- Pager -->
-	<c:if test="${pager.totalPage>0}">
-	<div class="pager">
-	 <ul class="pagination">
-	 <c:if test="${pager.curPage>1}">
-		<li class="previous" ><a href="./ingreList?curPage=${pager.curPage-1}&kind=${pager.kind}&search=${pager.search}">이전</a></li>
+<c:if test="${pager.totalPage>0}">
+	<div style="margin: 0 auto;">
+	  	<ul class="pagination justify-content-center" style="margin:20px 0">	
+	  	
+	  	<c:if test="${pager.curPage>1}">
+			    <li class="page-item"><a class="page-link" href="./headOfficeIngredientList?curPage=${pager.startNum-1}">이전</a></li>
+		</c:if>	 
+			
+	  	<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+			    <li class="page-item"><a class="page-link" href="./headOfficeIngredientList?curPage=${i}">${i}</a></li>
+	 	 </c:forEach>
+	 	 
+	 	 <c:if test="${pager.curPage<pager.totalPage}">
+			    <li class="page-item"><a class="page-link" href="./headOfficeIngredientList?curPage=${pager.lastNum+1}">다음</a></li>
+		</c:if>
+		
+		</ul>
+  </div>
 	</c:if>
-
-	<c:if test="${pager.curPage<pager.totalPage}">
-	  	<li class="next"><a href="./ingreList?curPage=${pager.curPage+1}&kind=${pager.kind}&search=${pager.search}">다음</a></li>
-	</c:if>
-	 </ul>
-	</div>
-</c:if>
- <!-- Paging end -->  
+ <!-- Paging end --> 
     
     
     </div><!-- end container -->
