@@ -102,8 +102,7 @@
             
             <div class="collapse-divider"></div> 
              <a class="collapse-item" href="${pageContext.request.contextPath}/ownerManagement/ownerList">가맹점관리</a>
-            <a class="collapse-item" href="#">우수매장 관리</a>
-        
+
           
          </div>
         </div>
