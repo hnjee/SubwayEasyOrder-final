@@ -51,7 +51,7 @@
 					<c:forEach items="${list}" var="vo" varStatus="i">
 						<li>	
 							<div class="store_name">
-								<strong class="s_name">${vo.name}</strong>
+								<strong class="s_name"><a id="store${i.index}">${vo.name}</a></strong>
 								<label class="my_bookmark" style="float:left">	
 									<i class="i_star" id="star${i.index}" title="${vo.storeNum}" onclick="myOnOff(this)"></i>
 								</label>
@@ -150,7 +150,7 @@
 		var tit = a.title;
 		$("#info"+tit).removeClass("layeron");
 	}
-	
+
 </script>
 
 <c:forEach items="${list}" var="store" varStatus="i">	
@@ -164,7 +164,6 @@
 			}
 		});
 	}
-	
 	geocoder.addressSearch("${store.address}",function(result,status){
 		if (status === kakao.maps.services.Status.OK) {
 			var content = '<div class="store_map_layer" id="info${i.index}">'	
@@ -213,8 +212,17 @@
 			    overlay.setMap(map);
 			    // css display 속성 복구
 			    $("#info"+marker.getTitle()).addClass("layeron");
-			 });
-			 
+			 });	 
+
+			// 지점명 클릭했을때 커스텀 오버레이 표시	
+			 $("#store${i.index}").click(function(){
+				//마커 위치로 중앙 이동 
+				map.setCenter(marker.getPosition());
+				// 마커 위에 인포윈도우를 표시합니다
+			    overlay.setMap(map);
+			    // css display 속성 복구
+			    $("#info"+marker.getTitle()).addClass("layeron");
+			});
 		}
 	});		
 </script> 
