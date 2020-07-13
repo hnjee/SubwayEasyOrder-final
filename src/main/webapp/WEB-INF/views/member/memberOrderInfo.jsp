@@ -58,7 +58,7 @@ td{
 
 
 
-	<div class="container" style="padding-bottom: 200px; margin-top: 100px;">
+	<div class="container" style="margin-bottom:500px; margin-top: 100px;">
 		
 		<div class="row">
 		<c:if test="${empty list}">
@@ -97,7 +97,7 @@ td{
 								<td><div>${list.name }(${list.codeDesc })-<c:if test="${list.setting eq null }">단품</c:if><c:if test="${list.setting ne null }">세트</c:if></div></td>
 								<td class="rowSet2" id="${list.payNum}_total">${list.totalPrice}</td>
 								<td class="rowSet3">
-						          <span class="btn glyphicon glyphicon-hand-right detail_btn" title="${list.payNum}" style="color: white; background-color: #009223"></span>
+						          <span class="btn glyphicon glyphicon-hand-right detail_btn" title="${list.payNum}" id="${list.payNum}" style="color: white; background-color: #009223"></span>
 								</td>
 							</tr>
 						
@@ -122,19 +122,19 @@ td{
 		
 		
 		<c:forEach items="${findNum }" var="findNum" varStatus="i">
-			<span class="count" >${findNum.payNum }</span>
+			<span class="count" hidden="hidden" >${findNum.payNum }</span>
 			
 		</c:forEach>
+		<c:if test="${!empty list }">
 		<div class="row">
 			<div id="addBtn" style="border-radius:30px; height:50px; line-height:45px; border: 3px solid #009223; width: 10%;margin: 0 auto; text-align: center; font-weight: bold; color: #009223;">더 보기</div>
 		</div>
+		</c:if>
 	</div>
 	
 <c:import url="../jsp/footer.jsp"></c:import>
 <script type="text/javascript">
 	var id = "${member.id}";
-	var finalNum="${i.count}";
-	console.log(finalNum);
 	var payNum = "check";
 	var prePaynum="check";
 	var total_count=0;
@@ -147,18 +147,13 @@ td{
 		if(payNum!=$(this).text()){
 			payNum = $(this).text();
 			total_count++;
-			console.log(total_count);
 		}
 		if(total_count%5==1 && payNum!=prePaynum){
-			console.log(payNum = $(this).text());
-			console.log("-----------------------");
 			detail_count.push(count-1);
 		}
 	});
-	console.log(total_count);
-	console.log(detail_count);
 	
-
+	console.log(total_count);
 	$("#addBtn").css({
 		'cursor':'pointer'
 	});
@@ -166,9 +161,15 @@ td{
 	var clickCount=0;
 	$("#addBtn").click(function(){
 	clickCount++;
-	console.log(clickCount);
 	var startNum = detail_count[clickCount];
 	var lastNum = detail_count[clickCount+1]*1-startNum;
+	if(!lastNum){
+		lastNum=count-startNum;			//마지막 페이지 계산
+		$("#addBtn").remove();
+	}
+	console.log("s :"+startNum);
+	console.log("l:"+lastNum);
+	console.log("f:"+count);
 		$.ajax({
 			type:'get',
 			url:'./orderInfoMore',
@@ -178,6 +179,8 @@ td{
 				lastNum:lastNum
 			},success:function(data){
 				$("#addPage").append(data.trim());
+				$(".detail_btn").unbind('click');	//다른 페이지에 같은 이벤트를 사용시 중복되어 적용이 안되어서 삭제 후
+				detail_pointer();					// 재 실행
 				
 				
 			}
@@ -188,6 +191,8 @@ td{
 
 <script type="text/javascript">
 $(document).ready(function() {
+	//파라미터 숨기기
+	//history.replaceState({}, null, location.pathname);
 
 	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
 	var floatPosition = parseInt($("#orderDetail").css('top'));
@@ -228,14 +233,23 @@ $(document).ready(function() {
 		
 
 	});
-	
-	$(".detail_btn").each(function(){
+
+ 	$(".detail_btn").each(function(){
 		var payNum = $(this).attr("title");
 		var total=$("#"+payNum+"_total").text();
 		total = addComma(total);
-		
 		$("#"+payNum+"_total").text(total);
-		$(this).click(function(){
+		
+		
+	});
+	detail_pointer();
+	function detail_pointer(){
+
+	$(".detail_btn").click(function(){
+		var payNum = $(this).attr("title");
+		var total=$("#"+payNum+"_total").text();
+		total = addComma(total);
+		$("#"+payNum+"_total").text(total);
 			var date=$("#"+payNum+"_date").text();
 			if($(this).attr("id")!='close'){
 				$.ajax({
@@ -260,7 +274,7 @@ $(document).ready(function() {
 				$(this).attr("id","close");
 				$(this).css({
 					'background-color':'#f1a03c'
-				});
+				}); 
 			} else {
 				$("#close").attr("class","btn glyphicon glyphicon-hand-right detail_btn");
 				$("#close").css({
@@ -269,18 +283,13 @@ $(document).ready(function() {
 				$("#close").attr("id","");
 				$("#orderDetail").html('');
 			}
-
 			
-			
-			
-			
-			
-			
-
-			
-		});
 	});
+	}
 	
+
+
+
 	
 	function addComma(x) {
 		x = x.toString().replace("원", "");

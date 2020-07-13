@@ -327,9 +327,35 @@
   
 <script type="text/javascript">
 
+
+/* 	var loc = location.href;
+	console.log(loc);
+
+	document.onkeydown = function(e){
+	    /* F5, Ctrl+r, Ctrl+F5 */
+	    if(e.keyCode == 116 || e.ctrlKey == true && (e.keyCode == 82)){
+	        e.cancelBubble = true; 
+	        e.returnValue = false; 
+	        setTimeout(function(){
+		        
+	            location.href=loc;
+	        }, 1000);
+	        return false;
+	    }
+	} */
+
+
+	
+	
+/* 	window.onbeforeunload = function(e){
+		location.href=loc;
+		
+		
+	} */
+	
 	//파라미터 숨기기
 	//history.replaceState({}, null, location.pathname);
-
+	
 	// Script 요소들 
 	//가격에 콤마넣기 
 	function addComma(x) {

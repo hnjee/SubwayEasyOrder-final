@@ -41,7 +41,7 @@
 </body>
 
 <script type="text/javascript">
-
+	
 	
 	
 
@@ -61,59 +61,15 @@
 		
 
 	});
-	
 	$(".detail_btn").each(function(){
 		var payNum = $(this).attr("title");
 		var total=$("#"+payNum+"_total").text();
 		total = addComma(total);
-		
 		$("#"+payNum+"_total").text(total);
-		$(this).click(function(){
-			var date=$("#"+payNum+"_date").text();
-			if($(this).attr("id")!='close'){
-				$.ajax({
-					type:'get',
-					url:'./orderDetail',
-					data:{
-						payNum:payNum
-					},success:function(data){
-						$("#orderDetail").html(data.trim());
-						$("#payNum").text(payNum);
-						$("#totalPrice").text(total);
-						$("#payDate").text(date);
-					}
 		
-				});
-				$("#close").attr("class","btn glyphicon glyphicon-hand-right detail_btn");
-				$("#close").css({
-					'background-color':'green'
-				});
-				$("#close").attr("id","");
-				$(this).attr("class","btn glyphicon glyphicon-hand-left detail_btn");
-				$(this).attr("id","close");
-				$(this).css({
-					'background-color':'#f1a03c'
-				});
-			} else {
-				$("#close").attr("class","btn glyphicon glyphicon-hand-right detail_btn");
-				$("#close").css({
-					'background-color':'#009223'
-				});
-				$("#close").attr("id","");
-				$("#orderDetail").html('');
-			}
-
-			
-			
-			
-			
-			
-			
-
-			
-		});
+		
 	});
-	
+ 	
 	
 
 </script>
