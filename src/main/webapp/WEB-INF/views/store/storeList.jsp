@@ -52,9 +52,16 @@
 						<li>	
 							<div class="store_name">
 								<strong class="s_name">${vo.name}</strong>
-								<label class="my_bookmark">	
+								<label class="my_bookmark" style="float:left">	
 									<i class="i_star" id="star${i.index}" title="${vo.storeNum}" onclick="myOnOff(this)"></i>
 								</label>	
+								<c:if test="${vo.best eq 1}">
+									<div id="best">
+										<p>우수매장</p> 
+										<img src="../images/trophy_icon-icons.com_49969.png"/>
+									</div> 
+								</c:if>
+								
 								<c:if test="${vo.orderable eq 1}">
 									<a href="./storeUpdate?storeNum=${vo.storeNum}&cases=${cases}"><em class="on">주문하기</em></a>
 								</c:if>
