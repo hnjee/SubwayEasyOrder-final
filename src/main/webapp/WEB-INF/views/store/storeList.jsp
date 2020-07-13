@@ -51,7 +51,7 @@
 					<c:forEach items="${list}" var="vo" varStatus="i">
 						<li>	
 							<div class="store_name">
-								<strong class="s_name">${vo.name}</strong>
+								<strong class="s_name"><a id="store${i.index}">${vo.name}</a></strong>
 								<label class="my_bookmark" style="float:left">	
 									<i class="i_star" id="star${i.index}" title="${vo.storeNum}" onclick="myOnOff(this)"></i>
 								</label>
@@ -131,84 +131,102 @@
 		</div>
 	</div>
 
-</div>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8f222776d2a9d10e62a6e476046e2d1&libraries=services,clusterer,drawing"></script>
+</div><script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8f222776d2a9d10e62a6e476046e2d1&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript">
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-mapOption = { 
-    center: new kakao.maps.LatLng(37.5579038249194,126.909600161339), // 지도의 중심좌표
-    level: 5 // 지도의 확대 레벨
-};
-
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+	mapOption = { 
+	    center: new kakao.maps.LatLng(37.5579038249194,126.909600161339), // 지도의 중심좌표
+	    level: 5 // 지도의 확대 레벨
+	};
 	
-//마커를 표시할 위치와 내용을 가지고 있는 객체 배열 만들기 
-var positions = [];
-<c:forEach items="${list}" var="store">		
-	console.log("${store.address}");
-	var content = '<div class="store_map_layer">'	
-	+	'<div class="head">'		
-	+		'<strong>${store.name}</strong>'		
-	+		'<a href="#none" class="btn_close" onclick="closeOverlay()">닫기</a>'	
-	+	'</div>	'
-	+	'<div class="info">	'	
-	+		'<dl>	'		
-	+			'<dt>주소</dt>'	
-	+		'	<dd>${store.address}</dd>'	
-	+		'	<dt>연락처</dt> '
-	+		'	<dd>${store.telNumber}</dd>'
-	+		'	<dt>영업시간</dt>	'
-	+		'	<dd>${store.hours}</dd>	'				
-	+		'</dl>'	
-	+	'</div>'	
-	+	'<div class="foot">'		
-	+		'<a href="javascript:void(0);" class="btn_order on" id="ord_fast" data-storcd="69383"><span>주문하기</span></a>'
-	+	'</div>'
-	+ '</div>';
-	var address = "${store.address}";
-	var p = {content: content, address: address};
-	positions.push(p);
-</c:forEach>
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-//지도 중심 설정 
-var geocoder = new kakao.maps.services.Geocoder();
-geocoder.addressSearch(positions[0].address,function(result,status){
-	if (status === kakao.maps.services.Status.OK) { 
-		var locCode = new kakao.maps.LatLng(result[0].y, result[0].x); 
-		map.setCenter(locCode);
+	var geocoder = new kakao.maps.services.Geocoder();
+
+	function notnow(){
+		alert("현재 온라인 주문이 불가한 매장입니다. 다른 매장을 이용해주세요.");
 	}
-});
+	function clo(a){
+		var tit = a.title;
+		$("#info"+tit).removeClass("layeron");
+	}
 
-//마커, 인포윈도우 생성
-for (var i = 0; i < positions.length; i ++) {
-	var content = positions[i].content;
-	geocoder.addressSearch(positions[i].address,function(result,status){
-	    // 마커를 생성합니다
-	    var marker = new kakao.maps.Marker({
-	        map: map, // 마커를 표시할 지도
-	        position: new kakao.maps.LatLng(result[0].y, result[0].x) // 마커의 위치
-	    });
+</script>
 
-	    // 오버레이를 생성 
-	    var overlay = new kakao.maps.CustomOverlay({
-	        content: content,
-	        map: map,
-	        position: marker.getPosition()       
-	    });
+<c:forEach items="${list}" var="store" varStatus="i">	
+<script type="text/javascript">
+	//지도 중심 설정 
+	if("${i.index}"==0){
+		geocoder.addressSearch("${store.address}",function(result,status){
+			if (status === kakao.maps.services.Status.OK) { 
+				var locCode = new kakao.maps.LatLng(result[0].y, result[0].x); 
+				map.setCenter(locCode);
+			}
+		});
+	}
+	geocoder.addressSearch("${store.address}",function(result,status){
+		if (status === kakao.maps.services.Status.OK) {
+			var content = '<div class="store_map_layer" id="info${i.index}">'	
+			+	'<div class="head">'		
+			+		'<strong>${store.name}</strong>'		
+			+		'<a class="btn_close" onclick="clo(this);" title="${i.index}">닫기</a>'	
+			+	'</div>	'
+			+	'<div class="info">	'	
+			+		'<dl>	'		
+			+			'<dt>주소</dt>'	
+			+		'	<dd>${store.address}</dd>'	
+			+		'	<dt>연락처</dt> '
+			+		'	<dd>${store.telNumber}</dd>'
+			+		'	<dt>영업시간</dt>	'
+			+		'	<dd>${store.hours}</dd>	'				
+			+		'</dl>'	
+			+	'</div>'
+			+   '<div class="foot">'
+			+   '<c:if test="${store.orderable eq 1}">'		
+			+		'<a href="./storeUpdate?storeNum=${store.storeNum}&cases=${cases}" class="btn_order on" id="ord_fast" data-storcd="69383"><span>주문하기</span></a>'
+			+   '</c:if>'
+			+   '<c:if test="${store.orderable ne 1}">'		
+			+		'<a href="javascript:void(0);" onclick="notnow();" class="btn_order" id="ord_fast" data-storcd="69383"><span>주문불가</span></a>'
+			+   '</c:if>'
+			+	'</div>'	
+			+ '</div>';
+			var address = "${store.address}";
 
-	 	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-	    kakao.maps.event.addListener(marker, 'click', function() {
-	        overlay.setMap(map);
-	    });
+		    var marker = new kakao.maps.Marker({
+		        map: map, // 마커를 표시할 지도
+		        position: new kakao.maps.LatLng(result[0].y, result[0].x), // 마커의 위치
+	        	title : "${i.index}"
+		    });
+		    
+			 var overlay = new kakao.maps.CustomOverlay({
+				    content: content,
+				    map: map,
+				    position: marker.getPosition()       
+			});
 
-	  //커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-	    function closeOverlay() {
-	        overlay.setMap(null);     
-	    }
-	});
-}
+			// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+			 kakao.maps.event.addListener(marker, 'click', function() {
+				//마커 위치로 중앙 이동 
+				map.setCenter(marker.getPosition());
+				// 마커 위에 인포윈도우를 표시합니다
+			    overlay.setMap(map);
+			    // css display 속성 복구
+			    $("#info"+marker.getTitle()).addClass("layeron");
+			 });	 
 
+			// 지점명 클릭했을때 커스텀 오버레이 표시	
+			 $("#store${i.index}").click(function(){
+				//마커 위치로 중앙 이동 
+				map.setCenter(marker.getPosition());
+				// 마커 위에 인포윈도우를 표시합니다
+			    overlay.setMap(map);
+			    // css display 속성 복구
+			    $("#info"+marker.getTitle()).addClass("layeron");
+			});
+		}
+	});		
 </script> 
+</c:forEach>
 
 <!-- footer start -->
 <c:import url="../jsp/footer.jsp"></c:import>
