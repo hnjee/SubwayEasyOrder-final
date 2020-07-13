@@ -16,6 +16,7 @@
 
 	<!-- SideBar(vendor) -->
 	<c:import url="../template/vendor.jsp"></c:import>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
 
 ul.tabs{
@@ -49,6 +50,20 @@ ul.tabs li.current{
 .text-chart{
 	color: #030303!important;
 }
+
+.owner_id{
+    display: block;
+    border: 1px solid #dddddd;
+    border-radius: 50px;
+    height: 28px;
+    line-height: 28px;
+    background-color: #fff;
+    color: #666666;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    padding: 0 13px;
+    width: 120px;
+}
 </style>
 </head>
 
@@ -63,10 +78,10 @@ ul.tabs li.current{
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-	 <a href="../"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:100px 700px 0px" ></a>
-	 <div style="margin-left:88%">${member.id}</div>
+	 <a href="../"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:70px 700px 0px" ></a>
+	 <div class="owner_id" style="margin-left:88%;">${member.id}</div>
 	 
-	 <div id="line" style="border: solid 2.5px white; margin-top: 10px" ></div>
+	 <div id="line" style="border: solid 2.5px white; margin-top: 30px" ></div>
 
       <!-- Main Content -->
       <div id="content" style="margin-top: 30px;">
@@ -228,7 +243,7 @@ ul.tabs li.current{
 		<c:forEach items="${monthChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="id_${i.index}">
+			<input  type="text" value="${list.totalPrice}" class="month" id="id_${i.index}">
 		</c:forEach>
 	</div>
 	<!-- week -->
@@ -236,7 +251,7 @@ ul.tabs li.current{
 		<c:forEach items="${weekChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="week_${i.index}">
+			<input  type="text" value="${list.totalPrice}" class="week" id="week_${i.index}">
 		</c:forEach>
 	</div>
 	
@@ -245,7 +260,7 @@ ul.tabs li.current{
 		<c:forEach items="${yearChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="year_${i.index}">
+			<input  type="text" value="${list.totalPrice}" class="year" id="year_${i.index}">
 		</c:forEach>
 	</div>
 	
@@ -255,7 +270,7 @@ ul.tabs li.current{
 		<c:forEach items="${timeChart}" var="list" varStatus="i" >
 			${list.totalPrice}
 			${i.index}
-			<input  type="text" value="${list.totalPrice}" id="time_${i.index}">
+			<input  type="text" value="${list.totalPrice}" class="time" id="time_${i.index}">
 		</c:forEach>
 	</div>
 

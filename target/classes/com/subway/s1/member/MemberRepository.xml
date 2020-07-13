@@ -7,7 +7,6 @@
 	<update id="memberStoreUpdate" parameterType="MemberVO">
 		update Member set storeNum=#{storeNum} where id=#{id}
 	</update>
-	
 	<select id="idCheck" parameterType="MemberVO" resultType="MemberVO">
 		select * from Member where id=#{id}
 	</select>
@@ -20,9 +19,125 @@
 		insert into Member(id,pw,name,phone,oripoint) values (#{id},#{pw},#{name},#{phone},0)
 	</insert>
 	
+	<select id="orderInfoList" parameterType="MemberVO" resultType="OrderInfoVO">
+		select Store.name as storeName,Payment.storeNum,OrderProduct.productPrice,Payment.payNum,Code.codeDesc,Menu.name,Payment.totalPrice,Payment.payDate,OrderProduct.productNum,OrderProduct.productCount,OrderProduct.setting from Payment
+		inner join OrderProduct on (Payment.payNum=OrderProduct.payNum)
+		inner join Menu on(OrderProduct.menuNum=Menu.menuNum)
+		inner join Code on(Menu.menuCode=Code.code)
+		inner join Store on(Payment.storeNum=Store.storeNum)
+		 where id=#{id}
+		 order by Payment.payDate desc
+	</select>
+	
+	<select id="selectList" parameterType="OrderInfoVO" resultType="OrderInfoVO">
+		select Payment.payNum,Code.codeDesc,Menu.name,Payment.totalPrice,Payment.payDate,
+		OrderProduct.productNum,OrderProduct.menuNum,Menu.menuPrice,Menu.menuPrice30,
+		OrderProduct.productCount,OrderProduct.productPrice,OrderProduct.setting
+		from Payment
+		inner join OrderProduct on (Payment.payNum=OrderProduct.payNum)
+		inner join Menu on(OrderProduct.menuNum=Menu.menuNum)
+		inner join Code on(Menu.menuCode=Code.code)
+		 where Payment.payNum=#{payNum}
+	</select>
+	
+	<select id="detailIngre" parameterType="OrderInfoVO" resultType="OrderInfoVO">
+		select Ingredient.name as ingreName,breadSize,breadToasting,Ingredient.price as ingrePrice,Ingredient.ingreCode from Custom 
+		inner join Ingredient on(Custom.ingreNum=Ingredient.ingreNum)
+		where productNum=#{productNum}
+	</select>
+	
+	<select id="swSelect" resultType="MenuVO">
+		select * from Menu where menuCode like '%SW%' order by menuCode asc
+	</select>
+	
+	<select id="ingreList" resultType="IngredientVO">
+	 	select * from Ingredient where sale=1
+	</select>
+	
+	<update id="myMenuUpdate" parameterType="MyMenuVO">
+		update MyMenu set menuNum=#{menuNum},ingreNum=#{ingreNum},breadSize=#{breadSize},breadToasting=#{breadToasting},setting=#{setting},cookie=#{cookie},drink=#{drink} where id=#{id} and index_num=#{index_num}
+	</update>
+	
+	<select id="myMenuList" parameterType="MemberVO" resultType="MyMenuVO">
+		select *,Menu.desc,Menu.name,Menu.menuPrice,Menu.menuPrice30 from MyMenu
+		left outer join Menu on(MyMenu.menuNum=Menu.menuNum)
+		where id=#{id}
+	</select>
+	
+	<select id="mmList" parameterType="MemberVO" resultType="MyMenuVO">
+		select MyMenu.index_num,MyMenuCustom.id_index,Ingredient.ingreCode,Ingredient.name as ingreName,Ingredient.price as ingrePrice from MyMenuCustom 
+		inner join Ingredient on(MyMenuCustom.ingreNum=Ingredient.ingreNum)
+		inner join MyMenu on(MyMenu.id_index=MyMenuCustom.id_index)
+		where MyMenuCustom.id=#{id} order by field(ingreCode,'BR') DESC, ingreCode DESC
+	</select>
+	
+	<insert id="mcInsert" parameterType="MyMenuVO">
+		insert into MyMenuCustom values(#{id_index},#{ingreNum},#{id})
+	</insert>
+	
+	<insert id="myMenuIndex" parameterType="MyMenuVO">
+		insert into MyMenu(id,id_index,index_num) values(#{id},#{id_index},#{index_num})
+	</insert>
+	
+	<update id="myMenuDel" parameterType="MyMenuVO">
+		update MyMenu set menuNum=null,ingreNum=null,breadSize=null,breadToasting=null where id_index=#{id_index}
+	</update>
+	
+	<delete id="myMenuDel2" parameterType="MyMenuVO">
+		delete from MyMenuCustom where id_index=#{id_index}
+	</delete>
+	
+
 	<update id="memberPointUpdate" parameterType="MemberVO">
 		update Member set oriPoint=#{oriPoint} where id=#{id}
 	</update>
 	
+	<insert id="ownerInsert" parameterType="FranchiseVO">
+		insert into Member(id,pw,name,level,storeNum) values(concat('owner_S',#{requestNum}),concat('owner_S',#{requestNum}),#{storeName},2,concat('S',#{requestNum}))
+	</insert>
+	<select id="orderCount" parameterType="MemberVO" resultType="Int">
+		select count(*) as count from Payment where id=#{id}
+	</select>
+	
+	<select id="myMenuOrder" parameterType="String" resultType="MyMenuVO">
+		select * from MyMenu where id_index=#{id_index}
+	</select>
+	
+	<select id="setSide" resultType="MenuVO">
+		select * from Menu where menuCode='SI1' or menuCode='SI2'
+	</select>
+	
+	<select id="oftenStore" parameterType="MemberVO" resultType="StoreVO">
+		select MyStore.storeNum,Store.name from MyStore
+		inner join Store on(MyStore.storeNum=Store.storeNum)
+		where id=#{id}
+	</select>
+	
+	<delete id="oftenStoreDel" parameterType="MemberVO">
+		delete from MyStore where id=#{id} and storeNum=#{storeNum}
+	</delete>
+	<select id="lastStore" parameterType="MemberVO" resultType="StoreVo">
+		select distinct storeNum from Payment where id=#{id} limit 3;
+	</select>
+	<select id="allStore" resultType="StoreVO">
+		select * from Store;
+	</select>
+	
+	<select id="memberPoint" parameterType="MemberVO" resultType="PointVO">
+		select * from Point where id=#{id} order by pointDate desc limit #{startNum},5
+	</select>
+	
+	
+	<select id="menuOutCheck" resultType="MyMenuVO" parameterType="MyMenuVO">
+		select * from MenuSoldout where menuNum=#{menuNum}
+	</select>
+	<select id="ingreOutCheck" parameterType="String" resultType="String">
+		select ingreNum from IngreSoldout where storeNum=#{storeNum}	
+	</select>
+	
+	<!-- 나중에 구현 -->
+	<select id="searchStore" parameterType="Pager" resultType="StoreVO">
+		select * from Store where name like concat('%',#{search},'%') or address like concat('%',#{search},'%') order by storeNum limit #{startRow},10
+	</select>
 	
 </mapper>

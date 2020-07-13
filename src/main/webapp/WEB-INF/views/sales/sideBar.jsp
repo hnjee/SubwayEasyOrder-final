@@ -13,14 +13,24 @@
 .sidebar .sidebar-brand{
 	padding: 0px;
 }
+
+.logo{
+	font-weight: bold;
+    background: url(../images/owner_logo.png) 0 0 no-repeat;
+	background-size: 22px;
+	background-position:53px;
+
+}
 </style> 
 <html>
 
    <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #58006c; background-image: linear-gradient(180deg,#81009e 10%,#58006c 100%);">
       <!-- Sidebar - Brand -->
   <div class="header" style="padding-top:50px; text-align: center; color: white;">
-      	     
-	  	<h4>${member.name}</h4>
+      	
+      	<div class="logo">
+	  	<div style="font-size: 18px;">${member.name}</div>
+	  	</div>
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../" style="margin-top: 30px">
 
         <div class="sidebar-brand-text mx-3 section_subway_menu" style="height:70px;font-size:17px;margin: 0 9px">Subway's Managment</div>
@@ -91,9 +101,9 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="${pageContext.request.contextPath}/store/storeManage">
           <i class='far fa-address-card' style='font-size:20px'></i>
-          <span>회원관리</span></a>
+          <span>매장관리</span></a>
       </li>
       
           <!-- Divider -->

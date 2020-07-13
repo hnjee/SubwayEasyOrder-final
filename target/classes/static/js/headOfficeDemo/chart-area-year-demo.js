@@ -29,10 +29,12 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart_year");
-var a = $("#year_0").val();
-var b = $("#year_1").val();
-var c = $("#year_2").val();
-var d = $("#year_3").val();
+var c2=[];
+$(".year").each(function(){
+	c2.push($(this).val());
+});
+
+console.log(c2);
 
 var myLineChart = new Chart(ctx, {
   type: 'line',
@@ -53,7 +55,7 @@ var myLineChart = new Chart(ctx, {
       pointHitRadius: 10,
       pointBorderWidth: 2,       
       //실제값
-      data: [a,b,c,d],
+      data: c2,
     }],
   },
   options: {

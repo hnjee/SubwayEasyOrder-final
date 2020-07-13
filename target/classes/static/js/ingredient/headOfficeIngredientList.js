@@ -20,11 +20,18 @@ $(".rowCheck").click(function(){
  	$("#allCheck").prop("checked",result);
 });
 
+$(".deleteOne").click(function(){
+	var ingreNum = $(this).attr("title");
+	console.log(ingreNum);
+	if(confirm("품목을 삭제 하시겠습니까?")){
+		location.href="./ingredientDelete?ingreNum="+ingreNum;
+		}
+	});
 
 $(".del-btn-all").click(function(){
 	var deletes =[] ;
 	var result =true;
-
+	if(confirm("품목을 삭제 하시겠습니까?")){
 	$(".rowCheck").each(function(){
 		var check=$(this).prop("checked");
 		if(check){
@@ -49,7 +56,7 @@ $(".del-btn-all").click(function(){
 				} 	
 		
 	});
-	
+	}
 });
 
 
@@ -152,6 +159,6 @@ $(document).ready(function() {
 //});
 
 
-$(".deleteOne").click(function(){
+/*$(".deleteOne").click(function(){
 	alert("정말 삭제하시겠습니까?")
-});
+});*/

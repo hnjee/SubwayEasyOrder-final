@@ -111,6 +111,8 @@ public class StoreController {
 		
 	}
 	
+	
+	//지워도 될것같은..
 	@GetMapping("findStore")
 	@ResponseBody
 	public String findStore(StoreVO storeVO)throws Exception{
@@ -140,6 +142,30 @@ public class StoreController {
 			mv.setViewName("common/result");
 			return mv;
 		}
+	
+	@GetMapping("storeManage")
+	public ModelAndView storeManage(HttpSession session, ModelAndView mv) throws Exception{
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		StoreVO storeVO = storeService.selectStore(memberVO.getId());
+		mv.addObject("store", storeVO);
+		mv.setViewName("store/storeManage");
+		
+		return mv;
+	}
+	
+	
+	@PostMapping("storeManage")
+	public ModelAndView storeManage(StoreVO storeVO, ModelAndView mv) throws Exception{
+		int res = storeService.storeManage(storeVO);
+		if(res<0) {
+			mv.addObject("result", "매장 정보 수정에 실패했습니다");
+		} else {
+			mv.addObject("result", "정상적으로 수정되었습니다");
+		}
+		mv.addObject("path", "../store/storeManage");
+		mv.setViewName("common/result");
+		return mv;
+	}
 	
 	
 }

@@ -47,6 +47,9 @@
 <!-- menu_order start -->
 <form action="../cart/cartInsert" method="post" name="menuForm">
 <div id="menu_order">
+	<c:forEach items="${ingreOut }" var="ingreOut">
+		<div class="ingreOut">${ingreOut}</div>
+	</c:forEach>
 	<!-- hd start (menu info) -->
 	<div class="hd">   
 		<div class="category"> <a class="active" href="#"> ${menu.codeDesc}</a></div>
@@ -86,6 +89,13 @@
     		<h2>빵 선택</h2>
     		<c:forEach items="${bread}" var="b" varStatus="i">
     		<div class="ing">
+    			<c:forEach items="${ingreOut}" var="io">
+					<c:if test="${b.ingreNum eq io}">
+						<div class="label2">
+							<span class="new">품절</span>
+						</div>
+					</c:if>
+				</c:forEach>
     			<img src="../images/ingredient/${b.ingreCode}_${b.ingreNum}.jpg">
     			<div>
 		    		<input type="radio" id="br${i.index}" class="br" name="ingreNum" title="${b.name}" value="${b.ingreNum}">
@@ -112,6 +122,13 @@
     	<p>(최대 1개)</p><br>
     		<c:forEach items="${cheese}" var="c">
     		<div class="ing">
+    			<c:forEach items="${ingreOut}" var="io">
+					<c:if test="${c.ingreNum eq io}">
+						<div class="label2">
+							<span class="new">품절</span>
+						</div>
+					</c:if>
+				</c:forEach>
     			<img src="../images/ingredient/${c.ingreCode}_${c.ingreNum}.jpg">
     			<div>
 		    		<input onclick="czChecked(this);" type="checkbox" name="ingreNum" class="cz" value="${c.ingreNum}"  title="${c.name}">
@@ -138,6 +155,13 @@
     		<p>(최대 3개)</p><br>
     		<c:forEach items="${sauce}" var="s">
     		<div class="ing">
+    			<c:forEach items="${ingreOut}" var="io">
+					<c:if test="${s.ingreNum eq io}">
+						<div class="label2">
+							<span class="new">품절</span>
+						</div>
+					</c:if>
+				</c:forEach>
     			<img src="../images/ingredient/${s.ingreCode}_${s.ingreNum}.jpg">
     			<div>
 		    		<input onclick="soChecked(this);" type="checkbox" name="ingreNum" class="so" value="${s.ingreNum}"  title="${s.name}">
@@ -150,6 +174,13 @@
     		<h2>추가 재료 선택</h2>
     		<c:forEach items="${add}" var="a">
     		<div class="ing" style="height: 125px;">
+    			<c:forEach items="${ingreOut}" var="io">
+					<c:if test="${a.ingreNum eq io}">
+						<div class="label2">
+							<span class="new">품절</span>
+						</div>
+					</c:if>
+				</c:forEach>
     			<img src="../images/ingredient/${a.ingreCode}_${a.ingreNum}.jpg">
     			<div>
 		    		<input onclick="addIng(this);" type="checkbox" name="ingreNum"  class="add" value="${a.ingreNum}" title="${a.price}" id="${a.name}">
@@ -284,7 +315,7 @@
 <!-- menu_banner end -->
 </form>
 
-	
+
 
 </div>
 <!-- content end -->
@@ -295,10 +326,12 @@
 
   
 <script type="text/javascript">
+
+	//파라미터 숨기기
+	//history.replaceState({}, null, location.pathname);
+
 	// Script 요소들 
 	//가격에 콤마넣기 
-	
-	
 	function addComma(x) {
 	 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
@@ -613,9 +646,33 @@
 					var name = "#"+this.id;
 					$(name).addClass("show");
 				}
+				if(check=='br'){
+					$("#brse").html(this.title);
+				}
 			}
 		}
+		
 	});
+	$(".ingreOut").each(function(){
+		var ingreNum = $(this).text();
+		$("input").each(function(){
+			if(ingreNum==$(this).val()){
+				$("#"+$(this).attr("id")).removeClass("show");
+				if($(this).attr("class")=='br' && $(this).prop("checked")){
+					$("#br0").prop("checked",true);
+					$("#brse").html($("#br0").attr("title"));
+				}
+				if($(this).attr("class")=='add'){
+					var price = $(this).attr("title")*1;
+					price = $("#tot").val()-price;
+					$("#tot").val(price);
+				}
+				$(this).prop("checked",false);
+				$(this).attr("disabled",true);
+			}
+		});
+	});
+	
 	
 </script>
 </body>

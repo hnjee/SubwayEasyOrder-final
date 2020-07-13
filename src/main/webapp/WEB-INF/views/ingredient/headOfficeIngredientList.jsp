@@ -92,7 +92,7 @@
 			<div><button class="btn-subway-gray" title="${vo.ingreNum}" type="button" data-toggle="modal" data-target="#myModal"data-notifyid="${vo.ingreNum}" data-nonotifyid="${vo.sale}">품절</button></div>
 			</c:if>	
 			<div><a href="./ingredientUpdate?ingreNum=${vo.ingreNum}"><button class="btn-subway-gray" type="button"> 수정</button></a></div>
-			<div><a href="./ingredientDelete?ingreNum=${vo.ingreNum}"><button class="btn-subway-gray deleteOne" type="button"> 삭제</button></a></div>
+			<div><button class="btn-subway-gray deleteOne" type="button" title="${vo.ingreNum}"> 삭제</button></a></div>
 			
 			
 		</td>
