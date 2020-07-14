@@ -41,7 +41,7 @@ public class SurveyService {
 				String tto = yy+"-"+mm+"-"+dd2;
 				
 				System.out.println("today"+tfrom);
-
+				System.out.println("today11"+tto);
 				if(from==null && to==null) {
 					from = tfrom;
 					to = tto;
