@@ -14,6 +14,7 @@ import com.subway.s1.mymenu.MyMenuVO;
 import com.subway.s1.orderInfo.OrderInfoVO;
 import com.subway.s1.point.PointVO;
 import com.subway.s1.store.StoreVO;
+import com.subway.s1.survey.SurveyVO;
 import com.subway.s1.util.Pager;
 
 
@@ -65,6 +66,9 @@ public interface MemberRepository {
 	public List<MyMenuVO> menuOutCheck(MyMenuVO myMenuVO)throws Exception;
 	public List<String> ingreOutCheck(String storeNum)throws Exception;
 	public List<OrderInfoVO> findSLNum(MemberVO memberVO)throws Exception;
+	
+	public void surveyInsert(SurveyVO surveyVO)throws Exception;
+	public void surveyUpdate(SurveyVO surveyVO)throws Exception;
 	
 }
 

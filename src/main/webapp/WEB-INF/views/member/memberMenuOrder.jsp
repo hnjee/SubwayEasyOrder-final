@@ -328,11 +328,11 @@
 <script type="text/javascript">
 
 
-/* 	var loc = location.href;
+/*  	var loc = location.href;
 	console.log(loc);
 
 	document.onkeydown = function(e){
-	    /* F5, Ctrl+r, Ctrl+F5 */
+	  
 	    if(e.keyCode == 116 || e.ctrlKey == true && (e.keyCode == 82)){
 	        e.cancelBubble = true; 
 	        e.returnValue = false; 
@@ -342,9 +342,9 @@
 	        }, 1000);
 	        return false;
 	    }
-	} */
+	} 
 
-
+ */
 	
 	
 /* 	window.onbeforeunload = function(e){

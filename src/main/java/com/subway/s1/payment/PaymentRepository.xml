@@ -6,7 +6,7 @@
 <mapper namespace="com.subway.s1.payment.PaymentRepository">
 
 	<insert id="paymentInsert" parameterType="PaymentVO">
-		insert into Payment values(#{payNum},#{totalPrice},now(),#{id},0,#{storeNum},0)
+		insert into Payment values(#{payNum},#{totalPrice},now(),#{id},0,#{storeNum},0,0)
 	</insert>
 	
 	<select id="paymentListByStore" parameterType="MemberVO" resultType="PaymentVO">

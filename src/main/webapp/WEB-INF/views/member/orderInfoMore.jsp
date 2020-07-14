@@ -21,11 +21,19 @@
 									<div>${list.payNum}</div>
 									<div id="${list.payNum }_date" title="${list.payDate }">(${list.payDate })</div>
 									<div id="${list.payNum}_storeName">${list.storeName }</div>
-									<div title="${list.payNum}" class="survey_btn btn" style="outline: 0px; border-color: #999;">
+									<c:if test="${list.review eq 0 }">
+									<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn" data-toggle="modal" data-target="#myModal" style="outline: 0px; border-color: #999;">
 										<i class="fa fa-pencil-square-o" style="font-size:24px;color:black"></i>
 										<span style="font-weight: bold; color: black">리뷰 쓰기</span>
 										<span id="${list.payNum }_dday" style="color: green; font-weight: bold;"></span>
 									</div>
+									</c:if>
+									<c:if test="${list.review eq 1 }">
+									<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn"  style="outline: 0px; border-color: #999; cursor:default;">
+										<i class="fa fa-pencil-square-o" style="font-size:24px;color:#999"></i>
+										<span style="font-weight: bold; color: black">작성 완료</span>
+									</div>
+									</c:if>
 									
 									
 								</td>
@@ -96,12 +104,40 @@
 		console.log(result);
 		if(result>0){
 			$("#"+title+"_dday").text("D-"+result);
+			
+		} else{
+			$(this).removeAttr("data-toggle");
+			$(this).removeAttr("data-target");
 		}
 	});
 	$(".expiration").click(function(){
 		alert("리뷰 작성 기간이 지났습니다.");
 	});
- 	
+
+
+	
+	$(".survey_btn").click(function(){
+		$("#taste_1").addClass("taste_point");
+		$("#hygiene_1").addClass("hygiene_point");
+		$("#kind_1").addClass("kind_point");
+		$("#taste_1").css({
+			'color':'#f1a03c'
+		});
+		$("#hygiene_1").css({
+			'color':'#f1a03c'
+		});
+		$("#kind_1").css({
+			'color':'#f1a03c'
+		});
+		payNum=$(this).attr("title");
+		storeNum=$(this).attr("name");
+		var storeName = $("#"+payNum+"_storeName").text();
+		
+		$(".modal-title").text(storeName);
+		
+	});
+	
+	
 	
 
 </script>
