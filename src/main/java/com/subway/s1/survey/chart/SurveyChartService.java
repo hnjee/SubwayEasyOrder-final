@@ -130,5 +130,35 @@ public class SurveyChartService {
 		return ar;
 	}
 	
+	//-------------------------Pie--------------------------------------
+	public PieVO surveyPie(String storeNum)throws Exception{
+		PieVO pieVO = surveyChartRepository.pieChart(storeNum);
+
+		double hy = pieVO.getHySum();
+		double ta = pieVO.getTaSum();
+		double ki = pieVO.getKiSum();
+		
+		
+		//전체값 구하기
+		int total = surveyChartRepository.pieCount(storeNum);
+		total = total*5;
+		//백분율 구하기
+		double hySum = (hy/total)*100;
+		double taSum = (ta/total)*100;
+		double kiSum = (ki/total)*100;
+		hySum = Double.parseDouble(String.format("%.0f", hySum));
+		taSum = Double.parseDouble(String.format("%.0f", taSum));
+		kiSum = Double.parseDouble(String.format("%.0f", kiSum));
+		
+		System.out.println(hySum);
+		System.out.println(taSum);
+		System.out.println(kiSum);
+		
+		pieVO.setTaPercent((int)taSum);
+		pieVO.setHyPercent((int)hySum);
+		pieVO.setKiPercent((int)kiSum);
+		
+		return pieVO;
+	}
 
 }

@@ -16,6 +16,7 @@ import com.subway.s1.util.Pager;
 
 import com.subway.s1.survey.chart.BarVO;
 import com.subway.s1.survey.chart.MonthVO;
+import com.subway.s1.survey.chart.PieVO;
 import com.subway.s1.survey.chart.SurveyChartService;
 import com.subway.s1.survey.chart.YearVO;
 
@@ -53,6 +54,7 @@ public class SurveyController {
 		List<MonthVO> monthTotal =surveyChartService.monthTotal(storeNum, month);
 		List<BarVO> thisBar =surveyChartService.thisBar(storeNum);
 		List<BarVO> totalBar=surveyChartService.totalBar(storeNum);
+		PieVO pieVO = surveyChartService.surveyPie(storeNum);
 		
 		for(int i=0;i<surveyMonth.size();i++) {
 			surveyMonth.get(i).getKindness();
@@ -64,6 +66,7 @@ public class SurveyController {
 		mv.addObject("surveyMonth", surveyMonth);
 		mv.addObject("surveyYear", surveyYear);
 		mv.addObject("monthTotal", monthTotal);
+		mv.addObject("pie", pieVO);
 		mv.addObject("member", memberVO);
 		mv.setViewName("survey/charts");
 		return mv;
