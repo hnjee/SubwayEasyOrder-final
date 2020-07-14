@@ -17,6 +17,7 @@ public class SurveyChartService {
 	@Autowired
 	private SurveyChartRepository surveyChartRepository;
 	
+	//month 
 	public List<MonthVO> surveyMonth(String storeNum,String month)throws Exception{
 		
 		List<MonthVO> ar= surveyChartRepository.surveyMonth(storeNum,month);
@@ -39,12 +40,68 @@ public class SurveyChartService {
 			int kindness =ar.get(i).getKindness();
 			kindness=(kindness/monthCount);
 			ar.get(i).setKindness(kindness);
-			
-			
-			
+
 		}
 
 		return ar;
 	}
+	
+	//monthTotal
+	public List<MonthVO> monthTotal(String storeNum,String month)throws Exception{
+		
+		List<MonthVO> ar= surveyChartRepository.surveyMonth(storeNum,month);
+		
+		for(int i=0;i<ar.size();i++) {
+			month=ar.get(i).getPayDate();
+			int monthCount=surveyChartRepository.monthCount(storeNum, month);
+			
+			int taste=ar.get(i).getTaste();
+			taste=(taste/monthCount);
+			ar.get(i).setTaste(taste);
+			
+			//확인끝
+			int hygiene =ar.get(i).getHygiene();
+			hygiene=(hygiene/monthCount);
+			ar.get(i).setHygiene(hygiene);
+			
+			int kindness =ar.get(i).getKindness();
+			kindness=(kindness/monthCount);
+			ar.get(i).setKindness(kindness);
+			
+			int totalScore=taste+hygiene+kindness;
+			totalScore=(totalScore/3);
+			ar.get(i).setTotalScore(totalScore);
+
+		}
+
+		return ar;
+	}
+	
+	//year
+	public List<YearVO> surveyYear(String storeNum,String year)throws Exception{
+		
+		List<YearVO> ar= surveyChartRepository.surveyYear(storeNum, year);
+		
+		for(int i=0;i<ar.size();i++) {
+			year=ar.get(i).getPayDate();
+			int yearCount=surveyChartRepository.yearCount(storeNum, year);
+			
+			int taste=ar.get(i).getTaste();
+			taste=(taste/yearCount);
+			ar.get(i).setTaste(taste);
+			
+			int hygiene =ar.get(i).getHygiene();
+			hygiene=(hygiene/yearCount);
+			ar.get(i).setHygiene(hygiene);
+			
+			int kindness =ar.get(i).getKindness();
+			kindness=(kindness/yearCount);
+			ar.get(i).setKindness(kindness);
+
+		}
+
+		return ar;
+	}
+	
 
 }

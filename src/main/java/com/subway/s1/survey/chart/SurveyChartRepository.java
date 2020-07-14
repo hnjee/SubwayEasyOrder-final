@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository;
 public interface SurveyChartRepository {
 
 	public List<MonthVO> surveyMonth(String storeNum,String month)throws Exception;
-	
 	public int monthCount(String storeNum,String month)throws Exception;
+	
+	public List<YearVO> surveyYear(String storeNum,String year)throws Exception;
+	public int yearCount(String storeNum,String year)throws Exception;
+	
+
 }

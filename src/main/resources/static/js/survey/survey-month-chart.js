@@ -47,6 +47,7 @@ $(".kindness").each(function(){
 	c4.push($(this).val());
 });
 console.log(c4);
+
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
@@ -172,6 +173,8 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+
+
 
 
 //

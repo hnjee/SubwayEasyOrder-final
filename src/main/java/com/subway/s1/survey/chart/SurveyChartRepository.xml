@@ -5,7 +5,7 @@
   
   <mapper namespace="com.subway.s1.survey.chart.SurveyChartRepository">
   
-  <select id="surveyMonth" parameterType="MonthVO" resultType="MonthVO">
+  	<select id="surveyMonth" parameterType="MonthVO" resultType="MonthVO">
 	 select left(M.payDate,7) as payDate,sum(M.taste) as taste, sum(M.hygiene) as hygiene, sum(M.kindness) as kindness  from
 	(select S.* ,left(Pay.payDate,7) as payDate
 	from Survey AS S
@@ -23,4 +23,24 @@
 	ON S.payNum = Pay.payNum
 	where Pay.refund=0 and Pay.storeNum= #{storeNum} and left(Pay.payDate,7)=#{month}
 	</select>
+	
+	<select id="surveyYear" parameterType="YearVO" resultType="YearVO">
+	 select M.payDate as payDate,sum(M.taste) as taste, sum(M.hygiene) as hygiene, sum(M.kindness) as kindness  from
+	(select S.* ,left(Pay.payDate,4) as payDate
+	from Survey AS S
+	left join Payment AS Pay
+	ON S.payNum = Pay.payNum
+	where S.storeNum=#{storeNum} and Pay.refund=0 )M
+	group by payDate
+	order by payDate asc
+	</select>
+	
+	<select id="yearCount" parameterType="YearVO" resultType="Int">
+	select count(Pay.payNum) from Survey AS S
+	left join Payment AS Pay
+	ON S.payNum = Pay.payNum
+	where S.storeNum='S09' and Pay.storeNum= #{storeNum} and left(Pay.payDate,4)=#{year}
+	
+	</select>
+	
 </mapper>

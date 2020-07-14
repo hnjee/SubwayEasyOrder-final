@@ -28,7 +28,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Area Chart Example
-var ctx = document.getElementById("myAreaChart");
+var ctx = document.getElementById("yearChart");
 var c2=[];
 $(".taste").each(function(){
 	c2.push($(this).val());
@@ -47,13 +47,12 @@ $(".kindness").each(function(){
 	c4.push($(this).val());
 });
 console.log(c4);
-
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
 	  //데이터의 라벨을 입력하는 부분
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [{
+	  labels: ["2017","2018","2019","2020"],
+	  datasets: [{
       label: "taste",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
@@ -126,7 +125,7 @@ var myLineChart = new Chart(ctx, {
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 7
+          maxTicksLimit: 4
         }
       }],
       yAxes: [{
@@ -174,106 +173,3 @@ var myLineChart = new Chart(ctx, {
   }
 });
 
-
-
-
-//
-//window.onload = function () {
-//
-//var chart = new CanvasJS.Chart("chartContainer", {
-//	animationEnabled: true,
-//	exportEnabled: true,
-//	title:{
-//		text: ""            
-//	}, 
-//	axisY:{
-//		title: "점수"
-//	},
-//	toolTip: {
-//		shared: true
-//	},
-//	legend:{
-//		cursor:"pointer",
-//		itemclick: toggleDataSeries
-//	},
-//	data: [{        
-//		type: "spline",  
-//		name: "메뉴(맛)",        
-//		showInLegend: true,
-//		dataPoints: [
-//			{ label: "Jan" , y: 4 },     
-//			{ label:"Feb", y: 3 },     
-//			{ label: "Mar", y: 3 },     
-//			{ label: "Apr", y: 3 },     
-//			{ label: "May", y: 4 },
-//			{ label: "Jun", y: 2 },
-//			{ label: "Jul", y: 4 },
-//			{ label: "Aug", y: 2 },
-//			{ label: "Sep", y: 4 },
-//			{ label: "Oct", y: 3 },
-//			{ label: "Nov", y: 5 },
-//			{ label: "Dec", y: 1 }
-//		]
-//	}, 
-//	{        
-//		type: "spline",
-//		name: "위생",        
-//		showInLegend: true,
-//		dataPoints: [
-//			{ label: "Jan" , y: 3 },     
-//			{ label:"Feb", y: 1 },     
-//			{ label: "Mar", y: 1 },     
-//			{ label: "Apr", y: 5 },     
-//			{ label: "May", y: 3 },
-//			{ label: "Jun", y: 2 },
-//			{ label: "Jul", y: 5 },
-//			{ label: "Aug", y: 3 },
-//			{ label: "Sep", y: 3 },
-//			{ label: "Oct", y: 4 },
-//			{ label: "Nov", y: 1 },
-//			{ label: "Dec", y: 4 }
-//		]
-//	},
-//	{        
-//		type: "spline",  
-//		name: "친절",        
-//		showInLegend: true,
-//		dataPoints: [
-//			{ label: "Jan" , y: 5 },     
-//			{ label:"Feb", y: 4 },     
-//			{ label: "Mar", y: 1 },     
-//			{ label: "Apr", y: 2 },     
-//			{ label: "May", y: 3 },
-//			{ label: "Jun", y: 4 },
-//			{ label: "Jul", y: 4 },
-//			{ label: "Aug", y: 5 },
-//			{ label: "Sep", y: 2 },
-//			{ label: "Oct", y: 2 },
-//			{ label: "Nov", y: 3 },
-//			{ label: "Dec", y: 3 }
-//		]
-//	},
-//	{        
-//
-//	},
-//	{        
-//
-//	},  
-//	{        
-//
-//	}]
-//});
-//
-//chart.render();
-//
-//function toggleDataSeries(e) {
-//	if(typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-//		e.dataSeries.visible = false;
-//	}
-//	else {
-//		e.dataSeries.visible = true;            
-//	}
-//	chart.render();
-//}
-//
-//}
