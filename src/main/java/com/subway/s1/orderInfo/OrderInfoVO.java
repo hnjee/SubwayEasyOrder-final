@@ -26,6 +26,7 @@ public class OrderInfoVO {
 	
 	private String storeNum;
 	private String storeName;
-
+	
+	private long review;
 
 }

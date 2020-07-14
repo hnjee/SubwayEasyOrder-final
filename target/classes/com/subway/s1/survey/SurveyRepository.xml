@@ -5,6 +5,7 @@
   
   <mapper namespace="com.subway.s1.survey.SurveyRepository">
   
+
   <select id="surveyList" parameterType="Pager" resultType="SurveyVO">
   	select S.*,P.payDate from Survey S left Join Payment P on S.payNum=P.payNum
 	where S.storeNum=#{storeNum} and P.payDate between #{from} and #{to}

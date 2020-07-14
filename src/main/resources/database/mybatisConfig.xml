@@ -45,6 +45,9 @@
 		<typeAlias type="com.subway.s1.orderInfo.OrderInfoVO" alias="OrderInfoVO"/>
 		<typeAlias type="com.subway.s1.mymenu.MyMenuVO" alias="MyMenuVO"/>
 	
+		<typeAlias type="com.subway.s1.survey.chart.MonthVO" alias="MonthVO"/>
+		<typeAlias type="com.subway.s1.survey.chart.YearVO" alias="YearVO"/>
+		<typeAlias type="com.subway.s1.survey.chart.BarVO" alias="BarVO"/>
 		
 	</typeAliases>
 </configuration>

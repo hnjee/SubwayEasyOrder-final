@@ -179,7 +179,7 @@
 						<h1><strong>${orderCount }</strong>개</h1>
 					</div>
 					<div>
-						<a href="./memberOrderInfo" class="btn"><span class="my_btn">주문내역 관리</span></a>
+						<a href="./memberOrderInfo" id="orderListNum" class="btn"><span class="my_btn">주문내역 관리</span></a>
 					</div>
 				</div>	
 					
@@ -238,7 +238,9 @@
 		
 		
 		
-		
+		<c:forEach items="${ findNum}" var="list" varStatus="i">
+			<span hidden="hidden" class="num_count"  style=" color: black;">${list.payNum }</span>
+		</c:forEach>
 		
 		
 
@@ -248,6 +250,40 @@
 	
 	
 </body>
+<script type="text/javascript">
+var payNum = "check";
+var prePaynum="check";
+var total_count=0;
+var count=0;
+var detail_count=new Array();
+$(".num_count").each(function(){
+	prePaynum=payNum;
+	count++;
+	if(payNum!=$(this).text()){
+		payNum = $(this).text();
+		total_count++;
+		console.log(total_count);
+	}
+	if(total_count%5==1 && payNum!=prePaynum){
+		console.log(payNum = $(this).text());
+		console.log("-----------------------");
+		detail_count.push(count-1);
+	}
+});
+if(detail_count.length==0){
+	detail_count[1]=0;
+} 
+if(detail_count.length==1){
+	detail_count[1]=count;
+}
+for(var i=0;i<detail_count.length;i++){
+	console.log("count:"+detail_count[i]);
+	
+}
+console.log("count:"+detail_count.length);
+$("#orderListNum").attr("href","./memberOrderInfo?startNum=0&lastNum="+detail_count[1]);
+</script>
+
 <script type="text/javascript">
 	$(".content").css({
 		'height':'126px'

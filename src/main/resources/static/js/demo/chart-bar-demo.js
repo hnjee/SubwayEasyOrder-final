@@ -39,7 +39,7 @@ console.log(c2);
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["09","10","11","12","13","14","15","16","17","18","19","20","21","22"],
+    labels: ["09","10","11","12","13","14","15","16","17","18","19","20","21"],
     datasets: [{
       label: "Revenue",
       backgroundColor: "#eb7fb8",

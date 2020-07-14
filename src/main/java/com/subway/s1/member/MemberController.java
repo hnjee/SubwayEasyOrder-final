@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,10 @@ import com.subway.s1.menu.MenuService;
 import com.subway.s1.menu.MenuVO;
 import com.subway.s1.mymenu.MyMenuVO;
 import com.subway.s1.orderInfo.OrderInfoVO;
+import com.subway.s1.point.PointService;
 import com.subway.s1.point.PointVO;
 import com.subway.s1.store.StoreVO;
+import com.subway.s1.survey.SurveyVO;
 import com.subway.s1.util.Pager;
 
 @Controller
@@ -35,6 +38,28 @@ public class MemberController {
 	private MenuService menuService;
 	@Autowired
 	private IngredientService ingredientService;
+	@Autowired
+	private PointService pointService;
+	
+	
+	@PostMapping("surveyInsert")
+	@ResponseBody
+	public void surveyInsert(SurveyVO surveyVO,HttpSession session)throws Exception{
+		memberService.surveyInsert(surveyVO);
+		memberService.surveyUpdate(surveyVO);
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		PointVO pointVO = new PointVO();
+		pointVO = pointService.surveyPoint(surveyVO);
+		int curPoint = pointVO.getCurPoint();
+		curPoint=curPoint/2;
+		pointVO.setCurPoint(curPoint);
+		pointVO.setOriPoint(memberVO.getOriPoint());
+		pointVO.setTotalPoint(pointVO.getCurPoint()+pointVO.getOriPoint());
+		pointVO.setPointStat(1);
+		pointService.pointInsert(pointVO);
+		memberVO.setOriPoint(pointVO.getTotalPoint());
+		session.setAttribute("member", memberVO);
+	}
 	
 	@GetMapping("pointViewMore")
 	public ModelAndView pointViewMore(MemberVO memberVO)throws Exception{
@@ -215,11 +240,13 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		List<StoreVO> storeList = memberService.oftenStore(memberVO);
+		List<OrderInfoVO> findNum = memberService.findSLNum(memberVO);
 		int storeCount = storeList.size();
 		int orderCount = memberService.orderCount(memberVO);
 		mv.addObject("orderCount", orderCount);
 		mv.addObject("store", storeList);
 		mv.addObject("storeCount", storeCount);
+		mv.addObject("findNum", findNum);
 		mv.setViewName("member/memberPage");
 		return mv;
 	}
@@ -244,21 +271,30 @@ public class MemberController {
 	}
 	
 	@GetMapping("memberOrderInfo")
-	public ModelAndView memberOrderInfo(HttpSession session)throws Exception{
+	public ModelAndView memberOrderInfo(HttpSession session,int startNum,int lastNum)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		memberVO.setLastNum(lastNum);
+		memberVO.setStartNum(startNum);
+		List<OrderInfoVO> findNum = memberService.findSLNum(memberVO);
 		if(memberVO!=null) {
 			
 			List<OrderInfoVO> list = memberService.orderInfoList(memberVO);
-			for(OrderInfoVO orderInfoVO:list) {
-				System.out.println(orderInfoVO.getName());
-			}
+			mv.addObject("findNum", findNum);
 			mv.addObject("list", list);
 			System.out.println(list);
 		}
 		mv.setViewName("member/memberOrderInfo");
 		return mv;
 		
+	}
+	@GetMapping("orderInfoMore")
+	public ModelAndView orderInfoMore(MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrderInfoVO> list = memberService.orderInfoList(memberVO);
+		mv.addObject("list", list);
+		mv.setViewName("member/orderInfoMore");
+		return mv;
 	}
 	
 

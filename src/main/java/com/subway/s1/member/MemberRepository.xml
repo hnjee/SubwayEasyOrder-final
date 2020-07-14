@@ -20,11 +20,18 @@
 	</insert>
 	
 	<select id="orderInfoList" parameterType="MemberVO" resultType="OrderInfoVO">
-		select Store.name as storeName,Payment.storeNum,OrderProduct.productPrice,Payment.payNum,Code.codeDesc,Menu.name,Payment.totalPrice,Payment.payDate,OrderProduct.productNum,OrderProduct.productCount,OrderProduct.setting from Payment
+		select Store.name as storeName,Payment.storeNum,Payment.review,OrderProduct.productPrice,Payment.payNum,Code.codeDesc,Menu.name,Payment.totalPrice,Payment.payDate,OrderProduct.productNum,OrderProduct.productCount,OrderProduct.setting from Payment
 		inner join OrderProduct on (Payment.payNum=OrderProduct.payNum)
 		inner join Menu on(OrderProduct.menuNum=Menu.menuNum)
 		inner join Code on(Menu.menuCode=Code.code)
 		inner join Store on(Payment.storeNum=Store.storeNum)
+		 where id=#{id}
+		 order by Payment.payDate desc limit #{startNum},#{lastNum}
+	</select>
+	
+	<select id="findSLNum" parameterType="MemberVO" resultType="OrderInfoVO">
+		select Payment.payNum,Payment.payDate from Payment
+		inner join OrderProduct on (Payment.payNum=OrderProduct.payNum)
 		 where id=#{id}
 		 order by Payment.payDate desc
 	</select>
@@ -124,7 +131,7 @@
 	</select>
 	
 	<select id="memberPoint" parameterType="MemberVO" resultType="PointVO">
-		select * from Point where id=#{id} order by pointDate desc limit #{startNum},5
+		select * from Point where id=#{id} and curPoint!=0 order by pointDate desc limit #{startNum},5
 	</select>
 	
 	
@@ -134,6 +141,17 @@
 	<select id="ingreOutCheck" parameterType="String" resultType="String">
 		select ingreNum from IngreSoldout where storeNum=#{storeNum}	
 	</select>
+	
+	<insert id="surveyInsert" parameterType="SurveyVO">
+		insert into Survey values(#{payNum},#{storeNum},#{taste},#{hygiene},#{kindness},#{comment},#{totalScore})
+	</insert>
+	
+	<update id="surveyUpdate" parameterType="SurveyVO">
+		update Payment set review=1 where payNum=#{payNum}
+	</update>
+	
+	
+	
 	
 	<!-- 나중에 구현 -->
 	<select id="searchStore" parameterType="Pager" resultType="StoreVO">

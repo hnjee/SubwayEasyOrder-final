@@ -14,6 +14,7 @@ import com.subway.s1.mymenu.MyMenuVO;
 import com.subway.s1.orderInfo.OrderInfoVO;
 import com.subway.s1.point.PointVO;
 import com.subway.s1.store.StoreVO;
+import com.subway.s1.survey.SurveyVO;
 import com.subway.s1.util.Pager;
 
 @Service
@@ -115,5 +116,14 @@ public class MemberService {
 	}
 	public List<String> ingreOutCheck(String storeNum)throws Exception{
 		return memberRepository.ingreOutCheck(storeNum);
+	}
+	public List<OrderInfoVO> findSLNum(MemberVO memberVO)throws Exception{
+		return memberRepository.findSLNum(memberVO);
+	}
+	public void surveyInsert(SurveyVO surveyVO)throws Exception{
+		memberRepository.surveyInsert(surveyVO);
+	}
+	public void surveyUpdate(SurveyVO surveyVO)throws Exception{
+		memberRepository.surveyUpdate(surveyVO);
 	}
 }

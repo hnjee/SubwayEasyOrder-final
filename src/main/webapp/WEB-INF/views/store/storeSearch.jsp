@@ -51,11 +51,12 @@
 				
 			</div>
 			<div class="col-sm-8" style="text-align: center; ">
-				<div style="border: 2px solid green; width: 40%;height: 52px; margin: 100px 0 100px 30%;">
+				<div style="border: 2px solid green; width: 50%;height: 52px; margin: 100px 0 100px 30%;">
+					<div style='height:100%; line-height:48px; width:20%; font-size:15px;color:#009223;float: left;'>
+						<i class='fas fa-location-arrow'><span style="margin-left: 10px;">내 위치</span></i>
+					</div>
 					
-					<i class="material-icons" style="width:10%; font-size:25px;color:#009223; float: left; height: 48px;line-height: 48px;"  >my_location</i>
-					
-					<input id="search" onkeydown="enter();" size="15" type="text" style="border:0px; height:100%;width:70%; outline: 0;float: left;">
+					<input id="search" onkeydown="enter();" size="15" type="text" style="border:0px; height:100%;width:60%; outline: 0;float: left;"placeholder="주소 입력">
 					<button id="btn" style="width: 20%;height: 100%;background-color: #f1a03c; border: 0px; outline: 0">
 						<i class="fa fa-search" style="font-size:20px;color:white"></i>
 					</button>
@@ -92,10 +93,10 @@
 
 		}
 	}
-	$(".material-icons").css({
+	$(".fa-location-arrow").css({
 		'cursor':'pointer'
 	});
-	$(".material-icons").click(function(){
+	$(".fa-location-arrow").click(function(){
 		location.href="./storeSearch";
 	});
 	
