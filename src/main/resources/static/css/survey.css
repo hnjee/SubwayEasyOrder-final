@@ -1,15 +1,12 @@
 @charset "UTF-8";
-.card-body {
+.card-body-1 {
     flex: 1 1 auto;
     padding: 1.25rem;
     width: 1000px;
     height: 410px;
 }
-.canvasjs-chart-canvas{
-    width: 1000px;
-    height: 380px;
-}
-.card{
+
+.card1{
 	width:1000px;
 	
 }

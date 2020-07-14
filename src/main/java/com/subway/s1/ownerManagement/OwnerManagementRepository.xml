@@ -65,7 +65,17 @@
 	<delete id="ownerMemberDelete" parameterType="String">
 	delete from Member where id=#{id}
 	</delete>
-
+	<!-- 베스트 매장 리셋 -->
+	<update id="bestRest" parameterType="OwnerVO">
+	update Store set best=0;
+	</update>
+	<!-- 베스트매장 bestPick -->
+	<update id="bestPick" parameterType="List">
+		update Store set best=1 where storeNum in
+		<foreach collection="list" item="storeNum" open="(" close=")" separator=",">
+		#{storeNum}
+		</foreach>
+	</update>
 	
  	<!-- 가맹점 등록 -->
 <!--	<insert id="ownerJoin" parameterType="OwnerVO">

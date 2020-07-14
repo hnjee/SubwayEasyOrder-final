@@ -47,9 +47,10 @@
 			<span style="padding-top: 25px; margin-bottom: 25px;">  
 	            <input type="text" id="search" name="search">
 	           <button class="btn btn-default" type="submit"><i class='fas fa-search'></i></button> 
+	        <span style="margin-left: 50%;cursor: pointer; padding: 4px;" class=del-btn-all >선택삭제</span>
+			<span style="cursor: pointer;" id="bestReset" class=bestStore title="${vo.storeNum}" >리셋</span>
+			<span style="cursor: pointer;" id=bestClick class=bestStore >확인</span>
 	        </span> 
-	        <input style="margin-left: 58%;" type="button" class=del-btn-all value="선택삭제">
-
 	    </div>
     </form>
 
@@ -57,11 +58,12 @@
 	    <thead>
 	      <tr>    
 	        <th><input class="checks" id="allCheck" type="checkbox"></th>
-	        <th>매장고유번호</th>
 	        <th>매장이름</th>
 	        <th>주소</th>
 	        <th>매장연락처</th>
-	        <th>주문가능여부</th>
+	        <th>주문여부</th>
+	        <th>평점</th>
+	        <th>매장선정</th>
 	        <th>비고</th>
 	      </tr>
 	    </thead>
@@ -70,7 +72,6 @@
 	    <tbody>
 	      <tr>
 	       <td><input class="rowCheck checks" type="checkbox" name="${vo.storeNum}" ></td>
-	        <td>${vo.storeNum}</td>
 	        <td>${vo.name}</td>
 	        <td>${vo.address}</td>
 	        <td>${vo.telNumber}</td>
@@ -80,16 +81,21 @@
 	        <c:if test="${vo.orderable eq '1'}">
 	        <td>주문 가능</td>
 	        </c:if> 
+	        <td>${vo.storeScore}점</td>
+	         <c:if test="${vo.best eq '0'}">
+	        <td>일반매장</td>
+	        </c:if> 
+	        <c:if test="${vo.best eq '1'}">
+	        <td>베스트매장</td>
+	        </c:if> 
 	        <td>	      
-			<div><a href="./ownerDelete?storeNum=${vo.storeNum}"><button class="btn-subway-gray deleteOne" type="button"> 삭제</button></a></div>
+			<div><button class="btn-subway-gray deleteOne" type="button" title=${vo.storeNum}> 삭제</button></div>
 	        </td>			
 	      </tr>	   
 	    </tbody>
 	    </c:forEach>
 	  </table>
-	    
-	  
-	  
+	     
 <!-- Paging -->
 <c:if test="${pager.totalPage>0}">
 	<div style="margin: 0 auto;">
@@ -99,11 +105,11 @@
 			    <li class="page-item"><a class="page-link" href="./ownerList?curPage=${pager.startNum-1}">이전</a></li>
 		</c:if>	 
 			
-	  	<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+	  	<c:forEach begin="${pager.startNum}" end="${pager.lastNum-1}" var="i">
 			    <li class="page-item"><a class="page-link" href="./ownerList?curPage=${i}">${i}</a></li>
 	 	 </c:forEach>
 	 	 
-	 	 <c:if test="${pager.curPage<pager.totalPage}">
+	 	 <c:if test="${pager.curPage+1<pager.totalPage}">
 			    <li class="page-item"><a class="page-link" href="./ownerList?curPage=${pager.lastNum+1}">다음</a></li>
 		</c:if>
 		
@@ -133,6 +139,8 @@
 	<script src="../js/sb-admin-2.min.js"></script>
 	<!-- calendar.js -->
 	<script src="../js/calendar.js"></script>
+	
 	<script src="../js/owner/ownerList.js" type="text/javascript"></script>
+
 
 </html>

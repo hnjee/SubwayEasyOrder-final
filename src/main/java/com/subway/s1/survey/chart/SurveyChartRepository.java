@@ -17,5 +17,7 @@ public interface SurveyChartRepository {
 	public List<YearVO> surveyYear(String storeNum,String year)throws Exception;
 	public int yearCount(String storeNum,String year)throws Exception;
 	
-
+	public List<MonthVO> thisMonthScore(String storeNum)throws Exception;
+	public int thisMonthCount(String storeNum)throws Exception;
+	
 }
