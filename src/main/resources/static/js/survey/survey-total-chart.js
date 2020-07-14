@@ -27,26 +27,33 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-// Bar Chart Example
-var ctx = document.getElementById("myBarChart");
+// Area Chart Example
+var ctx = document.getElementById("monthTotal");
 var c2=[];
-$(".time").each(function(){
+$(".monthTotal").each(function(){
 	c2.push($(this).val());
 });
 
-console.log(c2);
-
-var myBarChart = new Chart(ctx, {
-  type: 'bar',
+var myLineChart = new Chart(ctx, {
+  type: 'line',
   data: {
-    labels: ["09","10","11","12","13","14","15","16","17","18","19","20","21"],
+	  //데이터의 라벨을 입력하는 부분
+	labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [{
-      label: "Revenue",
-      backgroundColor: "#eb7fb8",
-      hoverBackgroundColor: "#cf699f",
-      borderColor: "#eb7fb8",
-      //실제값
-      data: c2 ,
+        label: "총점평균",
+        lineTension: 0.3,
+        backgroundColor: "rgba(78, 115, 223, 0.05)",
+        borderColor: "#27b079",
+        pointRadius: 3,
+        pointBackgroundColor: "#186948",
+        pointBorderColor: "#186948",
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "#186948",
+        pointHoverBorderColor: "#186948",
+        pointHitRadius: 10,
+        pointBorderWidth: 2,       
+        //실제값
+        data: c2,
     }],
   },
   options: {
@@ -62,27 +69,23 @@ var myBarChart = new Chart(ctx, {
     scales: {
       xAxes: [{
         time: {
-          unit: 'month'
+          unit: 'date'
         },
         gridLines: {
           display: false,
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 6
-        },
-        maxBarThickness: 25,
+          maxTicksLimit: 7
+        }
       }],
       yAxes: [{
         ticks: {
-          min: 0,
-          //최대값
-          max: 150000,
-          maxTicksLimit: 5,
+          maxTicksLimit: 4,
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return number_format(value)+'won';
+            return number_format(value)+'점';
           }
         },
         gridLines: {
@@ -98,23 +101,25 @@ var myBarChart = new Chart(ctx, {
       display: false
     },
     tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
       titleMarginBottom: 10,
       titleFontColor: '#6e707e',
       titleFontSize: 14,
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
       borderColor: '#dddfeb',
       borderWidth: 1,
       xPadding: 15,
       yPadding: 15,
       displayColors: false,
+      intersect: false,
+      mode: 'index',
       caretPadding: 10,
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+' won';
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+'점';
         }
       }
-    },
+    }
   }
 });
