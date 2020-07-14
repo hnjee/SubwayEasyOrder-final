@@ -164,7 +164,6 @@
 		var price = $(this).text();
 		price = addComma(price);
 		$(this).text(price);
-		console.log(price);
 
 	});
 	var title=$(".glyphicon-hand-left").attr("title");

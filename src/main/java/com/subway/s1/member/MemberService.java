@@ -116,4 +116,7 @@ public class MemberService {
 	public List<String> ingreOutCheck(String storeNum)throws Exception{
 		return memberRepository.ingreOutCheck(storeNum);
 	}
+	public List<OrderInfoVO> findSLNum(MemberVO memberVO)throws Exception{
+		return memberRepository.findSLNum(memberVO);
+	}
 }
