@@ -13,4 +13,8 @@
 		insert into Point values(#{payNum},#{id},#{curPoint},#{oriPoint},#{totalPoint},#{pointStat},now())
 	</insert>
 	
+	<select id="surveyPoint" parameterType="SurveyVO" resultType="PointVO">
+		select * from Point where payNum=#{payNum} and pointStat=1
+	</select>
+	
 </mapper>

@@ -26,14 +26,12 @@
 										<i class="fa fa-pencil-square-o" style="font-size:24px;color:black"></i>
 										<span style="font-weight: bold; color: black">리뷰 쓰기</span>
 										<span id="${list.payNum }_dday" style="color: green; font-weight: bold;"></span>
-										${list.review }
 									</div>
 									</c:if>
 									<c:if test="${list.review eq 1 }">
-									<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn"  style="outline: 0px; border-color: #999;">
+									<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn"  style="outline: 0px; border-color: #999; cursor:default;">
 										<i class="fa fa-pencil-square-o" style="font-size:24px;color:#999"></i>
 										<span style="font-weight: bold; color: black">작성 완료</span>
-										${list.review }
 									</div>
 									</c:if>
 									

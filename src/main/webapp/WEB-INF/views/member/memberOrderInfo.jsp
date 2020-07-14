@@ -101,14 +101,12 @@ td{
 										<i class="fa fa-pencil-square-o" style="font-size:24px;color:black"></i>
 										<span style="font-weight: bold; color: black">리뷰 쓰기</span>
 										<span id="${list.payNum }_dday" style="color: green; font-weight: bold;"></span>
-										${list.review }
 									</div>
 									</c:if>
 									<c:if test="${list.review eq 1 }">
-									<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn"  style="outline: 0px; border-color: #999;">
+									<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn"  style="outline: 0px; border-color: #999;cursor:default;">
 										<i class="fa fa-pencil-square-o" style="font-size:24px;color:#999"></i>
 										<span style="font-weight: bold; color: black">작성 완료</span>
-										${list.review }
 									</div>
 									</c:if>
 									
@@ -465,9 +463,6 @@ $(document).ready(function() {
 		var hygiene= $(".hygiene_point").attr("title")*1;
 		var kindness=$(".kind_point").attr("title")*1;
 		var comment = $("#comment").val();
-		var totalScore = taste+kindness+hygiene;
-		totalScore=totalScore/3;
-		console.log("totla:"+totalScore);
 		console.log(taste,hygiene,kindness,comment);
 		console.log(payNum,storeNum);
 		$.ajax({
@@ -479,11 +474,11 @@ $(document).ready(function() {
 				hygiene:hygiene,
 				comment:comment,
 				storeNum:storeNum,
-				payNum:payNum,
-				totalScore:totalScore
+				payNum:payNum
 			},
 			success:function(){
-				alert("check");
+				alert("리뷰작성 완료");
+				location.reload();
 			}
 		});
 	});

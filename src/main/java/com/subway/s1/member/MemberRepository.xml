@@ -150,6 +150,9 @@
 		update Payment set review=1 where payNum=#{payNum}
 	</update>
 	
+	
+	
+	
 	<!-- 나중에 구현 -->
 	<select id="searchStore" parameterType="Pager" resultType="StoreVO">
 		select * from Store where name like concat('%',#{search},'%') or address like concat('%',#{search},'%') order by storeNum limit #{startRow},10
