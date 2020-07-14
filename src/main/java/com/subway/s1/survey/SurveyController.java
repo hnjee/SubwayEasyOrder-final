@@ -33,7 +33,11 @@ public class SurveyController {
 		List<MonthVO> surveyMonth =surveyChartService.surveyMonth(storeNum, month);
 		for(int i=0;i<surveyMonth.size();i++) {
 			surveyMonth.get(i).getKindness();
-			//System.out.println("Kindness: "+surveyMonth.get(i).getKindness());
+			surveyMonth.get(i).getHygiene();
+			surveyMonth.get(i).getTaste();
+			System.out.println("Kindness:"+i+":"+surveyMonth.get(i).getKindness());
+			System.out.println("Hygiene:"+i+":"+surveyMonth.get(i).getHygiene());
+			System.out.println("Taste():"+i+":"+surveyMonth.get(i).getTaste());
 		}
 		mv.addObject("surveyMonth", surveyMonth);
 		mv.addObject("member", memberVO);

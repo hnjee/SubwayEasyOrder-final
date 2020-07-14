@@ -18,7 +18,7 @@ public class SurveyChartService {
 	private SurveyChartRepository surveyChartRepository;
 	
 	public List<MonthVO> surveyMonth(String storeNum,String month)throws Exception{
-		MonthVO monthVO = new MonthVO();
+		
 		List<MonthVO> ar= surveyChartRepository.surveyMonth(storeNum,month);
 		
 		for(int i=0;i<ar.size();i++) {
@@ -28,16 +28,17 @@ public class SurveyChartService {
 			System.out.println("month"+month);
 			System.out.println("monthCount:"+monthCount);
 			taste=(taste/monthCount);
-			monthVO.setTaste(taste);
+			ar.get(i).setTaste(taste);
 			System.out.println("taste:"+ar.get(i).getTaste());
 			System.out.println("taste+"+i +":"+taste);
-			System.out.println("mothVO: "+monthVO.getTaste());
 			//확인끝
 			int hygiene =ar.get(i).getHygiene();
 			hygiene=(hygiene/monthCount);
+			ar.get(i).setHygiene(hygiene);
 			
 			int kindness =ar.get(i).getKindness();
 			kindness=(kindness/monthCount);
+			ar.get(i).setKindness(kindness);
 			
 			
 			
