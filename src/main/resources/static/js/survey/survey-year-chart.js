@@ -30,23 +30,20 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 // Area Chart Example
 var ctx = document.getElementById("yearChart");
 var c2=[];
-$(".taste").each(function(){
+$(".taste-year").each(function(){
 	c2.push($(this).val());
 });
-console.log(c2);
 
 
 var c3=[];
-$(".hygiene").each(function(){
+$(".hygiene-year").each(function(){
 	c3.push($(this).val());
 });
-console.log(c3);
 
 var c4=[];
-$(".kindness").each(function(){
+$(".kindness-year").each(function(){
 	c4.push($(this).val());
 });
-console.log(c4);
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {

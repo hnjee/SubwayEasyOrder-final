@@ -16,7 +16,34 @@ public class SurveyChartService {
 	
 	@Autowired
 	private SurveyChartRepository surveyChartRepository;
+	//--------------------------막대--------------------------------------------------
 	
+	//thisBar
+	public List<BarVO> thisBar(String storeNum)throws Exception{
+		List<BarVO> ar= surveyChartRepository.thisBar(storeNum);
+		return ar;
+	}
+	//totalBar
+	public List<BarVO> totalBar(String storeNum)throws Exception{
+		List<BarVO> ar= surveyChartRepository.thisBar(storeNum);
+		for(int i=0;i<ar.size();i++) {
+
+			int taste=ar.get(i).getTaste();
+			int hygiene =ar.get(i).getHygiene();
+			int kindness =ar.get(i).getKindness();
+		
+
+			
+			int total=taste+hygiene+kindness;
+			total=(total/3);
+			ar.get(i).setTotal(total);
+
+		}
+		return ar;
+	}
+	
+	
+	//-----------------------------꺽은선-----------------------------------------------
 	//month 
 	public List<MonthVO> surveyMonth(String storeNum,String month)throws Exception{
 		

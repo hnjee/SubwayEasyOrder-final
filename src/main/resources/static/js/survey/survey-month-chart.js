@@ -33,20 +33,19 @@ var c2=[];
 $(".taste").each(function(){
 	c2.push($(this).val());
 });
-console.log(c2);
 
 
 var c3=[];
 $(".hygiene").each(function(){
 	c3.push($(this).val());
 });
-console.log(c3);
+
 
 var c4=[];
 $(".kindness").each(function(){
 	c4.push($(this).val());
 });
-console.log(c4);
+
 
 var myLineChart = new Chart(ctx, {
   type: 'line',

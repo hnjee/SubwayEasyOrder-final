@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface SurveyChartRepository {
 
+	public List<BarVO> thisBar(String storeNum)throws Exception;
+	
 	public List<MonthVO> surveyMonth(String storeNum,String month)throws Exception;
 	public int monthCount(String storeNum,String month)throws Exception;
 	

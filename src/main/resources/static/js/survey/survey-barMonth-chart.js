@@ -28,26 +28,51 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Bar Chart Example
-var ctx = document.getElementById("myBarChart");
+var ctx = document.getElementById("thisBar");
 var c2=[];
-$(".time").each(function(){
+$(".taste-Bar").each(function(){
 	c2.push($(this).val());
 });
-
 console.log(c2);
-
+var c3=[];
+$(".hygiene-Bar").each(function(){
+	c3.push($(this).val());
+});
+console.log("hygiene-Bar"+c3);
+var c4=[];
+$(".kindness-Bar").each(function(){
+	c4.push($(this).val());
+});
+console.log("kindness-Bar"+c4);
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["09","10","11","12","13","14","15","16","17","18","19","20","21","22"],
+    labels: ["09시","10시","11시","12시","13시","14시","15시","16시","17시","18시","19시","20시","21시"],
     datasets: [{
-      label: "Revenue",
-      backgroundColor: "#eb7fb8",
-      hoverBackgroundColor: "#cf699f",
-      borderColor: "#eb7fb8",
+    	 label: "taste",
+         backgroundColor: "#7faeeb",
+         hoverBackgroundColor: "#5a8bcc",
+         borderColor: "#7faeeb",
       //실제값
-      data: c2 ,
-    }],
+      data: c2,
+    },
+    {	
+    	label: "hygiene",
+        backgroundColor: "#eb7fb8",
+        hoverBackgroundColor: "#cf699f",
+        borderColor: "#eb7fb8",
+        //실제값
+        data: c3 ,
+      },
+      {
+        label: "kindness",
+        backgroundColor: "#8ed171",
+        hoverBackgroundColor: "#60a343",
+        borderColor: "#8ed171",
+        //실제값
+        data: c4 ,
+      }
+    ],
   },
   options: {
     maintainAspectRatio: false,
@@ -77,12 +102,12 @@ var myBarChart = new Chart(ctx, {
         ticks: {
           min: 0,
           //최대값
-          max: 150000,
+          max: 5,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return number_format(value)+'won';
+            return number_format(value)+'점';
           }
         },
         gridLines: {
@@ -112,7 +137,7 @@ var myBarChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+' won';
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+'점';
         }
       }
     },

@@ -117,7 +117,7 @@
               </div>
               </div>
 			
-		<!--------------------------------------------------- 막대그래프 시작---------------->
+		<!---------------------------------- 막대그래프 시작------------------------------------->
 			<div class="col-xl-8 col-lg-7-bar" style="margin-top: 50px;">
 				<ul class="tabs-bar">
 					<li class="tab-link current-bar" data-tab="tab-4">Today</li>
@@ -135,14 +135,14 @@
                 </div>
                 <div class="card-body">
                   <div class="chart-area">
-                    <canvas id=""></canvas>
+                    <canvas id="thisBar"></canvas>
                   </div>
                   
 	                <div id="LineColor">
 	                <span style="margin-left: 70%; margin-top: 20px;" >
-	                <span style="margin-right:15px; display:inline-block; width:80px;height:27px; background:#92A8D1;" ><span style="color: white; padding:10px;">메뉴(맛)</span></span>
-	                <span style=" margin-right:15px;display:inline-block;width:53px;height:27px; background:#eb6390; "><span style="color: white; padding:10px;">위생</span></span>
-	                <span style=" display:inline-block;width:53px;height:27px; background:#63ebc9; "><span style="color: white; padding:10px;">친절</span></span>
+	                <span style="margin-right:15px; display:inline-block; width:80px;height:27px; background:#7faeeb;" ><span style="color: white; padding:10px;">메뉴(맛)</span></span>
+	                <span style=" margin-right:15px;display:inline-block;width:53px;height:27px; background:#eb7fb8; "><span style="color: white; padding:10px;">위생</span></span>
+	                <span style=" display:inline-block;width:53px;height:27px; background:#8ed171; "><span style="color: white; padding:10px;">친절</span></span>
 	                </span>
 	                </div>
 	                
@@ -154,16 +154,16 @@
               <div id="tab-5" class="tab-content-bar">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary text-chart-bar" style="display: inline;">해마다 설문통계</h6>
+                  <h6 class="m-0 font-weight-bold text-primary text-chart-bar" style="display: inline;">오늘의 통계</h6>
 	               <div style="margin-left:10px; display: inline;">
 	                </div>
                 </div>
                 <div class="card-body">
                   <div class="chart-area">
-                    <canvas id=""></canvas>
+                    <canvas id="total-Bar"></canvas>
                   </div>
                   <div id="LineColor">
-	               
+	               <span style=" margin-left: 85%; margin-top: 20px;display:inline-block;width:90px;height:27px; background:#27b079; "><span style="color: white; padding:10px;">총점 평균</span></span>
 	          
 	                </div>
                 </div>
@@ -220,26 +220,45 @@
 		<div hidden="hidden">
 		<c:forEach items="${surveyYear}" var="list" varStatus="i" >
 			${list.taste}
-			<input  type="text" value="${list.taste}" class="taste">
+			<input  type="text" value="${list.taste}" class="taste-year">
 			${list.hygiene}
-			<input  type="text" value="${list.hygiene}" class="hygiene">
+			<input  type="text" value="${list.hygiene}" class="hygiene-year">
 			${list.kindness}
-			<input  type="text" value="${list.kindness}" class="kindness">
+			<input  type="text" value="${list.kindness}" class="kindness-year">
 		</c:forEach>
 	</div>
 	
-<!-- survey-month-chart -->
+	<!-- survey-month-chart -->
 		<div hidden="hidden">
 		<c:forEach items="${monthTotal}" var="list" varStatus="i" >
 			${list.totalScore}
 			<input  type="text" value="${list.totalScore}" class="monthTotal">
 		</c:forEach>
 		</div>
-
+	<!-- thisBar -->
+		<div hidden="hidden">
+		<c:forEach items="${thisBar}" var="list" varStatus="i" >
+			${list.taste}
+			<input  type="text" value="${list.taste}" class="taste-Bar">
+			${list.hygiene}
+			<input  type="text" value="${list.hygiene}" class="hygiene-Bar">
+			${list.kindness}
+			<input  type="text" value="${list.kindness}" class="kindness-Bar">
+		</c:forEach>
+		</div>
+		
+	<!-- totalBar -->
+		<div hidden="hidden">
+		<c:forEach items="${totalBar}" var="list" varStatus="i" >
+			{list.total}
+			<input  type="text" value="${list.total}" class="total-Bar">
+		</c:forEach>
+		</div>
 <script src="../js/survey/survey-month-chart.js"></script>
 <script src="../js/survey/survey-year-chart.js"></script>
 <script src="../js/survey/survey-total-chart.js"></script>
 <script src="../js/survey/survey-barMonth-chart.js"></script>
+<script src="../js/survey/survey-barTotal-chart.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <!-- month chart.js -->
 </body>

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.subway.s1.member.MemberVO;
 import com.subway.s1.store.StoreService;
 import com.subway.s1.store.StoreVO;
+import com.subway.s1.survey.chart.BarVO;
 import com.subway.s1.survey.chart.MonthVO;
 import com.subway.s1.survey.chart.SurveyChartService;
 import com.subway.s1.survey.chart.YearVO;
@@ -34,12 +35,16 @@ public class SurveyController {
 		List<MonthVO> surveyMonth =surveyChartService.surveyMonth(storeNum, month);
 		List<YearVO> surveyYear=surveyChartService.surveyYear(storeNum, year);
 		List<MonthVO> monthTotal =surveyChartService.monthTotal(storeNum, month);
+		List<BarVO> thisBar =surveyChartService.thisBar(storeNum);
+		List<BarVO> totalBar=surveyChartService.totalBar(storeNum);
 		
 		for(int i=0;i<surveyMonth.size();i++) {
 			surveyMonth.get(i).getKindness();
 			surveyMonth.get(i).getHygiene();
 			surveyMonth.get(i).getTaste();
 		}
+		mv.addObject("totalBar", totalBar);
+		mv.addObject("thisBar", thisBar);
 		mv.addObject("surveyMonth", surveyMonth);
 		mv.addObject("surveyYear", surveyYear);
 		mv.addObject("monthTotal", monthTotal);
