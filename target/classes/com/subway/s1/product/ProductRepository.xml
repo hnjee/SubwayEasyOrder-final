@@ -31,7 +31,7 @@
 		</foreach>	
 	</delete>
 
-<!-- ProductList -->
+<!-- ProductList(본사) -->
 	<select id="productList" parameterType="Pager" resultType="ProductVO">
 		select * from Menu where 
 		<choose>	
@@ -51,12 +51,37 @@
 		 like CONCAT('%',#{search},'%') order by menuNum asc limit #{startRow}, 10 
 	</select>
 	
+<!-- ProductList(가맹) -->
+		<select id="productList2" parameterType="Pager" resultType="ProductVO">
+		select * from Menu where 
+		<choose>	
+			<when test="kind=='menuNum'">
+			menuNum
+			</when>
+			<when test="kind=='menuCode'">
+			menuCode
+			</when>
+			<when test="kind=='name'">
+			name
+			</when>
+			<when test="kind=='sale'">
+			sale
+			</when>
+		</choose>
+		 like CONCAT('%',#{search},'%') and sale = 1
+		 order by menuNum asc limit #{startRow}, 10 
+	</select>
+	
+	<!-- 품절  -->
 	<select id="soldoutCheck" parameterType="String" resultType="MenuSoldoutVO">
 		select * from MenuSoldout where storeNum=#{storeNum}
 	</select>
-	
 	<update id="salesUpdate" parameterType="ProductVO">
 		 update Menu set sale = #{sale} where menuNum = #{menuNum}
+	</update>
+	<!-- 아침메뉴품절 -->
+	<update id="sw4Update" parameterType="Int">
+		update Menu set sale = #{sale} where menuCode = 'SW4'
 	</update>
 	
 <!-- totalCount -->
