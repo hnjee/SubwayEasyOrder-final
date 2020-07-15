@@ -144,7 +144,7 @@
 						</strong>
 					</div>
 					<div class="row">
-						<a href="#" class="btn"><span class="my_btn" style="color: gray; border-color: gray; margin-top: 18px;">회원 정보 변경</span></a>
+						<a href="./memberInfo" class="btn"><span class="my_btn" style="color: gray; border-color: gray; margin-top: 18px;">회원 정보 변경</span></a>
 					</div>
 				
 				</div>	

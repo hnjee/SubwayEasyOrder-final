@@ -42,6 +42,10 @@ public class MemberController {
 	private PointService pointService;
 	
 	
+	@GetMapping("memberInfo")
+	public void memberInfo()throws Exception{
+		
+	}
 	@PostMapping("surveyInsert")
 	@ResponseBody
 	public void surveyInsert(SurveyVO surveyVO,HttpSession session)throws Exception{
