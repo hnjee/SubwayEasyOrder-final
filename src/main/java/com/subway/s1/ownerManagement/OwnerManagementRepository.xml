@@ -13,9 +13,6 @@
 		<when test="kind=='name'">
 		name
 		</when>
-		<when test="kind=='orderable'">
-		orderable
-		</when>
 		<when test="kind=='address'">
 		address
 		</when>
@@ -44,16 +41,35 @@
 	 order by storeScore desc
 	 limit #{startRow}, 10
 	</select>
-
+	
+	
+	<select id="worstList" parameterType="Pager" resultType="OwnerVO">
+		select * from Store where 
+	<choose>	
+		<when test="kind=='name'">
+		name
+		</when>
+		<when test="kind=='address'">
+		address
+		</when>
+		<otherwise>
+		storeNum
+		</otherwise>
+	</choose>
+	 like CONCAT('%',#{search},'%')
+	 order by storeScore asc
+	 limit #{startRow}, 10
+	</select>
+	
 	<!-- 가맹점 회원 수 count -->
 	<select id="ownerCount"  parameterType="Pager"  resultType="Long">
-    	select count(id) from Member where 
+    	select count(storeNum) from Store where 
     		<choose>	
-				<when test="kind=='id'">
-				id
-				</when>
 				<when test="kind=='name'">
 				name
+				</when>
+				<when test="kind=='address'">
+				address
 				</when>
 				<otherwise>
 				storeNum

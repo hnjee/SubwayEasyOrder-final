@@ -15,6 +15,8 @@ public interface OwnerManagementRepository {
 	public List<OwnerManagementVO> ownerList(Pager pager)throws Exception;
 	
 	public List<OwnerManagementVO> bestList (Pager pager)throws Exception;
+
+	public List<OwnerManagementVO> worstList(Pager pager)throws Exception;
 	
 	public long ownerCount(Pager pager) throws Exception;
 	
@@ -31,4 +33,5 @@ public interface OwnerManagementRepository {
 	public int bestPick(List<String> pick)throws Exception;
 	
 	public int storeScore(OwnerManagementVO ownerVO)throws Exception;
+	
 }
