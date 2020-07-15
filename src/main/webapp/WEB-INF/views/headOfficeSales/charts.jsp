@@ -145,7 +145,7 @@ ul.tabs li.current{
               <div id="tab-3" class="tab-content">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">년 매출</h6>
+                  <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">연 매출</h6>
 	               <div style="margin-left:10px; display: inline;">
 	                </div>
                 </div>
