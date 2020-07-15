@@ -5,7 +5,11 @@
   
   <mapper namespace="com.subway.s1.survey.SurveyRepository">
   
- 
+ <select id="surveyMonthAVG" parameterType="PaymentVO" resultType="SurveyVO">
+ 	select count(*) count,sum(taste) taste,sum(hygiene) hygiene,sum(kindness) kindness from Survey
+	inner join Payment on(Payment.payNum=Survey.payNum)
+	where Survey.storeNum=#{storeNum} and Month(Payment.payDate)=Month(#{payDate}) and year(Payment.payDate)=Year(#{payDate})
+ </select>
   
   
   

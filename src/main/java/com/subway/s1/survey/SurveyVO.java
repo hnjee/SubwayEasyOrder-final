@@ -12,6 +12,7 @@ public class SurveyVO {
 	private Integer kindness;
 	private String comment;
 	private Integer totalScore;
+	private Integer count;
 	
 
 }

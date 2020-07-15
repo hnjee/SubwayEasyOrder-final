@@ -1,6 +1,9 @@
 package com.subway.s1.member;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,9 +25,11 @@ import com.subway.s1.menu.MenuService;
 import com.subway.s1.menu.MenuVO;
 import com.subway.s1.mymenu.MyMenuVO;
 import com.subway.s1.orderInfo.OrderInfoVO;
+import com.subway.s1.payment.PaymentVO;
 import com.subway.s1.point.PointService;
 import com.subway.s1.point.PointVO;
 import com.subway.s1.store.StoreVO;
+import com.subway.s1.survey.SurveyService;
 import com.subway.s1.survey.SurveyVO;
 import com.subway.s1.util.Pager;
 
@@ -40,7 +45,8 @@ public class MemberController {
 	private IngredientService ingredientService;
 	@Autowired
 	private PointService pointService;
-	
+	@Autowired
+	private SurveyService surveyService;
 	
 	@GetMapping("memberInfo")
 	public void memberInfo()throws Exception{
@@ -49,8 +55,28 @@ public class MemberController {
 	@PostMapping("surveyInsert")
 	@ResponseBody
 	public void surveyInsert(SurveyVO surveyVO,HttpSession session)throws Exception{
-		memberService.surveyInsert(surveyVO);
-		memberService.surveyUpdate(surveyVO);
+//		memberService.surveyInsert(surveyVO);
+//		memberService.surveyUpdate(surveyVO);
+		SurveyVO grade = new SurveyVO();
+		Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String payDate = simpleDateFormat.format(date);
+		Date to = simpleDateFormat.parse(payDate);
+		PaymentVO paymentVO = new PaymentVO();
+		paymentVO.setStoreNum(surveyVO.getStoreNum());
+		paymentVO.setPayDate(to);
+		grade=surveyService.surveyMonthAVG(paymentVO);
+		System.out.println(grade.getHygiene());
+		System.out.println(grade.getTaste());
+		System.out.println(grade.getKindness());
+		double total =grade.getHygiene()+grade.getTaste()+grade.getKindness()+surveyVO.getKindness()+surveyVO.getHygiene()+surveyVO.getTaste();
+		System.out.println("total:"+total);
+		total = total/(grade.getCount()+1)/3;
+		System.out.println("total:"+total);
+		System.out.println(Math.round(total));
+		
+		Math.round(total);
+		
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		PointVO pointVO = new PointVO();
 		pointVO = pointService.surveyPoint(surveyVO);
