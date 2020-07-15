@@ -63,6 +63,7 @@
 	<select id="pieCount" parameterType="String" resultType="Int">
 		select count(payNum) from Survey where storeNum = #{storeNum}
 	</select>
+	<!-- Pie End -->
 	
 	<select id="thisMonthScore" parameterType="MonthVO" resultType="MonthVO">
 	select left(M.payDate,7) as payDate,sum(M.taste) as taste, sum(M.hygiene) as hygiene, sum(M.kindness) as kindness  from

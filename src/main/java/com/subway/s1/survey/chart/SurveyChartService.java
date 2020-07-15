@@ -153,8 +153,7 @@ public class SurveyChartService {
 		
 		double all = hySum+taSum+kiSum;
 		all = Double.parseDouble(String.format("%.2f", all));
-		
-		System.out.println(all);
+	
 		hySum = (hySum/all)*100;
 		taSum = (taSum/all)*100;
 		kiSum = (kiSum/all)*100;
@@ -162,10 +161,6 @@ public class SurveyChartService {
 		hySum = Math.round(hySum);
 		taSum = Math.round(taSum);
 		kiSum = Math.round(kiSum);
-		
-		System.out.println(hySum);
-		System.out.println(taSum);
-		System.out.println(kiSum);
 		
 		pieVO.setTaPercent((int)taSum);
 		pieVO.setHyPercent((int)hySum);
