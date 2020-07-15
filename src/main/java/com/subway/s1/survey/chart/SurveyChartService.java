@@ -143,12 +143,25 @@ public class SurveyChartService {
 		int total = surveyChartRepository.pieCount(storeNum);
 		total = total*5;
 		//백분율 구하기
-		double hySum = (hy/total)*100;
-		double taSum = (ta/total)*100;
-		double kiSum = (ki/total)*100;
-		hySum = Double.parseDouble(String.format("%.0f", hySum));
-		taSum = Double.parseDouble(String.format("%.0f", taSum));
-		kiSum = Double.parseDouble(String.format("%.0f", kiSum));
+		double hySum = hy/total;
+		double taSum = ta/total;
+		double kiSum = ki/total;
+
+		hySum = Double.parseDouble(String.format("%.2f", hySum));
+		taSum = Double.parseDouble(String.format("%.2f", taSum));
+		kiSum = Double.parseDouble(String.format("%.2f", kiSum));
+		
+		double all = hySum+taSum+kiSum;
+		all = Double.parseDouble(String.format("%.2f", all));
+		
+		System.out.println(all);
+		hySum = (hySum/all)*100;
+		taSum = (taSum/all)*100;
+		kiSum = (kiSum/all)*100;
+		//반올림
+		hySum = Math.round(hySum);
+		taSum = Math.round(taSum);
+		kiSum = Math.round(kiSum);
 		
 		System.out.println(hySum);
 		System.out.println(taSum);
