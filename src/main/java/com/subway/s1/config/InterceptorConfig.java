@@ -48,13 +48,15 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		
 		registry.addInterceptor(ownerInterceptor)
 		.addPathPatterns("/sales/*")
-		.addPathPatterns("/store/storeManage");
+		.addPathPatterns("/store/storeManage")
+		.excludePathPatterns("/sales/byOrder");
 		
 		registry.addInterceptor(staffInterceptor)
 		.addPathPatterns("/product/productList")
 		.addPathPatterns("/ingredient/ingredientList")
 		.addPathPatterns("/store/storeOC")
 		.addPathPatterns("/payment/orderList")
+		.addPathPatterns("/sales/byOrder")
 		.excludePathPatterns("/store/storeManage");
 
 		registry.addInterceptor(memberLoginAdmin)

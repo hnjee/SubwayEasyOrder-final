@@ -14,48 +14,10 @@
     <c:import url="../template/calendar.jsp"></c:import>
     
     <!-- css -->
-	<link rel="stylesheet" type="text/css" href="../css/by.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/by.css">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
-<style type="text/css">
-	.card{
-		
-		height: 250px; 
-		width: 300px;
-		float: left;
-		margin-left: 40px;
-		margin-top: 30px;
-	}
-	.tb{
-		font-size: 13px;
-		height: 200px;
-	}
-	.star_rating{
-		margin-left: 60px;
-		float: left;
-		width: 100px;
-		margin-top: 5px;
-	}
-	.title{
-		float: left;
-		font-weight: bold;
-		margin-top: 5px;
-		margin-left: 10px;
-	}
-	.comment{
-		float: left;
-		width: 90%;
-		height: 80px;
-		margin-left: 10px;
-		margin-top: 5px;
-	}
-	.on{
-		color: red;
-	}
-
-
-
-</style>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/surveyList.css">
+	
 </head>
 <body>
 
@@ -85,10 +47,10 @@
  	<!-- Main Page -->
 	<div class="container">
     
-       <div class="bg-light text-dark" style="border: 1px solid black; height: 600px; width: 100%">
+    <div class="bg-light text-dark main">
 	<c:forEach items="${survey}" var="S" varStatus="i">
      <div class="card">
-      <div class="card-header py-1">${S.payNum}</div>
+      <div class="card-header py-1"><strong>주문번호 - ${S.payNum}</strong></div>
     	<div class="card-body tb">
 			
 		        <div class="title">메뉴맛 평가</div>
@@ -142,84 +104,17 @@
   </a>
 
 </body>
-<script type="text/javascript">
-$(document).ready(function() {
-	//taste
-	var score = new Array();
-	$(".taste").each(function(){
-		var taste = $(this).val();
-		console.log(taste);
-		taste = taste*1;
-		score.push(taste);
-	});
-	console.log(score);
-	for(var i=0;i<score.length+1;i++){
-		for(var j=1;j<7;j++){
-			if(score[i]==j){
-				console.log(j);
-				for(var l=1;l<j+1;l++){
-				$(".ta"+i).append("<a class='on'>★</a>");
-					}
-				}
-		}
-	}
-
-	//hygiene
-	var score1 = new Array();
-	$(".hygiene").each(function(){
-		var hygiene = $(this).val();
-		console.log(hygiene);
-		hygiene = hygiene*1;
-		score1.push(hygiene);
-	});
-	console.log(score1);
-	for(var i=0;i<score1.length+1;i++){
-		for(var j=1;j<7;j++){
-			if(score1[i]==j){
-				console.log(j);
-				for(var l=1;l<j+1;l++){
-				$(".hy"+i).append("<a class='on'>★</a>");
-					}
-				}
-		}
-	}
-
-
-	//kindness
-	var score2 = new Array();
-	$(".kindness").each(function(){
-		var kindness = $(this).val();
-		console.log(kindness);
-		kindness = kindness*1;
-		score2.push(kindness);
-	});
-	console.log(score2);
-	for(var i=0;i<score2.length+1;i++){
-		for(var j=1;j<7;j++){
-			if(score2[i]==j){
-				console.log(j);
-				for(var l=1;l<j+1;l++){
-				$(".ki"+i).append("<a class='on'>★</a>");
-					}
-				}
-		}
-	}
-	
-});
-
-</script>
-
-
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Custom scripts for all pages-->
-<script src="../js/sb-admin-2.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/sb-admin-2.min.js"></script>
 <!-- Calendar -->
-<script src="../js/calendar.js"></script>
-
+<script src="${pageContext.request.contextPath}/js/calendar.js"></script>
+<!-- SurveyList -->
+<script src="${pageContext.request.contextPath}/js/survey/surveyList.js"></script>
 </html>
