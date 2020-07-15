@@ -150,7 +150,9 @@
 		update Payment set review=1 where payNum=#{payNum}
 	</update>
 	
-	
+	<update id="memberUpdate" parameterType="MemberVO">
+		update Member set name=#{name},phone=#{phone} where id=#{id}
+	</update>
 	
 	
 	<!-- 나중에 구현 -->

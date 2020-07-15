@@ -27,10 +27,14 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(loginChkInterceptor)
+		.addPathPatterns("/member/*")
 		.addPathPatterns("/cart/*")
 		.addPathPatterns("/menu/*")
 		.addPathPatterns("/payment/*")
 		.addPathPatterns("/store/*")
+		.excludePathPatterns("/member/memberLogin")
+		.excludePathPatterns("/member/memberJoin")
+		.excludePathPatterns("/member/memberJoin2")
 		.excludePathPatterns("/cart/howToUse")
 		.excludePathPatterns("/store/storeSearch")
 		.excludePathPatterns("/store/storeSearch2")

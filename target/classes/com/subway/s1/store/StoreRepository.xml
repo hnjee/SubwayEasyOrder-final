@@ -30,5 +30,7 @@
 	<update id="storeManage" parameterType="StoreVO">
 		update Store set address=#{address}, telNumber=#{telNumber}, hours=#{hours} where name=#{name}
 	</update>
-	
+	<update id="scoreUpdate" parameterType="StoreVO">
+		update Store set storeScore=#{storeScore} where storeNum=#{storeNum}
+	</update>
 </mapper>

@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css"  href="../css/footerStyle.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/indexStyle.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style type="text/css">
 .text{
 	float: right;
@@ -55,12 +56,26 @@
 						<c:if test="${point.pointStat eq 0 }">
 							<i class="fa fa-minus-circle" style="font-size:60px;color:#f1a03c"></i>
 						</c:if>
+						<c:if test="${point.pointStat eq 2 }">
+							<i class="material-icons" style="font-size:51.44px;color:#009223">settings_backup_restore</i>
+						</c:if>
+						<c:if test="${point.pointStat eq 3 }">
+							<i class="material-icons" style=" font-size:51.44px;color:#f1a03c">settings_backup_restore</i>
+						</c:if>
 					</div>
 					<div class="col-sm-4 textBlock">
-						<div class="blockIn">
-							결제 번호<span class="text">${point.payNum }</span><br>
-							결제 날짜<span class="text">${point.pointDate }</span>
-						</div>
+						<c:if test="${point.pointStat eq 0 || point.pointStat eq 1}">
+							<div class="blockIn">
+								결제 번호<span class="text">${point.payNum }</span><br>
+								결제 날짜<span class="text">${point.pointDate }</span>
+							</div>
+						</c:if>
+						<c:if test="${point.pointStat eq 2 || point.pointStat eq 3}">
+							<div class="blockIn">
+								결제 번호<span class="text">${point.payNum }</span><br>
+								환불 날짜<span class="text">${point.pointDate }</span>
+							</div>
+						</c:if>
 					</div>
 					<div class="col-sm-4 textBlock">
 						<c:if test="${point.pointStat eq 1 }">
@@ -73,6 +88,18 @@
 							<div class="blockIn">
 								원래 포인트<span class="text comma">${point.oriPoint }</span><br>
 								사용 포인트<span class="text comma" style="color: #f1a03c">${point.curPoint }</span>
+							</div>
+						</c:if>
+						<c:if test="${point.pointStat eq 2 }">
+							<div class="blockIn">
+								원래 포인트<span class="text comma">${point.oriPoint }</span><br>
+								돌려 받은 포인트<span class="text comma" style="color: #009223">${point.curPoint }</span>
+							</div>
+						</c:if>
+						<c:if test="${point.pointStat eq 3 }">
+							<div class="blockIn">
+								원래 포인트<span class="text comma">${point.oriPoint }</span><br>
+								환불 차감 포인트<span class="text comma" style="color: #f1a03c">${point.curPoint }</span>
 							</div>
 						</c:if>
 					</div>

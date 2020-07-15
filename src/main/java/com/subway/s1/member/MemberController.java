@@ -1,6 +1,9 @@
 package com.subway.s1.member;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,9 +25,12 @@ import com.subway.s1.menu.MenuService;
 import com.subway.s1.menu.MenuVO;
 import com.subway.s1.mymenu.MyMenuVO;
 import com.subway.s1.orderInfo.OrderInfoVO;
+import com.subway.s1.payment.PaymentVO;
 import com.subway.s1.point.PointService;
 import com.subway.s1.point.PointVO;
+import com.subway.s1.store.StoreService;
 import com.subway.s1.store.StoreVO;
+import com.subway.s1.survey.SurveyService;
 import com.subway.s1.survey.SurveyVO;
 import com.subway.s1.util.Pager;
 
@@ -40,13 +46,69 @@ public class MemberController {
 	private IngredientService ingredientService;
 	@Autowired
 	private PointService pointService;
+	@Autowired
+	private SurveyService surveyService;
+	@Autowired
+	private StoreService storeService;
 	
 	
+	@PostMapping("memberInfo")
+	public ModelAndView memberInfo(MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO check= memberService.memberLogin(memberVO);
+		if(check==null) {
+			mv.addObject("result", "비밀번호를 정확히 입력하세요.");
+			mv.addObject("path", "./memberInfo");
+			mv.setViewName("common/result");
+		} else {
+			mv.addObject("check", "pass");
+			mv.setViewName("member/memberInfo2");
+		}
+		
+		return mv;
+	}
+	@PostMapping("memberInfo2")
+	public ModelAndView memberInfo2(MemberVO memberVO,HttpSession session)throws Exception{
+		memberService.memberUpdate(memberVO);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("result", "수정완료되었습니다.");
+		mv.addObject("path", "./memberPage");
+		mv.setViewName("common/result");
+		memberVO = memberService.idCheck(memberVO);
+		session.setAttribute("member", memberVO);
+		return mv;
+		
+	}
+	
+	
+	
+	@GetMapping("memberInfo")
+	public void memberInfo()throws Exception{
+		
+	}
 	@PostMapping("surveyInsert")
 	@ResponseBody
 	public void surveyInsert(SurveyVO surveyVO,HttpSession session)throws Exception{
 		memberService.surveyInsert(surveyVO);
 		memberService.surveyUpdate(surveyVO);
+		SurveyVO grade = new SurveyVO();
+		Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String payDate = simpleDateFormat.format(date);
+		Date to = simpleDateFormat.parse(payDate);
+		PaymentVO paymentVO = new PaymentVO();
+		paymentVO.setStoreNum(surveyVO.getStoreNum());
+		paymentVO.setPayDate(to);
+		grade=surveyService.surveyMonthAVG(paymentVO);
+		float total =grade.getHygiene()+grade.getTaste()+grade.getKindness()+surveyVO.getKindness()+surveyVO.getHygiene()+surveyVO.getTaste();
+		total = total/(grade.getCount()+1)/3;
+		int storeScore = Math.round(total);
+		StoreVO storeVO = new StoreVO();
+		storeVO.setStoreNum(surveyVO.getStoreNum());
+		storeVO.setStoreScore(storeScore);
+		storeService.scoreUpdate(storeVO);
+		
+		
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		PointVO pointVO = new PointVO();
 		pointVO = pointService.surveyPoint(surveyVO);

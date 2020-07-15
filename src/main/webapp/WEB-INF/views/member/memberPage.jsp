@@ -138,13 +138,13 @@
 						<img alt="" src="../images/img_profile_male.png" style="margin-left: 15px; float: left;">
 						<p style="margin: 30px 30px 0 0;">
 						<strong id="id">
-						${member.id }님
+						${member.name }님
 						<br>
 						반갑습니다!
 						</strong>
 					</div>
 					<div class="row">
-						<a href="#" class="btn"><span class="my_btn" style="color: gray; border-color: gray; margin-top: 18px;">회원 정보 변경</span></a>
+						<a href="./memberInfo" class="btn"><span class="my_btn" style="color: gray; border-color: gray; margin-top: 18px;">회원 정보 변경</span></a>
 					</div>
 				
 				</div>	

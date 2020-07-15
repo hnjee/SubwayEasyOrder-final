@@ -45,6 +45,8 @@ public class StoreService {
 	public int storeManage(StoreVO storeVO) throws Exception{
 		return storeRepository.storeManage(storeVO);
 	}
-	
+	public void scoreUpdate(StoreVO storeVO)throws Exception{
+		storeRepository.scoreUpdate(storeVO);
+	}
 
 }

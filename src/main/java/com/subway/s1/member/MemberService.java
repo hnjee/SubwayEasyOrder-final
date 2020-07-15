@@ -126,4 +126,7 @@ public class MemberService {
 	public void surveyUpdate(SurveyVO surveyVO)throws Exception{
 		memberRepository.surveyUpdate(surveyVO);
 	}
+	public void memberUpdate(MemberVO memberVO)throws Exception{
+		memberRepository.memberUpdate(memberVO);
+	}
 }
