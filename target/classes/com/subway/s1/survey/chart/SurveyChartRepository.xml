@@ -63,6 +63,7 @@
 	<select id="pieCount" parameterType="String" resultType="Int">
 		select count(payNum) from Survey where storeNum = #{storeNum}
 	</select>
+	<!-- Pie End -->
 	
 	<select id="thisMonthScore" parameterType="MonthVO" resultType="MonthVO">
 	select left(M.payDate,7) as payDate,sum(M.taste) as taste, sum(M.hygiene) as hygiene, sum(M.kindness) as kindness  from
@@ -81,6 +82,6 @@
 	select count(Pay.payNum) from Survey AS S
 	left join Payment AS Pay
 	ON S.payNum = Pay.payNum
-	where S.storeNum=#{storeNum} and Pay.refund=0 and left(Pay.payDate,7)=left(CURDATE(),7);
+	where S.storeNum=#{storeNum} and Pay.refund=0 and left(Pay.payDate,7)=left(CURDATE(),7)
 	</select>
 </mapper>

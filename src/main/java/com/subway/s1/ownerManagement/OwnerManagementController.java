@@ -24,9 +24,17 @@ public class OwnerManagementController {
 	@GetMapping("ownerList")
 	public ModelAndView ownerList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println("inininin");
 		List<OwnerManagementVO> ar=ownerService.ownerList(pager);
 
+		mv.addObject("ownerList", ar);
+		mv.setViewName("ownerManagement/ownerList");
+		return mv;
+	}
+	@GetMapping("bestList")
+	@ResponseBody
+	public ModelAndView bestList(Pager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OwnerManagementVO> ar=ownerService.bestList(pager);
 		mv.addObject("ownerList", ar);
 		mv.setViewName("ownerManagement/ownerList");
 		return mv;

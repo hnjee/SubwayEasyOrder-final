@@ -39,7 +39,6 @@
 
 		    <select class="" id="iSearch" name="kind">
 			    <option value="name">매장이름</option>
-				<option value="orderable">주문가능여부</option>
 				<option value="address">주소</option>
 				<option value="storeNum">매장번호</option>
 			</select>
@@ -47,9 +46,11 @@
 			<span style="padding-top: 25px; margin-bottom: 25px;">  
 	            <input type="text" id="search" name="search">
 	           <button class="btn btn-default" type="submit"><i class='fas fa-search'></i></button> 
-	        <span style="margin-left: 50%;cursor: pointer; padding: 4px;" class=del-btn-all >선택삭제</span>
-			<span style="cursor: pointer;" id="bestReset" class=bestStore title="${vo.storeNum}" >리셋</span>
-			<span style="cursor: pointer;" id=bestClick class=bestStore >확인</span>
+	          	<span style="font-size: 12px; font-weight:bolder; cursor: pointer;" id="bestList" title="${vo.storeNum}">베스트매장순</span>
+	          	<span style="margin-left:10px; font-size: 12px; font-weight:bolder; cursor: pointer;"title="${vo.storeNum}" >워스트매장순</span>
+		        <span style="margin-left: 35%;cursor: pointer; padding: 4px;" class=del-btn-all >선택삭제</span>
+				<span style="cursor: pointer;" id="bestReset" class=bestStore title="${vo.storeNum}" >리셋</span>
+				<span style="cursor: pointer;" id=bestClick class=bestStore >확인</span>
 	        </span> 
 	    </div>
     </form>
@@ -58,7 +59,7 @@
 	    <thead>
 	      <tr>    
 	        <th><input class="checks" id="allCheck" type="checkbox"></th>
-	        <th>매장이름</th>
+	        <th>매장이름(번호)</th>
 	        <th>주소</th>
 	        <th>매장연락처</th>
 	        <th>주문여부</th>
@@ -72,7 +73,7 @@
 	    <tbody>
 	      <tr>
 	       <td><input class="rowCheck checks" type="checkbox" name="${vo.storeNum}" ></td>
-	        <td>${vo.name}</td>
+	        <td>${vo.name}(${vo.storeNum})</td>
 	        <td>${vo.address}</td>
 	        <td>${vo.telNumber}</td>
  			<c:if test="${vo.orderable eq '0'}">

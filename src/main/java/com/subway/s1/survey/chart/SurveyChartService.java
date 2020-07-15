@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.subway.s1.member.MemberVO;
+import com.subway.s1.ownerManagement.OwnerManagementRepository;
+import com.subway.s1.ownerManagement.OwnerManagementService;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -16,6 +18,7 @@ public class SurveyChartService {
 	
 	@Autowired
 	private SurveyChartRepository surveyChartRepository;
+
 	//--------------------------막대--------------------------------------------------
 	
 	//thisBar
@@ -130,6 +133,9 @@ public class SurveyChartService {
 		return ar;
 	}
 
+	//------------------------------------------------------------------------------
+
+
 	//-------------------------Pie--------------------------------------
 	public PieVO surveyPie(String storeNum)throws Exception{
 		PieVO pieVO = surveyChartRepository.pieChart(storeNum);
@@ -153,8 +159,7 @@ public class SurveyChartService {
 		
 		double all = hySum+taSum+kiSum;
 		all = Double.parseDouble(String.format("%.2f", all));
-		
-		System.out.println(all);
+	
 		hySum = (hySum/all)*100;
 		taSum = (taSum/all)*100;
 		kiSum = (kiSum/all)*100;
@@ -163,10 +168,6 @@ public class SurveyChartService {
 		taSum = Math.round(taSum);
 		kiSum = Math.round(kiSum);
 		
-		System.out.println(hySum);
-		System.out.println(taSum);
-		System.out.println(kiSum);
-		
 		pieVO.setTaPercent((int)taSum);
 		pieVO.setHyPercent((int)hySum);
 		pieVO.setKiPercent((int)kiSum);
@@ -174,6 +175,7 @@ public class SurveyChartService {
 		return pieVO;
 }
 	
+
 	//thisMonth
 	public List<MonthVO> thisMonthScore(String storeNum)throws Exception{
 		
@@ -181,24 +183,23 @@ public class SurveyChartService {
 		
 		for(int i=0;i<ar.size();i++) {
 			int thisMonthCount=surveyChartRepository.thisMonthCount(storeNum);
-			
+			System.out.println(thisMonthCount);
 			int taste=ar.get(i).getTaste();
 			taste=(taste/thisMonthCount);
 			ar.get(i).setTaste(taste);
-			
+
 			int hygiene =ar.get(i).getHygiene();
 			hygiene=(hygiene/thisMonthCount);
 			ar.get(i).setHygiene(hygiene);
-			
+
 			int kindness =ar.get(i).getKindness();
 			kindness=(kindness/thisMonthCount);
 			ar.get(i).setKindness(kindness);
-			
-			int totalScore=(taste+hygiene+kindness/3);
+
+			int totalScore=((taste+hygiene+kindness)/3);
 			ar.get(i).setTotalScore(totalScore);
 
 		}
-
 		return ar;
 	}
 

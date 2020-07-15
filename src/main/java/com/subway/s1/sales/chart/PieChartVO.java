@@ -11,10 +11,10 @@ public class PieChartVO {
 	private Long wrCount;
 	private Long grCount;
 	
-	private Long swPercent;
-	private Long siPercent;
-	private Long saPercent;
-	private Long wrPercent;
-	private Long grPercent;
+	private int swPercent;
+	private int siPercent;
+	private int saPercent;
+	private int wrPercent;
+	private int grPercent;
 
 }
