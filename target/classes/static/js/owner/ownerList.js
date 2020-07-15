@@ -102,3 +102,10 @@ $("#bestClick").click(function(){
 		}
 	});
 //location.href="./bestPick;
+
+$("#bestList").click(function(){
+	console.log(storeNum);
+		location.href="./bestList";
+		console.log("이동");
+	
+});

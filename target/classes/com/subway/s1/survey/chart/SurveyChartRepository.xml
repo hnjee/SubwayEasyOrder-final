@@ -70,6 +70,6 @@
 	select count(Pay.payNum) from Survey AS S
 	left join Payment AS Pay
 	ON S.payNum = Pay.payNum
-	where S.storeNum=#{storeNum} and Pay.refund=0 and left(Pay.payDate,7)=left(CURDATE(),7);
+	where S.storeNum=#{storeNum} and Pay.refund=0 and left(Pay.payDate,7)=left(CURDATE(),7)
 	</select>
 </mapper>

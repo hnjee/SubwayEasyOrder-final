@@ -10,6 +10,7 @@ public class MonthVO {
 	private int kindness;
 	private int monthCount;
 	private int totalScore;
+	
 	private String month;
 	private String payDate;
 }

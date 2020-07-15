@@ -37,16 +37,38 @@ public class OwnerManagementService {
 		for(int i=0;i<ar.size();i++) {
 			System.out.println(ar.get(i).getStoreNum());
 			List<MonthVO>ar2= surveyChartService.thisMonthScore(ar.get(i).getStoreNum());
-			System.out.println("servixe"+ar2);
 			if(ar2.size()>0) {
 			ar.get(i).setStoreScore( ar2.get(0).getTotalScore());
 			}else {
 				ar.get(i).setStoreScore(0);
 			}
-		}
+		}	
 		return ar;
 	}
 
+	public List<OwnerManagementVO> bestList(Pager pager) throws Exception{
+		//pager
+		if(pager.getKind()==null||pager.getSearch()==null) {
+			pager.setKind("storeNum");
+			pager.setSearch("S");
+		}		
+		pager.makeRow();
+		long totalCount=ownerRepository.ownerCount(pager);
+		pager.makePage(totalCount);
+		
+		List<OwnerManagementVO> ar=ownerRepository.bestList(pager);
+
+		for(int i=0;i<ar.size();i++) {
+			List<MonthVO>ar2= surveyChartService.thisMonthScore(ar.get(i).getStoreNum());
+			if(ar2.size()>0) {
+			ar.get(i).setStoreScore( ar2.get(0).getTotalScore());
+			
+			}else {
+				ar.get(i).setStoreScore(0);
+			}
+		}		
+		return ar;
+	}
 
 	public OwnerManagementVO ownerSelectOne(OwnerManagementVO ownerVO) throws Exception{
 		return ownerRepository.ownerSelectOne(ownerVO);
@@ -78,7 +100,6 @@ public class OwnerManagementService {
 	public int bestPick(List<String> pick) throws Exception{
 		return ownerRepository.bestPick(pick);
 	}
-	
 	
 	//가맹점 회원가입
 //	public int ownerJoin(OwnerManagementVO ownerVO)throws Exception{
