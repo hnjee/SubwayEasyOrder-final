@@ -138,7 +138,7 @@
 						<img alt="" src="../images/img_profile_male.png" style="margin-left: 15px; float: left;">
 						<p style="margin: 30px 30px 0 0;">
 						<strong id="id">
-						${member.id }님
+						${member.name }님
 						<br>
 						반갑습니다!
 						</strong>

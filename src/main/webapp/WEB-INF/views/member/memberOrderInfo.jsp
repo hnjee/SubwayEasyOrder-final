@@ -478,7 +478,7 @@ $(document).ready(function() {
 			},
 			success:function(){
 				alert("리뷰작성 완료");
-				//location.reload();
+				location.reload();
 			}
 		});
 	});

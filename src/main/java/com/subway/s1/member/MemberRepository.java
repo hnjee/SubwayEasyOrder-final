@@ -69,6 +69,7 @@ public interface MemberRepository {
 	
 	public void surveyInsert(SurveyVO surveyVO)throws Exception;
 	public void surveyUpdate(SurveyVO surveyVO)throws Exception;
+	public void memberUpdate(MemberVO memberVO)throws Exception;
 	
 }
 

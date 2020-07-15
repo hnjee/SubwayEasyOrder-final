@@ -88,7 +88,7 @@ dt {
 				확인</h2>
 			<p style="color: #666666; font-size: 16px; letter-spacing: -0.3px;">
 				회원가입 시 등록한 비밀번호를 재입력 해주세요.
-
+				<form action="../member/memberInfo" method="POST">
 				<section class="form_box" style="padding: 87px 100px 0 100px;">
 					<div class="write_info_wrap">
 						<!-- 입력1세트 -->
@@ -100,7 +100,7 @@ dt {
 								<dd>
 									<span class="form_text" style="width: 500px;"> <input
 										style="color: black;" readonly="" type="text"
-										value="${member.id }" />
+										name="id" value="${member.id }" />
 									</span>
 
 								</dd>
@@ -127,7 +127,8 @@ dt {
 						주세요.</li>
 				</ul>
 			</div>
-			<button style="border:0px; margin-top:140px; display:inline-block; vertical-align:middle; background-color:#009223;color: white;width: 170px;border-radius: 30px;"><span style="height: 50px;line-height: 50px;font-weight: bold;font-size: 18px;">확인</span></button>
+			<button type="submit" style="border:0px; margin-top:140px; display:inline-block; vertical-align:middle; background-color:#009223;color: white;width: 170px;border-radius: 30px;"><span style="height: 50px;line-height: 50px;font-weight: bold;font-size: 18px;">확인</span></button>
+				</form>
 		</div>
 	</div>
 
