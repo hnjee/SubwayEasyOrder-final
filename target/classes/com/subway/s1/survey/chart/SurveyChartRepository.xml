@@ -53,6 +53,18 @@
 	where S.storeNum=#{storeNum} and Pay.storeNum= #{storeNum} and left(Pay.payDate,4)=#{year}
 	</select>
 	
+	<!-- Pie -->
+	<select id="pieChart" parameterType="String" resultType="PieVO">
+		select sum(taste) taSum, sum(hygiene) hySum, sum(kindness) kiSum
+		from Survey
+    	where storeNum = #{storeNum}
+	</select>
+	
+	<select id="pieCount" parameterType="String" resultType="Int">
+		select count(payNum) from Survey where storeNum = #{storeNum}
+	</select>
+	<!-- Pie End -->
+	
 	<select id="thisMonthScore" parameterType="MonthVO" resultType="MonthVO">
 	select left(M.payDate,7) as payDate,sum(M.taste) as taste, sum(M.hygiene) as hygiene, sum(M.kindness) as kindness  from
 	(select S.* ,left(Pay.payDate,7) as payDate, left(CURDATE(),4)

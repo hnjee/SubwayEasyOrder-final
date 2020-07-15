@@ -60,14 +60,6 @@
 
 </select>
 
-
-<select id="pChart" parameterType="PieChartVO" resultType="PieChartVO">
-	select distinct SUBSTRING(menuCode, 1,2) menuCode,productCount,refund
-	from Menu M left Join OrderProduct O on M.menuNum=O.menuNum left Join Payment P on O.payNum=P.payNum
-    where refund = 0 and storeNum = #{storeNum}
-	order by menuCode desc
-</select>
-
 <select id="menuCount" parameterType="String" resultType="Long">
 	select count(productCount) productCount
 	from OrderProduct O left Join Payment P on O.payNum=P.payNum left Join Menu M on O.menuNum=M.menuNum

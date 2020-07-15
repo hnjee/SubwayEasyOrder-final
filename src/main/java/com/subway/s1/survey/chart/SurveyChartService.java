@@ -132,7 +132,50 @@ public class SurveyChartService {
 
 		return ar;
 	}
+
 	//------------------------------------------------------------------------------
+
+
+	//-------------------------Pie--------------------------------------
+	public PieVO surveyPie(String storeNum)throws Exception{
+		PieVO pieVO = surveyChartRepository.pieChart(storeNum);
+
+		double hy = pieVO.getHySum();
+		double ta = pieVO.getTaSum();
+		double ki = pieVO.getKiSum();
+		
+		
+		//전체값 구하기
+		int total = surveyChartRepository.pieCount(storeNum);
+		total = total*5;
+		//백분율 구하기
+		double hySum = hy/total;
+		double taSum = ta/total;
+		double kiSum = ki/total;
+
+		hySum = Double.parseDouble(String.format("%.2f", hySum));
+		taSum = Double.parseDouble(String.format("%.2f", taSum));
+		kiSum = Double.parseDouble(String.format("%.2f", kiSum));
+		
+		double all = hySum+taSum+kiSum;
+		all = Double.parseDouble(String.format("%.2f", all));
+	
+		hySum = (hySum/all)*100;
+		taSum = (taSum/all)*100;
+		kiSum = (kiSum/all)*100;
+		//반올림
+		hySum = Math.round(hySum);
+		taSum = Math.round(taSum);
+		kiSum = Math.round(kiSum);
+		
+		pieVO.setTaPercent((int)taSum);
+		pieVO.setHyPercent((int)hySum);
+		pieVO.setKiPercent((int)kiSum);
+		
+		return pieVO;
+}
+	
+
 	//thisMonth
 	public List<MonthVO> thisMonthScore(String storeNum)throws Exception{
 		

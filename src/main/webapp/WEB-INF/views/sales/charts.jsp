@@ -207,6 +207,7 @@ ul.tabs li.current{
                 </div>
               </div>
             </div>
+            
    		</div>
         </div>
         <!-- /.container-fluid -->
