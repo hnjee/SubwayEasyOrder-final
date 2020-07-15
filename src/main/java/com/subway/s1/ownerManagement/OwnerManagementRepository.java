@@ -24,4 +24,7 @@ public interface OwnerManagementRepository {
 	public int ownerDeletes(List<String> deletes)throws Exception;
 	
 	public int ownerMemberDelete(String id)throws Exception;
+	
+	public int bestRest(OwnerManagementVO ownerVO) throws Exception;
+	public int bestPick(List<String> pick)throws Exception;
 }

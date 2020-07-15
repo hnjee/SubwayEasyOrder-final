@@ -129,7 +129,7 @@ public class SurveyChartService {
 
 		return ar;
 	}
-	
+
 	//-------------------------Pie--------------------------------------
 	public PieVO surveyPie(String storeNum)throws Exception{
 		PieVO pieVO = surveyChartRepository.pieChart(storeNum);
@@ -172,6 +172,34 @@ public class SurveyChartService {
 		pieVO.setKiPercent((int)kiSum);
 		
 		return pieVO;
+}
+	
+	//thisMonth
+	public List<MonthVO> thisMonthScore(String storeNum)throws Exception{
+		
+		List<MonthVO> ar= surveyChartRepository.thisMonthScore(storeNum);
+		
+		for(int i=0;i<ar.size();i++) {
+			int thisMonthCount=surveyChartRepository.thisMonthCount(storeNum);
+			
+			int taste=ar.get(i).getTaste();
+			taste=(taste/thisMonthCount);
+			ar.get(i).setTaste(taste);
+			
+			int hygiene =ar.get(i).getHygiene();
+			hygiene=(hygiene/thisMonthCount);
+			ar.get(i).setHygiene(hygiene);
+			
+			int kindness =ar.get(i).getKindness();
+			kindness=(kindness/thisMonthCount);
+			ar.get(i).setKindness(kindness);
+			
+			int totalScore=(taste+hygiene+kindness/3);
+			ar.get(i).setTotalScore(totalScore);
+
+		}
+
+		return ar;
 	}
 
 }

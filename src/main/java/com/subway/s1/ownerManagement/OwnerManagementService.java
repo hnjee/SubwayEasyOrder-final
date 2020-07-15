@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.subway.s1.member.MemberVO;
+import com.subway.s1.survey.chart.MonthVO;
+import com.subway.s1.survey.chart.SurveyChartService;
 import com.subway.s1.util.Pager;
 
 
@@ -15,19 +17,34 @@ public class OwnerManagementService {
 
 	@Autowired
 	private OwnerManagementRepository ownerRepository;
+	@Autowired
+	private SurveyChartService surveyChartService;
 	
 	
 	//가맹점 회원관리
 	public List<OwnerManagementVO>ownerList(Pager pager) throws Exception{
+		//pager
 		if(pager.getKind()==null||pager.getSearch()==null) {
 			pager.setKind("storeNum");
 			pager.setSearch("S");
-		}
-		//pager
+		}		
 		pager.makeRow();
 		long totalCount=ownerRepository.ownerCount(pager);
 		pager.makePage(totalCount);
-		return ownerRepository.ownerList(pager);
+		
+		List<OwnerManagementVO> ar=ownerRepository.ownerList(pager);
+
+		for(int i=0;i<ar.size();i++) {
+			System.out.println(ar.get(i).getStoreNum());
+			List<MonthVO>ar2= surveyChartService.thisMonthScore(ar.get(i).getStoreNum());
+			System.out.println("servixe"+ar2);
+			if(ar2.size()>0) {
+			ar.get(i).setStoreScore( ar2.get(0).getTotalScore());
+			}else {
+				ar.get(i).setStoreScore(0);
+			}
+		}
+		return ar;
 	}
 
 
@@ -38,8 +55,8 @@ public class OwnerManagementService {
 	public int ownerDelete(OwnerManagementVO ownerVO) throws Exception{
 		String ownerID="owner_"+ownerVO.getStoreNum();
 		String staffID="staff_"+ownerVO.getStoreNum();
-		int result=ownerRepository.ownerMemberDelete(ownerID);
-		int result2=ownerRepository.ownerMemberDelete(staffID);
+		ownerRepository.ownerMemberDelete(ownerID);
+		ownerRepository.ownerMemberDelete(staffID);
 		return ownerRepository.ownerDelete(ownerVO);
 	}
 	
@@ -48,10 +65,18 @@ public class OwnerManagementService {
 			System.out.println("str:"+deletes.get(i));
 			String ownerID="owner_"+deletes.get(i);
 			String staffID="staff_"+deletes.get(i);
-			int result=ownerRepository.ownerMemberDelete(ownerID);
-			int result2=ownerRepository.ownerMemberDelete(staffID);
+			ownerRepository.ownerMemberDelete(ownerID);
+			ownerRepository.ownerMemberDelete(staffID);
 		}
 		return ownerRepository.ownerDeletes(deletes);
+	}
+	
+	public int bestRest(OwnerManagementVO ownerVO) throws Exception{
+		return ownerRepository.bestRest(ownerVO);
+	}
+	
+	public int bestPick(List<String> pick) throws Exception{
+		return ownerRepository.bestPick(pick);
 	}
 	
 	

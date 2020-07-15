@@ -24,8 +24,9 @@ public class OwnerManagementController {
 	@GetMapping("ownerList")
 	public ModelAndView ownerList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
+		System.out.println("inininin");
 		List<OwnerManagementVO> ar=ownerService.ownerList(pager);
+
 		mv.addObject("ownerList", ar);
 		mv.setViewName("ownerManagement/ownerList");
 		return mv;
@@ -59,7 +60,31 @@ public class OwnerManagementController {
 		return result;
 		
 	}
-	
+	@GetMapping("bestRest")
+	public ModelAndView bestRest(OwnerManagementVO ownerVO)throws Exception{
+		ModelAndView mv= new ModelAndView();
+		int result=ownerService.bestRest(ownerVO);
+		if(result>0) {
+			System.out.println("reset 성공");
+		}else {
+			System.out.println("reset 실패");
+		}
+		mv.setViewName("redirect:./ownerList");
+		return mv;
+	}
+	//베스트매장 여러개 업데이트
+	@GetMapping("bestPick")
+	@ResponseBody
+	public int bestPick(String[] pick)throws Exception{
+		List<String> storeNum =Arrays.asList(pick);
+		int result = ownerService.bestPick(storeNum);
+		if(result>0) {
+			System.out.println("best여러개 업데이트 성공");
+		}else{
+			System.out.println("best여러개 업데이트  실패");
+		}
+		return result;
+	}
 	
 //	@GetMapping("ownerJoin")
 //	public ModelAndView ownerJoin() throws Exception{

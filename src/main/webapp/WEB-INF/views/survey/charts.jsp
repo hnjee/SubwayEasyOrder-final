@@ -52,14 +52,14 @@
               
               <!-- month chart/ id=myAreaChart -->
               <div id="tab-1" class="tab-content current">
-              <div class="card shadow mb-4">
+              <div class="card1 card card1 shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">이달의 설문조사</h6>
 	               <div style="margin-left:10px; display: inline;">
 
 	                </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body-1 card-body">
                   <div class="chart-area">
                     <canvas id="myAreaChart"></canvas>
                   </div>
@@ -77,14 +77,15 @@
               </div>
               
               <!-- year chart -->
-              <div id="tab-2" class="tab-content" style="margin-top: 10px;">
-              <div class="card shadow mb-3">
+              <div id="tab-2" class="tab-content">
+              <div class="card card1 shadow mb-4">
+
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">해마다 설문통계</h6>
 	               <div style="margin-left:10px; display: inline;">
 	                </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body card-body-1">
                   <div class="chart-area">
                     <canvas id="yearChart"></canvas>
                   </div>
@@ -100,13 +101,13 @@
               </div>
 			<!-- monthTotal -->
               <div id="tab-3" class="tab-content">
-              <div class="card shadow mb-4">
+              <div class="card card1 shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">달마다 총점</h6>
 	               <div style="margin-left:10px; display: inline;">
 	                </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body card-body-1">
                   <div class="chart-area">
                     <canvas id="monthTotal"></canvas>
                   </div>
@@ -126,14 +127,14 @@
               
               <!-- month chart/ id=myAreaChart -->
               <div id="tab-4" class="tab-content-bar current-bar">
-              <div class="card shadow mb-4">
+              <div class="card card1 shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary text-chart-bar" style="display: inline;">오늘의 설문조사</h6>
 	               <div style="margin-left:10px; display: inline;">
 
 	                </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body card-body-1">
                   <div class="chart-area">
                     <canvas id="thisBar"></canvas>
                   </div>
@@ -152,13 +153,13 @@
               
               <!-- 막대 total chart -->
               <div id="tab-5" class="tab-content-bar">
-              <div class="card shadow mb-4">
+              <div class="card card1 shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary text-chart-bar" style="display: inline;">오늘의 통계</h6>
 	               <div style="margin-left:10px; display: inline;">
 	                </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body card-body-1">
                   <div class="chart-area">
                     <canvas id="total-Bar"></canvas>
                   </div>
