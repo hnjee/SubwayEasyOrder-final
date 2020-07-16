@@ -78,7 +78,7 @@ ul.tabs li.current{
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-	 <a href="../"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:70px 700px 0px" ></a>
+	 <a href="${pageContext.request.contextPath}/member/adminIndex"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:70px 700px 0px" ></a>
 	 <div class="owner_id" style="margin-left:88%;">${member.id}</div>
 	 
 	 <div id="line" style="border: solid 2.5px white; margin-top: 30px" ></div>
