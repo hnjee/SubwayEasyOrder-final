@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.subway.s1.interceptor.AdminInterceptor;
 import com.subway.s1.interceptor.LoginChkInterceptor;
+import com.subway.s1.interceptor.ManagersInterceptor;
 import com.subway.s1.interceptor.MemberLoginAdmin;
 import com.subway.s1.interceptor.OwnerInterceptor;
 import com.subway.s1.interceptor.StaffInterceptor;
@@ -23,6 +24,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	private StaffInterceptor staffInterceptor; 
 	@Autowired
 	private MemberLoginAdmin memberLoginAdmin;
+	@Autowired
+	private ManagersInterceptor managersInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -58,10 +61,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		.excludePathPatterns("/sales/byOrder");
 		
 		registry.addInterceptor(staffInterceptor)
-		
-		
-		
-		
+
 		.addPathPatterns("/product/productList")
 		.addPathPatterns("/ingredient/ingredientList")
 		.addPathPatterns("/store/storeOC")
@@ -72,6 +72,12 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		registry.addInterceptor(memberLoginAdmin)
 		.addPathPatterns("/member/adminIndex");
 		
+		registry.addInterceptor(managersInterceptor)
+		.addPathPatterns("/store/storeList")
+		.addPathPatterns("/menu/menuSelect")
+		.addPathPatterns("/cart/cartList")
+		.addPathPatterns("payment/paymentOngoing")
+		.addPathPatterns("payment/paymentSuccess");
 		
 	}
 
