@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/surveyList.css">
 	
 </head>
-<body>
+<body id="page-top">
 
  <div id="wrapper">
  

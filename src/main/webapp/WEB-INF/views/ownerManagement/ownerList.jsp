@@ -21,7 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/ownerList.css">  
 </head>
 
-<body>
+<body id="page-top">
  <div id="wrapper">
 
     <!-- Sidebar -->
@@ -31,6 +31,7 @@
 	<div class="container">
     <!-- header -->
 	<c:import url="../headOfficeSales/adminHeader.jsp"></c:import>
+	
 	<h3 id="titleName" style="margin-top: 50px;">가맹점 관리</h3>
 
 	<form action="./ownerList">

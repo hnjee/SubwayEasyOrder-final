@@ -29,7 +29,7 @@
 
 </head>
 
-<body>
+<body id="page-top">
  <div id="wrapper">
 
     <!-- Sidebar -->
