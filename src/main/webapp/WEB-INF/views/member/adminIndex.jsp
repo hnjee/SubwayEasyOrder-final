@@ -56,6 +56,13 @@
 		
 		
 		<c:if test="${member.level eq 1}">
+		<div class="box">
+			<a href="${pageContext.request.contextPath}/sales/byOrder">
+			<div class="logo"></div>
+			<strong style="font-weight: 600;">영수증 관리</strong>
+			<span>바로가기</span>
+			</a>
+		</div>	
 		
 		<div class="box">
 			<a href="${pageContext.request.contextPath}/product/productList">
