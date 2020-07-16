@@ -7,7 +7,7 @@
 /* 		border-style: double; */
 	}
 	.card{
-		
+		border-radius: 10px;
 		height: 250px; 
 		width: 300px;
 		float: left;
@@ -17,11 +17,13 @@
 	}
 	.card-header{
 		background-color: #ffce32;
+		border-radius: 20px;
 	
 	}
 	.tb{
 		font-size: 13px;
 		height: 200px;
+
 	}
 	.star_rating{
 		margin-left: 60px;
@@ -48,18 +50,18 @@
 	}
 
 	.s{
-	height: 620px; 
-	width: 100%; 
-	background-color: #ffc300;
-    border-radius: 30px;
-    box-sizing: border-box;
-    padding: 20px 15px 15px 15px
+		height: 620px; 
+		width: 100%; 
+		background-color: #ffc300;
+	    border-radius: 30px;
+	    box-sizing: border-box;
+	    padding: 20px 15px 15px 15px
 	}
 	
 	.ss{
-	background-color: #fff;
-    border-radius: 30px;
-    overflow: hidden;
-    width: 100%;
-    box-sizing: border-box;
+		background-color: #fff;
+	    border-radius: 30px;
+	    overflow: hidden;
+	    width: 100%;
+	    box-sizing: border-box;
 	}
