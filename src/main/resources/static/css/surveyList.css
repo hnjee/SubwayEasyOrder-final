@@ -4,15 +4,16 @@
 		border: 5px solid #009223; 
 		height: 600px; 
 		width: 100%;
-		border-style: double;
+/* 		border-style: double; */
 	}
 	.card{
 		
 		height: 250px; 
 		width: 300px;
 		float: left;
-		margin-left: 40px;
-		margin-top: 30px;
+  		margin-left: 35px;
+		margin-top: 20px;  
+		margin-bottom: 16px;
 	}
 	.card-header{
 		background-color: #ffce32;
@@ -46,4 +47,19 @@
 		size: 15px;
 	}
 
-
+	.s{
+	height: 620px; 
+	width: 100%; 
+	background-color: #ffc300;
+    border-radius: 30px;
+    box-sizing: border-box;
+    padding: 20px 15px 15px 15px
+	}
+	
+	.ss{
+	background-color: #fff;
+    border-radius: 30px;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+	}

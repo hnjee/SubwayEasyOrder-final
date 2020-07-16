@@ -18,6 +18,7 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/surveyList.css">
 	
+
 </head>
 <body>
 
@@ -35,11 +36,12 @@
 	
 	<form action="./surveyList">
 	<div class="serach">
-		<div style="padding-top: 25px; margin-bottom: 25px">
+		<div style="padding-top: 25px;margin-left: 27px;">
             <i class='fas fa-calendar-alt' style='font-size:20px;'></i>
             <input type="text" name="from" id="from" readonly="readonly" style="display: inline;" value="${from}"> - 
             <input type="text" name="to" id="to" readonly="readonly" value="${to}">
             <button class="btn-subway" type="submit" id=serach">검색</button>
+        <span><img alt="X" src="../images/img_profile_female.png" style="width: 50px;height: 50px; margin-left: 50%;" ></span>
         </div>
     </div>
     </form>
@@ -47,10 +49,11 @@
  	<!-- Main Page -->
 	<div class="container">
     
-    <div class="bg-light text-dark main">
+    <div class="main s" >
+    <div class="ss">
 	<c:forEach items="${survey}" var="S" varStatus="i">
      <div class="card">
-      <div class="card-header py-1"><strong>주문번호 - ${S.payNum}</strong></div>
+      <div class="card-header py-1" style="background-color:#afb3b1;"><strong style="color: white;">주문번호 - ${S.payNum}</strong></div>
     	<div class="card-body tb">
 			
 		        <div class="title">메뉴맛 평가</div>
@@ -70,14 +73,14 @@
  			
     	</div>
   	</div>
-    	 </c:forEach>
-
+    </c:forEach>
+	</div>
  	</div>
  	
  	<!-- Pager -->
 <c:if test="${pager.totalPage>0}">
-	<div style="margin: 0 auto;">
-	  	<ul class="pagination justify-content-center" style="margin:20px 0">	
+	<div style="margin: 0 auto; ">
+	  	<ul class="pagination justify-content-center" style="margin:20px 0;">	
 	  	<c:if test="${pager.curPage>1}">
 			    <li class="page-item"><a class="page-link" href="./surveyList?curPage=${pager.curPage-1}&from=${from}&to=${to}">이전</a></li>
 		</c:if>	 
