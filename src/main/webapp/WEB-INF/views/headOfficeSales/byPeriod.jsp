@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,9 +68,9 @@
 	    <tbody>
 	      <tr>
 	        <td>${vo.payDate}</td>
-	        <td>${vo.totalPrice}</td>
-	        <td>${vo.totalPrice}</td>
-	        <td>${vo.count}</td>
+	        <td><fmt:formatNumber value="${vo.totalPrice}" type="number"></fmt:formatNumber>원</td>
+	        <td><fmt:formatNumber value="${vo.totalPrice}" type="number"></fmt:formatNumber>원</td>
+	        <td>${vo.count}건</td>
 
 	      </tr>	   
 	    </tbody>

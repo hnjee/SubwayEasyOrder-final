@@ -31,7 +31,7 @@
     <!-- header -->
 	<c:import url="../headOfficeSales/adminHeader.jsp"></c:import>
 	
-	<h3 id="titleName" style="margin-top: 50px;">재료 리스트</h3>
+	<h3 id="titleName" style="margin-top: 50px;"></h3>
 
 	<form action="./headOfficeIngredientList">
 		<div class="serach">
