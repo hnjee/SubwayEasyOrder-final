@@ -174,7 +174,7 @@ public class SurveyChartService {
 		
 		return pieVO;
 }
-	
+	//------------------------------------------------------------------------------
 
 	//thisMonth
 	public List<MonthVO> thisMonthScore(String storeNum)throws Exception{

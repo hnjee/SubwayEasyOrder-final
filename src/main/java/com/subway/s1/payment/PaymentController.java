@@ -135,7 +135,7 @@ public class PaymentController {
 
 			// 4. 결제 완료 정보 Sales 테이블에 저장
 			//		payNum, setting, menuNum		
-			//salesService.salesInsert(cartVO);
+			salesService.salesInsert(cartVO.getPayNum());
 		}
 			
 		// 5. 저장 성공 시 해당 productNum갖는 데이터 들은 Cart테이블에서 삭제 

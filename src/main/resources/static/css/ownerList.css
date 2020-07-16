@@ -1,0 +1,10 @@
+@charset "UTF-8";
+th {
+    padding: 15px 15px 15px 20px;
+    background: #ffce32;
+}
+td {
+    border-collapse: collapse;
+    border-bottom: 1px solid #444444;
+    padding: 17px;
+}

@@ -104,8 +104,13 @@ $("#bestClick").click(function(){
 //location.href="./bestPick;
 
 $("#bestList").click(function(){
-	console.log(storeNum);
 		location.href="./bestList";
 		console.log("이동");
+	
+});
+
+$("#worstList").click(function(){
+		location.href="./worstList";
+		console.log("worstList 이동");
 	
 });

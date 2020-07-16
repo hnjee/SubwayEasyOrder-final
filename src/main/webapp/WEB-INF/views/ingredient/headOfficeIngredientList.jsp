@@ -31,7 +31,7 @@
     <!-- header -->
 	<c:import url="../headOfficeSales/adminHeader.jsp"></c:import>
 	
-	<h3 id="titleName" style="margin-top: 50px;">재료 리스트</h3>
+	<h3 id="titleName" style="margin-top: 50px;"></h3>
 
 	<form action="./headOfficeIngredientList">
 		<div class="serach">
@@ -118,9 +118,9 @@
  		
         <div class="modal-body"style="padding:40px 40px;" >  
         
-         <div style="display: none; font-size: 18px;" class="title0"> 품절 하시겠습니까?</div>
+         <div style="display: none; font-size: 18px;" class="title0"> 단종 하시겠습니까?</div>
  
-         <div style="display: none; font-size: 18px;" class="title1"> 품절 해제 하시겠습니까?</div>
+         <div style="display: none; font-size: 18px;" class="title1"> 단종 해제 하시겠습니까?</div>
         
        
         <div class="btn">
@@ -143,20 +143,21 @@
 	  	<ul class="pagination justify-content-center" style="margin:20px 0">	
 	  	
 	  	<c:if test="${pager.curPage>1}">
-			    <li class="page-item"><a class="page-link" href="./headOfficeIngredientList?curPage=${pager.startNum-1}">이전</a></li>
+			    <li class="page-item"><a class="page-link" href="./headOfficeIngredientList?curPage=${pager.curPage-1}&kind=${pager.kind}&search=${pager.search}">이전</a></li>
 		</c:if>	 
 			
 	  	<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			    <li class="page-item"><a class="page-link" href="./headOfficeIngredientList?curPage=${i}">${i}</a></li>
+			    <li class="page-item"><a class="page-link" href="./headOfficeIngredientList?curPage=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 	 	 </c:forEach>
 	 	 
 	 	 <c:if test="${pager.curPage<pager.totalPage}">
-			    <li class="page-item"><a class="page-link" href="./headOfficeIngredientList?curPage=${pager.lastNum+1}">다음</a></li>
+			    <li class="page-item"><a class="page-link" href="./headOfficeIngredientList?curPage=${pager.curPage+1}&kind=${pager.kind}&search=${pager.search}">다음</a></li>
 		</c:if>
 		
 		</ul>
   </div>
-	</c:if>
+</c:if>
+
  <!-- Paging end -->  
     
     

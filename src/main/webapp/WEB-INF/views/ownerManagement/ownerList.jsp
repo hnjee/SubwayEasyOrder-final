@@ -18,7 +18,7 @@
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="../css/by.css">  
     <link rel="stylesheet" type="text/css" href="../css/ingredient.css">  
-
+	<link rel="stylesheet" type="text/css" href="../css/ownerList.css">  
 </head>
 
 <body>
@@ -29,9 +29,8 @@
     <!-- End of Sidebar -->
     
 	<div class="container">
-	 <a href="../"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:30px 400px 0px" ></a>
-	 	 <div style="margin-left:88%" value="${storeName}">${storeName}</div>
-	 <div id="line" style="border: solid 2.5px white; margin-top: 22.5px" ></div>
+    <!-- header -->
+	<c:import url="../headOfficeSales/adminHeader.jsp"></c:import>
 	<h3 id="titleName" style="margin-top: 50px;">가맹점 관리</h3>
 
 	<form action="./ownerList">
@@ -46,8 +45,8 @@
 			<span style="padding-top: 25px; margin-bottom: 25px;">  
 	            <input type="text" id="search" name="search">
 	           <button class="btn btn-default" type="submit"><i class='fas fa-search'></i></button> 
-	          	<span style="font-size: 12px; font-weight:bolder; cursor: pointer;" id="bestList" title="${vo.storeNum}">베스트매장순</span>
-	          	<span style="margin-left:10px; font-size: 12px; font-weight:bolder; cursor: pointer;"title="${vo.storeNum}" >워스트매장순</span>
+	          	<span style="font-size: 12px; font-weight:bolder; cursor: pointer;" id="bestList" >베스트매장순</span>
+	          	<span style="margin-left:10px; font-size: 12px; font-weight:bolder; cursor: pointer;" id="worstList">워스트매장순</span>
 		        <span style="margin-left: 35%;cursor: pointer; padding: 4px;" class=del-btn-all >선택삭제</span>
 				<span style="cursor: pointer;" id="bestReset" class=bestStore title="${vo.storeNum}" >리셋</span>
 				<span style="cursor: pointer;" id=bestClick class=bestStore >확인</span>
@@ -62,7 +61,7 @@
 	        <th>매장이름(번호)</th>
 	        <th>주소</th>
 	        <th>매장연락처</th>
-	        <th>주문여부</th>
+	        <th>주문</th>
 	        <th>평점</th>
 	        <th>매장선정</th>
 	        <th>비고</th>
@@ -77,10 +76,10 @@
 	        <td>${vo.address}</td>
 	        <td>${vo.telNumber}</td>
  			<c:if test="${vo.orderable eq '0'}">
-	        <td>주문 불가능</td>
+	        <td>불가능</td>
 	        </c:if> 
 	        <c:if test="${vo.orderable eq '1'}">
-	        <td>주문 가능</td>
+	        <td>가능</td>
 	        </c:if> 
 	        <td>${vo.storeScore}점</td>
 	         <c:if test="${vo.best eq '0'}">
@@ -103,20 +102,20 @@
 	  	<ul class="pagination justify-content-center" style="margin:20px 0">	
 	  	
 	  	<c:if test="${pager.curPage>1}">
-			    <li class="page-item"><a class="page-link" href="./ownerList?curPage=${pager.startNum-1}">이전</a></li>
+			    <li class="page-item"><a class="page-link" href="./ownerList?curPage=${pager.curPage-1}&kind=${pager.kind}&search=${pager.search}">이전</a></li>
 		</c:if>	 
 			
-	  	<c:forEach begin="${pager.startNum}" end="${pager.lastNum-1}" var="i">
-			    <li class="page-item"><a class="page-link" href="./ownerList?curPage=${i}">${i}</a></li>
+	  	<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+			    <li class="page-item"><a class="page-link" href="./ownerList?curPage=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 	 	 </c:forEach>
 	 	 
-	 	 <c:if test="${pager.curPage+1<pager.totalPage}">
-			    <li class="page-item"><a class="page-link" href="./ownerList?curPage=${pager.lastNum+1}">다음</a></li>
+	 	 <c:if test="${pager.curPage<pager.totalPage}">
+			    <li class="page-item"><a class="page-link" href="./ownerList?curPage=${pager.curPage+1}&kind=${pager.kind}&search=${pager.search}">다음</a></li>
 		</c:if>
 		
 		</ul>
   </div>
-	</c:if>
+</c:if>
  <!-- Paging end -->  
     
     

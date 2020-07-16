@@ -23,18 +23,28 @@ public class OwnerManagementController {
 	
 	@GetMapping("ownerList")
 	public ModelAndView ownerList(Pager pager) throws Exception{
+		System.out.println("ddddddddddddddddddddd");
 		ModelAndView mv = new ModelAndView();
 		List<OwnerManagementVO> ar=ownerService.ownerList(pager);
 
 		mv.addObject("ownerList", ar);
 		mv.setViewName("ownerManagement/ownerList");
+		System.out.println("totalCount555555555:"+pager.getTotalPage());
+		System.out.println("totalCount6666666666666:"+pager.getTotalBlock());
 		return mv;
 	}
 	@GetMapping("bestList")
-	@ResponseBody
 	public ModelAndView bestList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<OwnerManagementVO> ar=ownerService.bestList(pager);
+		mv.addObject("ownerList", ar);
+		mv.setViewName("ownerManagement/ownerList");
+		return mv;
+	}
+	@GetMapping("worstList")
+	public ModelAndView worstList(Pager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OwnerManagementVO> ar=ownerService.worstList(pager);
 		mv.addObject("ownerList", ar);
 		mv.setViewName("ownerManagement/ownerList");
 		return mv;

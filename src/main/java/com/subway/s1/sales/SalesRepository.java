@@ -67,7 +67,7 @@ public interface SalesRepository {
 	public long byPeriodCount(String from, String to, Pager pager,String storeNum)throws Exception;
 
 	// 결제 완료 시 Sales 테이블에 insert
-	public int salesInsert(CartVO cartVO) throws Exception;
+	public int salesInsert(String payNum) throws Exception;
 	
 	//byTimeCount
 	public long byTimeCount(String from, String to, Pager pager,String storeNum)throws Exception;

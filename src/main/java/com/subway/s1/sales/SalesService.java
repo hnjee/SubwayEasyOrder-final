@@ -424,8 +424,8 @@ public class SalesService {
 		return salesRepository.byTime(from, to,pager,storeNum);
 	}
 	
-	public int salesInsert(CartVO cartVO) throws Exception{
-		return salesRepository.salesInsert(cartVO);
+	public int salesInsert(String payNum) throws Exception{
+		return salesRepository.salesInsert(payNum);
 	}
 	
 }//END CLASS

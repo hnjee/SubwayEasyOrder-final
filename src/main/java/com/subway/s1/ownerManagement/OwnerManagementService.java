@@ -21,7 +21,7 @@ public class OwnerManagementService {
 	private SurveyChartService surveyChartService;
 	
 	
-	//가맹점 회원관리
+	//가맹점 회원관리 ownerList
 	public List<OwnerManagementVO>ownerList(Pager pager) throws Exception{
 		//pager
 		if(pager.getKind()==null||pager.getSearch()==null) {
@@ -45,7 +45,7 @@ public class OwnerManagementService {
 		}	
 		return ar;
 	}
-
+	//best List
 	public List<OwnerManagementVO> bestList(Pager pager) throws Exception{
 		//pager
 		if(pager.getKind()==null||pager.getSearch()==null) {
@@ -69,7 +69,30 @@ public class OwnerManagementService {
 		}		
 		return ar;
 	}
+	//worstList
+	public List<OwnerManagementVO> worstList(Pager pager) throws Exception{
+		//pager
+		if(pager.getKind()==null||pager.getSearch()==null) {
+			pager.setKind("storeNum");
+			pager.setSearch("S");
+		}		
+		pager.makeRow();
+		long totalCount=ownerRepository.ownerCount(pager);
+		pager.makePage(totalCount);
+		
+		List<OwnerManagementVO> ar=ownerRepository.worstList(pager);
 
+		for(int i=0;i<ar.size();i++) {
+			List<MonthVO>ar2= surveyChartService.thisMonthScore(ar.get(i).getStoreNum());
+			if(ar2.size()>0) {
+			ar.get(i).setStoreScore( ar2.get(0).getTotalScore());
+			
+			}else {
+				ar.get(i).setStoreScore(0);
+			}
+		}		
+		return ar;
+	}
 	public OwnerManagementVO ownerSelectOne(OwnerManagementVO ownerVO) throws Exception{
 		return ownerRepository.ownerSelectOne(ownerVO);
 	}
