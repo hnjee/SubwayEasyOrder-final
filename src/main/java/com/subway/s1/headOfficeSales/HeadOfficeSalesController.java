@@ -100,37 +100,6 @@ public class HeadOfficeSalesController {
 	
 	}
 
-	
-	//ByOrder(건별매출)
-	@GetMapping("byOrder")
-	public ModelAndView byOrder(String from, String to,Pager pager)throws Exception{
-
-		ModelAndView mv = new ModelAndView();
-
-		List<ByOrderVO> ar = headOfficeSalesService.ByOrder(from, to, pager);
-		
-		mv.addObject("from", from);
-		mv.addObject("to", to);
-		mv.addObject("pager", pager);
-		mv.addObject("byOrder", ar);
-		mv.setViewName("headOfficeSales/byOrder");
-		return mv;
-		
-	}
-
-	@PostMapping("byOrder")
-	@ResponseBody
-	public ByOrderVO byOrder(String payNum)throws Exception{
-		System.out.println("payNum : "+payNum);
-		
-		ByOrderVO byOrderVO = new ByOrderVO();
-
-		byOrderVO = headOfficeSalesService.modal(payNum);
-		System.out.println(byOrderVO.getName());
-
-		return byOrderVO;
-	}
-
 
 	//-------------------------sihyun--------------------------//
 

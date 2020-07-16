@@ -173,7 +173,7 @@ ul.tabs li.current{
 
             </div>
 <!-----------------------------------------------------------------------------------------------------------------------------  -->
-            <!-- Donut Chart -->
+            <!-- Pie Chart -->
             <div class="col-xl-4 col-lg-5 " style="margin-top: 50px;">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->

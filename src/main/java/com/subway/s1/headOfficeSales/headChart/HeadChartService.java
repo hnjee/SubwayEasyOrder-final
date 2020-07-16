@@ -61,14 +61,13 @@ public class HeadChartService {
 		double siResult = Double.parseDouble(String.format("%.2f", si*100/total));
 		double saResult = Double.parseDouble(String.format("%.2f", sa*100/total));
 		double grResult = Double.parseDouble(String.format("%.2f", gr*100/total));
-
 		//반올림
 		swResult = Math.round(swResult);
 		wrResult = Math.round(wrResult);
 		siResult = Math.round(siResult);
 		saResult = Math.round(saResult);
 		grResult = Math.round(grResult);
-		
+		//백분율값 넣어주기
 		pieChartVO.setSwPercent((int)swResult);
 		pieChartVO.setSiPercent((int)siResult);
 		pieChartVO.setSaPercent((int)saResult);

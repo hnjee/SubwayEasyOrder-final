@@ -105,37 +105,4 @@
 	from OrderProduct O left Join Menu M on O.menuNum=M.menuNum left Join Payment P on O.payNum=P.payNum
 	where P.payDate  between #{from} and #{to}
 </select>
-
-<!-- ByOrder -->
-<select id="getByOrder" parameterType="Pager" resultType="ByOrderVO">
-	select DISTINCT P.payDate,O.payNum,P.totalPrice,ANY_VALUE(GROUP_CONCAT(M.name SEPARATOR '/')) as name,ANY_VALUE(O.productCount) as productCount
-	from OrderProduct O left Join Menu M on O.menuNum=M.menuNum left Join Payment P on O.payNum=P.payNum
-    where P.payDate between #{from} and #{to}
-	group by O.payNum
-    order by payDate desc limit #{pager.startRow}, 10
-</select>
-
-<!-- 주문번호별 정보검색(modal) -->
-<select id="getModal" parameterType="String" resultType="ByOrderVO">
-	select payDate,O.payNum,totalPrice,GROUP_CONCAT(M.name SEPARATOR '/') as name
-	from OrderProduct O left Join Payment P on O.payNum=P.payNum left Join Menu M on O.menuNum=M.menuNum 
-	where O.payNum='${payNum}'
-	GROUP BY O.productCount
-</select>
-
-
-<!-- totalPage 갯수 -->
-<select id="getTotalCount" parameterType="Pager" resultType="Long">
-	select count(name) from Menu
-</select>
-
-
-<!-- byOrder totalPage 갯수 -->
-<select id="getOrderTotal" parameterType="String" resultType="Long">
-	select count(distinct O.payNum) from OrderProduct O left Join Payment P on O.payNum=P.payNum
-	where P.payDate between #{from} and #{to}
-</select>
-
-
-
 </mapper>
