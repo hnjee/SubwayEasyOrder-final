@@ -13,16 +13,15 @@
 </head>
 <body>
 <c:import url="../jsp/header.jsp"></c:import>
-	<div class="container" style="position: relative;">
+	<div class="container" style="position: relative; margin-top: 100px;">
 		<div class="row" style="text-align: center;">
-			<a href="/">
-				<img alt="" src="../images/subway_logo.jpg" width="200px;"height="112.44px;" >
-			</a>
+			<h2>LOGIN</h2>
+			<p style="color: #999">써브웨이 회원으로 로그인하시면 제공하는<br>다양한 서비스를 이용할 수 있습니다.</p>
 		</div>
 		<div class="row" style="text-align: center;">
 			
 			<div class="col-sm-4"></div>
-			<div class="col-sm-4" style="padding: 0px; margin-left: 30px;">
+			<div class="col-sm-4" style="padding: 0px;">
 				<form action="./memberLogin" method="post">
 					<div class="form-group">
 						
@@ -50,7 +49,7 @@
 						<button type="submit" style="width: 100%; height: 50px; background-color: rgb(0, 152, 61);color: white; border-radius: 5px; border: 0px;">로그인</button>
 					</div>
 				</form>
-				<div class="col-sm-12">
+				<div class="col-sm-12" style="margin-top: 10px;">
 					<button class="col-sm-4" style="height: 40px; border: 0px; outline: white;">아이디 찾기</button>
 					<button class="col-sm-4" style="height: 40px; border: 0px; outline: white;">비밀번호 찾기</button>
 					<button id="memberJoin" class="col-sm-4" style="height: 40px; border: 0px; outline: white;">회원가입</button>
