@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+	.main{
+		border: 5px solid #009223; 
+		height: 600px; 
+		width: 100%;
+		border-style: double;
+	}
+	.card{
+		
+		height: 250px; 
+		width: 300px;
+		float: left;
+		margin-left: 40px;
+		margin-top: 30px;
+	}
+	.card-header{
+		background-color: #ffce32;
+	
+	}
+	.tb{
+		font-size: 13px;
+		height: 200px;
+	}
+	.star_rating{
+		margin-left: 60px;
+		float: left;
+		width: 100px;
+		margin-top: 5px;
+	}
+	.title{
+		float: left;
+		font-weight: bold;
+		margin-top: 5px;
+		margin-left: 10px;
+	}
+	.comment{
+		float: left;
+		width: 90%;
+		height: 80px;
+		margin-left: 10px;
+		margin-top: 5px;
+	}
+	.on{
+		color: #e60000;
+		size: 15px;
+	}
+
+

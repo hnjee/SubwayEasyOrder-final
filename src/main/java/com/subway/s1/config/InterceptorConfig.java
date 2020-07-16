@@ -27,10 +27,14 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(loginChkInterceptor)
+		.addPathPatterns("/member/*")
 		.addPathPatterns("/cart/*")
 		.addPathPatterns("/menu/*")
 		.addPathPatterns("/payment/*")
 		.addPathPatterns("/store/*")
+		.excludePathPatterns("/member/memberLogin")
+		.excludePathPatterns("/member/memberJoin")
+		.excludePathPatterns("/member/memberJoin2")
 		.excludePathPatterns("/cart/howToUse")
 		.excludePathPatterns("/store/storeSearch")
 		.excludePathPatterns("/store/storeSearch2")
@@ -49,7 +53,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		
 		registry.addInterceptor(ownerInterceptor)
 		.addPathPatterns("/sales/*")
-		.addPathPatterns("/store/storeManage");
+		.addPathPatterns("/store/storeManage")
+		.excludePathPatterns("/sales/byOrder");
 		
 		registry.addInterceptor(staffInterceptor)
 		
@@ -60,6 +65,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		.addPathPatterns("/ingredient/ingredientList")
 		.addPathPatterns("/store/storeOC")
 		.addPathPatterns("/payment/orderList")
+		.addPathPatterns("/sales/byOrder")
 		.excludePathPatterns("/store/storeManage");
 
 		registry.addInterceptor(memberLoginAdmin)

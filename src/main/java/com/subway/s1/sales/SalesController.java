@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.subway.s1.member.MemberService;
 import com.subway.s1.member.MemberVO;
 import com.subway.s1.point.PointService;
 import com.subway.s1.point.PointVO;
@@ -49,6 +50,8 @@ public class SalesController {
 	private PointService pointService; 
 	@Autowired
 	private StoreService storeService; 
+	@Autowired
+	private MemberService memberService;
 	
 	//index(차트홈)
 	@GetMapping("chart")
@@ -134,40 +137,70 @@ public class SalesController {
 	//환불
 	@GetMapping("byRefund")
 	@ResponseBody
-	public int ByRefund(String payNum,String id,String totalPrice,String storeNum,HttpSession session)throws Exception{
+	public int ByRefund(String payNum,String id,String totalPrice,HttpSession session)throws Exception{
 		int re = 0;
-		storeNum = ((MemberVO)session.getAttribute("member")).getStoreNum();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		
-		int result = salesService.byRefund(payNum,storeNum);
+		int result = salesService.byRefund(payNum,memberVO.getStoreNum());
 		PointVO pointVO = salesService.point(payNum);
 		if(pointVO.getPointStat()==0) {
 			int cur = pointVO.getCurPoint();
 			pointVO = new PointVO();
 			pointVO.setPayNum(payNum);
 			pointVO.setId(id);
-			pointVO.setCurPoint(-cur);
+			pointVO.setCurPoint(+cur);
 			int oriPoint = salesService.oriPoint(id);
 			pointVO.setOriPoint(oriPoint);
-			pointVO.setTotalPoint(oriPoint+(-cur));
-			pointVO.setPointStat(0);
+			pointVO.setTotalPoint(oriPoint+cur);
+			pointVO.setPointStat(2);
 			int result2 = pointService.pointInsert(pointVO);
 			if(result2 > 0) {
 				System.out.println("사용된 포인트 복원");
 			}
+			
+			//딜레이주기
+			Thread.sleep(1000);
+			
+			pointVO = new PointVO();
+			pointVO.setPayNum(payNum);
+			pointVO.setId(id);
+			int total = Integer.parseInt(totalPrice);
+			pointVO.setCurPoint(-(int)(total*0.01));
+			String pointStat = "2";
+			int totalPoint = salesService.totalPoint(payNum,pointStat);
+			pointVO.setOriPoint(totalPoint);
+			pointVO.setTotalPoint(totalPoint-((int)(total*0.01)));
+			pointVO.setPointStat(3);
+			result2 = pointService.pointInsert(pointVO);
+			pointStat = "3";
+			int totalPoint2 = salesService.totalPoint(payNum,pointStat);
+			String oriPoint2 = Integer.toString(totalPoint2);
+			int result3 = salesService.pointUpdate(id, oriPoint2);
+			if(result > 0 || result2 > 0 || result3 >0) {
+				re = 1;
+			}
+			
+		}else {
+			pointVO = new PointVO();
+			pointVO.setPayNum(payNum);
+			pointVO.setId(id);
+			int total = Integer.parseInt(totalPrice);
+			pointVO.setCurPoint(-(int)(total*0.01));
+			int oriPoint = salesService.oriPoint(id);
+			pointVO.setOriPoint(oriPoint);
+			pointVO.setTotalPoint(oriPoint-((int)(total*0.01)));
+			pointVO.setPointStat(3);
+			int result2 = pointService.pointInsert(pointVO);
+			String pointStat = "3";
+			int totalPoint2 = salesService.totalPoint(payNum,pointStat);
+			String oriPoint2 = Integer.toString(totalPoint2);
+			int result3 = salesService.pointUpdate(id, oriPoint2);
+			if(result > 0 || result2 > 0 || result3 >0) {
+				re = 1;
+			}
+			
 		}
-		pointVO = new PointVO();
-		pointVO.setPayNum(payNum);
-		pointVO.setId(id);
-		int total = Integer.parseInt(totalPrice);
-		pointVO.setCurPoint(-(int)(total*0.01));
-		int oriPoint = salesService.oriPoint(id);
-		pointVO.setOriPoint(oriPoint);
-		pointVO.setTotalPoint(oriPoint+(-(int)(total*0.01)));
-		pointVO.setPointStat(0);
-		int result2 = pointService.pointInsert(pointVO);
-		if(result > 0 || result2 > 0) {
-			re = 1;
-		}
+		
 		return re;
 	}
 
