@@ -22,7 +22,7 @@ public interface OwnerManagementRepository {
 	
 	public OwnerManagementVO ownerSelectOne(OwnerManagementVO ownerVO)throws Exception;
 
-	public int ownerDelete(OwnerManagementVO ownerVO) throws Exception;
+	public int ownerDelete(String storeNum) throws Exception;
 	
 	public int ownerDeletes(List<String> deletes)throws Exception;
 	

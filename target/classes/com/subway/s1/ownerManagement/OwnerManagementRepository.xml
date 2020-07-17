@@ -83,7 +83,7 @@
 	</select>
 	
 	<!-- 가맹점 폐점시 삭제 -->
-	<delete id="ownerDelete" parameterType="OwnerVO" >
+	<delete id="ownerDelete" parameterType="String" >
 	delete from Store where storeNum=#{storeNum}
 	</delete>
 	<!-- 가맹점 여러개 삭제 -->
