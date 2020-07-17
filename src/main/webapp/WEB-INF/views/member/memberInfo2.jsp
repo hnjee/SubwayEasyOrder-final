@@ -88,12 +88,12 @@ input::placeholder {
 				</h2>
 				
 				<div class="write_info">
-					<span class="write_left">이름</span><span class="write_right"><input id="name" style="border:1px #9999 solid; outline: 0px;" type="text" value="${member.name }" name="name"></span>
+					<span class="write_left">이름<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png"></span><span class="write_right"><input id="name" style="border:0px; outline: 0px;" type="text" value="${member.name }" name="name"></span>
 				</div>
 				<div id="namec"></div>
 				<input hidden="hidden" type="checkbox" id="namebox" class="joinCheck" checked="checked">
 				<div class="write_info">
-					<span class="write_left">휴대전화</span><span class="write_right"><input id="phone" style="border:1px #9999 solid; outline: 0px;" type="text" value="${member.phone }" name="phone" maxlength="13"> </span>
+					<span class="write_left">휴대전화<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png"></span><span class="write_right"><input id="phone" style="border:0px; outline: 0px;" type="text" value="${member.phone }" name="phone" maxlength="13"> </span>
 				</div>
 				<div id="phonec"></div>
 				<input hidden="hidden" type="checkbox" id="phonebox" class="joinCheck" checked="checked">
@@ -119,14 +119,14 @@ input::placeholder {
        		<p class="txt">개인정보 보호를 위해 주기적으로 변경해 주세요.<br>
 				타인에게 비밀번호가 노출되지 않도록 주의해 주세요.
 			<div class="write_info">
-				<span class="write_left">현재 비밀번호</span><input id="now_pw" placeholder="현재 비밀번호"  style="border:0px; outline: 0px;" type="password"  >
+				<span class="write_left">현재 비밀번호<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png"></span><input id="now_pw" placeholder="현재 비밀번호"  style="border:0px; outline: 0px;" type="password"  >
 			</div>
 			<div class="write_info">
-				<span class="write_left">새 비밀번호</span><input id="pw" name="pw" placeholder="비밀번호 변경"  style="border:0px; outline: 0px;" type="password" maxlength="13"> 
+				<span class="write_left">새 비밀번호<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png"></span><input id="pw" name="pw" placeholder="비밀번호 변경"  style="border:0px; outline: 0px;" type="password" maxlength="13"> 
 			</div>
 			<p id="msg">4~12자 영문 대 소문자, 숫자, 특수문자를 사용하세요.<br>반드시 현재의 비밀번호와 다르게 입력해 주세요.
 			<div class="write_info">
-				<span class="write_left" style="">새 비밀번호 확인</span><input id="pwCheck" placeholder="비밀번호 변경" style="border:0px; outline: 0px;" type="password"  maxlength="13">
+				<span class="write_left" style="">새 비밀번호 확인<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png"></span><input id="pwCheck" placeholder="비밀번호 변경" style="border:0px; outline: 0px;" type="password"  maxlength="13">
 			</div>
 			<span id="wrong-msg" style="color: #ff4b06;font-size: 16px; font-weight: bold;"></span>
 			<div style="text-align: center;">
