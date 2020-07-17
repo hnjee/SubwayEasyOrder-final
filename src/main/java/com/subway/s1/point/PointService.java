@@ -18,8 +18,6 @@ public class PointService {
 	public int pointInsert(PointVO pointVO) throws Exception{
 		return pointRepository.pointInsert(pointVO);
 	}
-	public PointVO surveyPoint(SurveyVO surveyVO)throws Exception{
-		return pointRepository.surveyPoint(surveyVO);
-	}
+	
 	
 }

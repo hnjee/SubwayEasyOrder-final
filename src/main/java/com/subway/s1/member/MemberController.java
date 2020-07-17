@@ -146,15 +146,17 @@ public class MemberController {
 		
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		PointVO pointVO = new PointVO();
-		pointVO = pointService.surveyPoint(surveyVO);
-		int curPoint = pointVO.getCurPoint();
-		curPoint=curPoint/2;
+		
+		int curPoint = 100;
+		pointVO.setId(memberVO.getId());
+		pointVO.setPayNum(surveyVO.getPayNum());
 		pointVO.setCurPoint(curPoint);
 		pointVO.setOriPoint(memberVO.getOriPoint());
 		pointVO.setTotalPoint(pointVO.getCurPoint()+pointVO.getOriPoint());
-		pointVO.setPointStat(1);
+		pointVO.setPointStat(4);
 		pointService.pointInsert(pointVO);
 		memberVO.setOriPoint(pointVO.getTotalPoint());
+		memberService.memberPointUpdate(memberVO);		//결제 후 멤버 테이블 업데이트
 		session.setAttribute("member", memberVO);
 	}
 	
