@@ -93,21 +93,33 @@ td{
 						<c:if test="${list.productPrice gt 0 }">
 							<tr style="background-color: white;">
 								<td class="rowSet">
-									<div>${list.payNum}</div>
-									<div id="${list.payNum }_date" title="${list.payDate }">(${list.payDate })</div>
-									<div id="${list.payNum}_storeName">${list.storeName }</div>
-									<c:if test="${list.review eq 0 }">
-									<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn" data-toggle="modal" data-target="#myModal" style="outline: 0px; border-color: #999;">
-										<i class="fa fa-pencil-square-o" style="font-size:24px;color:black"></i>
-										<span style="font-weight: bold; color: black">리뷰 쓰기</span>
-										<span id="${list.payNum }_dday" style="color: green; font-weight: bold;"></span>
-									</div>
+									<c:if test="${list.refund eq 1 }">
+										<del>
+										<div>${list.payNum}</div>
+										<div id="${list.payNum }_date" title="${list.payDate }">(${list.payDate })</div>
+										<div id="${list.payNum}_storeName">${list.storeName }</div>
+										</del>
+										<div style="color: #f1a03c">환불</div>
+										
 									</c:if>
-									<c:if test="${list.review eq 1 }">
-									<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn"  style="outline: 0px; border-color: #999;cursor:default;">
-										<i class="fa fa-pencil-square-o" style="font-size:24px;color:#999"></i>
-										<span style="font-weight: bold; color: black">작성 완료</span>
-									</div>
+									<c:if test="${list.refund eq 0 }">
+										<div>${list.payNum}</div>
+										<div id="${list.payNum }_date" title="${list.payDate }">(${list.payDate })</div>
+										<div id="${list.payNum}_storeName">${list.storeName }</div>
+										
+										<c:if test="${list.review eq 0 }">
+										<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn" data-toggle="modal" data-target="#myModal" style="outline: 0px; border-color: #999;">
+											<i class="fa fa-pencil-square-o" style="font-size:24px;color:black"></i>
+											<span style="font-weight: bold; color: black">리뷰 쓰기</span>
+											<span id="${list.payNum }_dday" style="color: green; font-weight: bold;"></span>
+										</div>
+										</c:if>
+										<c:if test="${list.review eq 1 }">
+										<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn"  style="outline: 0px; border-color: #999;cursor:default;">
+											<i class="fa fa-pencil-square-o" style="font-size:24px;color:#999"></i>
+											<span style="font-weight: bold; color: black">작성 완료</span>
+										</div>
+										</c:if>
 									</c:if>
 									
 									

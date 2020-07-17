@@ -28,5 +28,6 @@ public class OrderInfoVO {
 	private String storeName;
 	
 	private long review;
+	private long refund;
 
 }
