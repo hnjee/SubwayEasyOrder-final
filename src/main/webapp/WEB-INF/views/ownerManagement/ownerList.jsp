@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,7 +83,7 @@
 	        <c:if test="${vo.orderable eq '1'}">
 	        <td>가능</td>
 	        </c:if> 
-	        <td>${vo.storeScore}점</td>
+	        <td><fmt:formatNumber value="${vo.storeScore}" pattern=""></fmt:formatNumber>점</td>
 	         <c:if test="${vo.best eq '0'}">
 	        <td>일반매장</td>
 	        </c:if> 

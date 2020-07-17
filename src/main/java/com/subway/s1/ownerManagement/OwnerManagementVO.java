@@ -13,5 +13,5 @@ public class OwnerManagementVO{
 	private String hours;
 	private Integer orderable;
 	private Integer best;
-	private int StoreScore;
+	private float StoreScore;
 }

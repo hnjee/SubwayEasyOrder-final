@@ -196,7 +196,7 @@ public class SurveyChartService {
 			kindness=(kindness/thisMonthCount);
 			ar.get(i).setKindness(kindness);
 
-			int totalScore=((taste+hygiene+kindness)/3);
+			float totalScore=((taste+hygiene+kindness)/3);
 			ar.get(i).setTotalScore(totalScore);
 
 		}

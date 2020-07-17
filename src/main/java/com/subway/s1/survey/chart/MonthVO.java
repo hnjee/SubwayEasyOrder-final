@@ -9,7 +9,7 @@ public class MonthVO {
 	private int hygiene;
 	private int kindness;
 	private int monthCount;
-	private int totalScore;
+	private float totalScore;
 	
 	private String month;
 	private String payDate;
