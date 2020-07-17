@@ -392,7 +392,7 @@ td{
 						id_index:id_index
 					},
 					success:function(){
-						alert("성공");
+						alert("삭제됐습니다.");
 						location.href="./memberMenu";
 					}
 				});

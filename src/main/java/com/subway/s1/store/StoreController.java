@@ -112,7 +112,6 @@ public class StoreController {
 	}
 	
 	
-	//지워도 될것같은..
 	@GetMapping("findStore")
 	@ResponseBody
 	public String findStore(StoreVO storeVO)throws Exception{
@@ -121,7 +120,12 @@ public class StoreController {
 			return "null";
 		} else {
 			storeVO=storeService.findStoreNum(storeVO);
-			return storeVO.getStoreNum();
+			if(storeVO.getOrderable()==1) {
+				return storeVO.getStoreNum();
+				
+			} else {
+				return "null";
+			}
 		}
 	}
 	
