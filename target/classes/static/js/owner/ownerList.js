@@ -55,8 +55,10 @@ $(".del-btn-all").click(function(){
 
 $(".deleteOne").click(function(){
 	var storeNum = $(this).attr("title");
+	console.log(storeNum);
 	if(confirm("가맹점 회원의 정보까지 함께 사라집니다. 삭제하시겠습니까?")){
-		location.href="./ownerDelete?storeNum"+storeNum;
+		location.href="./ownerDelete?storeNum="+storeNum;
+		console.log("삭제");
 	}
 });
 

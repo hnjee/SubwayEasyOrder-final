@@ -97,12 +97,14 @@ public class OwnerManagementService {
 		return ownerRepository.ownerSelectOne(ownerVO);
 	}
 	
-	public int ownerDelete(OwnerManagementVO ownerVO) throws Exception{
-		String ownerID="owner_"+ownerVO.getStoreNum();
-		String staffID="staff_"+ownerVO.getStoreNum();
+	public int ownerDelete(String storeNum) throws Exception{
+		String ownerID="owner_"+storeNum;
+		System.out.println("ownerID:"+ownerID);
+		String staffID="staff_"+storeNum;
+		System.out.println("staffID:"+staffID);
 		ownerRepository.ownerMemberDelete(ownerID);
 		ownerRepository.ownerMemberDelete(staffID);
-		return ownerRepository.ownerDelete(ownerVO);
+		return ownerRepository.ownerDelete(storeNum);
 	}
 	
 	public int ownerDeletes(List<String> deletes) throws Exception{

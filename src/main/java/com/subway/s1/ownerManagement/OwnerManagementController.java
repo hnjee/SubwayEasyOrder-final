@@ -41,9 +41,10 @@ public class OwnerManagementController {
 	}
 	
 	@GetMapping("ownerDelete")
-	public ModelAndView ownerDelete(OwnerManagementVO ownerVO)throws Exception{
+	public ModelAndView ownerDelete(String storeNum)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result=ownerService.ownerDelete(ownerVO);
+		System.out.println("storeNumssssssss:"+storeNum);
+		int result=ownerService.ownerDelete(storeNum);
 		if(result>0) {
 			System.out.println("store 삭제 성공");
 		}else {
