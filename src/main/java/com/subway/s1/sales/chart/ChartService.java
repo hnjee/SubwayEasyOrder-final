@@ -1,7 +1,5 @@
 package com.subway.s1.sales.chart;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.subway.s1.cart.CartVO;
 import com.subway.s1.point.PointVO;
 import com.subway.s1.util.Pager;
 

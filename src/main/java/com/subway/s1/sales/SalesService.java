@@ -1,6 +1,5 @@
 package com.subway.s1.sales;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -10,9 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.subway.s1.util.Pager;
 
-import com.subway.s1.cart.CartVO;
 import com.subway.s1.point.PointVO;
-import com.subway.s1.store.StoreRepository;
+
 
 @Service
 @Transactional(rollbackFor = Exception.class) // 예외처리
@@ -307,9 +305,6 @@ public class SalesService {
 			//to에 최종날짜 합쳐서 넣기
 			to = main+to2;
 		}
-		List<ByPeriodVO>ar2 = new ArrayList<>(7);
-		List<ByPeriodVO>ar =salesRepository.byDay(from, to,storeNum);
-
 		
 		return salesRepository.byDay(from, to,storeNum);
 	}

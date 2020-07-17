@@ -1,6 +1,5 @@
 package com.subway.s1.headOfficeSales;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -8,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.subway.s1.product.ProductVO;
-import com.subway.s1.sales.ByOrderVO;
 import com.subway.s1.sales.ByPeriodVO;
 import com.subway.s1.sales.ByProductVO;
 import com.subway.s1.util.Pager;
@@ -206,10 +203,7 @@ public class HeadOfficeSalesService {
 			//to에 최종날짜 합쳐서 넣기
 			to = main+to2;
 		}
-		List<ByPeriodVO>ar2 = new ArrayList<>(7);
-		List<ByPeriodVO>ar =headOfficeSalesRepository.byDay(from, to);
-
-		
+	
 		return headOfficeSalesRepository.byDay(from, to);
 	}
 

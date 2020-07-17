@@ -2,15 +2,10 @@ package com.subway.s1.survey.chart;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.subway.s1.member.MemberVO;
-import com.subway.s1.ownerManagement.OwnerManagementRepository;
-import com.subway.s1.ownerManagement.OwnerManagementService;
 
 @Service
 @Transactional(rollbackFor = Exception.class)

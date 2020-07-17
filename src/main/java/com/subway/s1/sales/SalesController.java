@@ -7,16 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.lang.reflect.Member;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import com.subway.s1.member.MemberService;
 import com.subway.s1.member.MemberVO;
 import com.subway.s1.point.PointService;
 import com.subway.s1.point.PointVO;
@@ -50,9 +39,7 @@ public class SalesController {
 	private PointService pointService; 
 	@Autowired
 	private StoreService storeService; 
-	@Autowired
-	private MemberService memberService;
-	
+
 	//index(차트홈)
 	@GetMapping("chart")
 	public ModelAndView chart(HttpSession session)throws Exception{

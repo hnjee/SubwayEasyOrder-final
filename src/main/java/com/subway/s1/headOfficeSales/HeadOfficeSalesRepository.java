@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.subway.s1.sales.ByOrderVO;
 import com.subway.s1.sales.ByPeriodVO;
 import com.subway.s1.sales.ByProductVO;
 import com.subway.s1.util.Pager;

@@ -79,6 +79,7 @@
 	<update id="salesUpdate" parameterType="ProductVO">
 		 update Menu set sale = #{sale} where menuNum = #{menuNum}
 	</update>
+	
 	<!-- 아침메뉴품절 -->
 	<update id="sw4Update" parameterType="Int">
 		update Menu set sale = #{sale} where menuCode = 'SW4'

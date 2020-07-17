@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.subway.s1.member.MemberRepository;
 import com.subway.s1.member.MemberService;
 import com.subway.s1.member.MemberVO;
 import com.subway.s1.myStore.MyStoreService;

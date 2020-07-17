@@ -3,8 +3,6 @@ package com.subway.s1.product;
 import java.io.File;
 
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
