@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.subway.s1.cart.CartVO;
 import com.subway.s1.point.PointVO;
 import com.subway.s1.util.Pager;
 
@@ -66,7 +67,7 @@ public interface SalesRepository {
 	public long byPeriodCount(String from, String to, Pager pager,String storeNum)throws Exception;
 
 	// 결제 완료 시 Sales 테이블에 insert
-	public int salesInsert(String payNum) throws Exception;
+	public int salesInsert(CartVO cartVO) throws Exception;
 	
 	//byTimeCount
 	public long byTimeCount(String from, String to, Pager pager,String storeNum)throws Exception;

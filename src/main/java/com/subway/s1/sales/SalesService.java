@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.subway.s1.util.Pager;
-
+import com.subway.s1.cart.CartVO;
 import com.subway.s1.point.PointVO;
 
 
@@ -419,8 +419,8 @@ public class SalesService {
 		return salesRepository.byTime(from, to,pager,storeNum);
 	}
 	
-	public int salesInsert(String payNum) throws Exception{
-		return salesRepository.salesInsert(payNum);
+	public int salesInsert(CartVO cartVO) throws Exception{
+		return salesRepository.salesInsert(cartVO);
 	}
 	
 }//END CLASS
