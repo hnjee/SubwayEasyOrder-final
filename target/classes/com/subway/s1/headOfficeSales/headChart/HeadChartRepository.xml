@@ -7,9 +7,9 @@
 <mapper namespace="com.subway.s1.headOfficeSales.headChart.HeadChartRepository">
 
 <select id="monthChart" parameterType="ChartVO" resultType="ChartVO" >
-	select left(M.payDate,7) as month,sum(M.totalPrice) as totalPrice from
+	select distinct left(M.payDate,7) as month,sum(M.totalPrice) as totalPrice from
 	(select S.payNum,Pay.payDate as payDate, Pay.totalPrice as totalPrice
-	From Sales AS S 
+	From OrderProduct AS S 
 	left join Payment AS Pay
 	ON S.payNum = Pay.payNum
     where Pay.refund=0
@@ -22,9 +22,9 @@
 
 
 <select id="weekChart" parameterType="ChartVO" resultType="ChartVO">
-	select dayofweek(D.payDate) as day,dayName(D.payDate) as day2,sum(D.totalPrice) as totalPrice, left(CURDATE(),7) as todayMonth from
+	select distinct dayofweek(D.payDate) as day,dayName(D.payDate) as day2,sum(D.totalPrice) as totalPrice, left(CURDATE(),7) as todayMonth from
 	(select S.payNum,Pay.payDate as payDate, Pay.totalPrice as totalPrice
-	From Sales AS S 
+	From OrderProduct AS S 
 	left join Payment AS Pay
 	ON S.payNum = Pay.payNum 
     where Pay.refund=0
@@ -35,9 +35,9 @@
 </select>
 
 <select id="yearChart" parameterType="ChartVO" resultType="ChartVO">
-	select year(D.payDate) as year,sum(D.totalPrice) as totalPrice from
+	select distinct year(D.payDate) as year,sum(D.totalPrice) as totalPrice from
 	(select S.payNum,Pay.payDate as payDate, Pay.totalPrice as totalPrice
-	From Sales AS S 
+	From OrderProduct AS S 
 	left join Payment AS Pay
 	ON S.payNum = Pay.payNum 
 	where Pay.refund=0
@@ -48,9 +48,9 @@
 </select>
 
 <select id="timeChart" parameterType="ChartVO" resultType="ChartVO">
-	select substring(D.payDate,11,3) as time,sum(D.totalPrice) as totalPrice, left(CURDATE(),7) as todayMonth from
+	select distinct substring(D.payDate,11,3) as time,sum(D.totalPrice) as totalPrice, left(CURDATE(),7) as todayMonth from
 	(select S.payNum,Pay.payDate as payDate, Pay.totalPrice as totalPrice
-	From Sales AS S 
+	From OrderProduct AS S 
 	left join Payment AS Pay
 	ON S.payNum = Pay.payNum
     where Pay.refund=0 and left(Pay.payDate,7) like left(CURDATE(),7)
