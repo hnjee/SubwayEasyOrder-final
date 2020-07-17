@@ -165,8 +165,9 @@
 	where P.payDate between #{from} and #{to} and storeNum = #{storeNum}
 </select>
 
-<insert id="salesInsert" parameterType="String">
-	insert into Sales(payNum) value(#{payNum})
+
+<insert id="salesInsert" parameterType="CartVO">
+	insert into Sales(payNum) values(#{payNum});
 </insert>
 
 
