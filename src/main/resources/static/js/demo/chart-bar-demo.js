@@ -77,7 +77,7 @@ var myBarChart = new Chart(ctx, {
         ticks: {
           min: 0,
           //최대값
-          max: 150000,
+          max: 1000000,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks
