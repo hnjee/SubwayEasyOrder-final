@@ -131,8 +131,7 @@
 
 <!-- 환불  -->
 <update id="byRefund" parameterType="String">
-	update Payment P left Join Sales S on P.payNum=S.payNum  set S.refund = 1, P.refund=1
-    where P.payNum=#{payNum}
+	update Payment set refund=1 where payNum=#{payNum}
 </update>
 
 <!-- Id별 oriPoint검색 -->
