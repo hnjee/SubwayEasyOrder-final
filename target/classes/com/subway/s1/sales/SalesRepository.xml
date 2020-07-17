@@ -166,7 +166,7 @@
 </select>
 
 <insert id="salesInsert" parameterType="String">
-	insert into Sales(payNum) values(#{payNum});
+	insert into Sales(payNum) value(#{payNum})
 </insert>
 
 
