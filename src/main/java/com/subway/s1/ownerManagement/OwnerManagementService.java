@@ -34,15 +34,15 @@ public class OwnerManagementService {
 		
 		List<OwnerManagementVO> ar=ownerRepository.ownerList(pager);
 
-		for(int i=0;i<ar.size();i++) {
-			System.out.println(ar.get(i).getStoreNum());
-			List<MonthVO>ar2= surveyChartService.thisMonthScore(ar.get(i).getStoreNum());
-			if(ar2.size()>0) {
-			ar.get(i).setStoreScore( ar2.get(0).getTotalScore());
-			}else {
-				ar.get(i).setStoreScore(0);
-			}
-		}	
+//		for(int i=0;i<ar.size();i++) {
+//			System.out.println(ar.get(i).getStoreNum());
+//			List<MonthVO>ar2= surveyChartService.thisMonthScore(ar.get(i).getStoreNum());
+//			if(ar2.size()>0) {
+//			ar.get(i).setStoreScore(ar2.get(0).getTotalScore());
+//			}else {
+//				ar.get(i).setStoreScore(0);
+//			}
+//		}	
 		return ar;
 	}
 	//best List
@@ -58,15 +58,15 @@ public class OwnerManagementService {
 		
 		List<OwnerManagementVO> ar=ownerRepository.bestList(pager);
 
-		for(int i=0;i<ar.size();i++) {
-			List<MonthVO>ar2= surveyChartService.thisMonthScore(ar.get(i).getStoreNum());
-			if(ar2.size()>0) {
-			ar.get(i).setStoreScore( ar2.get(0).getTotalScore());
-			
-			}else {
-				ar.get(i).setStoreScore(0);
-			}
-		}		
+//		for(int i=0;i<ar.size();i++) {
+//			List<MonthVO>ar2= surveyChartService.thisMonthScore(ar.get(i).getStoreNum());
+//			if(ar2.size()>0) {
+//			ar.get(i).setStoreScore( ar2.get(0).getTotalScore());
+//			
+//			}else {
+//				ar.get(i).setStoreScore(0);
+//			}
+//		}		
 		return ar;
 	}
 	//worstList
@@ -82,15 +82,15 @@ public class OwnerManagementService {
 		
 		List<OwnerManagementVO> ar=ownerRepository.worstList(pager);
 
-		for(int i=0;i<ar.size();i++) {
-			List<MonthVO>ar2= surveyChartService.thisMonthScore(ar.get(i).getStoreNum());
-			if(ar2.size()>0) {
-			ar.get(i).setStoreScore( ar2.get(0).getTotalScore());
-			
-			}else {
-				ar.get(i).setStoreScore(0);
-			}
-		}		
+//		for(int i=0;i<ar.size();i++) {
+//			List<MonthVO>ar2= surveyChartService.thisMonthScore(ar.get(i).getStoreNum());
+//			if(ar2.size()>0) {
+//			ar.get(i).setStoreScore( ar2.get(0).getTotalScore());
+//			
+//			}else {
+//				ar.get(i).setStoreScore(0);
+//			}
+//		}		
 		return ar;
 	}
 	public OwnerManagementVO ownerSelectOne(OwnerManagementVO ownerVO) throws Exception{

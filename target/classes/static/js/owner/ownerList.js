@@ -104,13 +104,13 @@ $("#bestClick").click(function(){
 //location.href="./bestPick;
 
 $("#bestList").click(function(){
-		location.href="./bestList";
+		location.href="./ownerList?section=best";
 		console.log("이동");
 	
 });
 
 $("#worstList").click(function(){
-		location.href="./worstList";
+		location.href="./ownerList?section=worst";
 		console.log("worstList 이동");
 	
 });

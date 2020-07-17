@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,29 +23,18 @@ public class OwnerManagementController {
 	private OwnerManagementService ownerService;
 	
 	@GetMapping("ownerList")
-	public ModelAndView ownerList(Pager pager) throws Exception{
-		System.out.println("ddddddddddddddddddddd");
+	public ModelAndView ownerList(Pager pager,@RequestParam(defaultValue = "") String section) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<OwnerManagementVO> ar=ownerService.ownerList(pager);
-
-		mv.addObject("ownerList", ar);
-		mv.setViewName("ownerManagement/ownerList");
-		System.out.println("totalCount555555555:"+pager.getTotalPage());
-		System.out.println("totalCount6666666666666:"+pager.getTotalBlock());
-		return mv;
-	}
-	@GetMapping("bestList")
-	public ModelAndView bestList(Pager pager) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		List<OwnerManagementVO> ar=ownerService.bestList(pager);
-		mv.addObject("ownerList", ar);
-		mv.setViewName("ownerManagement/ownerList");
-		return mv;
-	}
-	@GetMapping("worstList")
-	public ModelAndView worstList(Pager pager) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		List<OwnerManagementVO> ar=ownerService.worstList(pager);
+		List<OwnerManagementVO> ar= null;
+		
+		if(section.equals("best")) {
+			ar=ownerService.bestList(pager);
+		}else if(section.equals("worst")) {
+			ar=ownerService.worstList(pager);
+		}else {
+			ar=ownerService.ownerList(pager);
+		}
+			
 		mv.addObject("ownerList", ar);
 		mv.setViewName("ownerManagement/ownerList");
 		return mv;
