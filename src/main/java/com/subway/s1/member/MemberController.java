@@ -52,6 +52,18 @@ public class MemberController {
 	private StoreService storeService;
 	
 	
+	@GetMapping("memberSecession")
+	public ModelAndView memberSecession(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		mv.setViewName("common/result");
+		mv.addObject("result", "회원탈퇴 완료");
+		mv.addObject("path", "../");
+		memberService.memberSecession(memberVO);
+		session.invalidate();
+		return mv;
+	}
+	
 	@PostMapping("memberInfo")
 	public ModelAndView memberInfo(MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -80,7 +92,30 @@ public class MemberController {
 		
 	}
 	
-	
+	@PostMapping("pwCheck")
+	@ResponseBody
+	public boolean pwCheck(String now_pw,HttpSession session)throws Exception{
+		boolean result = true;
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		if(memberVO.getPw().equals(now_pw)) {
+			result= true;
+		} else {
+			result=false;
+		}
+		
+		return result;
+	}
+	@PostMapping("pwUpdate")
+	public ModelAndView pwUpdate(MemberVO memberVO,HttpSession session)throws Exception{
+		memberService.pwUpdate(memberVO);
+		memberVO = memberService.memberLogin(memberVO);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("result", "비밀번호 변경 완료");
+		mv.addObject("path", "./memberPage");
+		mv.setViewName("common/result");
+		session.setAttribute("member", memberVO);
+		return mv;
+	}
 	
 	@GetMapping("memberInfo")
 	public void memberInfo()throws Exception{
@@ -382,8 +417,16 @@ public class MemberController {
 			mv.addObject("path", "./memberLogin");
 			mv.setViewName("common/result");
 		} else {
-			session.setAttribute("member", memberVO);
-			mv.setViewName("redirect:../");
+			if(memberVO.getStatus()==1) {
+				mv.addObject("result", "탈퇴한 아이디입니다.");
+				mv.addObject("path", "./memberLogin");
+				mv.setViewName("common/result");
+				
+			} else {
+				session.setAttribute("member", memberVO);
+				mv.setViewName("redirect:../");
+				
+			}
 		}
 		return mv;
 	}
