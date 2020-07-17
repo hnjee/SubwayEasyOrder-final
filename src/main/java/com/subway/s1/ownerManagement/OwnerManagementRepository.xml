@@ -13,9 +13,6 @@
 		<when test="kind=='name'">
 		name
 		</when>
-		<when test="kind=='orderable'">
-		orderable
-		</when>
 		<when test="kind=='address'">
 		address
 		</when>
@@ -27,16 +24,52 @@
 	 limit #{startRow}, 10
 	</select>  
 
-
+	<select id="bestList" parameterType="Pager" resultType="OwnerVO">
+		select * from Store where 
+	<choose>	
+		<when test="kind=='name'">
+		name
+		</when>
+		<when test="kind=='address'">
+		address
+		</when>
+		<otherwise>
+		storeNum
+		</otherwise>
+	</choose>
+	 like CONCAT('%',#{search},'%')
+	 order by storeScore desc
+	 limit #{startRow}, 10
+	</select>
+	
+	
+	<select id="worstList" parameterType="Pager" resultType="OwnerVO">
+		select * from Store where 
+	<choose>	
+		<when test="kind=='name'">
+		name
+		</when>
+		<when test="kind=='address'">
+		address
+		</when>
+		<otherwise>
+		storeNum
+		</otherwise>
+	</choose>
+	 like CONCAT('%',#{search},'%')
+	 order by storeScore asc
+	 limit #{startRow}, 10
+	</select>
+	
 	<!-- 가맹점 회원 수 count -->
 	<select id="ownerCount"  parameterType="Pager"  resultType="Long">
-    	select count(id) from Member where 
+    	select count(storeNum) from Store where 
     		<choose>	
-				<when test="kind=='id'">
-				id
-				</when>
 				<when test="kind=='name'">
 				name
+				</when>
+				<when test="kind=='address'">
+				address
 				</when>
 				<otherwise>
 				storeNum
@@ -50,7 +83,7 @@
 	</select>
 	
 	<!-- 가맹점 폐점시 삭제 -->
-	<delete id="ownerDelete" parameterType="OwnerVO" >
+	<delete id="ownerDelete" parameterType="String" >
 	delete from Store where storeNum=#{storeNum}
 	</delete>
 	<!-- 가맹점 여러개 삭제 -->
@@ -65,7 +98,18 @@
 	<delete id="ownerMemberDelete" parameterType="String">
 	delete from Member where id=#{id}
 	</delete>
-
+	<!-- 베스트 매장 리셋 -->
+	<update id="bestRest" parameterType="OwnerVO">
+	update Store set best=0;
+	</update>
+	<!-- 베스트매장 bestPick -->
+	<update id="bestPick" parameterType="List">
+		update Store set best=1 where storeNum in
+		<foreach collection="list" item="storeNum" open="(" close=")" separator=",">
+		#{storeNum}
+		</foreach>
+	</update>
+	
 	
  	<!-- 가맹점 등록 -->
 <!--	<insert id="ownerJoin" parameterType="OwnerVO">

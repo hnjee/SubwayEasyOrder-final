@@ -56,7 +56,7 @@
       
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog" style='font-size:20px'></i>
+          <i class='fas fa-money-check-alt' style='font-size:20px'></i>
           <span>매출관리</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -117,8 +117,9 @@
             
           <div class="collapse-divider"></div> 
             <a class="collapse-item" href="${pageContext.request.contextPath}/store/storeManage">매장정보 관리</a>
-            <a class="collapse-item" href="#">매장후기 관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/survey/surveyList">매장후기 관리</a>
             <a class="collapse-item" href="${pageContext.request.contextPath}/survey/chart">매장후기 현황</a>
+
         
         </div>
         </div>

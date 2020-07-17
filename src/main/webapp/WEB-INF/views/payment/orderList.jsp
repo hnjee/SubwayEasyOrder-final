@@ -372,7 +372,7 @@ body{
 							
 							<div style="margin: 0 auto; width: 300px; margin-top: 30px;">
 							<ul class="pagination">
-							<c:if test="${paget.curPage>1}">
+							
 								<c:if test="${pager.curBlock gt 1}">
 									<li><a href="./orderList?curPage=${pager.startNum-1}&orderInfo=${orderInfo}">이전</a></li>
 								</c:if>
@@ -384,7 +384,7 @@ body{
 								<c:if test="${pager.curBlock lt pager.totalBlock}">
 									<li><a href="./orderList?curPage=${pager.lastNum+1}&orderInfo=${orderInfo}">다음</a></li>
 								</c:if>
-							</c:if>
+							
 							</ul> 
 							</div>
 							

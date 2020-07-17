@@ -245,6 +245,14 @@ public class SalesService {
 		return salesRepository.oriPoint(id);
 	}
 	
+	public int totalPoint(String payNum, String pointStat)throws Exception{
+		return salesRepository.totalPoint(payNum,pointStat);
+	}
+	
+	public int pointUpdate(String id, String oriPoint)throws Exception{
+		return salesRepository.pointUpdate(id, oriPoint);
+	}
+	
 	public PointVO point(String payNum)throws Exception{
 		return salesRepository.point(payNum);
 	}
@@ -416,8 +424,8 @@ public class SalesService {
 		return salesRepository.byTime(from, to,pager,storeNum);
 	}
 	
-	public int salesInsert(CartVO cartVO) throws Exception{
-		return salesRepository.salesInsert(cartVO);
+	public int salesInsert(String payNum) throws Exception{
+		return salesRepository.salesInsert(payNum);
 	}
 	
 }//END CLASS

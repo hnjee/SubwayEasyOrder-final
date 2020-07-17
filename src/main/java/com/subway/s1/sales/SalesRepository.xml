@@ -140,10 +140,19 @@
  	select oriPoint from Member where id=#{id}
 </select>
 
+<select id="totalPoint" parameterType="String" resultType="Int">
+	select totalPoint from Point where payNum=#{payNum} and pointStat=#{pointStat}
+</select>
+
 <!-- 주문번호별 Point 검색 -->
 <select id="point" parameterType="String" resultType="PointVO">
 	select * from Point where payNum=#{payNum} and pointStat = 0
 </select>
+
+<!-- Member Point Update -->
+<update id="pointUpdate" parameterType="String">
+	update Member set oriPoint=#{oriPoint} where id=#{id}
+</update>
 
 <!-- totalPage 갯수 -->
 <select id="getTotalCount" parameterType="Pager" resultType="Long">
@@ -156,7 +165,7 @@
 	where P.payDate between #{from} and #{to} and storeNum = #{storeNum}
 </select>
 
-<insert id="salesInsert" parameterType="CartVO">
+<insert id="salesInsert" parameterType="String">
 	insert into Sales(payNum) values(#{payNum});
 </insert>
 

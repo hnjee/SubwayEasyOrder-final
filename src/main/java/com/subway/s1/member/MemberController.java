@@ -514,6 +514,14 @@ public class MemberController {
 		return mv;
 	}
 	
+	@GetMapping("adminLogout")
+	public ModelAndView adminLogout(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		session.invalidate();
+		mv.setViewName("redirect:../member/memberLoginAdmin");
+		return mv;
+	}
+	
 	
 	@GetMapping("adminIndex")
 	public void adminIndex(HttpSession session) throws Exception{

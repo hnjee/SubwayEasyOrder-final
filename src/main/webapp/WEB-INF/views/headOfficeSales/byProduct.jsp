@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="../css/by.css"> 
 
 </head>
-<body>
+<body id="page-top">
 
 <!-- Page Wrapper -->
   <div id="wrapper">

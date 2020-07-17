@@ -59,13 +59,6 @@
     order by time desc;
 </select>
 
-<select id="pChart" parameterType="PieChartVO" resultType="PieChartVO">
-	select distinct SUBSTRING(menuCode, 1,2) menuCode,productCount,refund
-	from Menu M left Join OrderProduct O on M.menuNum=O.menuNum left Join Payment P on O.payNum=P.payNum
-    where refund = 0
-	order by menuCode desc
-</select>
-
 <select id="menuCount" parameterType="String" resultType="Long">
 	select count(productCount) productCount
 	from OrderProduct where menuNum in (select menuNum from Menu where menuCode like concat('%',#{code},'%'))

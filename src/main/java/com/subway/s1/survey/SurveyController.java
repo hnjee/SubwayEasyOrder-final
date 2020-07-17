@@ -13,10 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.subway.s1.member.MemberVO;
 import com.subway.s1.store.StoreService;
 import com.subway.s1.store.StoreVO;
+import com.subway.s1.util.Pager;
+
 import com.subway.s1.survey.chart.BarVO;
 import com.subway.s1.survey.chart.MonthVO;
+import com.subway.s1.survey.chart.PieVO;
 import com.subway.s1.survey.chart.SurveyChartService;
 import com.subway.s1.survey.chart.YearVO;
+
 
 @Controller
 @RequestMapping("/survey/**/")
@@ -26,17 +30,36 @@ public class SurveyController {
 	private SurveyService surveyService;
 	@Autowired
 	private SurveyChartService surveyChartService;
-	
+	@Autowired
+	private StoreService storeService; 
+	//List
+	@GetMapping("surveyList")
+	public ModelAndView surveyList(HttpSession session, String from, String to,Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		StoreVO storeVO = storeService.selectStore(memberVO.getId());
+		List<SurveyVO> ar = surveyService.surveyList(memberVO.getStoreNum(),from,to,pager);
+		mv.addObject("pager", pager);
+		mv.addObject("from", from);
+		mv.addObject("to", to);
+		mv.addObject("survey", ar);
+		mv.addObject("store", storeVO);
+		mv.setViewName("survey/surveyList");	
+		return mv;
+	}
+
 	@GetMapping("chart")
 	public ModelAndView chart(HttpSession session,String storeNum,String month,String year)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		storeNum = ((MemberVO)session.getAttribute("member")).getStoreNum();
 		MemberVO memberVO = ((MemberVO)session.getAttribute("member"));
+		StoreVO storeVO = storeService.selectStore(memberVO.getId());
 		List<MonthVO> surveyMonth =surveyChartService.surveyMonth(storeNum, month);
 		List<YearVO> surveyYear=surveyChartService.surveyYear(storeNum, year);
 		List<MonthVO> monthTotal =surveyChartService.monthTotal(storeNum, month);
 		List<BarVO> thisBar =surveyChartService.thisBar(storeNum);
 		List<BarVO> totalBar=surveyChartService.totalBar(storeNum);
+		PieVO pieVO = surveyChartService.surveyPie(memberVO.getStoreNum());
 		
 		for(int i=0;i<surveyMonth.size();i++) {
 			surveyMonth.get(i).getKindness();
@@ -48,7 +71,9 @@ public class SurveyController {
 		mv.addObject("surveyMonth", surveyMonth);
 		mv.addObject("surveyYear", surveyYear);
 		mv.addObject("monthTotal", monthTotal);
+		mv.addObject("pie", pieVO);
 		mv.addObject("member", memberVO);
+		mv.addObject("store", storeVO);
 		mv.setViewName("survey/charts");
 		return mv;
 	}

@@ -26,12 +26,12 @@
         
 	<!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
- 	<a href="../"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:70px 700px 0px" ></a>
+ 	<a href="${pageContext.request.contextPath}/member/adminIndex"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:70px 700px 0px" ></a>
 	 <div class="owner_id" style="margin-left:88%;">${member.id}</div>
 	 <div id="line" style="border: solid 2.5px white; margin-top: 30px" ></div>
  	
  	<!-- Main Content -->
-      <div id="content" style="margin-top: 30px; margin-left: 70px;">
+      <div id="content" style="margin-top: 30px;">
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -39,7 +39,7 @@
           <h1 class="h3 mb-2 text-gray-800">Survey Chart</h1>
           
         <!-- Content Row -->
-          <div class="row">
+          <div class="row" >
 			<div class="col-xl-8 col-lg-7">
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">Month</li>
@@ -52,14 +52,14 @@
               
               <!-- month chart/ id=myAreaChart -->
               <div id="tab-1" class="tab-content current">
-              <div class="card shadow mb-4">
+              <div class="card1 card card1 shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">이달의 설문조사</h6>
 	               <div style="margin-left:10px; display: inline;">
 
 	                </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body-1 card-body">
                   <div class="chart-area">
                     <canvas id="myAreaChart"></canvas>
                   </div>
@@ -78,13 +78,14 @@
               
               <!-- year chart -->
               <div id="tab-2" class="tab-content">
-              <div class="card shadow mb-4">
+              <div class="card card1 shadow mb-4">
+
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">해마다 설문통계</h6>
 	               <div style="margin-left:10px; display: inline;">
 	                </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body card-body-1">
                   <div class="chart-area">
                     <canvas id="yearChart"></canvas>
                   </div>
@@ -100,13 +101,13 @@
               </div>
 			<!-- monthTotal -->
               <div id="tab-3" class="tab-content">
-              <div class="card shadow mb-4">
+              <div class="card card1 shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">달마다 총점</h6>
 	               <div style="margin-left:10px; display: inline;">
 	                </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body card-body-1">
                   <div class="chart-area">
                     <canvas id="monthTotal"></canvas>
                   </div>
@@ -126,14 +127,14 @@
               
               <!-- month chart/ id=myAreaChart -->
               <div id="tab-4" class="tab-content-bar current-bar">
-              <div class="card shadow mb-4">
+              <div class="card card1 shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary text-chart-bar" style="display: inline;">오늘의 설문조사</h6>
 	               <div style="margin-left:10px; display: inline;">
 
 	                </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body card-body-1">
                   <div class="chart-area">
                     <canvas id="thisBar"></canvas>
                   </div>
@@ -152,13 +153,13 @@
               
               <!-- 막대 total chart -->
               <div id="tab-5" class="tab-content-bar">
-              <div class="card shadow mb-4">
+              <div class="card card1 shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary text-chart-bar" style="display: inline;">오늘의 통계</h6>
 	               <div style="margin-left:10px; display: inline;">
 	                </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body card-body-1">
                   <div class="chart-area">
                     <canvas id="total-Bar"></canvas>
                   </div>
@@ -173,9 +174,42 @@
               </div>
 
 
+          
+<!-----------------------------------------------------------------------------------------------------------------------------  -->
+            <!-- Donut Chart -->
+            <div style="margin-left: 1100px; position: absolute; margin-top: 50px; width: 550px;" >
+              <div class="card shadow mb-3">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3" >
+                  <h6 class="m-0 font-weight-bold text-primary text-chart">만족도 현황</h6>
+                </div>
+            
+                 <!-- Card Body -->
+                <div class="card-body"  style="height: 500px;">
+                  <div class="chart-pie pt-4">
+                    <%-- <canvas id="myPieChart"></canvas> --%>
+                    <div id="surveyPieChart" style="height: 400px; width: 100%;">
+                    <!-- Pie -->
+					<div hidden="hidden">
+						<input id="ta" value="${pie.taSum}">
+						<input id="hy" value="${pie.hySum}">
+						<input id="ki" value="${pie.kiSum}">
+						
+						<input id="tap" value="${pie.taPercent}">
+						<input id="hyp" value="${pie.hyPercent}">
+						<input id="kip" value="${pie.kiPercent}">
+
+					</div>
+					</div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- 도넛그래프 끝 -->
+            
+
+
          </div>
          <!-- row --> 
-          
         </div>
         <!-- /.container-fluid -->
 
@@ -259,7 +293,9 @@
 <script src="../js/survey/survey-total-chart.js"></script>
 <script src="../js/survey/survey-barMonth-chart.js"></script>
 <script src="../js/survey/survey-barTotal-chart.js"></script>
+<script src="../js/survey/survey-pie-chart.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 <!-- month chart.js -->
 </body>
 

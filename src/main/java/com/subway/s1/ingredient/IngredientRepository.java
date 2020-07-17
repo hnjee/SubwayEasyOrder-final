@@ -40,7 +40,9 @@ public interface IngredientRepository {
 	public Integer getCustomPrice(String productNum) throws Exception;
 
 	public long ingredientCount(Pager pager)throws Exception;
-
+	
+	public long headIngredientCount(Pager pager)throws Exception;
+	
 	public List<IngreSoldoutVO> soldoutCheck(String storeNum)throws Exception;
 
 }
