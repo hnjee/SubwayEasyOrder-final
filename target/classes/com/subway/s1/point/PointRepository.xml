@@ -13,4 +13,6 @@
 		insert into Point values(#{payNum},#{id},#{curPoint},#{oriPoint},#{totalPoint},#{pointStat},now())
 	</insert>
 	
+
+	
 </mapper>

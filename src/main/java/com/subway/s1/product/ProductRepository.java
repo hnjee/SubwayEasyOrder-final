@@ -15,11 +15,15 @@ public interface ProductRepository {
 	
 		public List<ProductVO> productList(Pager pager)throws Exception;
 		
+		public List<ProductVO> productList2(Pager pager)throws Exception;
+		
 		public List<MenuSoldoutVO> soldoutCheck(String storeNum)throws Exception;
 		
 		public long totalCount(Pager pager)throws Exception;
 		
 		public int salesUpdate(ProductVO productVO)throws Exception;
+		
+		public int sw4Update(int sale)throws Exception;
 		
 		public int productInsert(ProductVO productVO)throws Exception;
 		

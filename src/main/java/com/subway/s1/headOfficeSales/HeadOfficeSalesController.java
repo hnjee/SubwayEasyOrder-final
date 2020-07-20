@@ -7,21 +7,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.subway.s1.util.Pager;
 import com.subway.s1.headOfficeSales.headChart.HeadChartService;
 import com.subway.s1.member.MemberVO;
-import com.subway.s1.sales.ByOrderVO;
 import com.subway.s1.sales.ByPeriodVO;
 import com.subway.s1.sales.ByProductVO;
 import com.subway.s1.sales.chart.ChartVO;
@@ -98,37 +87,6 @@ public class HeadOfficeSalesController {
 		mv.setViewName("headOfficeSales/byProduct");
 		return mv;
 	
-	}
-
-	
-	//ByOrder(건별매출)
-	@GetMapping("byOrder")
-	public ModelAndView byOrder(String from, String to,Pager pager)throws Exception{
-
-		ModelAndView mv = new ModelAndView();
-
-		List<ByOrderVO> ar = headOfficeSalesService.ByOrder(from, to, pager);
-		
-		mv.addObject("from", from);
-		mv.addObject("to", to);
-		mv.addObject("pager", pager);
-		mv.addObject("byOrder", ar);
-		mv.setViewName("headOfficeSales/byOrder");
-		return mv;
-		
-	}
-
-	@PostMapping("byOrder")
-	@ResponseBody
-	public ByOrderVO byOrder(String payNum)throws Exception{
-		System.out.println("payNum : "+payNum);
-		
-		ByOrderVO byOrderVO = new ByOrderVO();
-
-		byOrderVO = headOfficeSalesService.modal(payNum);
-		System.out.println(byOrderVO.getName());
-
-		return byOrderVO;
 	}
 
 

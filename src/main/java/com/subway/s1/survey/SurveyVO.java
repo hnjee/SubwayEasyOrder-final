@@ -10,8 +10,9 @@ public class SurveyVO {
 	private Integer taste;
 	private Integer hygiene;
 	private Integer kindness;
-	private String commnet;
+	private String comment;
 	private Integer totalScore;
+	private Integer count;
 	
 
 }

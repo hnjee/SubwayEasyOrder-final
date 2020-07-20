@@ -141,7 +141,7 @@ public class ProductController {
 			ModelAndView mv = new ModelAndView();
 			MemberVO memberVO = ((MemberVO)session.getAttribute("member"));
 			StoreVO storeVO = storeService.selectStore(memberVO.getId());
-			List<ProductVO> ar = productService.productList(pager,memberVO.getStoreNum());
+			List<ProductVO> ar = productService.productList2(pager,memberVO.getStoreNum());
 			
 			mv.addObject("product", ar);
 			mv.addObject("Pager", pager);

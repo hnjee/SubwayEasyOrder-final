@@ -1,6 +1,7 @@
 package com.subway.s1.product;
 
 import java.io.File;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,11 @@ import com.subway.s1.util.FilePathGenerater;
 import com.subway.s1.util.FileSaver;
 import com.subway.s1.util.Pager;
 
+
+
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class ProductService {
+public class ProductService{
 	
 	@Autowired
 	private ProductRepository productRepository;	
@@ -31,6 +34,7 @@ public class ProductService {
 	private FilePathGenerater filePathGenerater;
 	@Value("${menu.filePath}")
 	private String filePath;
+
 	
 	//SK
 	//본사 List
@@ -53,7 +57,7 @@ public class ProductService {
 	
 	
 	//가맹 메뉴 List
-		public List<ProductVO> productList(Pager pager,String storeNum)throws Exception{
+		public List<ProductVO> productList2(Pager pager,String storeNum)throws Exception{
 			if(pager.getKind()==null || pager.getSearch()==null) {
 				pager.setKind("menuNum");
 				pager.setSearch("M");
@@ -64,7 +68,7 @@ public class ProductService {
 			long totalCount = productRepository.totalCount(pager);
 			pager.makePage(totalCount);
 			
-			List<ProductVO> ar = productRepository.productList(pager);
+			List<ProductVO> ar = productRepository.productList2(pager);
 			//품절된 상품 비교
 			List<MenuSoldoutVO> soldoutVO = productRepository.soldoutCheck(storeNum);
 
@@ -91,6 +95,11 @@ public class ProductService {
 				productVO.setSale(0);
 			}
 			return productRepository.salesUpdate(productVO);
+		}
+		
+		//아침메뉴 품절/품절해제
+		public int sw4Update(int sale)throws Exception{
+			return productRepository.sw4Update(sale);
 		}
 		
 		//insert

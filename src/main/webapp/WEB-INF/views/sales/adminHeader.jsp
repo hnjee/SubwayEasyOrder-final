@@ -19,7 +19,7 @@
 </style>
 </head>
 <div>
- <a href="../"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:70px 400px 0px" ></a>
+ <a href="${pageContext.request.contextPath}/member/adminIndex"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:70px 400px 0px" ></a>
 	 <div class="owner_id" style="margin-left:88%;">${member.id}</div>
 	 
 	 <div id="line" style="border: solid 2.5px white; margin-top: 33px" ></div>

@@ -4,12 +4,24 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.subway.s1.survey.SurveyRepository">
+
+
+  <select id="surveyList" parameterType="Pager" resultType="SurveyVO">
+  	select S.*,P.payDate from Survey S left Join Payment P on S.payNum=P.payNum
+	where S.storeNum=#{storeNum} and P.payDate between #{from} and #{to}
+	order by P.payDate desc limit #{pager.startRow},6
+  </select>
   
+  <select id="totalCount" parameterType="String" resultType="Long">
+  	select count(S.payNum) from Survey S left Join Payment P on S.payNum=P.payNum 
+	where S.storeNum=#{storeNum} and P.payDate between #{from} and #{to}
+  </select>
+
+ <select id="surveyMonthAVG" parameterType="PaymentVO" resultType="SurveyVO">
+ 	select count(*) count,sum(taste) taste,sum(hygiene) hygiene,sum(kindness) kindness from Survey
+	inner join Payment on(Payment.payNum=Survey.payNum)
+	where Survey.storeNum=#{storeNum} and Month(Payment.payDate)=Month(#{payDate}) and year(Payment.payDate)=Year(#{payDate})
+ </select>
   
-  
-  
-  
-  
-  
-  
+ 
   </mapper>

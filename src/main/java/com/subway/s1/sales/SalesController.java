@@ -7,16 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.lang.reflect.Member;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +39,7 @@ public class SalesController {
 	private PointService pointService; 
 	@Autowired
 	private StoreService storeService; 
-	
+
 	//index(차트홈)
 	@GetMapping("chart")
 	public ModelAndView chart(HttpSession session)throws Exception{
@@ -134,40 +124,75 @@ public class SalesController {
 	//환불
 	@GetMapping("byRefund")
 	@ResponseBody
-	public int ByRefund(String payNum,String id,String totalPrice,String storeNum,HttpSession session)throws Exception{
+	public int ByRefund(String payNum,String id,String totalPrice,HttpSession session)throws Exception{
 		int re = 0;
-		storeNum = ((MemberVO)session.getAttribute("member")).getStoreNum();
-		
-		int result = salesService.byRefund(payNum,storeNum);
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		//payment 테이블 업데이트
+		int result = salesService.byRefund(payNum,memberVO.getStoreNum());
 		PointVO pointVO = salesService.point(payNum);
+		//사용한 포인트가 있을 경우 반환
 		if(pointVO.getPointStat()==0) {
 			int cur = pointVO.getCurPoint();
 			pointVO = new PointVO();
 			pointVO.setPayNum(payNum);
 			pointVO.setId(id);
-			pointVO.setCurPoint(-cur);
+			pointVO.setCurPoint(+cur);
 			int oriPoint = salesService.oriPoint(id);
 			pointVO.setOriPoint(oriPoint);
-			pointVO.setTotalPoint(oriPoint+(-cur));
-			pointVO.setPointStat(0);
+			pointVO.setTotalPoint(oriPoint+cur);
+			pointVO.setPointStat(2);
 			int result2 = pointService.pointInsert(pointVO);
 			if(result2 > 0) {
 				System.out.println("사용된 포인트 복원");
 			}
+			
+			//딜레이주기
+			Thread.sleep(1000);
+			
+			pointVO = new PointVO();
+			pointVO.setPayNum(payNum);
+			pointVO.setId(id);
+			int total = Integer.parseInt(totalPrice);
+			pointVO.setCurPoint(-(int)(total*0.01));
+			String pointStat = "2";
+			int totalPoint = salesService.totalPoint(payNum,pointStat);
+			pointVO.setOriPoint(totalPoint);
+			pointVO.setTotalPoint(totalPoint-((int)(total*0.01)));
+			pointVO.setPointStat(3);
+			result2 = pointService.pointInsert(pointVO);
+			//멤버 oriPoint 업데이트
+			pointStat = "3";
+			int totalPoint2 = salesService.totalPoint(payNum,pointStat);
+			String oriPoint2 = Integer.toString(totalPoint2);
+			int result3 = salesService.pointUpdate(id, oriPoint2);
+			
+			if(result > 0 || result2 > 0 || result3 >0) {
+				re = 1;
+			}
+		//사용한 포인트가 없을경우 환불(적립된포인트환불)
+		}else {
+			pointVO = new PointVO();
+			pointVO.setPayNum(payNum);
+			pointVO.setId(id);
+			int total = Integer.parseInt(totalPrice);
+			pointVO.setCurPoint(-(int)(total*0.01));
+			int oriPoint = salesService.oriPoint(id);
+			pointVO.setOriPoint(oriPoint);
+			pointVO.setTotalPoint(oriPoint-((int)(total*0.01)));
+			pointVO.setPointStat(3);
+			int result2 = pointService.pointInsert(pointVO);
+			//멤버 oriPoint 업데이트
+			String pointStat = "3";
+			int totalPoint2 = salesService.totalPoint(payNum,pointStat);
+			String oriPoint2 = Integer.toString(totalPoint2);
+			int result3 = salesService.pointUpdate(id, oriPoint2);
+			
+			if(result > 0 || result2 > 0 || result3 >0) {
+				re = 1;
+			}
+			
 		}
-		pointVO = new PointVO();
-		pointVO.setPayNum(payNum);
-		pointVO.setId(id);
-		int total = Integer.parseInt(totalPrice);
-		pointVO.setCurPoint(-(int)(total*0.01));
-		int oriPoint = salesService.oriPoint(id);
-		pointVO.setOriPoint(oriPoint);
-		pointVO.setTotalPoint(oriPoint+(-(int)(total*0.01)));
-		pointVO.setPointStat(0);
-		int result2 = pointService.pointInsert(pointVO);
-		if(result > 0 || result2 > 0) {
-			re = 1;
-		}
+		
 		return re;
 	}
 
