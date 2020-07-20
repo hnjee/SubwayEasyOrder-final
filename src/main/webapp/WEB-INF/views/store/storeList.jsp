@@ -150,7 +150,6 @@
 		var tit = a.title;
 		$("#info"+tit).removeClass("layeron");
 	}
-
 </script>
 
 <c:forEach items="${list}" var="store" varStatus="i">	

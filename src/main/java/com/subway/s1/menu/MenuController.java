@@ -62,8 +62,8 @@ public class MenuController {
 		
 		mv.addObject("list", ar);
 		mv.addObject("menuCode", menuCode);
-		mv.setViewName("menu/menuList");
 		mv.addObject("menuOut", menuOut);
+		mv.setViewName("menu/menuList");
 		return mv;
 	}
 
