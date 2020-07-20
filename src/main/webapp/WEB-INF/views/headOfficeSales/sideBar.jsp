@@ -40,7 +40,7 @@
       
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog" style='font-size:20px'></i>
+          <i class='fas fa-money-check-alt' style='font-size:20px'></i>
           <span>매출관리</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -82,15 +82,28 @@
         </div>
       </li>
       <hr class="sidebar-divider d-none d-md-block">
+      
+      
+      <!-- Heading -->
+      <div class="sidebar-heading" style="font-size:14px">
+        Store
+      </div>
+      
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
-          <i class='far fa-address-card' style='font-size:20px'></i>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#storePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class='fas fa-store' style='font-size:20px'></i>
           <span>가맹점관리</span>
           </a>
-           <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          
+          <div id="storePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-           <a class="collapse-item" href="${pageContext.request.contextPath}/ownerManagement/ownerList">가맹점관리</a>
+            <h6 class="collapse-header">Store Management:</h6>
+            
+            <div class="collapse-divider"></div> 
+             <a class="collapse-item" href="${pageContext.request.contextPath}/ownerManagement/ownerList">가맹점관리</a>
+
+          
          </div>
         </div>
       </li>

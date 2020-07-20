@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.subway.s1.sales.ByOrderVO;
 import com.subway.s1.sales.ByPeriodVO;
 import com.subway.s1.sales.ByProductVO;
 import com.subway.s1.util.Pager;
@@ -28,15 +27,6 @@ public interface HeadOfficeSalesRepository {
 	
 	//getAllMenuPrice
 	public String getAllMenuPrice(String from, String to)throws Exception;
-	
-	//ByOrderVO
-	public List<ByOrderVO> getByOrder(String from, String to, Pager pager)throws Exception;
-	
-	//getModal
-	public ByOrderVO getModal(String payNum)throws Exception;
-	
-	//byOrder totalCount
-	public long getOrderTotal(Pager pager, String from, String to)throws Exception;
 
 	//byProduct totalCount
 	public long getProductTotal(Pager pager, String from, String to)throws Exception;

@@ -20,7 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/productListStyle.css">
 
 </head>
-<body>
+<body id="page-top">
  <div id="wrapper">
  	<!-- Sidebar -->
     <c:import url="../headOfficeSales/sideBar.jsp"></c:import>

@@ -10,4 +10,6 @@ public class StoreVO {
 	private String telNumber;
 	private String hours;
 	private Integer orderable;
+	private Integer best;
+	private Integer storeScore;
 }

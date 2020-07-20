@@ -60,7 +60,7 @@ public class IngredientService {
 			pager.setSearch("I");
 		}
 		pager.makeRow();
-		long totalCount=ingredientRepository.ingredientCount(pager);
+		long totalCount=ingredientRepository.headIngredientCount(pager);
 		pager.makePage(totalCount);
 		return ingredientRepository.headOfficeIngredientList(pager);
 		

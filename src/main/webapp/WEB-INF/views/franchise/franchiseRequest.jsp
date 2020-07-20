@@ -9,7 +9,7 @@
 <title>SUBWAY 가맹점 신청</title>
 <c:import url="../template/boot.jsp"></c:import>
 <link rel="stylesheet" type="text/css"  href="../css/headerStyle.css"> 
-<link rel="stylesheet" type="text/css"  href="../css/footerStyle.css">
+<link rel="stylesheet" type="text/css"  href="../css/footerStyle.css"> 
 
 <link href="../css/subway/ui.commonFranchise.css" rel="stylesheet" type="text/css">
 <link href="../css/subway/mCustomScrollbar.css" rel="stylesheet" type="text/css">

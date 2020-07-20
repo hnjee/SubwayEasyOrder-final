@@ -25,7 +25,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter{
 			check = true;
 		}else {
 			request.setAttribute("result", "관리자모드 입니다.");
-			request.setAttribute("path", "../");
+			request.setAttribute("path", "../member/adminIndex");
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/result.jsp"); 
 			view.forward(request, response);
 		}

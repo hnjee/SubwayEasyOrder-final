@@ -1,6 +1,5 @@
 package com.subway.s1.sales;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -9,10 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.subway.s1.util.Pager;
-
 import com.subway.s1.cart.CartVO;
 import com.subway.s1.point.PointVO;
-import com.subway.s1.store.StoreRepository;
+
 
 @Service
 @Transactional(rollbackFor = Exception.class) // 예외처리
@@ -122,10 +120,6 @@ public class SalesService {
 	//ByOrder
 	public List<ByOrderVO> ByOrder(String from, String to, Pager pager,String storeNum)throws Exception{
 
-		
-//		System.out.println(from==null);
-//		System.out.println(from.equals(""));
-		
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int mon = cal.get(Calendar.MONTH)+1;
@@ -249,6 +243,14 @@ public class SalesService {
 		return salesRepository.oriPoint(id);
 	}
 	
+	public int totalPoint(String payNum, String pointStat)throws Exception{
+		return salesRepository.totalPoint(payNum,pointStat);
+	}
+	
+	public int pointUpdate(String id, String oriPoint)throws Exception{
+		return salesRepository.pointUpdate(id, oriPoint);
+	}
+	
 	public PointVO point(String payNum)throws Exception{
 		return salesRepository.point(payNum);
 	}
@@ -303,9 +305,6 @@ public class SalesService {
 			//to에 최종날짜 합쳐서 넣기
 			to = main+to2;
 		}
-		List<ByPeriodVO>ar2 = new ArrayList<>(7);
-		List<ByPeriodVO>ar =salesRepository.byDay(from, to,storeNum);
-
 		
 		return salesRepository.byDay(from, to,storeNum);
 	}
@@ -420,7 +419,7 @@ public class SalesService {
 		return salesRepository.byTime(from, to,pager,storeNum);
 	}
 	
-	public int salesInsert(CartVO cartVO) throws Exception{
+	public int salesInsert(CartVO cartVO ) throws Exception{
 		return salesRepository.salesInsert(cartVO);
 	}
 	

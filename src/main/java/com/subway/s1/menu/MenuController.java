@@ -13,12 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.subway.s1.ingredient.IngredientService;
 import com.subway.s1.ingredient.IngredientVO;
-import com.subway.s1.member.MemberService;
 import com.subway.s1.member.MemberVO;
-import com.subway.s1.soldout.SoldoutRepository;
 import com.subway.s1.soldout.SoldoutService;
-import com.subway.s1.store.StoreService;
-import com.subway.s1.store.StoreVO;
+
 
 @Controller
 @RequestMapping("/menu/**/")
@@ -36,7 +33,7 @@ public class MenuController {
 		if(menuCode==null) {
 			menuCode="SW";
 		}
-		List<MenuVO> ar = menuService.menuList(menuCode);
+		List<MenuVO> ar = menuService.menuListAll(menuCode);
 		mv.addObject("list", ar);
 		mv.addObject("menuCode", menuCode);
 		return mv;

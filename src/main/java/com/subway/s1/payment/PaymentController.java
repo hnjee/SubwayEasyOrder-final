@@ -173,11 +173,14 @@ public class PaymentController {
 		pointVO.setOriPoint(memberVO.getOriPoint());
 		pointVO.setTotalPoint(memberVO.getOriPoint()+(int)(totalPrice*0.01));
 		pointVO.setPointStat(1);
+		Thread.sleep(1000); //포인트 내역 정렬을 위해 yjh
 		pointService.pointInsert(pointVO);				
 		// 변경된 Point를 회원테이블에 넣어주기 - 2
 		memberVO.setOriPoint(pointVO.getTotalPoint());
 		memberService.memberPointUpdate(memberVO);		
 		
+		//session member update yjh
+		session.setAttribute("member", memberVO);
 		
 		// 결제 완료 페이지에 필요한 정보 -> 주문한 매장 정보
 		StoreVO storeVO = storeService.selectStore(memberVO.getId());

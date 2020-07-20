@@ -14,9 +14,13 @@ public class MemberVO {
 	private int oriPoint;
 	private String storeNum;
 	
+	
 	private int orderInfo;
 	private int startNum;
+	private int lastNum;
+	
 	private int level;
 	private PagerOrderList pager;
+	private int status;// 1일때 탈퇴 상태
 }
 

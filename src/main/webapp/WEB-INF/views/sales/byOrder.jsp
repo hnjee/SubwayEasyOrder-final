@@ -18,7 +18,7 @@
     
 	<base target="_self">
 </head>
-<body>
+<body id="page-top">
  <div id="wrapper">
 
     <!-- Sidebar -->
@@ -114,7 +114,6 @@
 
        		<div class="button" style="text-align: center;">
        		<button type="button" class="btn btn-danger" id="refund">거래취소</button>
-       		<button type="button" class="btn btn-primary">영수증 재발행</button>
        		</div>
 
         </div>

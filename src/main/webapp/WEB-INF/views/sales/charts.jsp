@@ -50,6 +50,20 @@ ul.tabs li.current{
 .text-chart{
 	color: #030303!important;
 }
+
+.owner_id{
+    display: block;
+    border: 1px solid #dddddd;
+    border-radius: 50px;
+    height: 28px;
+    line-height: 28px;
+    background-color: #fff;
+    color: #666666;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    padding: 0 13px;
+    width: 120px;
+}
 </style>
 </head>
 
@@ -64,10 +78,10 @@ ul.tabs li.current{
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-	 <a href="../"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:100px 700px 0px" ></a>
-	 <div style="margin-left:88%">${member.id}</div>
+	 <a href="${pageContext.request.contextPath}/member/adminIndex"><img class="Sales Management" alt="" src="../images/subway_logo.png" style="margin:70px 700px 0px" ></a>
+	 <div class="owner_id" style="margin-left:88%;">${member.id}</div>
 	 
-	 <div id="line" style="border: solid 2.5px white; margin-top: 10px" ></div>
+	 <div id="line" style="border: solid 2.5px white; margin-top: 30px" ></div>
 
       <!-- Main Content -->
       <div id="content" style="margin-top: 30px;">
@@ -132,7 +146,7 @@ ul.tabs li.current{
               <div id="tab-3" class="tab-content">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">년 매출</h6>
+                  <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">연 매출</h6>
 	               <div style="margin-left:10px; display: inline;">
 	                </div>
                 </div>
@@ -193,7 +207,8 @@ ul.tabs li.current{
                 </div>
               </div>
             </div>
-   
+            
+   		</div>
         </div>
         <!-- /.container-fluid -->
 

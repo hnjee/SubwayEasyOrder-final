@@ -48,7 +48,7 @@
 <form action="../cart/cartInsert" method="post" name="menuForm">
 <div id="menu_order">
 	<c:forEach items="${ingreOut }" var="ingreOut">
-		<div class="ingreOut">${ingreOut}</div>
+		<div hidden="hidden" class="ingreOut">${ingreOut}</div>
 	</c:forEach>
 	<!-- hd start (menu info) -->
 	<div class="hd">   
@@ -327,9 +327,35 @@
   
 <script type="text/javascript">
 
+
+/*  	var loc = location.href;
+	console.log(loc);
+
+	document.onkeydown = function(e){
+	  
+	    if(e.keyCode == 116 || e.ctrlKey == true && (e.keyCode == 82)){
+	        e.cancelBubble = true; 
+	        e.returnValue = false; 
+	        setTimeout(function(){
+		        
+	            location.href=loc;
+	        }, 1000);
+	        return false;
+	    }
+	} 
+
+ */
+	
+	
+/* 	window.onbeforeunload = function(e){
+		location.href=loc;
+		
+		
+	} */
+	
 	//파라미터 숨기기
 	//history.replaceState({}, null, location.pathname);
-
+	
 	// Script 요소들 
 	//가격에 콤마넣기 
 	function addComma(x) {
@@ -481,13 +507,23 @@
 	//2) 세트 선택했는데 쿠키, 음료 선택 안했을 경우 alert  
 	function setValid(){
 		var set = $('#setON').prop("checked");
-		if(!set){
-			menuForm.submit();
+		var brcheck = false;
+		$(".br").each(function(){
+			if($(this).prop("checked")){
+				brcheck=true;
+			}
+		});
+		if(!brcheck){
+			alert("빵을 선택하세요!");
 		} else{
-			if($(".ds:checked").length==0 || $(".cs:checked").length==0){
-				alert('세트 음료와 쿠키를 모두 선택해주세요');
-			} else{
+			if(!set){
 				menuForm.submit();
+			} else{
+				if($(".ds:checked").length==0 || $(".cs:checked").length==0){
+					alert('세트 음료와 쿠키를 모두 선택해주세요');
+				} else{
+					menuForm.submit();
+				}
 			}
 		}
 	}
@@ -653,27 +689,34 @@
 		}
 		
 	});
+	var ingreNumList = new Array();
 	$(".ingreOut").each(function(){
 		var ingreNum = $(this).text();
+		
 		$("input").each(function(){
 			if(ingreNum==$(this).val()){
 				$("#"+$(this).attr("id")).removeClass("show");
-				if($(this).attr("class")=='br' && $(this).prop("checked")){
+				/* if($(this).attr("class")=='br' && $(this).prop("checked")){
 					$("#br0").prop("checked",true);
 					$("#brse").html($("#br0").attr("title"));
-				}
+				} */
 				if($(this).attr("class")=='add'){
 					var price = $(this).attr("title")*1;
 					price = $("#tot").val()-price;
 					$("#tot").val(price);
+					ingreNumList.push($(this).attr("id"));
+				} else{
+					ingreNumList.push($(this).attr("title"));
 				}
 				$(this).prop("checked",false);
 				$(this).attr("disabled",true);
 			}
 		});
 	});
-	
-	
+	console.log(ingreNumList.length);
+	if(ingreNumList.length!=0){
+		alert("주문하시는 매장에 아래 재료가 다 떨어졌습니다.\n["+ingreNumList+"]\n재료 확인 후 주문해주세요.");
+	}
 </script>
 </body>
 </html>

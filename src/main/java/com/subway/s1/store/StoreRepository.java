@@ -23,4 +23,5 @@ public interface StoreRepository {
 	public int storeInsert(FranchiseVO franchiseVO) throws Exception;
 	
 	public int storeManage(StoreVO storeVO) throws Exception;
+	public void scoreUpdate(StoreVO sotStoreVO)throws Exception;
 }

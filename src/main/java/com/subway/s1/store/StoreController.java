@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.subway.s1.member.MemberRepository;
 import com.subway.s1.member.MemberService;
 import com.subway.s1.member.MemberVO;
 import com.subway.s1.myStore.MyStoreService;
@@ -112,7 +111,6 @@ public class StoreController {
 	}
 	
 	
-	//지워도 될것같은..
 	@GetMapping("findStore")
 	@ResponseBody
 	public String findStore(StoreVO storeVO)throws Exception{
@@ -121,7 +119,12 @@ public class StoreController {
 			return "null";
 		} else {
 			storeVO=storeService.findStoreNum(storeVO);
-			return storeVO.getStoreNum();
+			if(storeVO.getOrderable()==1) {
+				return storeVO.getStoreNum();
+				
+			} else {
+				return "null";
+			}
 		}
 	}
 	

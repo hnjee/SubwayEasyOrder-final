@@ -37,7 +37,7 @@ $(".time").each(function(){
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["09","10","11","12","13","14","15","16","17","18","19","20","21","22"],
+    labels: ["09","10","11","12","13","14","15","16","17","18","19","20","21"],
     datasets: [{
       label: "Revenue",
       backgroundColor: "#dd9be8",
@@ -75,7 +75,7 @@ var myBarChart = new Chart(ctx, {
         ticks: {
           min: 0,
           //최대값
-          max: 150000,
+          max: 900000,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks

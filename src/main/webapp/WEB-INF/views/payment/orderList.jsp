@@ -100,7 +100,7 @@ body{
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow" style="background-color: green;">
+        <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow" style="background-color:#81009e;">
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -372,6 +372,7 @@ body{
 							
 							<div style="margin: 0 auto; width: 300px; margin-top: 30px;">
 							<ul class="pagination">
+							
 								<c:if test="${pager.curBlock gt 1}">
 									<li><a href="./orderList?curPage=${pager.startNum-1}&orderInfo=${orderInfo}">이전</a></li>
 								</c:if>
@@ -383,6 +384,7 @@ body{
 								<c:if test="${pager.curBlock lt pager.totalBlock}">
 									<li><a href="./orderList?curPage=${pager.lastNum+1}&orderInfo=${orderInfo}">다음</a></li>
 								</c:if>
+							
 							</ul> 
 							</div>
 							

@@ -3,6 +3,8 @@ package com.subway.s1.point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.subway.s1.survey.SurveyVO;
+
 @Service
 public class PointService {
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface MenuRepository {
 	public List<MenuVO> menuList(String menuCode) throws Exception;
+	public List<MenuVO> menuListAll(String menuCode) throws Exception;
 	public MenuVO menuSelect(String menuNum) throws Exception;
 
 }

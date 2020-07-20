@@ -45,7 +45,7 @@
 			<ul> 
 				<li><a href="${pageContext.request.contextPath}/member/memberLogout">로그아웃</a></li>
 	      		<li><a href="${pageContext.request.contextPath}/member/memberPage">마이페이지</a></li>
-	      		<li><a href="${pageContext.request.contextPath}/cart/cartList" style="padding: 5px 10px; display:inline;">
+	      		<li><a href="${pageContext.request.contextPath}/cart/cartList" style="padding: 5px 10px; line-height: 0px;">
 	     			 	<img src="../images/icon_cart.png" style="width:15px; height: 15px;">
 	      		</a></li>
 			</ul>
