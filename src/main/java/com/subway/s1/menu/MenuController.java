@@ -8,9 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.subway.s1.cart.CartService;
+import com.subway.s1.cart.CartVO;
 import com.subway.s1.ingredient.IngredientService;
 import com.subway.s1.ingredient.IngredientVO;
 import com.subway.s1.member.MemberVO;
@@ -26,6 +30,8 @@ public class MenuController {
 	private IngredientService ingredientService;
 	@Autowired
 	private SoldoutService soldouService;
+	@Autowired
+	private CartService cartService;
 	
 	@GetMapping("showMenuList")
 	public ModelAndView showMenuList(String menuCode) throws Exception{
@@ -66,6 +72,39 @@ public class MenuController {
 		mv.addObject("menuOut", menuOut);
 		return mv;
 	}
+	
+	
+	@PostMapping("menuList")
+	public ModelAndView menuList(String menuCode, HttpServletRequest request,@RequestParam(value = "productNum") String[] productNums,
+			@RequestParam(value = "productCount") int[] productCounts) throws Exception{		
+		ModelAndView mv = new ModelAndView();
+		
+		// 넘어온 productNum 해당 갯수를 데이터베이스에 update
+		if(productNums.length>0) {
+			for(int i=0; i<productNums.length;i++) {
+				CartVO cartVO = new CartVO();
+				cartVO.setProductNum(productNums[i]);
+				cartVO.setProductCount(productCounts[i]);
+				cartService.cartUpdate(cartVO);	
+			}
+		}
+		
+		
+		if(menuCode==null) {
+			menuCode="SW";
+		}
+		List<MenuVO> ar = menuService.menuList(menuCode);
+		
+		MemberVO memberVO = (MemberVO)request.getSession().getAttribute("member");
+		List<String> menuOut = soldouService.menuSoldout(memberVO.getStoreNum());
+		
+		mv.addObject("list", ar);
+		mv.addObject("menuCode", menuCode);
+		mv.setViewName("menu/menuList");
+		mv.addObject("menuOut", menuOut);
+		return mv;
+	}
+	
 
 	
 	@GetMapping("menuSelect")

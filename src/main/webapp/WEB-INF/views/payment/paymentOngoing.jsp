@@ -208,7 +208,7 @@
 						</form>	
 						
 						<div class="btn-wrap">
-							<a href="../menu/cateList?storeNum=${member.storeNum}" class="btn-type btn-type-brd">
+							<a href="../menu/menuList?storeNum=${member.storeNum}" class="btn-type btn-type-brd">
 							메뉴 추가하기</a>
 							<!-- <a href="" class="btn-type v3 btn-order">주문하기</a> -->
 							<button type="button" id="buttonPay" class="btn-type v3 btn-order">결제하기</button>

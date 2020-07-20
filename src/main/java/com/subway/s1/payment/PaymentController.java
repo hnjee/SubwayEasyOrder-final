@@ -152,6 +152,7 @@ public class PaymentController {
 		
 		
 		// 장바구니에서 사용 한 내역
+		
 		PointVO pointVO = new PointVO();
 		pointVO.setPayNum(payNum);
 		pointVO.setId(memberVO.getId());
@@ -159,7 +160,9 @@ public class PaymentController {
 		pointVO.setOriPoint(memberVO.getOriPoint());
 		pointVO.setTotalPoint(memberVO.getOriPoint()-point);
 		pointVO.setPointStat(0);
-		pointService.pointInsert(pointVO);		
+		if(point>0) {
+			pointService.pointInsert(pointVO);			
+		}			
 		// 변경된 Point를 회원테이블 update - 1
 		memberVO.setOriPoint(pointVO.getTotalPoint());
 		memberService.memberPointUpdate(memberVO);
