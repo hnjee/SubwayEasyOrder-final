@@ -94,7 +94,8 @@ public class PaymentController {
 	
 	// 결제 완료 페이지
 	@PostMapping("paymentSuccess")
-	public ModelAndView paymentSuccess(@RequestParam(value = "productNum") String[] productNums,int totalPrice, HttpSession session, int point) throws Exception {
+	public ModelAndView paymentSuccess(@RequestParam(value = "productNum") String[] productNums,int totalPrice,
+			HttpSession session, int point) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		// 완료 페이지로 넘어올 때
@@ -131,7 +132,7 @@ public class PaymentController {
 			res = res + orderProductService.orderProductInsert(cartVO);
 		}
 			
-		// 5. 저장 성공 시 해당 productNum갖는 데이터 들은 Cart테이블에서 삭제 
+		// 4. 저장 성공 시 해당 productNum갖는 데이터 들은 Cart테이블에서 삭제 
 		//		파라미터로 받아온 productNum 해당 정보 삭제
 		if(res>0) {
 			for(int i=0; i<productNums.length;i++) {
@@ -142,10 +143,7 @@ public class PaymentController {
 		// 5. 포인트  insert
 		// Member 테이블 수정, Point 테이블에 삽입
 		// curPoint : 적립 또는 차감될 포인트, oriPoint : 원래 갖고 있던 포인트, totalPoint : 총 포인트		
-		
-		
 		// 장바구니에서 사용 한 내역
-		
 		PointVO pointVO = new PointVO();
 		pointVO.setPayNum(payNum);
 		pointVO.setId(memberVO.getId());
@@ -158,8 +156,7 @@ public class PaymentController {
 		}			
 		// 변경된 Point를 회원테이블 update - 1
 		memberVO.setOriPoint(pointVO.getTotalPoint());
-		memberService.memberPointUpdate(memberVO);
-		
+		memberService.memberPointUpdate(memberVO);		
 		
 		// 수정된 oriPoint를 위해 
 		// member 다시 가져오기
@@ -216,7 +213,7 @@ public class PaymentController {
 		return mv;
 	}
 	
-	//orderInfo를 변경할 
+	//orderInfo를 변경 
 	@PostMapping("orderList")
 	public ModelAndView orderList(PaymentVO paymentVO,ModelAndView mv,HttpSession session,PagerOrderList pager) throws Exception{
 		paymentService.paymentUpdate(paymentVO);
