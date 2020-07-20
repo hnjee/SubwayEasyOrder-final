@@ -17,7 +17,6 @@
     where left(M.payDate,4) like left(CURDATE(),4)
     group by month
     order by month asc
-
 </select>
 
 
