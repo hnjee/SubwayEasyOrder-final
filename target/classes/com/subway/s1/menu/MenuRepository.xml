@@ -8,6 +8,10 @@
 		select * from Menu where sale=1 and menuCode like concat('%',#{menuCode},'%')
 	</select>
 	
+	<select id="menuListAll" parameterType="String" resultType="MenuVO">
+		select * from Menu where menuCode like concat('%',#{menuCode},'%')
+	</select>
+	
 	<select id="menuSelect" parameterType="String" resultType="MenuVO">
 		select * from Menu join Code on (Menu.menuCode = Code.code) where menuNum=#{menuNum}
 	</select>

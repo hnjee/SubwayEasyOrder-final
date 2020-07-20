@@ -36,7 +36,7 @@ public class MenuController {
 		if(menuCode==null) {
 			menuCode="SW";
 		}
-		List<MenuVO> ar = menuService.menuList(menuCode);
+		List<MenuVO> ar = menuService.menuListAll(menuCode);
 		mv.addObject("list", ar);
 		mv.addObject("menuCode", menuCode);
 		return mv;
