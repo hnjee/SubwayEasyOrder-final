@@ -75,8 +75,8 @@ public class MenuController {
 	
 	
 	@PostMapping("menuList")
-	public ModelAndView menuList(String menuCode, HttpServletRequest request,@RequestParam(value = "productNum") String[] productNums,
-			@RequestParam(value = "productCount") int[] productCounts) throws Exception{		
+	public ModelAndView menuList(String menuCode, HttpServletRequest request,@RequestParam(value = "productNum", defaultValue = "0") String[] productNums,
+			@RequestParam(value = "productCount", defaultValue = "0") int[] productCounts) throws Exception{		
 		ModelAndView mv = new ModelAndView();
 		
 		// 넘어온 productNum 해당 갯수를 데이터베이스에 update

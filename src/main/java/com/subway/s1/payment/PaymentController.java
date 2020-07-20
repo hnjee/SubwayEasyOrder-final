@@ -22,8 +22,6 @@ import com.subway.s1.member.MemberVO;
 import com.subway.s1.orderProduct.OrderProductService;
 import com.subway.s1.point.PointService;
 import com.subway.s1.point.PointVO;
-import com.subway.s1.sales.SalesRepository;
-import com.subway.s1.sales.SalesService;
 import com.subway.s1.store.StoreService;
 import com.subway.s1.store.StoreVO;
 import com.subway.s1.util.Pager;
@@ -45,8 +43,7 @@ public class PaymentController {
 	private MemberService memberService;
 	@Autowired
 	private PointService pointService;
-	@Autowired
-	private SalesService salesService;
+	
 	
 	
 
@@ -132,10 +129,6 @@ public class PaymentController {
 			CartVO cartVO = cartService.cartSelect(productNums[i]);
 			cartVO.setPayNum(payNum);
 			res = res + orderProductService.orderProductInsert(cartVO);
-
-			// 4. 결제 완료 정보 Sales 테이블에 저장
-			//		payNum, setting, menuNum		
-			//salesService.salesInsert(cartVO);
 		}
 			
 		// 5. 저장 성공 시 해당 productNum갖는 데이터 들은 Cart테이블에서 삭제 

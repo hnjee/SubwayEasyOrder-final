@@ -482,13 +482,7 @@
 		});
 
 	
-	// 카트가 비어있다면 다음페이지로 넘어가지 않게
-	if(loopNum<1){
-	$('#formSubmit').on("submit", function(event) {
-       event.preventDefault();
-       // process form
-    });
-	}
+	
 	
 	// NaN to 0
 	function getNum(val) {
@@ -508,6 +502,13 @@
 			document.testform.action = "../menu/menuList";
 		}
 		if(index==2){
+			// 카트가 비어있다면 다음페이지로 넘어가지 않게
+			if(loopNum<1){
+			$('#formSubmit').on("submit", function(event) {
+		       event.preventDefault();
+		       // process form
+		    });
+			}
 			document.testform.action = "../payment/paymentOngoing";
 		}
 	}
