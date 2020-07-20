@@ -181,13 +181,17 @@ body{
                 </div>
               </div>
             </div>
-
+			<a style="float: left; display:block; width: 120px; height: 40px;font-size: 15px;
+			margin-left: 7px;padding-top: 8px; background-color: #fff; border-color: #ccc;color: black; font-weight: 600;" class="btn" href="../ownerManagement/ownerList">가맹점 관리</a>
+			
           </div>
         </div>
         <!-- /.container-fluid -->
 
       </div>
       <!-- End of Main Content -->
+		
+		
 		
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
