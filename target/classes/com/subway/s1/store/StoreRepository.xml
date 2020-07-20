@@ -24,7 +24,7 @@
 	</update>
 
 	<insert id="storeInsert" parameterType="FranchiseVO">
-		insert into Store values (concat('S',#{requestNum}),#{storeName},#{address},null,null,1)
+		insert into Store values (concat('S',#{requestNum}),#{storeName},#{address},null,null,1,0,0)
 	</insert>
 	
 	<update id="storeManage" parameterType="StoreVO">

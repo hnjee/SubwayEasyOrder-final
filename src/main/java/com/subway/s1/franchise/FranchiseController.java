@@ -66,6 +66,7 @@ public class FranchiseController {
 		int res = franchiseService.franchiseUpdate(requestNum);
 		if(res>0) {
 			FranchiseVO franchiseVO = franchiseService.franchiseSelect(requestNum);
+			franchiseVO.setRequestNum(requestNum);
 			int storeRes = storeService.storeInsert(franchiseVO);
 			storeRes = memberService.ownerInsert(franchiseVO);
 			
