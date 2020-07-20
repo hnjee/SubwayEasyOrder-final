@@ -12,14 +12,6 @@
 <link rel="stylesheet" type="text/css" href="./css/indexStyle.css">
 <link rel="stylesheet" type="text/css"  href="./css/headerStyle.css"> 
 <link rel="stylesheet" type="text/css"  href="./css/footerStyle.css"> 
-<link href="../css/subway/ui.common.css" rel="stylesheet" type="text/css">
-
-
-<script src="./js/subway/bxslider.min.js" type="text/javascript"></script>
-
-<script src="/js/subway/jquery-ui-1.12.0.min.js" type="text/javascript"></script>
-
-
 </head>
 <body>
 <div id="wrap">
@@ -169,7 +161,7 @@
 					<li>
 						<a href="/sandwichView?param=cl04">
 							<div class="wrap">
-								<div class="img"><img alt="햄" src="../images/menu/SW1_M05.jpg"></div>
+								<div class="img"><img alt="햄" src="../images/menu/sandwich_cl04.jpg"></div>
 								<strong class="title">햄</strong>
 								<p>기본 중에 기본!<br>풍부한 햄이 만들어내는<br>입 안 가득 넘치는 맛의 향연</p><!-- 20180207 -->
 							</div>
@@ -178,7 +170,7 @@
 					<li>
 						<a href="/sandwichView?param=cl05">
 							<div class="wrap">
-								<div class="img"><img alt="참치" src="../images/menu/SW1_M06.jpg"></div>
+								<div class="img"><img alt="참치" src="../images/menu/sandwich_cl05.jpg"></div>
 								<strong class="title">참치</strong>
 								<p>남녀노소 누구나 좋아하는<br>담백한 참치와 고소한 마요네즈의<br>완벽한 조화</p><!-- 20180207 -->
 							</div>
@@ -195,7 +187,7 @@
 					<li>
 						<a href="/sandwichView?param=fl01">
 							<div class="wrap">
-								<div class="img"><img alt="로티세리 바비큐 치킨" src="../images/menu/SW2_M07.jpg"></div>
+								<div class="img"><img alt="로티세리 바비큐 치킨" src="../images/menu/sandwich_fl01.jpg"></div>
 								<strong class="title">로티세리 바비큐 치킨</strong>
 								<p>촉촉한 바비큐 치킨의 풍미가득.<br>손으로 찢어 더욱 부드러운 치킨의 혁명</p><!-- 20180207 -->
 							</div>
@@ -204,7 +196,7 @@
 					<li>
 						<a href="/sandwichView?param=fl02">
 							<div class="wrap">
-								<div class="img"><img alt="로스트 치킨" src="../images/menu/SW2_M08.jpg"></div>
+								<div class="img"><img alt="로스트 치킨" src="../images/menu/sandwich_fl02.jpg"></div>
 								<strong class="title">로스트 치킨</strong>
 								<p>오븐에 구워 담백한 저칼로리<br>닭가슴살의 건강한 풍미</p><!-- 20180207 -->
 							</div>
@@ -213,7 +205,7 @@
 					<li>
 						<a href="/sandwichView?param=fl04">
 							<div class="wrap">
-								<div class="img"><img alt="써브웨이 클럽" src="../images/menu/SW2_M09.jpg"></div>
+								<div class="img"><img alt="써브웨이 클럽" src="../images/menu/sandwich_fl04.jpg"></div>
 								<strong class="title">써브웨이 클럽</strong>
 								<p>명실공히 시그니처 써브!<br>터키, 비프, 포크 햄의 완벽한 앙상블</p><!-- 20180207 -->
 							</div>
@@ -222,7 +214,7 @@
 					<li>
 						<a href="/sandwichView?param=fl05">
 							<div class="wrap">
-								<div class="img"><img alt="터키" src="../images/menu/SW2_M10.jpg"></div>
+								<div class="img"><img alt="터키" src="../images/menu/sandwich_fl05.jpg"></div>
 								<strong class="title">터키</strong>
 								<p>280kcal로 슬림하게 즐기는<br>오리지날 터키 샌드위치</p><!-- 20180207 -->
 							</div>
@@ -233,7 +225,7 @@
 					<li>
 						<a href="/sandwichView?param=fl06">
 							<div class="wrap">
-								<div class="img"><img alt="베지" src="../images/menu/SW2_M11.jpg"></div>
+								<div class="img"><img alt="베지" src="../images/menu/sandwich_fl06.jpg"></div>
 								<strong class="title">베지</strong>
 								<p>갓 구운 빵과 신선한 7가지 야채로<br>즐기는 깔끔한 한끼</p><!-- 20180207 -->
 							</div>
@@ -250,7 +242,7 @@
 					<li>
 						<a href="/sandwichView?param=pm10">
 							<div class="wrap">
-								<div class="img"><img alt="쉬림프" src="../images/menu/SW3_M12.jpg"></div>
+								<div class="img"><img alt="쉬림프" src="../images/menu/sandwich_pm10.jpg"></div>
 								<strong class="title">쉬림프</strong>
 								<p> 탱글한 식감이 그대로 살아있는 통새우가<br>5마리 들어가 한 입 베어 먹을 때 마다<br>진짜 새우의 풍미가 가득</p>
 							</div>
@@ -259,7 +251,7 @@
 					<li>
 						<a href="/sandwichView?param=pm08">
 							<div class="wrap">
-								<div class="img"><img alt="풀드포크" src="../images/menu/SW3_M13.jpg"></div>
+								<div class="img"><img alt="풀드포크" src="../images/menu/sandwich_pm08.jpg"></div>
 								<strong class="title">풀드포크</strong>
 								<p>7시간 저온 훈연한 미국 정통 스타일의<br>리얼 바비큐 풀드포크는 오직 써브웨이에서</p><!-- 20180207 -->
 							</div>
@@ -268,7 +260,7 @@
 					<li>
 						<a href="/sandwichView?param=pm01">
 							<div class="wrap">
-								<div class="img"><img alt="스테이크&amp;치즈" src="../images/menu/SW3_M14.jpg"></div>
+								<div class="img"><img alt="스테이크&amp;치즈" src="../images/menu/sandwich_pm01.jpg"></div>
 								<strong class="title">스테이크&amp;치즈</strong>
 								<p>육즙이 쫙~<br>풍부한 비프 스테이크의 풍미가 입안 한가득</p><!-- 20180207 -->
 							</div>
@@ -277,7 +269,7 @@
 					<li>
 						<a href="/sandwichView?param=pm02">
 							<div class="wrap">
-								<div class="img"><img alt="터키 베이컨 아보카도" src="../images/menu/SW3_M15.jpg"></div>
+								<div class="img"><img alt="터키 베이컨 아보카도" src="../images/menu/sandwich_pm02.jpg"></div>
 								<strong class="title">터키 베이컨 아보카도</strong>
 								<p>담백한 터키와 바삭한 베이컨 환상조합에<br>부드러운 아보카도는 신의 한수</p><!-- 20180207 -->
 							</div>
@@ -288,7 +280,7 @@
 					<li>
 						<a href="/sandwichView?param=pm04">
 							<div class="wrap">
-								<div class="img"><img alt="써브웨이 멜트" src="../images/menu/SW3_M16.jpg"></div>
+								<div class="img"><img alt="써브웨이 멜트" src="../images/menu/sandwich_pm04.jpg"></div>
 								<strong class="title">써브웨이 멜트</strong>
 								<p>자신있게 추천하는 터키, 햄, 베이컨의<br>완벽한 맛의 밸런스</p><!-- 20180207 -->
 							</div>
@@ -297,7 +289,7 @@
 					<li>
 						<a href="/sandwichView?param=pm06">
 							<div class="wrap">
-								<div class="img"><img alt="스파이시 이탈리안" src="../images/menu/SW3_M17.jpg"></div>
+								<div class="img"><img alt="스파이시 이탈리안" src="../images/menu/sandwich_pm06.jpg"></div>
 								<strong class="title">스파이시 이탈리안</strong>
 								<p>살라미, 페퍼로니가 입안 한가득!<br>쏘 핫한 이탈리아의 맛</p><!-- 20180207 -->
 							</div>
@@ -306,7 +298,7 @@
 					<li>
 						<a href="/sandwichView?param=pm07">
 							<div class="wrap">
-								<div class="img"><img alt="치킨 데리야끼" src="../images/menu/SW3_M18.jpg"></div>
+								<div class="img"><img alt="치킨 데리야끼" src="../images/menu/sandwich_pm07.jpg"></div>
 								<strong class="title">치킨 데리야끼</strong>
 								<p>담백한 치킨 스트립에 달콤짭쪼름한 써브웨이<br>특제 데리야끼 소스와의 환상적인 만남</p><!-- 20180207 -->
 							</div>
@@ -323,7 +315,7 @@
 					<li>
 						<a href="/sandwichView?param=bf01">
 							<div class="wrap">
-								<div class="img"><img alt="블랙 포레스트햄 &amp; 에그, 치즈" src="../images/menu/SW4_M19.jpg"></div>
+								<div class="img"><img alt="블랙 포레스트햄 &amp; 에그, 치즈" src="../images/menu/sandwich_bf01.jpg"></div>
 								<strong class="title">블랙 포레스트햄 &amp; 에그, 치즈</strong>
 								<p>푹신한 오믈렛과 햄의 가장 클래식한 조화</p>
 							</div>
@@ -332,7 +324,7 @@
 					<li>
 						<a href="/sandwichView?param=bf02">
 							<div class="wrap">
-								<div class="img"><img alt="웨스턴, 에그 &amp; 치즈" src="../images/menu/SW4_M20.jpg"></div>
+								<div class="img"><img alt="웨스턴, 에그 &amp; 치즈" src="../images/menu/sandwich_bf02.jpg"></div>
 								<strong class="title">웨스턴, 에그 &amp; 치즈</strong>
 								<p>토마토, 피망, 양파 세가지 야채가 더해져<br>더욱 신선한 하루 시작</p><!-- 20180207 -->
 							</div>
@@ -341,7 +333,7 @@
 					<li>
 						<a href="/sandwichView?param=bf03">
 							<div class="wrap">
-								<div class="img"><img alt="베이컨, 에그 &amp; 치즈" src="../images/menu/SW4_M21.jpg"></div>
+								<div class="img"><img alt="베이컨, 에그 &amp; 치즈" src="../images/menu/sandwich_bf03.jpg"></div>
 								<strong class="title">베이컨, 에그 &amp; 치즈</strong>
 								<p>오리지널 아메리칸 베이컨으로<br>더욱 풍성한 아침 식사</p><!-- 20180207 -->
 							</div>
@@ -350,7 +342,7 @@
 					<li>
 						<a href="/sandwichView?param=bf04">
 							<div class="wrap">
-								<div class="img"><img alt="스테이크, 에그 &amp; 치즈" src="../images/menu/SW4_M22.jpg"></div>
+								<div class="img"><img alt="스테이크, 에그 &amp; 치즈" src="../images/menu/sandwich_bf04.jpg"></div>
 								<strong class="title">스테이크, 에그 &amp; 치즈</strong>
 								<p>육즙 가득 비프 스테이크로<br>든든한 아침 식사</p><!-- 20180207 -->
 							</div>
@@ -365,9 +357,6 @@
 </div>
 </div>
 <!-- main end -->
-
-<script src="../js/subway/TweenMax.min.js" type="text/javascript"></script>
-<script src="../js/subway/ui.common.index.js" type="text/javascript"></script>
 
 
 <!-- footer start -->
