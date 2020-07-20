@@ -165,10 +165,4 @@
 </select>
 
 
-<insert id="salesInsert" parameterType="CartVO">
-	insert into Sales(payNum) values(#{payNum});
-</insert>
-
-
-
 </mapper>
