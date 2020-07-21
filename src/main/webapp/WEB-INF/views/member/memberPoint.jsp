@@ -50,7 +50,7 @@
 		<c:forEach items="${point }" var="point">
 				<div class="row" style=" margin-bottom: 50px;">
 					<div class="col-sm-1">
-						<c:if test="${point.pointStat eq 1 }">
+						<c:if test="${point.pointStat eq 1 or point.pointStat eq 4}">
 							<i class="fa fa-plus-circle" style="font-size:60px;color:#009223"></i>
 						</c:if>
 						<c:if test="${point.pointStat eq 0 }">
@@ -70,6 +70,12 @@
 								결제 날짜<span class="text">${point.pointDate }</span>
 							</div>
 						</c:if>
+						<c:if test="${point.pointStat eq 4}">
+							<div class="blockIn">
+								결제 번호<span class="text">${point.payNum }</span><br>
+								설문응답 날짜<span class="text">${point.pointDate }</span>
+							</div>
+						</c:if>
 						<c:if test="${point.pointStat eq 2 || point.pointStat eq 3}">
 							<div class="blockIn">
 								결제 번호<span class="text">${point.payNum }</span><br>
@@ -78,7 +84,7 @@
 						</c:if>
 					</div>
 					<div class="col-sm-4 textBlock">
-						<c:if test="${point.pointStat eq 1 }">
+						<c:if test="${point.pointStat eq 1 || point.pointStat eq 4}">
 							<div class="blockIn">
 								원래 포인트<span class="text comma">${point.oriPoint }</span><br>
 								적립 포인트<span class="text comma" style="color: #009223">${point.curPoint }</span>

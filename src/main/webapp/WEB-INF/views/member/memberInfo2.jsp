@@ -28,6 +28,8 @@
 .write_left{
 	font-weight: bold;
 	font-size: 16px;
+	width: 160px;
+	display: inline-block;
 }
 .write_right{
 	float: right;
@@ -39,6 +41,28 @@
 	font-size: 18px;
 	font-weight: bold;
 }
+.txt {
+    margin-bottom: 30px;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -1px;
+    color: #666666;
+    text-align: center;
+}
+input::placeholder {
+  color: gray;
+  font-weight: bold;
+  opacity: 0.6;
+}
+#msg{
+	position: relative;
+    margin: 16px 0 35px;
+    padding-left: 20px;
+    font-size: 16px;
+    line-height: 26px;
+    color: #999999;
+}
+
 
 </style>
 <title>Insert title here</title>
@@ -60,23 +84,23 @@
 		<div class="form_box">
 			<div class="write_info" style="border: 0px;">
 				<h2 style="font-weight: bold;font-size: 26px; margin-bottom: 26px;">회원가입 정보
-				<button style="border:0px; outline:0px; float: right; font-size: 16px;">비밀번호 변경</button>
+				<button id="pwChange" type="button" style="border:0px; outline:0px; float: right; font-size: 16px;">비밀번호 변경</button>
 				</h2>
 				
 				<div class="write_info">
-					<span class="write_left">이름</span><span class="write_right"><input id="name" style="border:1px #9999 solid; outline: 0px;" type="text" value="${member.name }" name="name"></span>
+					<span class="write_left">이름<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png"></span><span class="write_right"><input id="name" style="border:0px; outline: 0px;" type="text" value="${member.name }" name="name"></span>
 				</div>
 				<div id="namec"></div>
 				<input hidden="hidden" type="checkbox" id="namebox" class="joinCheck" checked="checked">
 				<div class="write_info">
-					<span class="write_left">휴대전화</span><span class="write_right"><input id="phone" style="border:1px #9999 solid; outline: 0px;" type="text" value="${member.phone }" name="phone" maxlength="13"> </span>
+					<span class="write_left">휴대전화<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png"></span><span class="write_right"><input id="phone" style="border:0px; outline: 0px;" type="text" value="${member.phone }" name="phone" maxlength="13"> </span>
 				</div>
 				<div id="phonec"></div>
 				<input hidden="hidden" type="checkbox" id="phonebox" class="joinCheck" checked="checked">
 			</div>
 		</div>
 		<div style="text-align: center; margin-top: 100px;">
-			<button type="button" class="butt" style="width: 126px; border: 2px #009223 solid;color: #009223;">회원 탈퇴</button>
+			<button type="button" id="memberSecession" class="butt" style="width: 126px; border: 2px #009223 solid;color: #009223;">회원 탈퇴</button>
 			<button type="button" id="memberUpdate" class="butt" style="width: 197px; background: #009223;color: white;">회원정보 변경</button>
 		</div>
 		<input hidden="hidden" type="text" name="id" value="${member.id }">
@@ -84,11 +108,89 @@
 	</div>
 
 
+	<!-- Modal -->
+  <div class="row modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" style="width:60%; height:90%;">
+     <button type="button" style="margin-top:30px; width: 30px; opacity: 1;" class="close" data-dismiss="modal"><img src="../images/icon_popup_close.png"></button>
+    <div style="width:95%;height:100%; background-color: #ffc300; border-radius: 30px;">
+      <!-- Modal content-->
+      <div class="modal-content" style=" padding:40px 50px; top:3%; margin:auto; background: white; width: 95%; height: 95%; border-radius: 30px">
+        	<h2 style="margin-bottom:50px; padding-bottom:30px; text-align: center; color: #009223;font-weight: bold; border-bottom: 5px solid #009223;">비밀번호 변경</h2>
+       		<p class="txt">개인정보 보호를 위해 주기적으로 변경해 주세요.<br>
+				타인에게 비밀번호가 노출되지 않도록 주의해 주세요.
+			<div class="write_info">
+				<span class="write_left">현재 비밀번호<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png"></span><input id="now_pw" placeholder="현재 비밀번호"  style="border:0px; outline: 0px;" type="password"  >
+			</div>
+			<div class="write_info">
+				<span class="write_left">새 비밀번호<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png"></span><input id="pw" name="pw" placeholder="비밀번호 변경"  style="border:0px; outline: 0px;" type="password" maxlength="13"> 
+			</div>
+			<p id="msg">4~12자 영문 대 소문자, 숫자, 특수문자를 사용하세요.<br>반드시 현재의 비밀번호와 다르게 입력해 주세요.
+			<div class="write_info">
+				<span class="write_left" style="">새 비밀번호 확인<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png"></span><input id="pwCheck" placeholder="비밀번호 변경" style="border:0px; outline: 0px;" type="password"  maxlength="13">
+			</div>
+			<span id="wrong-msg" style="color: #ff4b06;font-size: 16px; font-weight: bold;"></span>
+			<div style="text-align: center;">
+				<button data-dismiss="modal" class="butt" style="width: 126px; border: 2px #009223 solid;color: #009223;" type="button">취소</button>
+				<button type="button" id="change_btn" class="butt" style="margin-left:7px; width: 126px; background: #009223;color: white;">변경하기</button>
+			</div>
+			
+      </div>
+    </div>
+      
+    </div>
+  </div>
+  
 
 	<c:import url="../jsp/footer.jsp"></c:import>
 </body>
 
 <script type="text/javascript">
+	$("#change_btn").click(function(){
+		var now_pw = $("#now_pw").val();
+		$.ajax({
+			type:'post',
+			url:'member/pwCheck',
+			data:{
+				now_pw:now_pw
+			}, success:function(data){
+				if(data){
+					var pw = $("#pw").val();
+					var id = "${member.id}";
+					var pwCheck=$("#pwCheck").val();
+					var check = /^(?=.*\d)(?=.*[a-z])^[a-z0-9A-Z!@#\$%\^\&*\)\(+=._-]{4,12}$/;
+					if(check.test(pw)){
+						if(pw==pwCheck){
+							$("#wrong-msg").text("");
+							if(pw==now_pw){
+								$("#wrong-msg").text("현재 비밀번호와 다른 비밀번호로 변경해주세요.");	
+							} else{
+								$.ajax({
+									type:'post',
+									url:'member/pwUpdate',
+									data:{
+										id:id,
+										pw:pw
+									},success:function(data){
+										$("#pw").html(data);
+									}
+									
+								});
+
+							}
+						} else{
+							$("#wrong-msg").text("비밀번호가 일치하지 않습니다.");
+						}
+					}else{
+						$("#wrong-msg").text("비밀번호 양식을 맞춰주세요.");
+						alert("비밀번호 양식을 맞춰주세요.");
+					}
+				} else{
+					alert("현재비밀번호가 맞지않습니다.");
+				}
+			}
+		});
+		
+	});
 	var check = "${check}";
 	if(check=='pass'){
 		
@@ -175,6 +277,22 @@
 			Update.submit();
 		} else{
 			alert("정보를 제대로 입력해주세요.");
+		}
+	});
+
+	function popup(){
+		var url="myMenuCustom";
+		var name="test";
+		var option="width=500,height=500,location=no";
+		window.open(url,name,option);
+	}
+	$("#pwChange").click(function(){
+		$("#myModal").modal();
+	});
+
+	$("#memberSecession").click(function(){
+		if(confirm("정말 탈퇴 하시겠습니까?")){
+			location.href="./memberSecession";
 		}
 	});
 </script>

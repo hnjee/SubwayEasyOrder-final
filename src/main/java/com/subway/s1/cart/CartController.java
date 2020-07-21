@@ -109,8 +109,6 @@ public class CartController {
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		List<CartVO> ar = cartService.cartList(memberVO.getId());
 		StoreVO storeVO = storeService.selectStore(memberVO.getId());
-//		PointVO pointVO = new PointVO(); 
-//		pointVO = pointRepository.pointSelect(memberVO.getId());
 	
 		mv.addObject("member", memberVO);
 		mv.addObject("list", ar);
@@ -132,8 +130,7 @@ public class CartController {
 		return "redirect:./cartList";
 	}
 	
-	@GetMapping("cartDeleteAll")
-	//public String cartDelete(세션 받아오기(아이디 이용해서 삭제)) throws Exception{		
+	@GetMapping("cartDeleteAll")		
 	public ModelAndView cartDelete(HttpSession session,ModelAndView mv) throws Exception{		
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		int res = cartService.cartDeleteAll(memberVO.getId());

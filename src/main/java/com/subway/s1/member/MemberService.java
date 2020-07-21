@@ -129,4 +129,10 @@ public class MemberService {
 	public void memberUpdate(MemberVO memberVO)throws Exception{
 		memberRepository.memberUpdate(memberVO);
 	}
+	public void pwUpdate(MemberVO memberVO)throws Exception{
+		memberRepository.pwUpdate(memberVO);
+	}
+	public void memberSecession(MemberVO memberVO)throws Exception{
+		memberRepository.memberSecession(memberVO);
+	}
 }

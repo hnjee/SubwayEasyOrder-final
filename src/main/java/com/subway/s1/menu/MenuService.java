@@ -13,6 +13,9 @@ public class MenuService {
 	public List<MenuVO> menuList(String menuCode) throws Exception{
 		return menuRepository.menuList(menuCode);
 	}
+	public List<MenuVO> menuListAll(String menuCode) throws Exception{
+		return menuRepository.menuListAll(menuCode);
+	}
 	
 	public MenuVO menuSelect(String menuNum) throws Exception{
 		return menuRepository.menuSelect(menuNum);

@@ -127,9 +127,10 @@ public class SalesController {
 	public int ByRefund(String payNum,String id,String totalPrice,HttpSession session)throws Exception{
 		int re = 0;
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		
+		//payment 테이블 업데이트
 		int result = salesService.byRefund(payNum,memberVO.getStoreNum());
 		PointVO pointVO = salesService.point(payNum);
+		//사용한 포인트가 있을 경우 반환
 		if(pointVO.getPointStat()==0) {
 			int cur = pointVO.getCurPoint();
 			pointVO = new PointVO();
@@ -159,14 +160,16 @@ public class SalesController {
 			pointVO.setTotalPoint(totalPoint-((int)(total*0.01)));
 			pointVO.setPointStat(3);
 			result2 = pointService.pointInsert(pointVO);
+			//멤버 oriPoint 업데이트
 			pointStat = "3";
 			int totalPoint2 = salesService.totalPoint(payNum,pointStat);
 			String oriPoint2 = Integer.toString(totalPoint2);
 			int result3 = salesService.pointUpdate(id, oriPoint2);
+			
 			if(result > 0 || result2 > 0 || result3 >0) {
 				re = 1;
 			}
-			
+		//사용한 포인트가 없을경우 환불(적립된포인트환불)
 		}else {
 			pointVO = new PointVO();
 			pointVO.setPayNum(payNum);
@@ -178,10 +181,12 @@ public class SalesController {
 			pointVO.setTotalPoint(oriPoint-((int)(total*0.01)));
 			pointVO.setPointStat(3);
 			int result2 = pointService.pointInsert(pointVO);
+			//멤버 oriPoint 업데이트
 			String pointStat = "3";
 			int totalPoint2 = salesService.totalPoint(payNum,pointStat);
 			String oriPoint2 = Integer.toString(totalPoint2);
 			int result3 = salesService.pointUpdate(id, oriPoint2);
+			
 			if(result > 0 || result2 > 0 || result3 >0) {
 				re = 1;
 			}

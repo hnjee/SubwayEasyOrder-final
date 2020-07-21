@@ -10,5 +10,4 @@ import com.subway.s1.survey.SurveyVO;
 public interface PointRepository {
 	public PointVO pointSelect(String id) throws Exception;
 	public int pointInsert(PointVO pointVO) throws Exception;
-	public PointVO surveyPoint(SurveyVO surveyVO) throws Exception;
 }

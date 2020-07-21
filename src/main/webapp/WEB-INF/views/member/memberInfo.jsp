@@ -57,9 +57,10 @@ dd {
 }
 
 dt {
-	font-size: 14px;
-	color: #666666;
-	font-family: font_ns, sans-serif;
+	font-size: 16px;
+    color: #666666;
+    font-family: font_ns, sans-serif;
+    font-weight: bold;
 }
 .inquiry_notice {
     background: #f6f6f6 url(../images/icon_exc.png) 25px 50% no-repeat;
@@ -95,7 +96,7 @@ dt {
 						<div class="input_set">
 							<dl>
 								<dt>
-									아이디<span class="ess"></span>
+									아이디<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png">
 								</dt>
 								<dd>
 									<span class="form_text" style="width: 500px;"> <input
@@ -110,7 +111,7 @@ dt {
 						<div class="input_set">
 							<dl>
 								<dt>
-									비밀번호<span class="ess"></span>
+									비밀번호<img style="margin-left: 5px;" alt="" src="../images/icon_ess.png">
 								</dt>
 								<dd>
 									<span class="form_text"> <input class="chk-value"
