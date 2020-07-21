@@ -26,7 +26,6 @@ public class SurveyInterceptor extends HandlerInterceptorAdapter{
 		}else {
 			request.setAttribute("result", "가맹점모드 입니다.");
 			request.setAttribute("path", "../");
-			System.out.println("member"+memberVO.getId()+memberVO.getLevel());
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/result.jsp"); 
 			view.forward(request, response);
 		}
