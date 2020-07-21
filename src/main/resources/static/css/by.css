@@ -68,3 +68,8 @@ td {
 tr:hover { 
 	background-color: #c9c9c9;
 	}
+	
+.pagination > li > a {
+	color: black;
+
+}

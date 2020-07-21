@@ -82,7 +82,6 @@ $("#bestClick").click(function(){
 				pick.push($(this).attr("name"));
 			}
 		});
-		console.log(pick);
 		$.ajax({
 			type:"get",
 				traditional: true,
@@ -97,10 +96,8 @@ $("#bestClick").click(function(){
 				},error : function(request, status, error) {
 					alert("code = " + request.status + " message = "
 							+ request.responseText + " error = " + error);
-				} 	
-		
-	});
-		
+				} 		
+		});		
 		}
 	});
 //location.href="./bestPick;
