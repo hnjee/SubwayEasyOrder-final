@@ -84,7 +84,7 @@ public class dataTest {
 			
 			salesVO.setPayNum(payNum);
 			
-			salesService.salesInsert(cartVO.getPayNum());
+			
 		}
 	}
 }
