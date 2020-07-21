@@ -224,12 +224,7 @@
 			    }
 			    
 			  }
-		
-		//if(!$('.input').val()){
-		//	alert("필수 사항을 모두 채워주세요");
-		//	event.preventDefault();
-		//}
-				
+	
 	});
 	
 
