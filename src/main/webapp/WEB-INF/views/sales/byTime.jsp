@@ -41,7 +41,7 @@
     <!-- header -->
 	<c:import url="./adminHeader.jsp"></c:import>
 	
-	<h3 id="titleName" style="margin-top: 50px;">[시간대별 매출]</h3>
+	<h3 id="titleName" style="margin-top: 50px;">시간대별 매출</h3>
 	
 	<form action="./byTime">
 	<div class="serach">
