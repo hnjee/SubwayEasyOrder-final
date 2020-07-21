@@ -127,13 +127,16 @@ public class SalesController {
 	public int ByRefund(String payNum,String id,String totalPrice,HttpSession session)throws Exception{
 		int re = 0;
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		
 		//payment 테이블 업데이트
 		int result = salesService.byRefund(payNum,memberVO.getStoreNum());
-		PointVO pointVO = salesService.point(payNum);
+		//Point 테이블 조회
+		List<PointVO> ar = salesService.point(payNum);
+		for(int i=0; i<ar.size(); i++) {
 		//사용한 포인트가 있을 경우 반환
-		if(pointVO.getPointStat()==0) {
-			int cur = pointVO.getCurPoint();
-			pointVO = new PointVO();
+		if(ar.get(i).getPointStat()==0) {
+			int cur = ar.get(i).getCurPoint();
+			PointVO pointVO = new PointVO();
 			pointVO.setPayNum(payNum);
 			pointVO.setId(id);
 			pointVO.setCurPoint(+cur);
@@ -144,6 +147,7 @@ public class SalesController {
 			int result2 = pointService.pointInsert(pointVO);
 			if(result2 > 0) {
 				System.out.println("사용된 포인트 복원");
+				
 			}
 			
 			//딜레이주기
@@ -169,9 +173,10 @@ public class SalesController {
 			if(result > 0 || result2 > 0 || result3 >0) {
 				re = 1;
 			}
+			break;
 		//사용한 포인트가 없을경우 환불(적립된포인트환불)
 		}else {
-			pointVO = new PointVO();
+			PointVO pointVO = new PointVO();
 			pointVO.setPayNum(payNum);
 			pointVO.setId(id);
 			int total = Integer.parseInt(totalPrice);
@@ -190,9 +195,9 @@ public class SalesController {
 			if(result > 0 || result2 > 0 || result3 >0) {
 				re = 1;
 			}
-			
+			break;
 		}
-		
+		}
 		return re;
 	}
 

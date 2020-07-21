@@ -12,7 +12,7 @@ public class PointVO {
 	private int curPoint;
 	private int oriPoint;
 	private int totalPoint;
-	private int pointStat;
+	private Integer pointStat;
 	private String pointDate;
 	
 }
