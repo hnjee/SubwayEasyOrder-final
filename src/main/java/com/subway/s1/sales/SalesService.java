@@ -174,8 +174,8 @@ public class SalesService {
 		
 		List<ByOrderVO> ar = salesRepository.getByOrder(from, to, pager,storeNum);
 		for(int i=0;i<ar.size();i++) {
-			if(ar.get(i).getName().length()>10) {
-				ar.get(i).setName(ar.get(i).getName().substring(0, 10)+"외");
+			if(ar.get(i).getName().length()>12) {
+				ar.get(i).setName(ar.get(i).getName().substring(0, 11)+"외");
 			}
 		}
 		return ar;
@@ -251,7 +251,8 @@ public class SalesService {
 		return salesRepository.pointUpdate(id, oriPoint);
 	}
 	
-	public PointVO point(String payNum)throws Exception{
+	public List<PointVO> point(String payNum)throws Exception{
+		System.out.println("in");
 		return salesRepository.point(payNum);
 	}
 	
@@ -419,8 +420,5 @@ public class SalesService {
 		return salesRepository.byTime(from, to,pager,storeNum);
 	}
 	
-	public int salesInsert(CartVO cartVO ) throws Exception{
-		return salesRepository.salesInsert(cartVO);
-	}
 	
 }//END CLASS

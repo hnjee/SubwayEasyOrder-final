@@ -11,6 +11,7 @@ import com.subway.s1.interceptor.ManagersInterceptor;
 import com.subway.s1.interceptor.MemberLoginAdmin;
 import com.subway.s1.interceptor.OwnerInterceptor;
 import com.subway.s1.interceptor.StaffInterceptor;
+import com.subway.s1.interceptor.SurveyInterceptor;
 
 @Component
 public class InterceptorConfig implements WebMvcConfigurer {
@@ -26,6 +27,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	private MemberLoginAdmin memberLoginAdmin;
 	@Autowired
 	private ManagersInterceptor managersInterceptor;
+	@Autowired
+	private SurveyInterceptor surveyInterceptor;
+	
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -85,6 +89,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		.addPathPatterns("payment/paymentOngoing")
 		.addPathPatterns("payment/paymentSuccess");
 		
+		registry.addInterceptor(surveyInterceptor)
+		.addPathPatterns("/survey/*");
 	}
 
 }

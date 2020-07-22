@@ -39,7 +39,7 @@
       </li>
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class='fas fa-money-check-alt' style='font-size:20px'></i>
           <span>매출관리</span>
         </a>

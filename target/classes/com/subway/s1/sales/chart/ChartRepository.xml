@@ -7,7 +7,8 @@
 <mapper namespace="com.subway.s1.sales.chart.ChartRepository">
 
 <select id="monthChart" parameterType="ChartVO" resultType="ChartVO" >
-	select distinct left(M.payDate,7) as month,sum(M.totalPrice) as totalPrice, left(CURDATE(),7) as todayMonth from
+	select distinct left(M.payDate,7) as month,sum(M.totalPrice) as totalPrice,
+	left(CURDATE(),7) as todayMonth from
 	(select S.payNum,Pay.payDate as payDate, Pay.totalPrice as totalPrice
 	From OrderProduct AS S 
 	left join Payment AS Pay
@@ -17,12 +18,12 @@
     where left(M.payDate,4) like left(CURDATE(),4)
     group by month
     order by month asc
-
 </select>
 
 
 <select id="weekChart" parameterType="ChartVO" resultType="ChartVO">
-	select dayofweek(D.payDate) as day,dayName(D.payDate) as day2,sum(D.totalPrice) as totalPrice, left(CURDATE(),7) as todayMonth from
+	select dayofweek(D.payDate) as day,dayName(D.payDate) as day2,sum(D.totalPrice) as totalPrice, 
+	left(CURDATE(),7) as todayMonth from
 	(select S.payNum,Pay.payDate as payDate, Pay.totalPrice as totalPrice
 	From OrderProduct AS S 
 	left join Payment AS Pay
@@ -48,7 +49,8 @@
 </select>
 
 <select id="timeChart" parameterType="ChartVO" resultType="ChartVO">
-	select substring(D.payDate,11,3) as time,sum(D.totalPrice) as totalPrice, left(CURDATE(),7) as todayMonth from
+	select substring(D.payDate,11,3) as time,sum(D.totalPrice) as totalPrice, 
+	left(CURDATE(),7) as todayMonth from
 	(select S.payNum,Pay.payDate as payDate, Pay.totalPrice as totalPrice
 	From OrderProduct AS S 
 	left join Payment AS Pay
@@ -56,8 +58,7 @@
     where Pay.refund=0 and left(Pay.payDate,7) like left(CURDATE(),7)and Pay.storeNum= #{storeNum}
     )D
     group by time
-    order by time desc;
-
+    order by time desc
 </select>
 
 <select id="menuCount" parameterType="String" resultType="Long">

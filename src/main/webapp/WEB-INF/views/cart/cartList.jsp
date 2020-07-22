@@ -357,7 +357,6 @@
 		var productNum = indexToNum(num);
 		$('#menuTotalPrice'+productNum).val(totalPrice);
 	}
-
 	
 	//status.index -> productNum 
 	function indexToNum(indexNum){
