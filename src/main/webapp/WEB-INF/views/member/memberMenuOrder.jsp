@@ -377,7 +377,6 @@
 	);   
 
  	// 배너에 값 보내기  
- 	$("#brse").html($("#br0").attr("title"));
 	$(".br").click(function(){
 		$("#brse").html(this.title);
 	});
