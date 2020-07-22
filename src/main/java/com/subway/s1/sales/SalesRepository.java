@@ -49,7 +49,7 @@ public interface SalesRepository {
 	public int pointUpdate(String id, String oriPoint)throws Exception;
 	
 	//byRefund-주문번호 별 Point 검색
-	public PointVO point(String payNum)throws Exception;	
+	public List<PointVO> point(String payNum)throws Exception;
 	
 	//byProduct totalCount
 	public long getProductTotal(Pager pager, String from, String to,String storeNum)throws Exception;

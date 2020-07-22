@@ -118,7 +118,8 @@
 
 <!-- ByOrder -->
 <select id="getByOrder" parameterType="Pager" resultType="ByOrderVO">
-	select DISTINCT P.payDate,O.payNum,P.totalPrice,ANY_VALUE(GROUP_CONCAT(M.name SEPARATOR '/')) as name,ANY_VALUE(O.productCount) as productCount
+	select DISTINCT P.payDate,O.payNum,P.totalPrice,
+	ANY_VALUE(GROUP_CONCAT(M.name SEPARATOR '/')) as name,ANY_VALUE(O.productCount) as productCount
 	from OrderProduct O left Join Menu M on O.menuNum=M.menuNum left Join Payment P on O.payNum=P.payNum
     where P.payDate between #{from} and #{to} and P.refund = 0 and storeNum = #{storeNum}
 	group by O.payNum
@@ -149,7 +150,7 @@
 
 <!-- 주문번호별 Point 검색 -->
 <select id="point" parameterType="String" resultType="PointVO">
-	select * from Point where payNum=#{payNum} and pointStat = 0
+	select * from Point where payNum=#{payNum}
 </select>
 
 <!-- Member Point Update -->
