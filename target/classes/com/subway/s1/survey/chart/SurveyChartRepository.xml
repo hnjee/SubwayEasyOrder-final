@@ -17,13 +17,14 @@
   	</select>
   	
   	<select id="surveyMonth" parameterType="MonthVO" resultType="MonthVO">
-	 select left(M.payDate,7) as payDate,sum(M.taste) as taste, sum(M.hygiene) as hygiene, sum(M.kindness) as kindness  from
+	select left(M.payDate,7) as payDate,sum(M.taste) as taste, sum(M.hygiene) as hygiene, sum(M.kindness) as kindness from
 	(select S.* ,left(Pay.payDate,7) as payDate
 	from Survey AS S
 	left join Payment AS Pay
 	ON S.payNum = Pay.payNum
 	where Pay.refund=0 and Pay.storeNum= #{storeNum}
 	)M
+	where left(M.payDate,4) like left(CURDATE(),4)
 	group by payDate
 	order by payDate asc
 	</select>

@@ -54,7 +54,7 @@
               <div id="tab-1" class="tab-content current">
               <div class="card1 card card1 shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">이달의 설문조사</h6>
+                  <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">월별 설문조사</h6>
 	               <div style="margin-left:10px; display: inline;">
 
 	                </div>
@@ -81,7 +81,7 @@
               <div class="card card1 shadow mb-4">
 
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">해마다 통계</h6>
+                  <h6 class="m-0 font-weight-bold text-primary text-chart" style="display: inline;">연별 통계</h6>
 	               <div style="margin-left:10px; display: inline;">
 	                </div>
                 </div>
