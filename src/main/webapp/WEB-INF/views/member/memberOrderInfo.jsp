@@ -115,9 +115,9 @@ td{
 										</div>
 										</c:if>
 										<c:if test="${list.review eq 1 }">
-										<div title="${list.payNum}" name="${list.storeNum }" class="survey_btn btn"  style="outline: 0px; border-color: #999;cursor:default;">
+										<div title="${list.payNum}" name="${list.storeNum }" class="btn"  style="outline: 0px; border-color: #999;cursor:default;">
 											<i class="fa fa-pencil-square-o" style="font-size:24px;color:#999"></i>
-											<span style="font-weight: bold; color: black">작성 완료</span>
+											<span style="font-weight: bold; color: #999999">작성 완료</span>
 										</div>
 										</c:if>
 									</c:if>
@@ -419,13 +419,7 @@ $(document).ready(function() {
 		var payDate=$("#"+title+"_date").attr("title");
 		payDate = new Date(payDate);
 
-		if(date>payDate){
-			$(this).children().css({
-				'color':'#999',
-			});
-			$(this).addClass("expiration");
-			$(this).removeClass("survey_btn");
-		}
+		
 		var dday= payDate.getTime()-date.getTime();
 		var result = Math.floor(dday / (1000 * 60 * 60 * 24));    // gap을 일(밀리초 * 초 * 분 * 시간)로 나눈다. 이 때 -1 을 곱해야 날짜차이가 맞게 나온다.
 		console.log(result);
@@ -434,6 +428,11 @@ $(document).ready(function() {
 			
 			
 		} else{
+			$(this).children().css({
+				'color':'#999',
+			});
+			$(this).addClass("expiration");
+			$(this).removeClass("survey_btn");
 			$(this).removeAttr("data-toggle");
 			$(this).removeAttr("data-target");
 		}

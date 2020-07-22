@@ -702,8 +702,10 @@
 				} */
 				if($(this).attr("class")=='add'){
 					var price = $(this).attr("title")*1;
-					price = $("#tot").val()-price;
-					$("#tot").val(price);
+					if($(this).prop("checked")){				//추가 재료가 품절일 경우 가격을 뺌
+						price = $("#tot").val()-price;
+						$("#tot").val(price); 
+					}
 					ingreNumList.push($(this).attr("id"));
 				} else{
 					ingreNumList.push($(this).attr("title"));
@@ -713,7 +715,6 @@
 			}
 		});
 	});
-	console.log(ingreNumList.length);
 	if(ingreNumList.length!=0){
 		alert("주문하시는 매장에 아래 재료가 다 떨어졌습니다.\n["+ingreNumList+"]\n재료 확인 후 주문해주세요.");
 	}
