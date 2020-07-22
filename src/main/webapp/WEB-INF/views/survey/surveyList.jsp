@@ -41,7 +41,7 @@
             <input type="text" name="from" id="from" readonly="readonly" style="display: inline;" value="${from}"> - 
             <input type="text" name="to" id="to" readonly="readonly" value="${to}">
             <button class="btn-subway" type="submit" id=serach">검색</button>
-        <span><img alt="X" src="../images/img_profile_female.png" style="width: 50px;height: 50px; margin-left: 50%;" ></span>
+        <span><img alt="X" src="../images/img_profile_female.png" style="width: 50px;height: 50px; margin-left: 90%;" ></span>
         </div>
     </div>
     </form>
