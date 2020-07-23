@@ -201,8 +201,6 @@ span{
 			'cursor' : 'pointer'
 		});
 	});
-
-
 	$("#check_all").click(function(){
 		var result = false;
 		if($("#check_all").prop("checked")){
@@ -218,13 +216,10 @@ span{
 				'color':'#bbbbbb'
 			});
 		}
-	
 	});
-
 	$(".check").click(function(){
 		var result = true;
 		var id = $(this).attr("id");
-
 		if($(this).prop("checked")){
 			$("#"+id+"_box").css({
 				'color':'rgb(0, 152, 61)'
@@ -234,8 +229,6 @@ span{
 				'color':'#bbbbbb'
 			});
 		}
-
-		
 		$(".check").each(function(){
 			if(!$(this).prop("checked")){
 				result = false;
@@ -246,13 +239,11 @@ span{
 			$("#all_box").css({
 				'color':'rgb(0, 152, 61)'
 			});
-			console.log("true");
 		} else {
 			$("#all_box").css({
 				'color':'#bbbbbb'
 			});
 		}
-
 	});
 
 </script>

@@ -358,7 +358,7 @@ td{
 	$(".pop").click(function(){
 		$("#menuNum").val("샌드위치 선택");
 		$("#ingre_num").val(null);
-		var winObj = window.open("myMenuCustom",  "popupNo1", "width=490px, height=630px,location=no,toolbar=no,resizable=no,menubar=no,scrollbars=yes");
+		var winObj = window.open("myMenuCustom",  "popupNo1", "resizable=no,width=490px, height=630px,location=no,toolbar=no,menubar=no,scrollbars=yes");
 		
 	});
 	
