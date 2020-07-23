@@ -51,6 +51,9 @@ public class HeadOfficeSalesService {
 		if(from==null && to==null) {
 			from = tfrom;
 			to = tto;
+		}else if(from.equals("") && to.equals("")){
+			from = tfrom;
+			to = tto;
 		}else {
 			//to 문자열의 끝에 day만 자르는 작업
 			String ddd =  to.substring(8, 10);
@@ -138,6 +141,9 @@ public class HeadOfficeSalesService {
 				if(from==null && to==null) {
 					from = tfrom;
 					to = tto;
+				}else if(from.equals("") && to.equals("")){
+					from = tfrom;
+					to = tto;
 				}else {
 					//to 문자열의 끝에 day만 자르는 작업
 					String ddd =  to.substring(8, 10);
@@ -191,6 +197,9 @@ public class HeadOfficeSalesService {
 		if(from==null && to==null) {
 			from = tfrom;
 			to = tto;
+		}else if(from.equals("") && to.equals("")){
+			from = tfrom;
+			to = tto;
 		}else {
 			//to 문자열의 끝에 day만 자르는 작업
 			String ddd =  to.substring(8, 10);
@@ -234,6 +243,9 @@ public class HeadOfficeSalesService {
 		System.out.println("dddddddddddd"+tfrom);
 
 		if(from==null && to==null) {
+			from = tfrom;
+			to = tto;
+		}else if(from.equals("") && to.equals("")){
 			from = tfrom;
 			to = tto;
 		}else {
@@ -294,6 +306,9 @@ public class HeadOfficeSalesService {
 		System.out.println("dddddddddddd"+tfrom);
 
 		if(from==null && to==null) {
+			from = tfrom;
+			to = tto;
+		}else if(from.equals("") && to.equals("")){
 			from = tfrom;
 			to = tto;
 		}else {
