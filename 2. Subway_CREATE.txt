@@ -1,0 +1,304 @@
+﻿-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+
+-- Store Table Create SQL
+CREATE TABLE Store
+(
+    `storeNum`    VARCHAR(45)     NOT NULL    COMMENT '매장번호', 
+    `name`        VARCHAR(45)     NULL        COMMENT '이름', 
+    `address`     VARCHAR200)     NULL        COMMENT '주소', 
+    `telNumber`   VARCHAR(45)     NULL        COMMENT '연락처', 
+    `hours`       VARCHAR(200)    NULL        COMMENT '영업시간', 
+    `orderable`   INT             NULL        COMMENT '주문가능여부', 
+    `best`        INT             NULL        COMMENT '베스트매장여부', 
+    `storeScore`  INT             NULL        COMMENT '매장점수', 
+    PRIMARY KEY (storeNum)
+);
+
+
+-- Member Table Create SQL
+CREATE TABLE Member
+(
+    `id`        VARCHAR(200)    NOT NULL    COMMENT '회원아이디', 
+    `pw`        VARCHAR(200)    NULL        COMMENT '비밀번호', 
+    `name`      VARCHAR(45)     NULL        COMMENT '이름', 
+    `phone`     VARCHAR(45)     NULL        COMMENT '핸드폰번호', 
+    `phone2`    VARCHAR(45)     NULL        COMMENT '핸드폰번호', 
+    `phone3`    VARCHAR(45)     NULL        COMMENT '핸드폰번호', 
+    `oriPoint`  INT             NULL        COMMENT '포인트', 
+    `storeNum`  VARCHAR(45)     NULL        COMMENT '매장번호', 
+    `level`     INT             NULL        COMMENT '회원 레벨', 
+    `status`    INT             NULL        COMMENT '탈퇴여부', 
+    PRIMARY KEY (id)
+);
+ALTER TABLE Member
+    ADD CONSTRAINT FK_Member_storeNum_Store_storeNum FOREIGN KEY (storeNum)
+        REFERENCES Store (storeNum) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Code Table Create SQL
+CREATE TABLE Code
+(
+    `code`  VARCHAR(45)    NOT NULL    COMMENT '코드', 
+    `desc`  VARCHAR(45)    NULL        COMMENT '코드설명', 
+    PRIMARY KEY (code)
+);
+
+
+-- Menu Table Create SQL
+CREATE TABLE Menu
+(
+    `menuNum`      VARCHAR(45)     NOT NULL    COMMENT '메뉴번호', 
+    `menuCode`     VARCHAR(45)     NULL        COMMENT '메뉴코드', 
+    `name`         VARCHAR(45)     NULL        COMMENT '이름', 
+    `menuPrice`    INT             NULL        COMMENT '가격', 
+    `menuPrice30`  INT             NULL        COMMENT '가격30cm', 
+    `sale`         INT             NULL        COMMENT '판매여부', 
+    `desc`         VARCHAR(300)    NULL        COMMENT '메뉴설명', 
+    PRIMARY KEY (menuNum)
+);
+ALTER TABLE Menu
+    ADD CONSTRAINT FK_Menu_menuCode_Code_code FOREIGN KEY (menuCode)
+        REFERENCES Code (code) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+-- Ingredient Table Create SQL
+CREATE TABLE Ingredient
+(
+    `ingreNum`   VARCHAR(45)    NOT NULL    COMMENT '재료번호', 
+    `ingreCode`  VARCHAR(45)    NULL        COMMENT '재료코드', 
+    `name`       VARCHAR(45)    NULL        COMMENT '이름', 
+    `price`      INT            NULL        COMMENT '가격', 
+    `sale`       INT            NULL        COMMENT '판매여부', 
+    PRIMARY KEY (ingreNum)
+);
+ALTER TABLE Ingredient
+    ADD CONSTRAINT FK_Ingredient_ingreCode_Code_code FOREIGN KEY (ingreCode)
+        REFERENCES Code (code) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Payment Table Create SQL
+CREATE TABLE Payment
+(
+    `payNum`      VARCHAR(45)     NOT NULL    COMMENT '결제번호', 
+    `totalPrice`  VARCHAR(45)     NULL        COMMENT '결제가격', 
+    `payDate`     VARCHAR(45)     NULL        COMMENT '결제날짜', 
+    `id`          VARCHAR(200)    NULL        COMMENT '회원아이디', 
+    `refund`      INT             NULL        COMMENT '환불여부', 
+    `storeNum`    VARCHAR(45)     NULL        COMMENT '매장번호', 
+    `orderInfo`   INT             NULL        COMMENT '주문상태', 
+    `review`      INT             NULL        COMMENT '리뷰여부', 
+    PRIMARY KEY (payNum)
+);
+ALTER TABLE Payment
+    ADD CONSTRAINT FK_Payment_id_Member_id FOREIGN KEY (id)
+        REFERENCES Member (id) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Cart Table Create SQL
+CREATE TABLE Cart
+(
+    `id`            VARCHAR(200)    NULL        COMMENT '회원ID', 
+    `menuNum`       VARCHAR(45)     NULL        COMMENT '메뉴번호', 
+    `productNum`    VARCHAR(45)     NULL        COMMENT '상품번호', 
+    `productPrice`  INT             NULL        COMMENT '상품가격', 
+    `productCount`  INT             NULL        COMMENT '상품수량', 
+    `setting`       VARCHAR(45)     NULL        COMMENT 'set여부', 
+    PRIMARY KEY (productNum)
+);
+ALTER TABLE Cart
+    ADD CONSTRAINT FK_Cart_menuNum_Menu_menuNum FOREIGN KEY (menuNum)
+        REFERENCES Menu (menuNum) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE Cart
+    ADD CONSTRAINT FK_Cart_id_Member_id FOREIGN KEY (id)
+        REFERENCES Member (id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Custom Table Create SQL
+CREATE TABLE Custom
+(
+    `productNum`     VARCHAR(45)    NOT NULL    COMMENT '상품번호', 
+    `ingreNum`       VARCHAR(45)    NULL        COMMENT '재료번호', 
+    `breadSize`      INT            NULL        COMMENT '사이즈', 
+    `breadToasting`  INT            NULL        COMMENT '토스팅', 
+    PRIMARY KEY (productNum, ingreNum)
+);
+
+ALTER TABLE Custom
+    ADD CONSTRAINT FK_Custom_ingreNum_Ingredient_ingreNum FOREIGN KEY (ingreNum)
+        REFERENCES Ingredient (ingreNum) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE Custom
+    ADD CONSTRAINT FK_Custom_productNum_Cart_productNum FOREIGN KEY (productNum)
+        REFERENCES Cart (productNum) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Point Table Create SQL
+CREATE TABLE Point
+(
+    `payNum`      VARCHAR(45)     NOT NULL    COMMENT '결제번호', 
+    `id`          VARCHAR(200)    NOT NULL    COMMENT '회원아이디', 
+    `curPoint`    INT             NULL        COMMENT '적립될포인트', 
+    `oriPoint`    INT             NULL        COMMENT '원래포인트', 
+    `totalPoint`  INT             NULL        COMMENT '최종포인트', 
+    `pointStat`   INT             NULL        COMMENT '포인트정보', 
+    `pointDate`   VARCHAR(45)     NULL        COMMENT '포인트 날짜', 
+    PRIMARY KEY (payNum)
+);
+
+ALTER TABLE Point
+    ADD CONSTRAINT FK_Point_id_Member_id FOREIGN KEY (id)
+        REFERENCES Member (id) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE Point
+    ADD CONSTRAINT FK_Point_payNum_Payment_payNum FOREIGN KEY (payNum)
+        REFERENCES Payment (payNum) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- OrderProduct Table Create SQL
+CREATE TABLE OrderProduct
+(
+    `payNum`        VARCHAR(45)    NOT NULL    COMMENT '결제번호', 
+    `productNum`    VARCHAR(45)    NULL        COMMENT '상품번호', 
+    `menuNum`       VARCHAR(45)    NULL        COMMENT '메뉴번호', 
+    `productCount`  INT            NULL        COMMENT '상품수량', 
+    `productPrice`  INT            NOT NULL    COMMENT '상품가격', 
+    `setting`       VARCHAR(45)    NULL        COMMENT 'set여부', 
+    PRIMARY KEY (productNum)
+);
+ALTER TABLE OrderProduct
+    ADD CONSTRAINT FK_OrderProduct_payNum_Payment_payNum FOREIGN KEY (payNum)
+        REFERENCES Payment (payNum) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+-- MyStore Table Create SQL
+CREATE TABLE MyStore
+(
+    `id`        VARCHAR(200)    NOT NULL    COMMENT '회원아이디', 
+    `storeNum`  VARCHAR(45)     NOT NULL    COMMENT '매장번호'
+);
+
+ALTER TABLE MyStore
+    ADD CONSTRAINT FK_MyStore_id_Member_id FOREIGN KEY (id)
+        REFERENCES Member (id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE MyStore
+    ADD CONSTRAINT FK_MyStore_storeNum_Store_storeNum FOREIGN KEY (storeNum)
+        REFERENCES Store (storeNum) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+-- Franchise Table Create SQL
+CREATE TABLE Franchise
+(
+    `requestNum`   INT             NOT NULL    AUTO_INCREMENT COMMENT '신청 번호', 
+    `ownerName`    VARCHAR(45)     NULL        COMMENT '점주 이름', 
+    `email`        VARCHAR(100)    NULL        COMMENT '신청자 메일', 
+    `storeName`    VARCHAR(45)     NULL        COMMENT '매장 이름', 
+    `address`      VARCHAR(200)    NULL        COMMENT '주소', 
+    `requestInfo`  INT             NULL        COMMENT '수락 여부', 
+    `requestDate`  DATE            NULL        COMMENT '신청일', 
+    PRIMARY KEY (requestNum)
+);
+
+
+-- Survey Table Create SQL
+CREATE TABLE Survey
+(
+    `payNum`      VARCHAR(45)      NOT NULL    COMMENT '결제번호', 
+    `taste`       INT              NULL        COMMENT '메뉴(맛)', 
+    `hygiene`     INT              NULL        COMMENT '위생', 
+    `kindness`    INT              NULL        COMMENT '친절', 
+    `totalScore`  INT              NULL        COMMENT '전체점수', 
+    `comment`     VARCHAR(4000)    NULL        COMMENT '기타', 
+    `storeNum`    VARCHAR(45)      NULL        COMMENT '매장번호', 
+    PRIMARY KEY (payNum)
+);
+
+-- MenuSoldout Table Create SQL
+CREATE TABLE MenuSoldout
+(
+    `storeNum`  VARCHAR(45)    NOT NULL    COMMENT '매장번호', 
+    `menuNum`   VARCHAR(45)    NULL        COMMENT '메뉴번호', 
+    PRIMARY KEY (storeNum, menuNum)
+);
+ALTER TABLE MenuSoldout
+    ADD CONSTRAINT FK_MenuSoldout_storeNum_Store_storeNum FOREIGN KEY (storeNum)
+        REFERENCES Store (storeNum) ON DELETE CASCADE ON UPDATE CASCAD; 
+
+ALTER TABLE MenuSoldout
+    ADD CONSTRAINT FK_MenuSoldout_menuNum_Menu_menuNum FOREIGN KEY (menuNum)
+        REFERENCES Menu (menuNum) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- IngreSoldout Table Create SQL
+CREATE TABLE IngreSoldout
+(
+    `storeNum`  VARCHAR(45)    NOT NULL    COMMENT '매장번호', 
+    `ingreNum`  VARCHAR(45)    NULL        COMMENT '재료번호', 
+    PRIMARY KEY (storeNum, ingreNum)
+);
+ALTER TABLE IngreSoldout
+    ADD CONSTRAINT FK_IngreSoldout_storeNum_Store_storeNum FOREIGN KEY (storeNum)
+        REFERENCES Store (storeNum) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE IngreSoldout
+    ADD CONSTRAINT FK_IngreSoldout_ingreNum_Ingredient_ingreNum FOREIGN KEY (ingreNum)
+        REFERENCES Ingredient (ingreNum) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- MyMenu Table Create SQL
+CREATE TABLE MyMenu
+(
+    `id`             VARCHAR(200)    NULL        COMMENT '회원아이디', 
+    `id_index`       VARCHAR(45)     NULL        COMMENT 'id_index', 
+    `menuNum`        VARCHAR(45)     NULL        COMMENT '메뉴번호', 
+    `ingreNum`       VARCHAR(45)     NULL        COMMENT '재료번호', 
+    `breadSize`      INT             NULL        COMMENT '빵사이즈', 
+    `breadToasting`  INT             NULL        COMMENT '토스팅', 
+    `index_num`      INT             NULL        COMMENT '인덱스번호', 
+    `setting`        INT             NULL        COMMENT 'set여부', 
+    `drink`          VARCHAR(45)     NULL        COMMENT '음료', 
+    `cookie`         VARCHAR(45)     NULL        COMMENT '쿠키'
+);
+
+ALTER TABLE MyMenu
+    ADD CONSTRAINT FK_MyMenu_id_Member_id FOREIGN KEY (id)
+        REFERENCES Member (id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE MyMenu
+    ADD CONSTRAINT FK_MyMenu_ingreNum_Ingredient_ingreNum FOREIGN KEY (ingreNum)
+        REFERENCES Ingredient (ingreNum) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE MyMenu
+    ADD CONSTRAINT FK_MyMenu_menuNum_Menu_menuNum FOREIGN KEY (menuNum)
+        REFERENCES Menu (menuNum) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- MyMenuCustom Table Create SQL
+CREATE TABLE MyMenuCustom
+(
+    `id_index`  INT             NULL        COMMENT 'id_index', 
+    `id`        VARCHAR(200)    NULL        COMMENT '회원아이디', 
+    `ingreNum`  VARCHAR(45)     NULL        COMMENT '재료번호리스트'
+);
+
+-- IngredientFile Table Create SQL
+CREATE TABLE IngredientFile
+(
+    `ingreNum`  VARCHAR(45)     NULL        COMMENT '재료번호', 
+    `fileName`  VARCHAR(200)    NULL        COMMENT '파일이름', 
+    `oriName`   VARCHAR(200)    NULL        COMMENT '원래파일이름', 
+    PRIMARY KEY (ingreNum)
+);
+
+ALTER TABLE IngredientFile
+    ADD CONSTRAINT FK_IngredientFile_ingreNum_Ingredient_ingreNum FOREIGN KEY (ingreNum)
+        REFERENCES Ingredient (ingreNum) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- MenuFile Table Create SQL
+CREATE TABLE MenuFile
+(
+    `menuNum`   VARCHAR(45)     NOT NULL    COMMENT '메뉴번호', 
+    `fileName`  VARCHAR(200)    NULL        COMMENT '파일이름', 
+    `oriName`   VARCHAR(200)    NULL        COMMENT '원래파일이름', 
+    PRIMARY KEY (menuNum)
+);
+
+ALTER TABLE MenuFile
+    ADD CONSTRAINT FK_MenuFile_menuNum_Menu_menuNum FOREIGN KEY (menuNum)
+        REFERENCES Menu (menuNum) ON DELETE RESTRICT ON UPDATE RESTRICT;

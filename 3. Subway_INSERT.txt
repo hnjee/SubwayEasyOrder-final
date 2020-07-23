@@ -1,0 +1,257 @@
+-- Code Table Insert
+insert into Code values('M', '메뉴번호');
+insert into Code values('I', '재료번호');
+insert into Code values('O', '주문번호');
+insert into Code values('P', '상품번호');
+insert into Code values('S', '매장번호');
+
+insert into Code values('BR', '빵');
+insert into Code values('CZ', '치즈');
+insert into Code values('VG', '야채');
+insert into Code values('SO', '소스');
+insert into Code values('AD', '추가재료');
+
+insert into Code values('SW', '샌드위치');
+insert into Code values('SW1', '클래식');
+insert into Code values('SW2', '프레쉬&라이트');
+insert into Code values('SW3', '프리미엄');
+insert into Code values('SW4', '아침메뉴');
+
+insert into Code values('WR', '랩');
+insert into Code values('WR1', '시그니처랩');
+insert into Code values('WR2', '미니랩');
+
+insert into Code values('SA', '샐러드');
+insert into Code values('SA1', '클래식');
+insert into Code values('SA2', '프레쉬&라이트');
+insert into Code values('SA3', '프리미엄');
+
+insert into Code values('SI', '사이드');
+insert into Code values('SI1', '음료');
+insert into Code values('SI2', '쿠키&칩');
+insert into Code values('SI3', '수프');
+insert into Code values('SI4', '사이드');
+
+insert into Code values('GR', '단체주문');
+insert into Code values('GR1', '샌드위치');
+insert into Code values('GR2', '쿠키');
+
+-- Ingredient Table Insert
+insert into Ingredient values('I01', 'BR', '화이트', 0,1);
+insert into Ingredient values('I02', 'BR', '파마산오레가노', 0, 1);
+insert into Ingredient values('I03', 'BR', '휘트', 0, 1);
+insert into Ingredient values('I04', 'BR', '허니오트', 0, 1);
+insert into Ingredient values('I05', 'BR', '하티', 0,1);
+insert into Ingredient values('I06', 'BR', '플랫브래드', 0, 1);
+
+insert into Ingredient values('I07', 'CZ', '아메리칸치즈', 0, 1);
+insert into Ingredient values('I08', 'CZ', '슈레드치즈', 0, 1);
+insert into Ingredient values('I09', 'CZ', '모짜렐라치즈', 0, 1);
+
+insert into Ingredient values('I10', 'VG', '양상추', 0, 1);
+insert into Ingredient values('I11', 'VG', '토마토', 0, 1);
+insert into Ingredient values('I12', 'VG', '오이', 0, 1);
+insert into Ingredient values('I13', 'VG', '피망', 0, 1);
+insert into Ingredient values('I14', 'VG', '양파', 0, 1);
+insert into Ingredient values('I15', 'VG', '피클', 0, 1);
+insert into Ingredient values('I16', 'VG', '올리브', 0, 1);
+insert into Ingredient values('I17', 'VG', '할라피뇨', 0, 1);
+
+insert into Ingredient values('I18', 'SO', '머스타드', 0, 1);
+insert into Ingredient values('I19', 'SO', '스윗어니언', 0, 1);
+insert into Ingredient values('I20', 'SO', '허니머스타드', 0, 1);
+insert into Ingredient values('I21', 'SO', '스윗칠리', 0, 1);
+insert into Ingredient values('I22', 'SO', '스모크바베큐', 0, 1);
+insert into Ingredient values('I23', 'SO', '렌치드레싱', 0, 1);
+insert into Ingredient values('I24', 'SO', '마요네즈', 0, 1);
+insert into Ingredient values('I25', 'SO', '핫칠리', 0, 1);
+insert into Ingredient values('I26', 'SO', '사우스웨스트', 0, 1);
+insert into Ingredient values('I27', 'SO', '홀스레디쉬', 0, 1);
+insert into Ingredient values('I28', 'SO', '올리브오일', 0, 1);
+insert into Ingredient values('I29', 'SO', '소금', 0, 1);
+insert into Ingredient values('I30', 'SO', '후추', 0, 1);
+insert into Ingredient values('I31', 'SO', '유자폰즈', 0, 1);
+
+insert into Ingredient values('I32', 'AD', '에그마요', 1600, 1);
+insert into Ingredient values('I33', 'AD', '페퍼로니', 900, 1);
+insert into Ingredient values('I34', 'AD', '베이컨', 900, 1);
+insert into Ingredient values('I35', 'AD', '아보카도', 1300, 1);
+insert into Ingredient values('I36', 'AD', '오믈렛', 1200, 1);
+insert into Ingredient values('I37', 'AD', '더블치즈추가', 900, 1);
+insert into Ingredient values('I38', 'AD', '더블미트추가', 1800, 1);
+
+-- Menu Table Insert
+insert into Menu values('M1','SW1','에그마요',4300,8000,1,'친환경 인증 받은 농장에서 생산된 달걀과 고소한 마요네즈가 만나 더 부드러운 스테디셀러');
+insert into Menu values('M2','SW1','이탈리안 비엠티',5100,9100,1,'7시간 숙성된 페퍼로니, 살라미 그리고 햄이 만들어내는 최상의 조화!
+전세계가 사랑하는 No.1 베스트셀러! Biggest Meatiest Tastiest, It''s B.M.T.!');
+insert into Menu values('M3','SW1','비엘티',5100,9100,1,'오리지널 아메리칸 베이컨의 풍미와 바삭함 그대로~');
+insert into Menu values('M4','SW1','미트볼',5100,9000,1,'이탈리안 스타일 비프 미트볼에 써브웨이만의 풍부한 토마토 향이
+살아있는 마리나라소스를 듬뿍');
+insert into Menu values('M5','SW1','햄',4700,8600,1,'기본 중에 기본! 풍부한 햄이 만들어내는 입 안 가득 넘치는 맛의 향연');
+insert into Menu values('M6','SW1','참치',4800,8700,1,'남녀노소 누구나 좋아하는 담백한 참치와 고소한 마요네즈의 완벽한 조화');
+
+insert into Menu values('M7','SW2','로티세리 바베큐 치킨',5900,10100,1,'촉촉한 바비큐 치킨의 풍미가득. 손으로 찢어 더욱 부드러운 치킨의 혁명');
+insert into Menu values('M8','SW2','로스트 치킨',5900,10100,1,'오븐에 구워 담백한 저칼로리 닭가슴살의 건강한 풍미');
+insert into Menu values('M9','SW2','써브웨이 클럽',5600,9700,1,'명실공히 시그니처 써브! 터키, 비프, 포크 햄의 완벽한 앙상블');
+insert into Menu values('M10','SW2','터키',5100,9100,1,'280kcal로 슬림하게 즐기는 오리지날 터키 샌드위치');
+insert into Menu values('M11','SW2','베지',3900,7400,1,'갓 구운 빵과 신선한 7가지 야채로 즐기는 깔끔한 한끼');
+
+insert into Menu values('M12','SW3','쉬림프',5500,9600,1,'탱글한 식감이 그대로 살아있는 통새우가 5마리 들어가 
+한 입 베어 먹을 때 마다 진짜 새우의 풍미가 가득');
+insert into Menu values('M13','SW3','풀드포크',5900,10100,1,'7시간 저온 훈연한 미국 정통 스타일의 리얼 바비큐 풀드포크는
+오직 써브웨이에서');
+insert into Menu values('M14','SW3','스테이크 & 치즈',6400,10600,1,'육즙이 쫙~풍부한 비프 스테이크의 풍미가 입안 한가득');
+insert into Menu values('M15','SW3','터키 베이컨 아보카도',6400,10600,1,'담백한 터키와 바삭한 베이컨 환상조합에 부드러운 아보카도는 신의 한수');
+insert into Menu values('M16','SW3','써브웨이 멜트',5900,10100,1,'자신있게 추천하는 터키, 햄, 베이컨의 완벽한 맛의 밸런스');
+insert into Menu values('M17','SW3','스파이시 이탈리안',5600,9700,1,'살라미, 페퍼로니가 입안 한가득! 쏘 핫한 이탈리아의 맛');
+insert into Menu values('M18','SW3','치킨 데리야끼',5600,9700,1,'담백한 치킨 스트립에 달콤짭쪼름한 써브웨이 특제 데리야끼 소스와의
+환상적인 만남');
+
+insert into Menu values('M19','SW4','블랙 포레스트햄 & 에그, 치즈',2900,null,1,'푹신한 오믈렛과 햄의 가장 클래식한 조화
+※아침메뉴 제공시간 : 오전 11시까지');
+insert into Menu values('M20','SW4','웨스턴, 에그 & 치즈',2900,null,1,'토마토, 피망, 양파 세가지 야채가 더해져 더욱 신선한 하루 시작
+※아침메뉴 제공시간 : 오전 11시까지');
+insert into Menu values('M21','SW4','베이컨, 에그 & 치즈',2900,null,1,'오리지널 아메리칸 베이컨으로 더욱 풍성한 아침 식사
+※아침메뉴 제공시간 : 오전 11시까지');
+insert into Menu values('M22','SW4','스테이크, 에그 & 치즈',3900,null,1,'육즙 가득 비프 스테이크로 든든한 아침 식사
+※아침메뉴 제공시간 : 오전 11시까지');
+
+insert into Menu values('M23','WR1','스테이크 & 치즈 아보카도 랩',5700,null,1,'육즙 가득 스테이크에 프레쉬함을 더해줄
+아보카도와 슈레드치즈 그리고
+모차렐라치즈까지!
+최상의 야채와 소스 조합으로 탄생한
+스테이크 & 치즈 아보카도 랩!
+써브웨이 랩은 최상의 맛을 위해 개발된 고정 레시피로 제공됩니다.
+양상추, 토마토, 양파, 피망이 제공되며 야채 추가는 불가합니다.');
+insert into Menu values('M24','WR1','쉬림프 에그마요 랩',5000,null,1,'부드럽고 고소한 에그마요 안에
+탱글한 통새우가 푹~!
+최상의 야채와 소스 조합으로 탄생한
+쉬림프 에그마요 랩!!
+써브웨이 랩은 최상의 맛을 위해 개발된 고정 레시피로 제공됩니다.
+양상추, 토마토가 제공되며 야채 추가는 불가합니다.');
+insert into Menu values('M25','WR2','이탈리안 미니 랩',2900,null,1,'작지만 화끈하다!
+입안 가득 즐기는 이탈리아의 풍미.
+이탈리안 미니랩!
+써브웨이 랩은 최상의 맛을 위해 개발된 고정 레시피로 제공됩니다.
+양상추, 토마토, 양파, 피망이 제공되며 야채 추가는 불가합니다.');
+insert into Menu values('M26','WR2','치킨 베이컨 미니 랩',2900,null,1,'담백한 치킨, 바삭한 베이컨 비츠가
+쫀득한 통밀 랩에 쏘옥!
+치킨 베이컨 미니 랩
+써브웨이 랩은 최상의 맛을 위해 개발된 고정 레시피로 제공됩니다.
+양상추가 제공되며 야채 추가는 불가합니다.');
+
+insert into Menu values('M27','SA1','이탈리안 비엠티',6900,null,1,'7시간 숙성된 페퍼로니, 살라미 그리고 햄이 만들어내는 최상의 조화!
+전세계가 사랑하는 No.1 베스트셀러! Biggest Meatiest Tastiest, It''s B.M.T. 찹 샐러드');
+insert into Menu values('M28','SA1','비엘티',6900,null,1,'오리지널 아메리칸 베이컨의 풍미와 바삭함이 찹 샐러드에 그대로');
+insert into Menu values('M29','SA1','미트볼',6900,null,1,'이탈리안 스타일 비프 미트볼이 토핑된 찹 샐러드');
+insert into Menu values('M30','SA1','햄',6400,null,1,'기본 중에 기본! 풍부한 햄 토핑 가득 찹 샐러드');
+insert into Menu values('M31','SA1','참치',6500,null,1,'남녀노소 누구나 좋아하는 담백한 참치와 고소한 마요네즈의 완벽한 조화');
+insert into Menu values('M32','SA1','에그마요',6000,null,1,'친환경 인증 받은 농장에서 생산된 달걀과
+고소한 마요네즈가 만나 더 부드러운 에그마요 찹 샐러드');
+
+insert into Menu values('M33','SA2','로티세리 치킨',7600,null,1,'촉촉한 바비큐 치킨의 풍미가득. 손으로 찢어 더욱 부드러운 치킨이 찹 샐러드에 쏙');
+insert into Menu values('M34','SA2','로스트 치킨',7600,null,1,'오븐에 구워 담백한 저칼로리 닭가슴살의 건강한 풍미');
+insert into Menu values('M35','SA2','써브웨이 클럽',7400,null,1,'터키, 비프, 포크 햄의 완벽한 앙상블과 즐기는 찹 샐러드');
+insert into Menu values('M36','SA2','터키',6900,null,1,'더 슬림하게 즐기자! 오리지날 터키 찹 샐러드');
+insert into Menu values('M37','SA2', '베지', 5600, null, 1, '7가지 야채만으로도 깔끔한 조화! 기본에 충실한 베지 찹 샐러드');
+
+insert into Menu values('M38','SA3', '쉬림프', 7400, null, 1, '탱글한 식감이 그대로 살아있는
+통새우가 5마리가
+찹샐러드에 쏙 ! Fresh함이 그대로~');
+insert into Menu values('M39','SA3', '풀드포크', 7600, null, 1, '7시간 저온 훈연한 미국 정통바비큐 풀드포크가 가득 올라간 풍미 가득한 풀드포크 찹 샐러드');
+insert into Menu values('M40','SA3', '스테이크&치즈', 8200, null, 1, '육즙이 쫙~풍부한 비프 스테이크의 풍미 가득 스테이크 & 치즈 찹 샐러드!');
+insert into Menu values('M41','SA3', '터키 베이컨 아보카도', 8200, null, 1, '담백한 터키와 바삭한 베이컨 환상조합에 부드러운 아보카도는 신의 한수');
+insert into Menu values('M42','SA3', '써브웨이 멜트', 7600, null, 1, '자신있게 추천하는 터키, 햄, 베이컨의 발란스로 완성된 멜트 찹 샐러드');
+insert into Menu values('M43','SA3', '스파이시 이탈리안', 7400, null, 1, '살라미, 페퍼로니가 입안 한가득! 진짜 이탈리아의 맛 가득한 찹 샐러드');
+insert into Menu values('M44','SA3', '치킨 데리야끼', 7400, null, 1, '담백한 치킨 스트립에 달콤짭쪼름한 써브웨이 특제 데리야끼 소스 토핑으로
+더 풍성한 찹 샐러드');
+
+insert into Menu values('M45','SI1', '우유', 1400, null, 1, '* 매장 별 판매 여부는 상이할 수 있습니다.');
+insert into Menu values('M46','SI1', '코카콜라', 1800, null, 1, '');
+insert into Menu values('M47','SI1', '환타', 1800, null, 1, '');
+insert into Menu values('M48','SI1', '사이다', 1800, null, 1, '');
+insert into Menu values('M49','SI1', '커피', 2000, null, 1, '');
+
+insert into Menu values('M50','SI2', '민트초코', 1000, null, 1, '진한 초콜릿에 상쾌한 민트가 퐁당!
+특별한 달콤함에 푹 빠져보세요.
+※ 1월 20일부터 소진시까지 한정판매 됩니다.
+판매 시작 및 종료 일정은 매장별로 상이할 수 있습니다.');
+insert into Menu values('M51','SI2', '더블 초코칩', 1000, null, 1, '부드러운 화이트초콜릿과 다크 초콜릿의
+절묘한 조화로 더욱 풍부한 달콤함');
+insert into Menu values('M52','SI2', '초코칩', 1000, null, 1, '알알이 가득한 초코의가장 클래식한 달콤함');
+insert into Menu values('M53','SI2', '오트밀 레이즌', 1000, null, 1, '캘리포니아 건포도와 귀리에
+살짝더해진 계피향의 환상적인 조화');
+insert into Menu values('M54','SI2', '라즈베리 치즈케익', 1000, null, 1, '부드럽고 풍부한 치즈와 새콤달콤 라즈베리의
+달콤한 만남');
+insert into Menu values('M55','SI2', '화이트 초코 마카다미아', 1000, null, 1, '고소함 가득한 마카다미아와
+달콤한 화이트 초콜릿의 환상 궁합');
+insert into Menu values('M56','SI2', '칩', 1000, null, 1, '바삭바삭한 칩을 추가해 써브웨이를 즐겨보세요');
+
+insert into Menu values('M57','SI3', '브로콜리 체다 수프', 2900, null, 1, '건강한 브로콜리와 짭쪼름한 체다치즈의
+환상적인 조합');
+insert into Menu values('M58','SI3', '베이크 포테이토 수프', 2900, null, 1, '부드럽고 담백한 감자에 바삭한 베이컨의 찰떡궁합');
+
+insert into Menu values('M59','SI4', '나초', 1500, null, 1, '바삭바삭 나초와
+써브웨이 시그니처 소스
+홀스래디쉬 소스의 환상 궁합');
+insert into Menu values('M60','SI4', '더블치즈 나초', 2900, null, 1, '바삭한 나초에
+써브웨이 슈레드 & 모차렐라 치즈가 듬뿍!
+할라피뇨 토핑이 포인트!');
+insert into Menu values('M61','SI4', '살사 더블치즈 나초', 3500, null, 1, '더 풍성한 나초맛을 느끼고 싶다면?
+더블 치즈는 물론 살사 & 사워크림 꿀조합을 더한
+매콤 상큼 프리미엄 나초!');
+insert into Menu values('M62','SI4', '웨지 포테이토', 1500, null, 1, '오븐에 구워 더 담백,
+겉은 바삭 속은 촉촉한 건강한 사이드
+※제공시간 : 오전 11시 ~');
+insert into Menu values('M63','SI4', 'Cheesy 웨지 포테이토', 2000, null, 1, '치즈 풍미 한가득, 오븐에 구워
+더 담백한 겉은 바삭
+속은 촉촉한 건강한 사이드
+※제공시간 : 오전 11시 ~');
+insert into Menu values('M64','SI4', 'Bacon Cheesy 웨지 포테이토', 2300, null, 1, '짭쪼름한 베이컨과 치즈의 궁합을 더한,
+오븐에 구워 더 담백한 겉은 바삭
+속은 촉촉한 건강한 사이드
+※제공시간 : 오전 11시 ~');
+insert into Menu values('M65','SI4', '해쉬브라운', 1200, null, 1, '잘게 썬 감자를 노릇하게 구워
+바삭하고 쫀득하게 즐기는 모닝 파트너
+※아침메뉴 제공시간 : 오전 11시까지');
+
+insert into Menu values('M66','GR1', '프레쉬 파티플래터', 46000, null, 1, '터키, 햄, 참치, 에그마요, 클럽으로
+구성된 어디서든 신선하게 즐길 수 있는
+파티플래터');
+insert into Menu values('M67','GR1', '베스트 파티플래터', 48600, null, 1, '터키, 참치, 스파이시 이탈리안, 이탈리안 비엠티,
+써브웨이 클럽으로 구성된 모두의 입맛을
+만족시키는 베스트 파티플래터');
+insert into Menu values('M68','GR1', '자이언트 써브 90cm', 69500, null, 1, '보는재미, 먹는재미! 특별한 날은 자이언트
+써브로 더욱 특별하게
+※이탈리안 비엠티, 햄,
+터키, 스파이시 이탈리안 중 선택');
+insert into Menu values('M69','GR1', '자이언트 써브 180cm', 139000, null, 1, '보는재미, 먹는재미! 특별한 날은 자이언트
+써브로 더욱 특별하게
+※이탈리안 비엠티, 햄,
+터키, 스파이시 이탈리안 중 선택');
+
+insert into Menu values('M70','GR2', '쿠키박스', 9600, null, 1, '즐거운 순간을 5가지 맛의 쿠키와
+함께 즐기세요 (12개입)');
+insert into Menu values('M71','GR2', '쿠키플레터', 25000, null, 1, '즐거운 순간을 5가지 맛의 쿠키와
+함께 즐기세요 (36개입)');
+
+-- Store Table Insert
+insert into Store values('S01', '강남역점', '서울특별시 강남구 강남대로96길 12', '02-557-4727', '08:00 - 22:00', '1', '0', '3');
+insert into Store values('S02', '논현역점', '서울특별시 서초구 강남대로 535 프린스빌딩', '02-512-1014', '00:00 - 23:59', '1', '0', '3');
+insert into Store values('S03', '삼성점', '서울특별시 강남구 삼성로 520', '02-2051-2008', '08:00 - 23:00', '1', '0', '5');
+insert into Store values('S04', '숭실대점', '서울특별시 동작구 사당로 12-1', '02-812-3552', '08:00 - 23:00', '1', '0', '3');
+insert into Store values('S05', '성신여대점', '서울특별시 성북구 보문로 34길 78', '02-923-4010', '08:00 - 22:00', '0', '0', '0');
+insert into Store values('S06', '성균관대점', '서울특별시 종로구 성균관로 41 ', '02-3673-0100', '08:00 - 20:00 (일요일 휴무)', '1', '0', '4');
+insert into Store values('S07', '홍대점', '서울특별시 마포구 홍익로 10', '02-324-6688', '09:00 - 23:00', '1', '0', '3');
+insert into Store values('S08', '길음뉴타운점', '서울특별시 성북구 길음로 7길 6', '02-918-7432', '08:00 - 22:00', '1', '0', '0');
+insert into Store values('S09', '경복궁점', '서울특별시 종로구 사직로 115 ', '02-725-5926', '07:30 - 21:30', '1', '0', '3');
+insert into Store values('S10', '을지로3가점', '서울특별시 중구 을지로 103-1', '02-2275-9890', '08:00 - 22:00', '0', '0', '0');
+insert into Store values('S11', '홍대아트점', '서울특별시 마포구 와우산로 117', '02-336-0522', '08:00 - 22:00', '1', '0', '3');
+insert into Store values('S12', '건대로대오점', '서울특별시 광진구 동일로20길 106', '02-418-7000', '08:00 ~ 22:00', '0', '0', '0');
+insert into Store values('S13', '일산화정점', '경기도 고양시 덕양구 화정동 965-1', '031-966-9668', '08:00 - 23:00', '1', '0', '0');
+insert into Store values('S14', '서울대점', '서울특별시 관악구 낙성대동 관악로 156', '02-887-6887', '09:00 ~ 21:00', '1', '0', '0');
+insert into Store values('S15', '일산대화역점', '경기도 고양시 일산서구 중앙로 1581', '031-915-1995', '09:00 - 23:00', '1', '0', '0');
+insert into Store values('S16', '연세대점', '서울 서대문구 연세로 50-1', '02-312-8725', '08:00 - 19:00', '0', '0', '0');
+insert into Store values('S17', '신촌로데오점', '서울 서대문구 연세로 23', '02-322-9431', '08:00 - 23:00', '1', '0', '0');
+insert into Store values('S18', '상수역점', '서울특별시 마포구 와우산로 44', '02-323-6934', '08:00 - 22:00', '0', '0', '0');
+insert into Store values('S23', '망원역점', '서울 마포구 월드컵로 87 마포로얄프라자', '02-323-6934', '08:00 - 22:00', '1', '0', '0');
