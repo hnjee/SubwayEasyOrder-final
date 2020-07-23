@@ -691,7 +691,6 @@
 	var ingreNumList = new Array();
 	$(".ingreOut").each(function(){
 		var ingreNum = $(this).text();
-		
 		$("input").each(function(){
 			if(ingreNum==$(this).val()){
 				$("#"+$(this).attr("id")).removeClass("show");
@@ -717,6 +716,20 @@
 	if(ingreNumList.length!=0){
 		alert("주문하시는 매장에 아래 재료가 다 떨어졌습니다.\n["+ingreNumList+"]\n재료 확인 후 주문해주세요.");
 	}
+
+	
+</script>
+
+<script type="text/javascript">
+var result = true;
+$(".br").each(function(){
+	if($(this).prop("checked")){
+		result = false;
+	}
+});
+if(result){
+	$("#brse").html("");
+}
 </script>
 </body>
 </html>
