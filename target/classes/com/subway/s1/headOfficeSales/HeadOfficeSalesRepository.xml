@@ -57,7 +57,7 @@
 <select id="byTimeCount"  parameterType="Pager"  resultType="Long">
 	SELECT count(R.Rownum) as count from (select @ROWNUM :=@ROWNUM +1 AS Rownum, T.* from (select left(D.payDate,13) as time from
 	(select S.payNum as payNum,Pay.payDate as payDate
-	From Sales AS S 
+	From OrderProduct AS S 
 	left join Payment AS Pay
 	ON S.payNum = Pay.payNum
 	where Pay.refund=0

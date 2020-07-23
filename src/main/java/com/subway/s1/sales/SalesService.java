@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.subway.s1.util.Pager;
-import com.subway.s1.cart.CartVO;
 import com.subway.s1.point.PointVO;
 
 
@@ -50,7 +49,11 @@ public class SalesService {
 		if(from==null && to==null) {
 			from = tfrom;
 			to = tto;
-		}else {
+		}else if(from.equals("") && to.equals("")){
+			from = tfrom;
+			to = tto;
+		}else{
+			
 			//to 문자열의 끝에 day만 자르는 작업
 			String ddd =  to.substring(8, 10);
 			//자른 day를 숫자로 전환
@@ -67,6 +70,7 @@ public class SalesService {
 			//to에 최종날짜 합쳐서 넣기
 			to = main+to2;
 		}
+		
 		
 		//Pager
 		pager.makeRow();
@@ -148,6 +152,9 @@ public class SalesService {
 		if(from==null && to==null) {
 			from = tfrom;
 			to = tto;
+		}else if(from.equals("") && to.equals("")){
+			from = tfrom;
+			to = tto;
 		}else {
 			//to 문자열의 끝에 day만 자르는 작업
 			String ddd =  to.substring(8, 10);
@@ -208,6 +215,9 @@ public class SalesService {
 				System.out.println("today"+tfrom);
 
 				if(from==null && to==null) {
+					from = tfrom;
+					to = tto;
+				}else if(from.equals("") && to.equals("")){
 					from = tfrom;
 					to = tto;
 				}else {
@@ -294,6 +304,9 @@ public class SalesService {
 		if(from==null && to==null) {
 			from = tfrom;
 			to = tto;
+		}else if(from.equals("") && to.equals("")){
+			from = tfrom;
+			to = tto;
 		}else {
 			//to 문자열의 끝에 day만 자르는 작업
 			String ddd =  to.substring(8, 10);
@@ -337,6 +350,9 @@ public class SalesService {
 		System.out.println("dddddddddddd"+tfrom);
 
 		if(from==null && to==null) {
+			from = tfrom;
+			to = tto;
+		}else if(from.equals("") && to.equals("")){
 			from = tfrom;
 			to = tto;
 		}else {
@@ -397,6 +413,9 @@ public class SalesService {
 		System.out.println("dddddddddddd"+tfrom);
 
 		if(from==null && to==null) {
+			from = tfrom;
+			to = tto;
+		}else if(from.equals("") && to.equals("")){
 			from = tfrom;
 			to = tto;
 		}else {
