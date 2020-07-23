@@ -48,6 +48,9 @@ public class SurveyService {
 				if(from==null && to==null) {
 					from = tfrom;
 					to = tto;
+				}else if(from.equals("") && to.equals("")){
+					from = tfrom;
+					to = tto;
 				}else {
 					//to 문자열의 끝에 day만 자르는 작업
 					String ddd =  to.substring(8, 10);

@@ -113,7 +113,7 @@
 <select id="getProductTotal" parameterType="String" resultType="Long">
 	select count(distinct O.menuNum) 
 	from OrderProduct O left Join Menu M on O.menuNum=M.menuNum left Join Payment P on O.payNum=P.payNum
-	where P.payDate  between #{from} and #{to} and storeNum = #{storeNum}
+	where P.payDate between #{from} and #{to} and storeNum = #{storeNum} and P.refund = 0
 </select>
 
 <!-- ByOrder -->
