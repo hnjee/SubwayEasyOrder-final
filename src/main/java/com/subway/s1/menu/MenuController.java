@@ -29,7 +29,7 @@ public class MenuController {
 	@Autowired
 	private IngredientService ingredientService;
 	@Autowired
-	private SoldoutService soldouService;
+	private SoldoutService soldoutService;
 	@Autowired
 	private CartService cartService;
 	
@@ -64,7 +64,7 @@ public class MenuController {
 		List<MenuVO> ar = menuService.menuList(menuCode);
 		
 		MemberVO memberVO = (MemberVO)request.getSession().getAttribute("member");
-		List<String> menuOut = soldouService.menuSoldout(memberVO.getStoreNum());
+		List<String> menuOut = soldoutService.menuSoldout(memberVO.getStoreNum());
 		
 		mv.addObject("list", ar);
 		mv.addObject("menuCode", menuCode);
@@ -96,7 +96,7 @@ public class MenuController {
 		List<MenuVO> ar = menuService.menuList(menuCode);
 		
 		MemberVO memberVO = (MemberVO)request.getSession().getAttribute("member");
-		List<String> menuOut = soldouService.menuSoldout(memberVO.getStoreNum());
+		List<String> menuOut = soldoutService.menuSoldout(memberVO.getStoreNum());
 		
 		mv.addObject("list", ar);
 		mv.addObject("menuCode", menuCode);
@@ -114,9 +114,10 @@ public class MenuController {
 		String menuCode = menuVO.getMenuCode();
 		
 		MemberVO memberVO = (MemberVO)request.getSession().getAttribute("member");
-		List<String> ingreOut = soldouService.ingreSoldout(memberVO.getStoreNum());
+		List<String> ingreOut = soldoutService.ingreSoldout(memberVO.getStoreNum());
+		List<String> menuOut = soldoutService.menuSoldout(memberVO.getStoreNum());
 		
-	
+		
 		//세트, 커스텀, 샌드위치 구별
 		boolean setmenu = false;
 		boolean custom = false;
@@ -173,6 +174,7 @@ public class MenuController {
 		mv.addObject("custom", custom);
 		mv.addObject("sw", sw);
 		mv.addObject("ingreOut", ingreOut);
+		mv.addObject("menuOut", menuOut);
 		
 		mv.setViewName("menu/menuSelect");
 		return mv;

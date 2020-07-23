@@ -246,26 +246,52 @@
    		<div id="setSelect" class="collapse">
 	   		<h3>쿠키</h3> 
 			<div id="div_co">
-	   		<c:forEach items="${cookies}" var="coo">
+	   		<c:forEach items="${cookies}" var="coo" varStatus="i">
 	   			<div class="ing">
+		   			<c:forEach items="${menuOut}" var="mo">
+						<c:if test="${coo.menuNum eq mo}">
+							<div class="label2">
+								<span class="new">품절</span>
+							</div>
+							<script type="text/javascript">
+								soldout = "#coo${i.index}";
+							</script>
+						</c:if>
+					</c:forEach>
 	    			<img src="../images/menu/${coo.menuCode}_${coo.menuNum}.jpg">
 	    			<div>
-			    		<input type="radio" name="coo" class="cs" value="${coo.menuNum}" title="${coo.name}"> 
+			    		<input type="radio" name="coo" class="cs" value="${coo.menuNum}" title="${coo.name}" id="coo${i.index}">  
 		  				<label>${coo.name}</label><br>
 					</div>
+					<script type="text/javascript">
+						$(soldout).attr("disabled", true);
+					</script>
 				</div>
 	   		</c:forEach>
 	   		</div>
 	   		
 	   		<h3>음료</h3>
 	   		<div id="div_dr">
-	   		<c:forEach items="${drinks}" var="drink">
+	   		<c:forEach items="${drinks}" var="drink" varStatus="i">
 	   			<div class="ing" style="height: 125px;">
+	   				<c:forEach items="${menuOut}" var="mo">
+						<c:if test="${drink.menuNum eq mo}">
+							<div class="label2">
+								<span class="new">품절</span>
+							</div>
+							<script type="text/javascript">
+								soldout = "#drink${i.index}";
+							</script>
+						</c:if>
+					</c:forEach>
 	    			<img src="../images/menu/${drink.menuCode}_${drink.menuNum}.jpg">
 	    			<div>
-			    		<input type="radio" name="drink" class="ds" value="${drink.menuNum}" title="${drink.name}">
+			    		<input type="radio" name="drink" class="ds" value="${drink.menuNum}" title="${drink.name}" id="drink${i.index}">
 		  				<label>${drink.name}</label><br>
 					</div>
+					<script type="text/javascript">
+						$(soldout).attr("disabled", true);
+					</script>
 				</div>
 	   		</c:forEach>
 	   		</div>
