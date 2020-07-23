@@ -516,7 +516,10 @@ $("#btn_submit").click(function(){
 	if(result){
 		frm.submit();
 		opener.parent.location="./memberMenuReload";
-		window.close();
+		setTimeout(function(){
+			window.close();
+
+		},1000);
 	} else {
 		alert("정보를 다 입력");
 	}
