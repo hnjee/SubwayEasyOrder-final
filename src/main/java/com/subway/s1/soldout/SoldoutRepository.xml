@@ -10,5 +10,4 @@
 	<select id="ingreSoldout" parameterType="String" resultType="String">
 		select ingreNum from IngreSoldout where storeNum=#{storeNum}
 	</select>
-
 </mapper>
