@@ -516,7 +516,6 @@ $("#btn_submit").click(function(){
 	if(result){
 		frm.submit();
 		opener.parent.location="./memberMenuReload"; 
-	 	
 	 	setTimeout(function() {
 	 		 window.close();
 	 		}, 1000); 
